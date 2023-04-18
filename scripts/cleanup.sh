@@ -27,7 +27,7 @@ export IFS=`echo -ne '\n\r'`
 echo -e "\033[34;31mThis script can bring problems. Be sure about what you're doing. Close the DropBox for safety.\033[0m"
 
 FILES=$(find -name '*.???~' && find -name '*.???' && find -name '*.backup')
-FILES=$(echo "$FILES" | egrep -v '(.tex$|.sty$|.bib$|.png$|.jpg$|.ods$|.pdf$|.eps$|.bmp$|.gif|.cls|.ppt|.doc|.xls|.csv|.svn|.txt$)')
+FILES=$(echo "$FILES" | egrep -v '(.tex$|.sty$|.bib$|.png$|.jpg$|.ods$|.pdf$|.eps$|.bmp$|.gif|.cls|.ppt|.doc|.xls|.csv|.svn|.txt$|.git)')
 
 echo ""
 echo -e "\033[40;41mFiles to be erased:\033[0m"
