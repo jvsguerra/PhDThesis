@@ -24,13 +24,13 @@
 
 if [ -z "$1" ];
 then
-	echo "[Error] Usage: ./texer file.tex yes|no [optional flag to use makeindex, default: no]"
+	echo "[Error] Usage: ./build file.tex yes|no [optional flag to use makeindex, default: no]"
 	exit
 fi
 
 if [ ! -z "$2" ] && [ "" != "$(echo $2 | sed 's/\(yes\|no\)//g')" ];
 then
-	echo "[Error] Usage: ./texer file.tex yes|no [optional flag to use makeindex, default: no]"
+	echo "[Error] Usage: ./build file.tex yes|no [optional flag to use makeindex, default: no]"
 	exit
 fi
 
