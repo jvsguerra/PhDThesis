@@ -1,10 +1,10 @@
 name: LaTeX Build
 
-on: 
+on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
@@ -14,14 +14,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up LaTeX environment
-        uses: docker://blang/latex:ubuntu
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-install texlive-base texlive-latex-extra texlive-font-utils
 
       - name: Build LaTeX code
-        run: make build
+        run: |
+          make build
 
       - name: Upload pdf
         uses: actions/upload-artifact@v3
         with:
           name: artifact
-          path: phdquali.pdf
+          path: ./phdquali.pdf
