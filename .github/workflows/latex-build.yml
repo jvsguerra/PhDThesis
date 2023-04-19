@@ -1,0 +1,29 @@
+name: LaTeX Build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up LaTeX environment
+        uses: docker://blang/latex:ubuntu
+
+      - name: Build LaTeX code
+        run: make build
+
+      - name: Upload pdf
+        uses: actions/upload-artifact@v3
+        with:
+          name: artifact
+          path: phdquali.pdf
