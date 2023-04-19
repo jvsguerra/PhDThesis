@@ -1,7 +1,6 @@
 BUILD=./scripts/build.sh
 CLEANUP=./scripts/cleanup.sh
-# TEXFILE=phdquali.tex
-TEXFILE=ic-tese-v3.tex
+TEXFILE=phdquali.tex
 MAKEINDEX=no
 
 .PHONY: build cleanup
