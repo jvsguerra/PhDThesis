@@ -432,6 +432,9 @@
 \setstretch{1.1}
 }
 
+\usepackage{titlesec}
+\titleformat{\chapter}[hang] 
+{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter:}{12pt}{}{}
 
 \let\@oldbiblio\thebibliography
 \renewcommand{\thebibliography}[1]{\newpage\addcontentsline{toc}{chapter}{\bibname}\@oldbiblio{#1}}

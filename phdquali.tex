@@ -6,6 +6,9 @@
 
 \usepackage[latin1,utf8]{inputenc}
 
+% Para identar primeiro parágrafo:
+\usepackage{indentfirst}
+
 % Para acrescentar comentários ao PDF descomente:
 \usepackage
 %  [pdfauthor={nome do autor},
@@ -15,6 +18,8 @@
 %   pdfcreator={pdflatex}]
 {hyperref}
 
+\def\ie{i.e.\onedot} \def\Ie{I.e.\onedot}
+\def\eg{e.g.\onedot} \def\Eg{E.g.\onedot}
 
 \begin{document}
 
@@ -84,7 +89,12 @@
 
 % Agradecimentos ou Acknowledgements ou Agradecimientos
 \prefacesection{Agradecimentos}
-Os agradecimentos devem ocupar uma única página.
+
+Gostaria de expressar meus sinceros agradecimentos a todos que me apoiaram durante o desenvolvimento deste projeto. Em primeiro lugar, sou grato aos meus pais, Roseli do Carmo Freitas da Silva e Mario Luiz da Silva Guerra, por me apoiarem em todas as etapas da minha formação acadêmica e profissional. Agradeço à minha companheira, Bruna Martins da Silva, pelo apoio incondicional em todas as fases deste projeto.
+
+Gostaria de agradecer ao meu orientador, Dr. Paulo Sergio Lopes de Oliveira, por ter me dado liberdade científica e criativa para desenvolver esta tese e, acima de tudo, pela oportunidade de trabalhar em um centro de pesquisa de excelência. Agradeço aos meus colegas do Laboratório de Biologia Computacional, José Geraldo de Carvalho Pereira, Helder Veras Ribeiro Filho, Luiz Fernando Giolo Alves, Mariana Bortoletto Grizante, Gabriel Ernesto Jara e Leandro Oliveira Bortot, por terem me apoiado em momentos importantes, compartilhando ideias e sugestões para o desenvolvimento deste projeto. Sou imensamente grato a todos que me ajudaram nesta etapa essencial da minha formação acadêmica.
+
+Por fim, gostaria de agradecer ao Programa de Pós-Graduação em Ciências Farmacêuticas da Faculdade de Ciências Farmacêuticas da Universidade Estadual de Campinas, ao Laboratório Nacional de Biociências e ao Centro Nacional de Pesquisa em Energia e Materiais, por terem viabilizado este trabalho. Também sou grato pelo apoio financeiro da Fundação de Amparo à Pesquisa do Estado de São Paulo (FAPESP) pelo projeto de pesquisa regular (processo nº 2018/00629-0, Fundação de Amparo à Pesquisa do Estado de São Paulo (FAPESP))."
 
 
 % Sempre deve haver um resumo em português:
@@ -118,7 +128,7 @@ The abstract must have at most 500 words and must fit in a single page.
 % \prefacesection{Lista de Símbolos}
 
 % Quem usa o pacote nomencl pode incluir:
-%\renewcommand{\nomname}{Lista de Abreviações e Siglas}
+% \renewcommand{\nomname}{Lista de Abreviações e Siglas}
 %\printnomenclature[3cm]
 
 
@@ -133,26 +143,66 @@ The abstract must have at most 500 words and must fit in a single page.
 % O corpo da dissertação ou tese começa aqui:
 \chapter{Introdução}
 
-\begin{itemize}
- \item Comece explicando a importância dos sítios de ligação em biomoléculas e como eles afetam a função biológica das moléculas;
- \item Apresente os métodos experimentais e computacionais disponíveis para identificar e caracterizar sítios de ligação;
- \item Descreva brevemente os programas computacionais mais utilizados na área e suas principais características;
- \item Finalize apresentando o objetivo e a estrutura do seu trabalho.
-\end{itemize}
+% \begin{itemize}
+%  \item Comece explicando a importância dos sítios de ligação em biomoléculas e como eles afetam a função biológica das moléculas;
+%  \item Apresente os métodos experimentais e computacionais disponíveis para identificar e caracterizar sítios de ligação;
+%  \item Descreva brevemente os programas computacionais mais utilizados na área e suas principais características;
+%  \item Finalize apresentando o objetivo e a estrutura do seu trabalho.
+% \end{itemize}
+
+Biomoléculas, como proteínas e ácidos núcleios, são moléculas complexas que desempenham funções biológicas essenciais para a vida. Processos biológicos, como a transdução de sinal, a integridade estrutural, a adesão celular e a apoptose, são modulados por interações biomoleculares \cite{sotriffer2002,henrich2010}. Essas interações são extremamente importantes para a compreensão de processo biológicos e para o desenvolvimento e/ou aprimoramento de terapias farmacológicas \cite{henrich2010}. No entanto, os estudos dos mecanismos intrínsicos dessas interações ou possíveis pontos de interação são desafiadores, devido à complexidade das biomoléculas e à diversidade das interações que ocorrem entre elas.
+
+Usualmente, essas interações ocorrem entre os receptores e ligantes, que variam de íons, como ferro e fosfato, a macromoléculas, como proteínas, RNA e DNA \cite{oliveira2014}. Para execução dessas interações, estruturas atomísticas se dobram orquestradamente para criar sítios de ligação específicos, comumente localizados em cavidades ao longo da superfície molecular, expondo padrões topológicos e físico-químicos para acomodar ligantes específicos \cite{henrich2010,guerra2021}. As interações receptor-ligante, como interações proteína-proteína (IPP), proteína-ligante (IPL), proteína-RNA (IPR) e proteína-DNA (IPD), são consequência da complementariedade entre as superfícies moleculares do par de interação, restringindo assim a um pequeno número de moléculas a interação eficiente com um dado receptor \cite{henrich2010,simoes2017}.
+
+Dada a importância das interações biomoleculares, o estudo das biomoléculas e seus sítios de ligação são essencias para compreensão de processos biológicos e para o aprimoramento e desenvolvimento de novos fármacos. A utilização de abordagens computacionais para identificar sítios de ligação e caracterizar interações biomoleculares tem se mostrado uma alternativa eficaz para complementar os métodos experimentais e fornecer informações detalhadas sobre as interações moleculares \cite{simoes2017}. A identificação de sítios de ligação é um problema de classificação, onde o objetivo é determinar se um dado ponto na superfície de uma biomolécula é um sítio de ligação ou não \cite{sottrifer2002,henrich2010,simoes2017}. Enquanto isso, avanços em recursos computacionais e base de dados têm impulsionado o uso de métodos \textit{in silico} para simular a dinâmica de biomoléculas e implementar aplicações de inteligência artificial para modelar estruturas biomoleculares \cite{tunyasuvunakool2021}. Juntos, todos esses dados estruturais fornecem terreno fértil para interpretação de dados por meio de ciência de dados ou estruturas de análise automatizadas, mas a análise intensiva de dados requer rotinas de script eficientes e integráveis com uma estrutura de dados facilmente manipulável.
+
+Nesse cenário, ainda há a necessidade de ferramentas computacionais robustas e abrangentes para estudos computacionais de sistemas biomoleculares, capazes de cobrir as diferentes formas de interação. Ferramentas que sirvam como blocos de construção, para aplicações, programas e/ou protocolos automatizados de biologia computacional, biologia estrutural, aprendizado de máquina e áreas correlatas, são essenciais para análise de biomoléculas e/ou sítios de ligação. O desenvolvimento de ferramentas que possam ser utilizadas em diferentes tipos de aplicações e potencialidades é de suma importância nesse contexto.
+
+Nesse sentido, o KVFinder suite é uma plataforma computacional que tem como objetivo atender a essas demandas. O KVFinder suite é composto por um conjunto de ferramentas para codificação e caracterização de biomoléculas e detecção e caracterização de sítios de ligação nessas biomoléculas. O KVFinder suite é composto por cinco ferramentas: parKVFinder \cite{guerra2020}, pyKVFinder \cite{guerra2021}, KVFinder-web \cite{guerra2023A}, KVFinderMD e SERD. Essa plataforma tem o potencial de ser uma ferramenta robusta e abrangente para estudos computacionais de sistemas biomoleculares, e pode ser utilizada em diferentes aplicações e contextos, desde a biologia estrutural até a ciência de dados.
+
+
+\section{Detecção e caracterização de sítios de ligação}
+
+\subsection{Ferramentas computacionais para detecção e caracterização de sítios de ligação}
+
+% \subsection{Justificativa/Motivação}
+
+% Na área de biologia computacional, ainda faltam ferramentas robustas e abrangentes para estudos computacionais de sistemas biomoleculares, capazes de cobrir as diferentes formas de interação abordadas até aqui. Sendo assim, ferramentas que sirvam como blocos de construção, para aplicações, programas e/ou protocolos automzizados de biologia computacional, biologia estrutural, aprendizado de máquina e área correlatas, são essenciais para análise de biomoléculas e/ou sítios de ligação. Além disso, ferramentas que sejam para diferentes tipos de aplicações e potencialidades. Nesse cenário, o KVFinder suite é uma plataforma computacional para estudo de sistemas biomoleculares em biologia estrutural e ciência de dados. O KVFinder suite é composto por um conjunto de ferramentas para codificação e caracterização de biomoléculas e codificação, detecção e caracterização de sítios de ligação nessas biomoléculas. O KVFinder suite é composto por quatro ferramentas: pyKVFinder, KVFinder-web, KVFinderMD e SERD. % ver exatamente onde inserir - motivação/justificativa
 
 \chapter{Objetivos}
 
-\begin{itemize}
- \item Apresente o objetivo geral do seu trabalho;
- \item Apresente os objetivos específicos do seu trabalho.
+% \begin{itemize}
+%  \item Apresente o objetivo geral do seu trabalho;
+%  \item Apresente os objetivos específicos do seu trabalho.
+% \end{itemize}
 
-\chapter{Modelagem de biomoléculas e sítios de ligação}
+\section{Objetivo geral}
+
+Este trabalho tem como objetivo o desenvolvimento de uma plataforma computacional, denominada \textbf{KVFinder suite}, para estudo de sistemas biomoleculares em biologia estrutural.
+
+\section{\textbf{Objetivos específicos}}
+
+Os objetivos específicos incluem: 
+
+\begin{itemize}
+  \item Aprimoramento e desenvolvimento de descritores de propriedades do KVFinder suite;
+  \item Implementação de diferentes codificações para biomoléculas e sítios de ligação; % cavidade, resíduos e grafos
+  \item Desenvolvimento de ferramenta para ciência de dados e protocolos automatizados; % pyKVFinder
+  \item Desenvolvimento de um serviço \textit{web} para análise de sítios de ligação; % KVFinder-web
+  \item Desenvolvimento de ferramenta para análises dinâmica molecular; % KVFinderMD
+  \item Desenvolvimento de um programa para representação gráfica de regiões expostas de biomoléculas. % SERD
+\end{itemize}
+
+
+\chapter{Codificação de biomoléculas e sítios de ligação}
 
 \begin{itemize}
   \item Explique as diferentes representações de biomoléculas que podem ser usadas em simulações computacionais e em estudos de sítios de ligação;
   \item Descreva em detalhes as representações usadas no KVFinder suite, como modelos de pontos, modelos de esferas, superfícies moleculares e mapas de densidade eletrônica;
   \item Explique como cada uma dessas representações pode ser usada para identificar sítios de ligação em biomoléculas.
  \end{itemize}
+
+Quando estamos trabalhamos com modelos computacionais para o estudo e análise da função e/ou interação de biomoléculas dependemos diretamente da abstração do dado biológico para uma representação computacional. Essa abstração é feita por meio de uma codificação, que pode ser de diferentes tipos, dependendo do objetivo do estudo. Nesse sentido, a codificação de biomoléculas e sítios de ligação é um passo essencial para o desenvolvimento de ferramentas computacionais para estudo de sistemas biomoleculares.
 
 \chapter{Plataforma KVFinder suite}
 
@@ -161,6 +211,19 @@ The abstract must have at most 500 words and must fit in a single page.
   \item Apresente exemplos de aplicação de cada programa em estudos de sítios de ligação em biomoléculas, mostrando os resultados obtidos e como eles contribuíram para a compreensão da função biológica das moléculas estudadas;
   \item Explique como os resultados obtidos pelo KVFinder suite podem ser validados experimentalmente.
  \end{itemize}
+
+\section{parKVFinder}
+
+\section{pyKVFinder}
+
+\section{KVFinder-web}
+
+% Several web services have been proposed for the detection and/or characterization of binding sites in biomolecules. Amongst them, we could cite FpocketWeb (5), GHECOM (6), CaverWeb (7), CASTp (8), ConCavity (9), Depth (10), MoloVol (11) and 3DLigandSite (12).
+
+\section{KVFinderMD}
+
+\section{SERD}
+
 
 \chapter{Conclusões}
 
@@ -172,7 +235,7 @@ The abstract must have at most 500 words and must fit in a single page.
  \end{itemize}
 
 % As referências:
-\bibliographystyle{plain}
+\bibliographystyle{unsrt}
 \bibliography{phdquali}
 
 
