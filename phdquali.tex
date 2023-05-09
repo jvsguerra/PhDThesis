@@ -28,7 +28,7 @@
 %\autora{Nome da Autora}
 
 % Sempre deve haver um título em português:
-\titulo{Caracterização estrutural e funcional de sítios de ligação por meio de plataforma de metodologias computacionais}
+\titulo{Desenvolvimento de plataforma de metodologias computacionais para caracterização estrutural e funcional de biomoléculas e sítios de ligação}
 
 % Se a língua for o inglês ou o espanhol defina:
 %\title{The Dissertation or Thesis Title in English or Spanish}
@@ -139,8 +139,10 @@ The abstract must have at most 500 words and must fit in a single page.
 % E esta linha deve ficar bem aqui:
 \fimdaspaginasiniciais
 
-
 % O corpo da dissertação ou tese começa aqui:
+
+%%% Chapter 1
+
 \chapter{Introdução}
 
 % \begin{itemize}
@@ -152,35 +154,51 @@ The abstract must have at most 500 words and must fit in a single page.
 
 Biomoléculas, como proteínas e ácidos núcleios, são moléculas complexas que desempenham funções biológicas essenciais para a vida. Processos biológicos, como a transdução de sinal, a integridade estrutural, a adesão celular e a apoptose, são modulados por interações biomoleculares \cite{sotriffer2002,henrich2010}. Essas interações são extremamente importantes para a compreensão de processo biológicos e para o desenvolvimento e/ou aprimoramento de terapias farmacológicas \cite{henrich2010}. No entanto, os estudos dos mecanismos intrínsicos dessas interações ou possíveis pontos de interação são desafiadores, devido à complexidade das biomoléculas e à diversidade das interações que ocorrem entre elas.
 
-Usualmente, essas interações ocorrem entre os receptores e ligantes, que variam de íons, como ferro e fosfato, a macromoléculas, como proteínas, RNA e DNA \cite{oliveira2014}. Para execução dessas interações, estruturas atomísticas se dobram orquestradamente para criar sítios de ligação específicos, comumente localizados em cavidades ao longo da superfície molecular, expondo padrões topológicos e físico-químicos para acomodar ligantes específicos \cite{henrich2010,guerra2021}. As interações receptor-ligante, como interações proteína-proteína (IPP), proteína-ligante (IPL), proteína-RNA (IPR) e proteína-DNA (IPD), são consequência da complementariedade entre as superfícies moleculares do par de interação, restringindo assim a um pequeno número de moléculas a interação eficiente com um dado receptor \cite{henrich2010,simoes2017}.
+Usualmente, essas interações ocorrem entre os receptores e ligantes, que variam de íons, como ferro e fosfato, a macromoléculas, como proteínas, RNA e DNA \cite{oliveira2014}. Para execução dessas interações, estruturas atomísticas se dobram orquestradamente para criar sítios de ligação específicos, comumente localizados em cavidades ao longo da superfície molecular, expondo padrões topológicos e físico-químicos para acomodar ligantes específicos \cite{henrich2010,guerra2021}. As interações receptor-ligante, como interações proteína-proteína (IPP), proteína-ligante (IPL), proteína-RNA (IPR) e proteína-DNA (IPD), são consequência da complementariedade entre as superfícies moleculares do par de interação, restringindo assim a um pequeno número de ligantes a interação eficiente com um dado receptor \cite{henrich2010,simoes2017}.
 
-Dada a importância das interações biomoleculares, o estudo das biomoléculas e seus sítios de ligação são essencias para compreensão de processos biológicos e para o aprimoramento e desenvolvimento de novos fármacos. A utilização de abordagens computacionais para identificar sítios de ligação e caracterizar interações biomoleculares tem se mostrado uma alternativa eficaz para complementar os métodos experimentais e fornecer informações detalhadas sobre as interações moleculares \cite{simoes2017}. A identificação de sítios de ligação é um problema de classificação, onde o objetivo é determinar se um dado ponto na superfície de uma biomolécula é um sítio de ligação ou não \cite{sottrifer2002,henrich2010,simoes2017}. Enquanto isso, avanços em recursos computacionais e base de dados têm impulsionado o uso de métodos \textit{in silico} para simular a dinâmica de biomoléculas e implementar aplicações de inteligência artificial para modelar estruturas biomoleculares \cite{tunyasuvunakool2021}. Juntos, todos esses dados estruturais fornecem terreno fértil para interpretação de dados por meio de ciência de dados ou estruturas de análise automatizadas, mas a análise intensiva de dados requer rotinas de script eficientes e integráveis com uma estrutura de dados facilmente manipulável.
+Dada a importância das interações biomoleculares, o estudo das biomoléculas e seus sítios de ligação são essencias para compreensão de processos biológicos e para o aprimoramento e desenvolvimento de novos fármacos. A utilização de abordagens computacionais para identificar sítios de ligação e caracterizar interações biomoleculares tem se mostrado uma alternativa eficaz para complementar os métodos experimentais e fornecer informações detalhadas sobre as interações moleculares \cite{simoes2017}. A identificação de sítios de ligação é um problema de classificação, onde o objetivo é determinar se um dado ponto na superfície de uma biomolécula é um sítio de ligação ou não \cite{sotriffer2002,henrich2010,simoes2017}. Enquanto isso, avanços em recursos computacionais e base de dados têm impulsionado o uso de métodos \textit{in silico} para simular a dinâmica de biomoléculas e implementar aplicações de inteligência artificial para estudar estruturas biomoleculares \cite{tunyasuvunakool2021}. Juntos, todos esses dados estruturais fornecem terreno fértil para interpretação de dados por meio de ciência de dados ou protocolos automatizadas, mas a análise intensiva de dados requer rotinas eficientes e integráveis com uma estrutura de dados facilmente manipulável.
 
 Nesse cenário, ainda há a necessidade de ferramentas computacionais robustas e abrangentes para estudos computacionais de sistemas biomoleculares, capazes de cobrir as diferentes formas de interação. Ferramentas que sirvam como blocos de construção, para aplicações, programas e/ou protocolos automatizados de biologia computacional, biologia estrutural, aprendizado de máquina e áreas correlatas, são essenciais para análise de biomoléculas e/ou sítios de ligação. O desenvolvimento de ferramentas que possam ser utilizadas em diferentes tipos de aplicações e potencialidades é de suma importância nesse contexto.
 
 Nesse sentido, o KVFinder suite é uma plataforma computacional que tem como objetivo atender a essas demandas. O KVFinder suite é composto por um conjunto de ferramentas para codificação e caracterização de biomoléculas e detecção e caracterização de sítios de ligação nessas biomoléculas. O KVFinder suite é composto por cinco ferramentas: parKVFinder \cite{guerra2020}, pyKVFinder \cite{guerra2021}, KVFinder-web \cite{guerra2023A}, KVFinderMD e SERD. Essa plataforma tem o potencial de ser uma ferramenta robusta e abrangente para estudos computacionais de sistemas biomoleculares, e pode ser utilizada em diferentes aplicações e contextos, desde a biologia estrutural até a ciência de dados.
 
 
-\section{Detecção e caracterização de sítios de ligação}
+\section{Identificação de sítios de ligação em biomoléculas}
 
-\subsection{Ferramentas computacionais para detecção e caracterização de sítios de ligação}
+Ao longo das últimas décadas, diversas abordagens \textit{in silico} foram desenvolvidas para identificação de sítios de ligação em proteínas para aprofundar os conhecimentos acerca de função de uma determinada proteína e para descoberta e melhoramento de fármacos \cite{liang1998}. No entanto, apenas algumas metodologias são aplicáveis à outros tipos de biomoléculas, \eg, ácidos núcleicos, carboidratos e lípideos. As abordagens computacionais publicados podem ser divididos em três categorias principais: geométricas, energéticas e evolutivas \cite{oliveira2014,simoes2017}.
 
-% \subsection{Justificativa/Motivação}
+\begin{itemize}
+  \item \textbf{Métodos evolutivos:} são baseados na busca por resíduos conservados em alinhamentos de sequências múltiplas e informações de perfis conhecidos de sítios de ligação;
+  \item \textbf{Métodos energéticos:} identificam sítios de ligação a partir da interação energética entre a biomolécula-alvo e uma sonda química, geralmente um grupo químico;
+  \item \textbf{Métodos geométricos:} identificam cavidades analisando as características geométricas da superfície molecular.
+\end{itemize}
 
-% Na área de biologia computacional, ainda faltam ferramentas robustas e abrangentes para estudos computacionais de sistemas biomoleculares, capazes de cobrir as diferentes formas de interação abordadas até aqui. Sendo assim, ferramentas que sirvam como blocos de construção, para aplicações, programas e/ou protocolos automzizados de biologia computacional, biologia estrutural, aprendizado de máquina e área correlatas, são essenciais para análise de biomoléculas e/ou sítios de ligação. Além disso, ferramentas que sejam para diferentes tipos de aplicações e potencialidades. Nesse cenário, o KVFinder suite é uma plataforma computacional para estudo de sistemas biomoleculares em biologia estrutural e ciência de dados. O KVFinder suite é composto por um conjunto de ferramentas para codificação e caracterização de biomoléculas e codificação, detecção e caracterização de sítios de ligação nessas biomoléculas. O KVFinder suite é composto por quatro ferramentas: pyKVFinder, KVFinder-web, KVFinderMD e SERD. % ver exatamente onde inserir - motivação/justificativa
+% pro e contra
+
+\subsection{Abordagens geométricas}
+
+% Geometric approaches for cavity detection have been vastly employed, which has a wide range of different techniques [3,18]. Since these techniques are relatively simple, straightforward and do not rely on prior knowledge, the approach is the most recurrent in the literature [1,5]. Here, we briefly present a comprehensive classification on geometry-based cavity detection approaches, whose taxonomy include grid-, sphere-, tessellation- and surface-based techniques, and combinations of those [3,18].
+
+\subsection{Ferramentas disponíveis para detecção e caracterização de sítios de ligação}
+
+\begin{itemize}
+  \item KVFinder, parKVFinder, pyKVFinder
+  \item Fpocket
+  \item CAVER
+  \item GHECOM
+\end{itemize}
+
+% Cavity characterization 
+
+%%% Chapter 2
 
 \chapter{Objetivos}
-
-% \begin{itemize}
-%  \item Apresente o objetivo geral do seu trabalho;
-%  \item Apresente os objetivos específicos do seu trabalho.
-% \end{itemize}
 
 \section{Objetivo geral}
 
 Este trabalho tem como objetivo o desenvolvimento de uma plataforma computacional, denominada \textbf{KVFinder suite}, para estudo de sistemas biomoleculares em biologia estrutural.
 
-\section{\textbf{Objetivos específicos}}
+\section{Objetivos específicos}
 
 Os objetivos específicos incluem: 
 
@@ -193,6 +211,7 @@ Os objetivos específicos incluem:
   \item Desenvolvimento de um programa para representação gráfica de regiões expostas de biomoléculas. % SERD
 \end{itemize}
 
+%%% Chapter 3
 
 \chapter{Codificação de biomoléculas e sítios de ligação}
 
@@ -203,6 +222,8 @@ Os objetivos específicos incluem:
  \end{itemize}
 
 Quando estamos trabalhamos com modelos computacionais para o estudo e análise da função e/ou interação de biomoléculas dependemos diretamente da abstração do dado biológico para uma representação computacional. Essa abstração é feita por meio de uma codificação, que pode ser de diferentes tipos, dependendo do objetivo do estudo. Nesse sentido, a codificação de biomoléculas e sítios de ligação é um passo essencial para o desenvolvimento de ferramentas computacionais para estudo de sistemas biomoleculares.
+
+%%% Chapter 4
 
 \chapter{Plataforma KVFinder suite}
 
@@ -224,6 +245,7 @@ Quando estamos trabalhamos com modelos computacionais para o estudo e análise d
 
 \section{SERD}
 
+%%% Chapter 5
 
 \chapter{Conclusões}
 
