@@ -173,6 +173,10 @@ Ao longo das últimas décadas, diversas abordagens \textit{in silico} foram des
   \item \textbf{Métodos geométricos:} identificam cavidades analisando as características geométricas da superfície molecular.
 \end{itemize}
 
+Cada categoria de métodos possui seus próprios benefícios e desvantagens. Algoritmos evolutivos dependem fortemente de informações de sequência ou bancos de dados de sítios de ligação ativos e da qualidade do procedimento de alinhamento, enquanto os métodos energéticos dependem de procedimentos de filtragem, parametrizações de campo de força e funções de pontuação utilizadas. Por outro lado, métodos de detecção geométrica são relativamente simples e diretos e não exigem nenhum conhecimento não geométrico, apenas dados estruturais da proteína, \ie o arquivo no formato PDB, XYZ, mmCIF ou equivalente, contendo as coordenadas cartesianas dos átomos, que podem ser facilmente acessadas no Worldwide Protein Data Bank (wwPDB). Uma vez que as coordenadas dos átomos estão disponíveis, métodos geométricos devem ser capazes de representar qualquer tipo de biomolécula. Embora métodos puramente geométricos sejam eficientes na identificação de todos os tipos de cavidades de uma molécula alvo, identificar aquelas que são funcionalmente relevantes apresenta um problema. No entanto, a caracterização de cavidades em termos de propriedades físico-químicas bem escolhidas pode levar à identificação de cavidades funcionalmente relevantes, ou seja, sítios de ligação para um conjunto específico de ligantes.
+
+Em geral, algoritmos baseados em geometria são os mais frequentemente usados para detectar cavidades em proteínas. Enquanto métodos baseados em evolução seriam limitados a proteínas porque dependem de princípios da evolução biológica, métodos baseados em energia poderiam ser aplicáveis, mas exigiriam ajustes finos dos parâmetros de campo de força adaptados à outros tipos de biomoléculas. Como ácidos núcleicos, carboidratos e lipídeos podem ter propriedades distintas em comparação com proteínas, métodos que dependem apenas de informações geométricas (por exemplo, coordenadas Cartesianas em 3D e tamanho do átomo) são desejáveis.
+
 % pro e contra
 
 \subsection{Abordagens geométricas}
@@ -242,6 +246,8 @@ Quando estamos trabalhamos com modelos computacionais para o estudo e análise d
 % Several web services have been proposed for the detection and/or characterization of binding sites in biomolecules. Amongst them, we could cite FpocketWeb (5), GHECOM (6), CaverWeb (7), CASTp (8), ConCavity (9), Depth (10), MoloVol (11) and 3DLigandSite (12).
 
 \section{KVFinderMD}
+
+% The protein-ligand and protein-protein interactions rely on the intrinsic dynamics of the target receptor, in which the classical lock and key model fails, and more recent binding models, e.g., induced-fit and conformation selection, thrive. Thus, molecular dynamics simulations are a useful tool to understand the underlying mechanisms of molecular recognition and, ultimately, the biomolecular function. In this scenario, we recently developed pyKVFinder, a Python package for detecting and characterizing biomolecular cavities in data science. Using it as a building block, we developed a new tool, called KVFinder for Molecular Dynamics analysis (KVFinderMD), to explore binding site dynamics in biomolecular structures of interest. Since the intrinsic biomolecule dynamics may change the shape and properties of the binding site over time, KVFinderMD can identify and characterize cavities in respect to volume, area, depth, hydropathy and interface residues, which are relevant properties to describe the molecular recognition process.
 
 \section{SERD}
 
