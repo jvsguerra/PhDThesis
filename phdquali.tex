@@ -122,14 +122,27 @@ The abstract must have at most 500 words and must fit in a single page.
 \listoftables
 
 % A lista de abreviações e siglas é opcional:
-% \prefacesection{Lista de Abreviações e Siglas}
+\prefacesection{Lista de Abreviações e Siglas}
+
+\begin{itemize}
+  \item[3D] Tridimensional
+  \item[IPD] Interações Proteína-DNA
+  \item[IPL] Interações Proteína-Ligante
+  \item[IPR] Interações Proteína-RNA
+  \item[IPP] Interações Proteína-Proteína
+  \item[LES] Superfície Excluída pelo Ligante (\textit{Ligand Excluded Surface})
+  \item[SAS] Superfície Acessível ao Solvente (\textit{Solvent Accessible Surface})
+  \item[SES] Superfície Excluída pelo Solvente (\textit{Solvent Excluded Surface})
+  \item[vdW] van der Waals
+  \item[wwPDB] Worldwide Protein Data Bank
+\end{itemize}
 
 % A lista de símbolos é opcional:
 % \prefacesection{Lista de Símbolos}
 
 % Quem usa o pacote nomencl pode incluir:
 % \renewcommand{\nomname}{Lista de Abreviações e Siglas}
-%\printnomenclature[3cm]
+% \printnomenclature[3cm]
 
 
 % O sumário vem aqui:
@@ -173,15 +186,25 @@ Ao longo das últimas décadas, diversas abordagens \textit{in silico} foram des
   \item \textbf{Métodos geométricos:} identificam cavidades analisando as características geométricas da superfície molecular.
 \end{itemize}
 
-Cada categoria de métodos possui seus próprios benefícios e desvantagens. Algoritmos evolutivos dependem fortemente de informações de sequência ou bancos de dados de sítios de ligação ativos e da qualidade do procedimento de alinhamento, enquanto os métodos energéticos dependem de procedimentos de filtragem, parametrizações de campo de força e funções de pontuação utilizadas. Por outro lado, métodos de detecção geométrica são relativamente simples e diretos e não exigem nenhum conhecimento não geométrico, apenas dados estruturais da proteína, \ie o arquivo no formato PDB, XYZ, mmCIF ou equivalente, contendo as coordenadas cartesianas dos átomos, que podem ser facilmente acessadas no Worldwide Protein Data Bank (wwPDB). Uma vez que as coordenadas dos átomos estão disponíveis, métodos geométricos devem ser capazes de representar qualquer tipo de biomolécula. Embora métodos puramente geométricos sejam eficientes na identificação de todos os tipos de cavidades de uma molécula alvo, identificar aquelas que são funcionalmente relevantes apresenta um problema. No entanto, a caracterização de cavidades em termos de propriedades físico-químicas bem escolhidas pode levar à identificação de cavidades funcionalmente relevantes, ou seja, sítios de ligação para um conjunto específico de ligantes.
+Cada categoria de métodos possui suas próprias vantagens e desvantagens \cite{sotriffer2002,henrich2010,simoes2017,krone2016}. Algoritmos evolutivos dependem fortemente de informações de sequência ou bancos de dados de sítios de ligação ativos e da qualidade do procedimento de alinhamento, enquanto os métodos energéticos dependem de procedimentos de filtragem, parametrizações de campo de força e funções de pontuação utilizadas. Por outro lado, métodos de detecção geométrica são relativamente simples e diretos e não exigem nenhum conhecimento não geométrico, apenas dados estruturais da proteína, \ie o arquivo no formato PDB, XYZ, mmCIF ou equivalente, contendo as coordenadas cartesianas dos átomos, que podem ser facilmente acessadas no Worldwide Protein Data Bank (wwPDB). Uma vez que as coordenadas dos átomos estão disponíveis, métodos geométricos devem ser capazes de representar qualquer tipo de biomolécula. \cite{henrich2010,oliveira2014,simoes2017}. Embora métodos puramente geométricos sejam eficientes na identificação de todos os tipos de cavidades de uma molécula alvo, identificar aquelas que são funcionalmente relevantes apresenta um problema. No entanto, a caracterização de cavidades em termos de propriedades físico-químicas bem escolhidas pode levar à identificação de cavidades funcionalmente relevantes, ou seja, sítios de ligação para um conjunto específico de ligantes \cite{sotriffer2002,henrich2010,simoes2017,liang1998}.
 
-Em geral, algoritmos baseados em geometria são os mais frequentemente usados para detectar cavidades em proteínas. Enquanto métodos baseados em evolução seriam limitados a proteínas porque dependem de princípios da evolução biológica, métodos baseados em energia poderiam ser aplicáveis, mas exigiriam ajustes finos dos parâmetros de campo de força adaptados à outros tipos de biomoléculas. Como ácidos núcleicos, carboidratos e lipídeos podem ter propriedades distintas em comparação com proteínas, métodos que dependem apenas de informações geométricas (por exemplo, coordenadas Cartesianas em 3D e tamanho do átomo) são desejáveis.
-
-% pro e contra
+Em geral, algoritmos baseados em geometria são os mais frequentemente usados para detectar cavidades em proteínas. Enquanto métodos baseados em evolução seriam limitados a proteínas porque dependem de princípios da evolução biológica, métodos baseados em energia poderiam ser aplicáveis, mas exigiriam ajustes finos dos parâmetros de campo de força adaptados à outros tipos de biomoléculas. Como ácidos núcleicos, carboidratos e lipídeos podem ter propriedades distintas em comparação com proteínas, métodos que dependem apenas de informações geométricas (por exemplo, coordenadas Cartesianas tridimensionais (3D) e tamanho do átomo) são desejáveis.
 
 \subsection{Abordagens geométricas}
 
-% Geometric approaches for cavity detection have been vastly employed, which has a wide range of different techniques [3,18]. Since these techniques are relatively simple, straightforward and do not rely on prior knowledge, the approach is the most recurrent in the literature [1,5]. Here, we briefly present a comprehensive classification on geometry-based cavity detection approaches, whose taxonomy include grid-, sphere-, tessellation- and surface-based techniques, and combinations of those [3,18].
+A detecção de cavidades através de abordagens geométricas é amplamente utilizada, envolvendo diferentes técnicas \cite{simoes2017,guerra2020,krone2016}. Essas técnicas são simples, diretas e não requerem conhecimento prévio, tornando-as as mais comumente utilizadas na literatura \cite{henrich2010,oliveira2014}. Neste contexto, apresentamos uma breve classificação abrangente das abordagens geométricas para detecção de cavidades, incluindo técnicas baseadas em grade 3D, sonda, tesselação, superfície e suas combinações \cite{simoes2017,guerra2020,krone2016,guerra2023B}.
+
+\begin{itemize}
+  \item \textbf{Algoritmos baseados em grade 3D} (\eg, POVME 3.0 \cite{povme}) representam um conjunto de átomos como pontos discretos, geralmente usando uma grade 3D alinhada aos eixos, como um campo escalar, ou seja, um mapa de densidade, onde cada ponto discreto é um valor inteiro ou booleano. Esses mapas de grade são usados para agrupar pontos vazios relevantes (\ie, não pertencentes ao soluto) em cavidades usando algoritmos de agrupamento de voxels. Normalmente, esses métodos utilizam estruturas de dados simples, capazes de representar uma coleção de dados em um ponto discreto e identificar cavidades de forma automatizada. No entanto, a precisão geométrica, o tempo de computação e o consumo de memória dependem fortemente da resolução da grade, ou seja, da sensibilidade ao espaçamento da grade. Além disso, esses métodos não são invariantes à rotação, o que significa que a orientação de uma determinada molécula afeta ligeiramente a precisão, ou seja, a sensibilidade à orientação;
+
+  \item \textbf{Algoritmos baseados em sondas} (\eg, pywindow \cite{pywindow}, PHECOM \cite{phecom}) utilizam um conjunto de átomos, considerando suas coordenadas 3D e raios de van der Waals, para representar a superfície molecular, que é analisada por uma ou mais sondas, geralmente esferas rígidas, para investigar seus níveis de acessibilidade. Essa técnica pode detectar qualquer tipo de cavidade e está relacionada à extensão espacial de ligantes em potencial; no entanto, pode ter dificuldades em encontrar e delinear de forma inequívoca os limites entre a cavidade e o solvente, ou seja, a ambiguidade na abertura da boca;
+  
+  \item \textbf{Algoritmos baseados em tesselação} (\eg, Fpocket \cite{fpocket}, CAVER 3.0 \cite{caver3}) dependem de técnicas de geometria computacional, como formas alfa, formas beta, diagramas de Voronoi e gráficos de Apollonius. Especificamente, formas alfa e tesselação de Voronoi usam centros atômicos, esferas implicitamente de raio constante para modelar átomos, enquanto formas beta e métodos baseados em Apollonius dependem de esferas de raio variável para modelar esses átomos, que são explorados para identificar cavidades. Normalmente, esses métodos não dependem de nenhuma informação da superfície molecular para detectar cavidades, mas podem ter dificuldades em identificar a localização correta do sítio de ligação, identificar e delinear os limites entre a cavidade e o solvente e definir o número de átomos de superfície;
+
+  \item \textbf{Algoritmos baseados em superfície} (\eg, NSA \cite{nsa}, MSPocket \cite{mspocket}) não utilizam um modelo de esfera rígida, mas sim um modelo de superfície molecular, como a superfície de van der Waals (vdW), superfície excluída pelo solvente (\textit{Solvent Excluded Surface}; SES), superfície acessível ao solvente (\textit{Solvent Accessible Surface}; SAS) e a superfície excluída pelo ligante (\textit{Ligand Excluded Surface}; LES), que define a interface molecular e seu ambiente. A análise da interface molecular identifica cavidades com base na acessibilidade a um solvente específico ou a um ligante. Nesse caso, a detecção de cavidades ocorre de maneira automatizada, assim como nos métodos baseados em grade, porém não apresenta a ambiguidade na abertura da boca. No entanto, em alguns casos, esses algoritmos podem ter dificuldades em detectar todos os tipos de cavidades e sua extensão completa.
+\end{itemize}
+
+Em geral, a combinação dessas técnicas (\eg, parKVFinder \cite{guerra2020}, pyKVFinder \cite{guerra2021}, KVFinder-web \cite{guerra2023B}, GHECOM \cite{ghecom}, MoloVol \cite{molovol}) tem como objetivo aproveitar as capacidades de cada uma e corrigir ou mitigar suas deficiências individuais, a fim de obter uma técnica mais robusta, como os métodos baseados em grade e esfera, que não são sensíveis à orientação como os métodos baseados em grade. Portanto, cada técnica possui suas próprias capacidades e deficiências, o que torna cada método mais adequado para determinadas aplicações \cite{simoes2017,krone2016}.
 
 \subsection{Ferramentas disponíveis para detecção e caracterização de sítios de ligação}
 
@@ -250,6 +273,8 @@ Quando estamos trabalhamos com modelos computacionais para o estudo e análise d
 % The protein-ligand and protein-protein interactions rely on the intrinsic dynamics of the target receptor, in which the classical lock and key model fails, and more recent binding models, e.g., induced-fit and conformation selection, thrive. Thus, molecular dynamics simulations are a useful tool to understand the underlying mechanisms of molecular recognition and, ultimately, the biomolecular function. In this scenario, we recently developed pyKVFinder, a Python package for detecting and characterizing biomolecular cavities in data science. Using it as a building block, we developed a new tool, called KVFinder for Molecular Dynamics analysis (KVFinderMD), to explore binding site dynamics in biomolecular structures of interest. Since the intrinsic biomolecule dynamics may change the shape and properties of the binding site over time, KVFinderMD can identify and characterize cavities in respect to volume, area, depth, hydropathy and interface residues, which are relevant properties to describe the molecular recognition process.
 
 \section{SERD}
+
+\section{\textit{Benchmarking} das ferramentas disponíveis}
 
 %%% Chapter 5
 
