@@ -176,7 +176,7 @@ Nesse cenário, ainda há a necessidade de ferramentas computacionais robustas e
 Nesse sentido, o KVFinder suite é uma plataforma computacional que tem como objetivo atender a essas demandas. O KVFinder suite é composto por um conjunto de ferramentas para codificação e caracterização de biomoléculas e detecção e caracterização de sítios de ligação nessas biomoléculas. O KVFinder suite é composto por cinco ferramentas: parKVFinder \cite{guerra2020}, pyKVFinder \cite{guerra2021}, KVFinder-web \cite{guerra2023A}, KVFinderMD e SERD. Essa plataforma tem o potencial de ser uma ferramenta robusta e abrangente para estudos computacionais de sistemas biomoleculares, e pode ser utilizada em diferentes aplicações e contextos, desde a biologia estrutural até a ciência de dados.
 
 
-\section{Identificação de sítios de ligação em biomoléculas}
+\section{Identificação de sítios de ligação em biomoléculas \label{sec:binding-sites}}
 
 Ao longo das últimas décadas, diversas abordagens \textit{in silico} foram desenvolvidas para identificação de sítios de ligação em proteínas para aprofundar os conhecimentos acerca de função de uma determinada proteína e para descoberta e melhoramento de fármacos \cite{liang1998}. No entanto, apenas algumas metodologias são aplicáveis à outros tipos de biomoléculas, \eg, ácidos núcleicos, carboidratos e lípideos. As abordagens computacionais publicados podem ser divididos em três categorias principais: geométricas, energéticas e evolutivas \cite{oliveira2014,simoes2017}.
 
@@ -190,7 +190,7 @@ Cada categoria de métodos possui suas próprias vantagens e desvantagens \cite{
 
 Em geral, algoritmos baseados em geometria são os mais frequentemente usados para detectar cavidades em proteínas. Enquanto métodos baseados em evolução seriam limitados a proteínas porque dependem de princípios da evolução biológica, métodos baseados em energia poderiam ser aplicáveis, mas exigiriam ajustes finos dos parâmetros de campo de força adaptados à outros tipos de biomoléculas. Como ácidos núcleicos, carboidratos e lipídeos podem ter propriedades distintas em comparação com proteínas, métodos que dependem apenas de informações geométricas (por exemplo, coordenadas Cartesianas tridimensionais (3D) e tamanho do átomo) são desejáveis.
 
-\subsection{Abordagens geométricas}
+\subsection{Abordagens geométricas \label{sec:geometric-approaches}}
 
 A detecção de cavidades através de abordagens geométricas é amplamente utilizada, envolvendo diferentes técnicas \cite{simoes2017,guerra2020,krone2016}. Essas técnicas são simples, diretas e não requerem conhecimento prévio, tornando-as as mais comumente utilizadas na literatura \cite{henrich2010,oliveira2014}. Neste contexto, apresentamos uma breve classificação abrangente das abordagens geométricas para detecção de cavidades, incluindo técnicas baseadas em grade 3D, sonda, tesselação, superfície e suas combinações \cite{simoes2017,guerra2020,krone2016,guerra2023B}.
 
@@ -206,14 +206,24 @@ A detecção de cavidades através de abordagens geométricas é amplamente util
 
 Em geral, a combinação dessas técnicas (\eg, parKVFinder \cite{guerra2020}, pyKVFinder \cite{guerra2021}, KVFinder-web \cite{guerra2023B}, GHECOM \cite{ghecom}, MoloVol \cite{molovol}) tem como objetivo aproveitar as capacidades de cada uma e corrigir ou mitigar suas deficiências individuais, a fim de obter uma técnica mais robusta, como os métodos baseados em grade e esfera, que não são sensíveis à orientação como os métodos baseados em grade. Portanto, cada técnica possui suas próprias capacidades e deficiências, o que torna cada método mais adequado para determinadas aplicações \cite{simoes2017,krone2016}.
 
-\subsection{Ferramentas disponíveis para detecção e caracterização de sítios de ligação}
+\subsection{Principais ferramentas disponíveis para detecção e caracterização de sítios de ligação}
 
-\begin{itemize}
-  \item KVFinder, parKVFinder, pyKVFinder
-  \item Fpocket
-  \item CAVER
-  \item GHECOM
-\end{itemize}
+A grande maioria dos ferramentas de detecção de cavidades foi originalmente desenvolvida para proteínas (veja a seção \ref{sec:geometric-approaches}). Embora esses algoritmos sejam robustos o suficiente para descrever e analisar qualquer sistema de moléculas (\eg, proteína, DNA, RNA, materiais inorgânico, gaiola supramolecular, etc), até o momento, apenas alguns poucos ferramentas foram aplicados aplicados à outros sistemas biomoleculares, que não incluem proteínas, para avaliar características estruturais, como forma e volume de suas cavidades e aberturas. A partir disso, revisamos cuidadosamente à literatura para selecionar ferramentas de detecção capazes de estudar qualquer sistema molecular, gratuitos, bem documentados, com suporte adequado pelos desenvolvedores e reconhecidos na comunidade científica. Com base nesses critérios, descrevemos as quatro principais ferramentas de detecção de cavidades identificadas. A seguir, uma breve descrição de seus algoritmos e funcionalidades.
+
+% \begin{itemize}
+%   \item KVFinder, parKVFinder, pyKVFinder
+%   \item Fpocket
+%   \item CAVER
+%   \item GHECOM
+% \end{itemize}
+
+\subsubsection{KVFinder suite}
+
+\subsubsection{Fpocket}
+
+\subsubsection{CAVER}
+
+\subsubsection{GHECOM}
 
 % Cavity characterization 
 
