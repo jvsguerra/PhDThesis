@@ -24,6 +24,9 @@
 % Letras gregas (alfa, beta, gamma, etc) em modo texto:
 \usepackage{textgreek} % \textalpha, \textbeta, \textgamma, etc
 
+% Para usar letras no enumerate:
+\usepackage{enumitem}
+
 % Formatar \listoffigures
 \usepackage{tocloft}
 \renewcommand{\cftfigpresnum}{Figure }
@@ -326,68 +329,110 @@ Os objetivos específicos incluem:
 %   \item Explique como cada uma dessas representações pode ser usada para identificar sítios de ligação em biomoléculas.
 %  \end{itemize}
 
-\chapter{Codificação de biomoléculas e sítios de ligação}
+A codificação de biomoléculas e sítios de ligação desempenha papel fundamental na biologia estrutural, permitindo a representação e análise computacional de informações biológicas complexas. Esse processo converte informações biológicas em formatos compreensíveis e adequados para processamento por algoritmos e programas em sistemas computacionais. A codificação envolve a atribuição de valores ou categorias aos componentes biológicos, \eg, átomos, aminoácidos e bases nitrogenadas, para descrever ocupância, localização, forças, características físico-químicas e/ou propriedades estruturais. 
 
-A codificação de biomoléculas e sítios de ligação desempenha papel fundamental na biologia estrutural, permitindo a representação e análise computacional de informações biológicas complexas. O processo de codificação converte informações biológicas em formatos compreensíveis e adequados para processamento por algoritmos e programas em sistemas computacionais. Em linhas gerais, esse processo  atribui valores ou categorias a componentes biológicos, \eg, átomos, aminoácidos e bases nitrogenadas, para descrever ocupância, localização, características químicas e/ou propriedades estruturais. 
-
-Nesse contexto, a codificação de dados na biologia estrutural é importante para realizar análises avançadas, como modelagem molecular, simulações de dinâmica molecular e predição de interações. Para ilustrar a codificação de dados biológicas para análises computacionais, citamos alguns exemplos de aplicações. Em modelagem molecular, uma proteína pode ser codificada usando códigos de uma letra para representar os diferentes aminoácidos, como ocorre na representação de sequência de proteínas, para predizer o dobramento de proteínas, como aplicado no ESMFold \cite{lin2022}. Em simulações de dinâmica molecular, as coordenadas 3D de átomos ou resíduos, aliados a vetores representando forças ou outros atributos, são utilizados para representar a estrutura de uma biomolécula, como no GROMACS \cite{abraham2015} em simulações atomísticas (\textit{fine-grained molecular dynamics simulation}) e no CafeMol em simulações \textit{coarse-grained} \cite{kenkazi2011}.
-
-Além disso, os sítios de ligação, após identificados por algoritmos computacionais, são codificados de diferentes maneiras para análises posteriores. Os sítios de ligação podem codificados para representar as características físico-químicas e estruturais de uma região de uma biomolécula, como as grades 3D no KVFinder suite \cite{oliveira2014,guerra2020,guerra2021,guerra2023B}, ou as coordenadas 3D dos átomos no fpocket \cite{fpocket}.
+Na biologia estrutural, a codificação de dados é importante para realizar análises avançadas, \eg modelagem molecular, simulações de dinâmica molecular e predição de interações. Existem várias aplicações que exemplificam a codificação de dados biológicas para análises computacionais. Por exemplo, na modelagem molecular, uma proteína pode ser codificada usando códigos de uma letra para representar os diferentes aminoácidos, como ocorre na representação de sequência de proteínas, para predizer o dobramento de proteínas, como aplicado no ESMFold \cite{lin2022}. Na simulação de dinâmica molecular, as coordenadas 3D de átomos ou conjunto de átomos, juntamente com vetores que representam forças ou outros atributos, são utilizados para representar a estrutura de uma biomolécula, como no GROMACS \cite{gromacs} ou AMBER \cite{amber} em simulações em escala atomística (\textit{fine-grained molecular dynamics simulation}) e no CafeMol em simulações em escala grosseiras (\textit{coarse-grained molecular dynamics simulation}) \cite{kenzaki2011}. Além disso, os sítios de ligação, após identificados por algoritmos computacionais, são codificados de diferentes maneiras para análises posteriores. Os sítios de ligação podem codificados para representar as características físico-químicas e estruturais de uma região de uma biomolécula, como as grades 3D utilizadas no KVFinder suite \cite{oliveira2014,guerra2020,guerra2021,guerra2023B}, ou as coordenadas 3D dos átomos, como no fpocket \cite{fpocket}.
 
 Ao trabalhar com modelos computacionais para o estudo de biomoléculas, a codificação é essencial para a abstração e representação dos dados biológicos de forma computacional. Essa abstração é crucial para o desenvolvimento de ferramentas computacionais voltadas ao estudo de sistemas biomoleculares. Aqui, apresentamos as codificações implementadas para biomoléculas e sítios de ligação, \ie, representação em grade 3D, representação topológica e representação gráfica.
 
-% Quando estamos trabalhamos com modelos computacionais para o estudo e análise da função e/ou interação de biomoléculas dependemos diretamente da abstração do dado biológico para uma representação computacional. Essa abstração é feita por meio de uma codificação, que pode ser de diferentes tipos, dependendo do objetivo do estudo. Nesse sentido, a codificação de biomoléculas e sítios de ligação é um passo essencial para o desenvolvimento de ferramentas computacionais para estudo de sistemas biomoleculares.
+\section{Representação em grade tridimensional}
 
-\section{Representação em grade 3D}
+As biomoléculas e seus sítios de ligação podem ser representadas em uma grade 3D subdividida em voxels (\textit{volumetric pixel}, em inglês). A grade 3D é uma estrutura de dados que armazena valores em uma matriz tridimensional, onde cada elemento da matriz é denominado voxel. O voxel representa um ponto discreto de dados em uma grade regular no espaço tridimensional, sendo que cada ponto pode conter mais de uma informação a fim de representar diferentes propriedades em uma certa porção de espaço de maneira simples e efetiva (Figura \ref{fig:voxel}). Em computação, a grade 3D é uma estrutura de dados comumente utilizada em aplicações de processamento de imagens e visão computacional, como em reconstrução de imagens, segmentação de imagens e detecção de objetos. 
+
+\begin{figure}[ht]
+  \centerline{\includegraphics[scale=0.75]{images/voxels.png}}
+  \centerline{\scriptsize{\textbf{Fonte:} Retirado de \cite{guerra2021}.}}
+  \caption[Representação esquemática de biomoléculas e seus sítios de ligação representadas em grade tridimensional]{\textbf{Representação esquemática de biomoléculas e seus sítios de ligação representadas em grade tridimensional.} Com base em uma grade tridimensional com dimensões (m, n, o), cada elemento corresponde a uma região de cavidade (>1), espaço vazio (1), biomolécula (0) ou solvente (-1). Além disso, propriedades também são armazenadas na mesma estrutura de dados, correspondendo ao valor da propriedade na região.}
+  \label{fig:voxel}
+\end{figure}
+
+Dentre as diversas representações de superfície molecular, a grade tridimensional composta por voxels é a mais simples e apropriada para a representação de múltiplas propriedades em várias condições, pois cada voxel da grade tridimensional pode acumular diferentes informações. Além disso, a grade 3D é uma estrutura de dados eficiente para armazenar e acessar valores e/ou atributos em uma posição 3D, permitindo a realização de operações matemáticas e lógicas em uma região 3D. 
+
+% Essa representação é útil para identificar regiões de interesse em biomoléculas, como sítios de ligação, e para realizar análises de propriedades físico-químicas e estruturais, como a distribuição de cargas e a distribuição de propriedades hidrofóbicas. 
 
 \subsection{Representação de superfícies moleculares}
 
-Ocupância e características.
+A representação de superfícies moleculares é uma etapa fundamental na modelagem e análise de biomoléculas. Nessa abordagem, as biomoléculas são descritas por meio de um modelo de esfera rígida, que considera as posições e raios atômicos para representar a superfície molecular. Existem três formulações matemáticas comumente utilizadas para representar as superfícies moleculares (Figura \ref{fig:surface-representation}):
 
-\begin{itemize}
-  \item Superfície de van der Waals;
-  \item Superfície acessível ao solvente;
-  \item Superfície excluída pelo solvente. 
-\end{itemize}
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+  \item \textbf{superfície de vdW:} representa cada átomo por uma esfera cujo raio é proporcional ao seu raio de van der Waals. A superfície de vdW é representada como a união desses átomos esféricos; 
+  \item \textbf{SAS:} representa as regiões de uma molécula que podem ser acessadas por uma molécula de solvente (\eg, uma molécula de água), que é aproximada por uma sonda esférica;
+  \item \textbf{SES:} é semelhante ao SAS, mas considera-se a casca externa da sonda, em vez do centro da sonda.
+\end{enumerate}
 
-\subsection{Estimativa do volume molecular}
-
-\cite{guerra2023B}
+\begin{figure}[ht]
+  \centerline{\includegraphics[scale=0.8]{images/surface-representation.png}}
+  \centerline{\scriptsize{\textbf{Fonte:} Retirado de \cite{guerra2023B}.}}
+  \caption[Representações de superfície molecular]{\textbf{Representações de superfície molecular.} \textbf{(A)} Superfície de vdW. \textbf{(B)} SAS. \textbf{(C)} SES. Imagens geradas com PyMOL para a gaiola supramolecular (resorcin[4]areno-hexamérica). \textbf{(D)} Representação esquemática 2D das superfícies moleculares. A superfície de vdW (verde) é composta por átomos representados como esferas verdes. Uma sonda esférica (cinza), representando uma molécula de solvente, rola sobre os átomos da molécula para definir SES e SAS. O SES é definido pela superfície de vdW (verde) e pelo espaço não alcançado pela sonda esférica (laranja). O SAS é definido pelo envelope alcançado pelo centro da sonda esférica (azul).}
+  \label{fig:surface-representation}
+\end{figure}
 
 \section{Representação pela topologia}
 
-Ácidos núcleicos, resíduos e/ou átomos.
+Em vez de representar os dados estruturais por meio de voxels em uma grade 3D, as biomoléculas e seus sítios de ligação também podem ser representados pela topologia (Figura \ref{fig:topology}), seguindo abordagens semelhantes às simulações de dinâmica molecular, como GROMACS \cite{gromacs}, AMBER \cite{amber} e CafeMol \cite{kenzaki2011}. Nessa representação, átomos, resíduos e/ou bases nucleotídicas são modelados como esferas rígidas (modelos de esfera dura) com coordenadas tridimensionais (x, y, z), juntamente com vetores (\eg, forças, velocidades e acelerações) e propriedades (\eg, massa, carga e raio de van der Waals).
+
+% Figura de representação topológica.
+
+Porém, ao estudarmos regiões de interação, é necessário filtrar as áreas de interesse, como sítios de ligação ou superfície exposta ao solvente, para realizar análises estruturais e funcionais específicas. Essa representação topológica permite uma análise mais focada e detalhada das interações e características estruturais que são importantes para a função biológica. Além disso, essas informações topológicas podem ser utilizadas em estudos de docking molecular, design de fármacos e predição de interações moleculares, contribuindo para o desenvolvimento de novos compostos terapêuticos.
 
 \section{Representação em grafos}
 
-Relação entre ácidos núcleicos, resíduos e/ou átomos.
+% A representação das IPLs em grafos é menos complexa do que as estruturas atomísticas e podem mostrar com mais clareza os diferentes tipos de interação entre os resíduos, além de permitir a inclusão de atributos nos elementos do grafo. Esse tipo de representação já foi utilizado na detecção de sítios ativos e resíduos estruturalmente relevantes de proteínas, na predição de sua estrutura e na identificação e caracterização de cavidades em dinâmicas moleculares (VISHVESHWARA et al., 2002; LINDOW et al., 2013).
+
+% Um grafo é definido como um par contendo um conjunto de vértices representando os nós e um conjunto de arestas que conectam esses nós. Essas arestas podem estar associadas a um atributo que denota alguma característica dessa conexão (MASON; VERWOERD, 2007). 
+% Os grafos podem ser divididos em duas classes: direcionados e não-direcionados. Grafos direcionados contém arestas com um nó inicial e um terminal, enquanto que as arestas de grafos não-direcionados não possuem ordenação. Grafos não-direcionados têm sido bastante usados como modelos para redes de interação proteína-proteína, onde cada aresta representa uma interação. (PAVLOPOULOS et al., 2011; LINDOW et al., 2013).
+
+% Os grafos possuem propriedades que podem ser calculadas a partir dos vértices e arestas. Uma dessas propriedades é o “caminho”, que é definido como uma sequência de vértices sem arestas repetidas, de modo que a distância entre dois vértices é o número de arestas referente ao caminho mais curto entre eles. A partir dessa medida pode ser calculado o diâmetro de um grafo, definido pela máxima distância encontrada dentre todos os pares possíveis de vértices (MASON; VERWOERD, 2007).
+
+% Além disso, o conceito de centralidade pode ser empregado para determinação dos nós mais importantes de um grafo. Quatro tipos de centralidades são normalmente utilizados: 1) centralidade de grau, que mede o número de conexões que um vértice possui com os demais; 2) centralidade de proximidade, relacionada às distâncias de um determinado vértice em relação aos demais; 3) centralidade de intermediação, que calcula a frequência de um determinado vértice nas distâncias entre os pares de nós; 4) centralidade autovetor, que mede a importância de um nós com base na sua vizinhança. Em estudos com redes de interação gênicas e de proteínas, vértices com maior valor de centralidade de grau representaram genes e proteínas essenciais ao organismo de estudo. Ademais, cálculos de centralidades de proximidade já foram utilizados em análises de redes metabólicas e para predição, em proteínas, de sítios de ligação a substratos, íons, co-fatores e sítios alostéricos (MASON; VERWOERD, 2007; AMITAI et al., 2004).
 
 %%% Chapter 4
 
 \chapter{Plataforma KVFinder suite \label{sec:kvfinder-suite}}
 
-\begin{itemize}
-  \item Descreva cada um dos programas do KVFinder suite, explicando seus objetivos e principais características;
-  \item Apresente exemplos de aplicação de cada programa em estudos de sítios de ligação em biomoléculas, mostrando os resultados obtidos e como eles contribuíram para a compreensão da função biológica das moléculas estudadas;
-  \item Explique como os resultados obtidos pelo KVFinder suite podem ser validados experimentalmente.
- \end{itemize}
+% https://cnpemcamp-my.sharepoint.com/:w:/r/personal/joao_guerra_lnbio_cnpem_br/_layouts/15/Doc.aspx?sourcedoc=%7BD0C80180-AF7E-412F-B94E-6C38D8D4C946%7D&file=Relat%C3%B3rio%20Plataforma%20Biologia%20Computacional%202022.2.docx&action=default&mobileredirect=true
 
-% Composto por cinco ferramentas principais, o KVFinder Suite oferece uma ampla gama de funcionalidades para auxiliar na análise estrutural e no estudo de interações biomoleculares.
+% \begin{itemize}
+%   \item Descreva cada um dos programas do KVFinder suite, explicando seus objetivos e principais características;
+%   \item Apresente exemplos de aplicação de cada programa em estudos de sítios de ligação em biomoléculas, mostrando os resultados obtidos e como eles contribuíram para a compreensão da função biológica das moléculas estudadas;
+%   \item Explique como os resultados obtidos pelo KVFinder suite podem ser validados experimentalmente.
+%  \end{itemize}
 
+% Composto por cinco ferramentas principais, o KVFinder Suite oferece uma ampla gama de funcionalidades para auxiliar na análise estrutural e no estudo de interações biomoleculares. A seguir, descrevemos cada uma das ferramentas e suas principais características.
+
+Processos biológicos são modulados por interações entre biomoléculas, variando de pequenas moléculas, como íons, até macromoléculas, como proteínas e ácidos nucleicos. Para o processo de interação, ligantes geralmente interagem em sítios de ligação específicos formados por fendas expostas ao solvente ou cavidades enterradas nos receptores. As interações receptor-ligante, como interações proteína-proteína (IPP) e proteína-ligante (IPL), são consequência da complementariedade espacial, estrutural e físico-química, que governam o reconhecimento molecular entre o par de interação, restringindo assim a um pequeno número de ligantes a interação eficiente com um dado receptor alvo. A identificação e avaliação de cavidades permite o entendimento da estrutura terciária da biomolécula e também de seus supostos sítios de ligação ao ligante, desempenhando um papel estratégico no desenvolvimento de novos fármacos. Neste cenário, o Laboratório de Biologia Computacional (LBC) integrou ferramentas de detecção e caracterização de sítios de ligação de biomoléculas em uma plataforma, chamada KVFinder-suite, contemplando os programas publicados anteriormente, parKVFinder (https://github.com/LBC-LNBio/parKVFinder) [1] e pyKVFinder (https://github.com/LBC-LNBio/pyKVFinder) [2]. Concomitantemente, o grupo está desenvolvendo novas ferramentas, como o KVFinder-web, SERD e KVFinderMD para integrarem a plataforma. 
 
 \section{parKVFinder}
 
 \section{pyKVFinder}
 
+\subsection{Estimativa do volume molecular}
+
+\cite{guerra2023B}
+
 \section{KVFinder-web}
 
 % Several web services have been proposed for the detection and/or characterization of binding sites in biomolecules. Amongst them, we could cite FpocketWeb (5), GHECOM (6), CaverWeb (7), CASTp (8), ConCavity (9), Depth (10), MoloVol (11) and 3DLigandSite (12).
+
+O KVFinder-web é uma aplicação web de código aberto para detecção e caracterização de cavidades em qualquer tipo de estrutura biomolecular, que consiste em dois componentes independentes: um serviço web RESTful (KVFinder-web service) e uma interface web gráfica (KVFinder-web interface).  
+
+O serviço web do KVFinder (KVFinder-web service) detecta e caracteriza espacialmente cavidades usando o parKVFinder, que implementa um método geométrico baseado em grade e esfera, para detectar cavidades em estruturas biomoleculares, com um sistema de dupla sonda [1, 2, 3]. O serviço web possui uma arquitetura Web-Fila-Trabalho (em inglês, Web-Queue-Worker), que processa as solicitações e respostas HTTP da interface web, gerencia os trabalhos e executa o parKVFinder nos trabalhos aceitos. O KVFinder-web service foi testado em um conjunto de dados de 1.000 domínios de proteínas únicos [1] com 6 conjuntos diferentes de parâmetros de detecção, mostrando consistência neste teste de alta demanda. 
+
+A interface web do KVFinder (KVFinder-web interface; Figura 11), desenvolvida em R Shiny, disponibiliza as principais funcionalidades do KVFinder-web service, no qual os usuários podem carregar uma biomolécula alvo de um arquivo PDB ou pelo código PDB, personalizar parâmetros de detecção de cavidades e modos de execução, e baixar e visualizar resultados. A interface fornece uma maneira fácil e interativa de obter e visualizar os resultados da detecção de cavidades (Figura 12). Os volumes e áreas de cada cavidade são mostrados em uma tabela interativa, disponível para download no formato TOML. Um visualizador de biomoléculas, alimentado pelo motor NGL para R, exibe a estrutura biomolecular com suas cavidades, para download no formato PDB, e permite várias personalizações, por exemplo, realçar cavidades e exibir resíduos de interface ao redor das cavidades. A KVFinder-web interface está disponível para testes à equipe do CNPEM desde agosto de 2022 para projetos internos. 
+
+Por fim, a disponibilização do KVFinder-web pretende ampliar o uso desta robusta ferramenta de detecção de cavidades na comunidade científica. Isso facilitará o processo de detecção e caracterização de cavidades, mesmo para usuários menos experientes, com impacto direto no desenvolvimento racional de medicamentos e no entendimento das estruturas das biomoléculas. 
 
 \section{KVFinderMD}
 
 % The protein-ligand and protein-protein interactions rely on the intrinsic dynamics of the target receptor, in which the classical lock and key model fails, and more recent binding models, e.g., induced-fit and conformation selection, thrive. Thus, molecular dynamics simulations are a useful tool to understand the underlying mechanisms of molecular recognition and, ultimately, the biomolecular function. In this scenario, we recently developed pyKVFinder, a Python package for detecting and characterizing biomolecular cavities in data science. Using it as a building block, we developed a new tool, called KVFinder for Molecular Dynamics analysis (KVFinderMD), to explore binding site dynamics in biomolecular structures of interest. Since the intrinsic biomolecule dynamics may change the shape and properties of the binding site over time, KVFinderMD can identify and characterize cavities in respect to volume, area, depth, hydropathy and interface residues, which are relevant properties to describe the molecular recognition process.
 
+Em algumas circunstâncias, para a formação do complexo receptor-ligante, estes receptores utilizam sítios de ligação que não são facilmente identificados na forma não-ligada. Estas interações biomoleculares dependem da dinâmica intrínseca do receptor, nas quais o modelo clássico chave-fechadura falha, e modelos de ligação mais recentes, por exemplo, encaixe induzido e seleção de conformação, prosperam. Assim, as simulações de dinâmica molecular são uma ferramenta útil para entender os mecanismos de reconhecimento molecular e, em última análise, a função biomolecular. Nesse cenário, o LBC está desenvolvendo o KVFinderMD, usando o pyKVFinder [2] como bloco de construção, para explorar a dinâmica de sítios de ligação em estruturas biomoleculares de interesse farmacológico. Uma vez que a dinâmica intrínseca da biomolécula pode alterar a forma e as propriedades do sítio de ligação ao longo do tempo, o KVFinderMD pode identificar e caracterizar cavidades em relação ao volume, área, profundidade, hidropatia e resíduos de interface, que são propriedades relevantes para descrever o processo de reconhecimento molecular (Figura 14A). Além disso, também implementamos um algoritmo baseado em grafos, que considera distâncias alfa-carbono, beta-carbono ou quaisquer átomos, para descrever topologicamente o sítio de ligação (Figura 14B).
+
+Como provas de conceito, aplicamos o KVFinderMD em importantes alvos terapêuticos, como HIV-1 protease e ALDH1/2. Para HIV-1 protease, descrevemos com sucesso as alterações conformacionais que definem o sítio ativo, causadas principalmente pelos movimentos β-hairpins. Ainda, usando a representação gráfica de cavidades, exploramos algoritmos de agrupamento não supervisionados, como agrupamento hierárquico, com diferentes métricas de distância para agrupar com sucesso as cavidades ao longo da trajetória do receptor. No caso das ALDH1/2, exploramos as diferenças topológicas e volumétricas entre os sítios de ligação do substrato de ALDH1 e ALDH2, o que dita a preferência por aldeídos menores e maiores entre eles. Os resultados desse trabalho foram apresentados em detalhe no IV Congresso de Estudantes do CNPEM (IV CEC). 
+
 \section{SERD}
+
+O reconhecimento molecular depende diretamente da acessibilidade de um ligante ao sítios de ligação do seu respectivo receptor. Os resíduos expostos ao solvente de uma biomolécula alvo (receptor) compõe o conjunto de átomos acessíveis a possíveis ligantes. Nesse cenário, a identificação destes resíduos possibilita um estudo mais direcionado aos hotspots de interação de um receptor alvo, com aplicações principalmente no estudo de docking proteína-proteína. O programa SERD (https://github.com/jvsguerra/SERD) aproxima uma molécula de solvente a uma esfera, a qual escaneia a superfície do receptor alvo para identificar as regiões que são acessíveis a esta sonda esférica. Após a identificação destes resíduos, o programa os representa na forma de grafos pela biblioteca networkX (https://networkx.org/), formando arestas até uma distância limite entre carbonos-alfa, carbonos-beta ou quaisquer átomos do resíduo e opcionalmente incluir essas distâncias como atributos das arestas desses grafos (Figura 13). 
 
 \section{\textit{Benchmarking} das ferramentas disponíveis}
 
