@@ -294,9 +294,8 @@ O CAVER \cite{caver} foi originalmente uma ferramenta baseado em grade e superf�
   \label{fig:caver-schema}
 \end{figure}
 
-% Cavity characterization 
-
-% Maybe describe importance of cavity characterization to identify functionally relevant cavities
+% Melhorias para a Defesa:
+% - Caracterização de cavidades: describe importance of cavity characterization to identify functionally relevant cavities and how to do it
 
 %%% Chapter 2
 
@@ -369,6 +368,9 @@ A representação de superfícies moleculares é uma etapa fundamental na modela
 
 \section{Representação pela topologia}
 
+% Melhorias para a Defesa:
+% - Descrever implementação: Lista de listas (em Python) com informações sobre átomos, aminoácidos e/ou bases nitrogenadas.
+
 Em vez de representar os dados estruturais por meio de voxels em uma grade 3D, as biomoléculas e seus sítios de ligação também podem ser representados por sua topologia (Figura \ref{fig:topology-representation}), seguindo abordagens semelhantes às simulações de dinâmica molecular, como GROMACS \cite{gromacs}, AMBER \cite{amber} e CafeMol \cite{kenzaki2011}. Nessa representação, átomos, resíduos e/ou bases nucleotídicas são modelados como esferas rígidas (\textit{hard sphere models}, em inglês) com coordenadas 3D (x, y, z), juntamente com vetores (\eg, forças, velocidades e acelerações) e propriedades (\eg, massa, carga e raio de vdW).
 
 \begin{figure}[ht]
@@ -381,25 +383,29 @@ Porém, ao estudarmos regiões de interação, é necessário filtrar as áreas 
 
 Dessa forma, a representação topológica das biomoléculas e seus sítios de ligação proporciona uma visão detalhada e especializada das características estruturais relevantes, permitindo uma análise mais precisa e aprofundada das interações moleculares e seu impacto na função biológica.
 
-% Implementação: Lista de listas (em Python) com informações sobre átomos, aminoácidos e/ou bases nitrogenadas.
-
 \section{Representação em grafos}
 
-% Carefully review this section
+% Melhorias para a Defesa:
+% - Figura de grafos genéricos para a Defesa
+% - Expandir sobre os tipos de grafos: direcionados, não-direcionados, ponderados, etc.
+% - Expandir sobre as propriedades em vértices e arestas
+% - Expandir sobre as aplicações de grafos em biologia
 
-A representação de interações ou relações entre elementos por meio de grafos é uma abordagem que tem sido utilizada em diversas áreas, como biologia, química, física, ciência da computação e matemática \cite{foulds1995,majeed2020}. Grafos são estruturas de dados poderosas e flexíveis que podem ser usadas para representar e analisar relações e interações entre elementos. No contexto de biomoléculas, essa representação já foi utilizada na estão sendo adotados para investigar a estrutura, dobramento, estabilidade, função e dinâmica de proteínas \cite{vishveshwara2002}.
+A representação de interações ou relações entre elementos por meio de grafos é uma abordagem que tem sido utilizada em diversas áreas, como biologia, química, física, ciência da computação e matemática \cite{foulds1995,majeed2020}. Grafos são estruturas de dados poderosas e flexíveis que podem ser usadas para representar e analisar relações e interações entre elementos. No contexto de biomoléculas, essa representação já foi utilizada para investigar a estrutura, dobramento, estabilidade, função e dinâmica de proteínas \cite{vishveshwara2002}.
 
-Grafos são estruturas matemáticas compostas por um conjunto de vértices (também chamados de nós) e um conjunto de arestas que conectam esses vértices. No caso de moléculas, que são conjuntos de átomos ou grupos de átomos (vértices) conectados por ligações covalentes ou interações intramoleculares e intermoleculares (arestas), também têm sido amplamente investigadas pela teoria dos grafos \cite{vishveshwara2002,mason2007}. 
+Grafos são estruturas matemáticas compostas por um conjunto de vértices (também chamados de nós) e um conjunto de arestas que conectam esses vértices. No caso de moléculas, que são conjuntos de átomos (vértices) conectados por interações intramoleculares e intermoleculares (arestas), também têm sido amplamente investigadas pela teoria dos grafos \cite{vishveshwara2002,mason2007,}.
 
-A representação de grafos implementada utiliza as coordenadas 3D (x, y, z) de uma estrutura ou complexo biomolecular e gera um grafo de resíduos, onde os nós representam os resíduos e as arestas representam interações ou algum tipo de relacionamento entre eles. A construção das arestas é baseada em cortes de distância customizáveis entre os átomos, como carbono \textalpha, carbono \textbeta\space ou qualquer outro átomo, que podem ser definidos pelo usuário (Figura \ref{fig:graph-representation}). Os parâmetros padrões definidos na implementação são uma distância de corte de 10 Å entre átomos carbono \textalpha, de 8 Å entre átomos carbono \textbeta\space (ou carbono \textalpha\space para glicina), e de 5 Å entre quaisquer dois átomos são estabelecido para definir relação ou interação entre resíduos, respectivamente \cite{vishveshwara2002,mason2007}. A Figura \ref{fig:graph-representation}A mostra um exemplo de grafo de resíduos gerado a partir de um sítio de ligação da adenosina, onde os nós representam os resíduos (Figura \ref{fig:topology-representation}A) e as arestas representam interações entre eles. A Figura \ref{fig:graph-representation}B mostra um exemplo de grafo de resíduos gerado a partir de uma superfície exposta ao solvente, onde os nós representam os resíduos expostos (Figura \ref{fig:topology-representation}B) e as arestas representam interações entre eles.
+A representação de grafos implementada utiliza as coordenadas 3D (x, y, z) de uma estrutura ou complexo biomolecular e gera um grafo de resíduos, onde os vértices representam os resíduos e as arestas representam interações ou algum tipo de relação entre eles. A construção das arestas é baseada em cortes de distância customizáveis entre os átomos, como carbono \textalpha, carbono \textbeta\space ou qualquer outro átomo, que podem ser definidos pelo usuário (Figura \ref{fig:graph-representation}). Os parâmetros padrões definidos na implementação são uma distância de corte de 10 Å entre átomos carbono \textalpha, de 8 Å entre átomos carbono \textbeta\space (ou carbono \textalpha\space para glicina), e de 5 Å entre quaisquer dois átomos são estabelecido para definir relação ou interação entre resíduos, respectivamente \cite{vishveshwara2002,mason2007}. A Figura \ref{fig:graph-representation}A mostra um exemplo de grafo de resíduos gerado a partir de um sítio de ligação da adenosina (Figura \ref{fig:topology-representation}A) e a Figura \ref{fig:graph-representation}B mostra um exemplo de grafo de resíduos gerado a partir de uma superfície exposta ao solvente (Figura \ref{fig:topology-representation}B).
+
+% Ref CB e all-atoms: https://www.ebi.ac.uk/msd-srv/capri/round28/round28.html
 
 \begin{figure}[ht]
-  \centerline{\includegraphics[scale=2]{images/topology-representation.png}}
-  \caption[Representações em forma de grafos em estruturas biomoleculares]{\textbf{Representações em forma de grafos em estruturas biomoleculares.} \textbf{(A)} Sítio de ligação da adenosina como grafos com arestas baseados no corte de distância de carbono \textalfa, carbono \textbeta\space e qualquer átomos dos resíduos. \textbf{(B)} Superfície exposta ao solvente, que excluem sítios de ligação para pequenas moléculas, como grafos  com arestas baseados no corte de distância de carbono \textalpha, carbono \textbeta\space e qualquer átomos dos resíduos. Imagens geradas com PyMOL para uma subunidade da proteína quinase CAMP-dependente (PDB ID: 1FMO).}
+  \centerline{\includegraphics[scale=1.9]{images/graph-representation.png}}
+  \caption[Representações em forma de grafos em estruturas biomoleculares]{\textbf{Representações em forma de grafos em estruturas biomoleculares.} \textbf{(A)} Sítio de ligação da adenosina como grafos com arestas baseados no corte de distância de carbono \textalpha\space (esferas e bastões em vermelho), carbono \textbeta\space (esferas e bastões em amarelo) e qualquer átomos dos resíduos (esferas e bastões em ciano). \textbf{(B)} Superfície exposta ao solvente, que excluem sítios de ligação para pequenas moléculas, como grafos com arestas baseados no corte de distância de carbono \textalpha\space (esferas e bastões em vermelho), carbono \textbeta\space (esferas e bastões em amarelo) e qualquer átomos dos resíduos (esferas e bastões em ciano). Imagens geradas com PyMOL para uma subunidade da proteína quinase CAMP-dependente (PDB ID: 1FMO).}
   \label{fig:graph-representation}
 \end{figure}
 
-Essa representação em grafos permite uma análise mais simplificada e eficiente das interações e relacionamentos entre os resíduos, proporcionando uma visualização clara das características estruturais e funcionais da biomolécula. Além disso, diversas propriedades e medidas podem ser calculadas a partir dos grafos, como caminhos, distâncias, centralidade e outras métricas que auxiliam na compreensão da estrutura e função da biomolécula \cite{majeed2020,vishveshwara2002,mason2007}. Em resumo, a representação em grafos é uma abordagem poderosa e versátil para analisar a estrutura e as interações em biomoléculas, permitindo uma compreensão mais aprofundada de sua função biológica e fornecendo \textit{insights} importantes para o desenvolvimento de terapias e intervenções terapêuticas.
+Essa representação em grafos permite uma análise mais simplificada e eficiente das interações e relações entre os resíduos, proporcionando uma visualização clara das características estruturais e funcionais da biomolécula. Além disso, diversas propriedades e medidas podem ser calculadas a partir dos grafos, como caminhos, distâncias, centralidade e outras métricas que auxiliam na compreensão da estrutura e função da biomolécula \cite{majeed2020,vishveshwara2002,mason2007}. Em resumo, a representação em grafos é uma abordagem poderosa e versátil para analisar a estrutura e as interações em biomoléculas, permitindo uma compreensão mais aprofundada de sua função biológica e fornecendo \textit{insights} importantes para o desenvolvimento de terapias e intervenções terapêuticas.
 
 %%% Chapter 4
 
@@ -418,6 +424,21 @@ Essa representação em grafos permite uma análise mais simplificada e eficient
 Processos biológicos são modulados por interações entre biomoléculas, variando de pequenas moléculas, como íons, até macromoléculas, como proteínas e ácidos nucleicos. Para o processo de interação, ligantes geralmente interagem em sítios de ligação específicos formados por fendas expostas ao solvente ou cavidades enterradas nos receptores. As interações receptor-ligante, como interações proteína-proteína (IPP) e proteína-ligante (IPL), são consequência da complementariedade espacial, estrutural e físico-química, que governam o reconhecimento molecular entre o par de interação, restringindo assim a um pequeno número de ligantes a interação eficiente com um dado receptor alvo. A identificação e avaliação de cavidades permite o entendimento da estrutura terciária da biomolécula e também de seus supostos sítios de ligação ao ligante, desempenhando um papel estratégico no desenvolvimento de novos fármacos. Neste cenário, o Laboratório de Biologia Computacional (LBC) integrou ferramentas de detecção e caracterização de sítios de ligação de biomoléculas em uma plataforma, chamada KVFinder-suite, contemplando os programas publicados anteriormente, parKVFinder (https://github.com/LBC-LNBio/parKVFinder) [1] e pyKVFinder (https://github.com/LBC-LNBio/pyKVFinder) [2]. Concomitantemente, o grupo está desenvolvendo novas ferramentas, como o KVFinder-web, SERD e KVFinderMD para integrarem a plataforma. 
 
 \section{parKVFinder}
+
+\textbf{Parallel KVFinder (parKVFinder)} \cite{guerra2020} é uma ferramenta de código aberto (GPL v3.0) projetado para detecção e caracterização de qualquer tipo de cavidade biomolecular. Ele está disponível com um plugin gráfico para o visualizador molecular PyMOL, chamado \textit{PyMOL2 parKVFinder Tools}, de fácil utilização, que possui uma interface gráfica intuitiva, permitindo aos usuários explorar parâmetros personalizáveis para detecção e caracterização de cavidades. O plugin também permite visualizar as cavidades e suas caracterizações no PyMOL. O código-fonte e o plugin estão disponíveis em https://github.com/LBC-LNBio/parKVFinder.
+
+% Também possui interface de linha de comando (CLI; command-line interface) for advanced users.
+
+O parKVFinder foi originalmente desenvolvido na dissertação de mestrado "Prospecção e caracterização de cavidades supramoleculares" \cite{guerra2019}, como uma versão otimizada e atualizada do KVFinder \cite{oliveira2014}. 
+
+% Posteriormente, a ferramenta foi refatorada e foi publicado na BMC Bioinformatics \cite{guerra2020} e em seguida, novamente otimizado para o KVFinder-web \cite{guerra2023A}.
+
+% parKVFinder is available with an easy-to-use PyMOL plugin with an intuitive graphical user interface that allows users to explore customizable parameters for cavity detection and characterization. In it, cavity characterization (shape, volume, area, and surrounding residues) is performed in each detected cavity. The plugin also allows the user to visualize the cavities and their characterization in the PyMOL viewer. The source code and plugin are available at https://github.com/LBC-LNBio/parKVFinder.
+
+% we developed parKVFinder, a highly versatile and easy-to-use parallelized software for cavity detection and characterization. parKVFinder provides accurate, fast and efficient steered detection and spatial characterization of biomolecular cavities, with a set of intuitive and customizable parameters, which users can interact via a graphical user interface (GUI) or a command-line interface.
+
+% O parKVFinder fornece detecção direcionada e caracterização topológica precisa, rápida e eficiente (forma, volume, área e resíduos circundantes), com uma paralelização multithread implementada com OpenMP. A detecção de cavidade depende de um conjunto de parâmetros personalizáveis e intuitivos, com os quais o usuário pode interagir por meio de uma interface gráfica (plugin para o PyMOL) ou de uma interface de linha de comando.
+
 
 \section{pyKVFinder}
 
