@@ -6,8 +6,17 @@
 
 \usepackage[latin1,utf8]{inputenc}
 
+% Usa a fonte Latin Modern
+% \usepackage{lmodern}
+
+% Letras gregas (alfa, beta, gamma, etc) em modo texto:
+\usepackage{textgreek} % \textalpha, \textbeta, \textgamma, etc
+
 % Para identar primeiro parágrafo:
 \usepackage{indentfirst}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing
 
 % Para transformar caption em negrito:
 \usepackage[font=footnotesize,labelfont=bf]{caption}
@@ -27,15 +36,6 @@
   linkcolor    = black, % Colour of internal links
   citecolor   = blue % Colour of citations
 }
-
-% Retira espaço extra obsoleto entre as frases.
-\frenchspacing
-
-% Usa a fonte Latin Modern
-\usepackage{lmodern}
-
-% Letras gregas (alfa, beta, gamma, etc) em modo texto:
-\usepackage{textgreek} % \textalpha, \textbeta, \textgamma, etc
 
 % Para usar letras no enumerate:
 \usepackage{enumitem}
@@ -174,6 +174,7 @@ The abstract must have at most 500 words and must fit in a single page.
 
 \begin{acronym}
   \acro{3D}{Tridimensional}
+  \acro{CLI}{\textit{command-line interface}}
   \acro{GHECOM}{\textit{Grid-based HECOMi finder}}
   \acro{IPD}{Interações Proteína-DNA}
   \acro{IPL}{Interações Proteína-Ligante}
@@ -325,8 +326,6 @@ Este trabalho tem como objetivo o desenvolvimento de uma plataforma computaciona
 
 \section{Objetivos específicos}
 
-Os objetivos específicos incluem: (1) Aprimoramento e desenvolvimento de descritores de propriedades do KVFinder suite; (2) Implementação de diferentes codificações para biomoléculas e sítios de ligação; (3) Desenvolvimento de ferramenta para ciência de dados e protocolos automatizados; (4) Desenvolvimento de um serviço \textit{web} para análise de sítios de ligação; (5) Desenvolvimento de ferramenta para análises dinâmica molecular; e (6) Desenvolvimento de um programa para representação em forma de grafos de interface de interação de biomoléculas.
-
 % \begin{itemize}
 %   \item Aprimoramento e desenvolvimento de descritores de propriedades do KVFinder suite;
 %   \item Implementação de diferentes codificações para biomoléculas e sítios de ligação; % cavidade, resíduos e grafos
@@ -335,6 +334,8 @@ Os objetivos específicos incluem: (1) Aprimoramento e desenvolvimento de descri
 %   \item Desenvolvimento de ferramenta para análises dinâmica molecular; % KVFinderMD
 %   \item Desenvolvimento de um programa para representação gráfica de regiões expostas de biomoléculas. % SERD
 % \end{itemize}
+
+Os objetivos específicos incluem: (1) Aprimoramento e desenvolvimento de descritores de propriedades do KVFinder suite; (2) Implementação de diferentes codificações para biomoléculas e sítios de ligação; (3) Desenvolvimento de ferramenta para ciência de dados e protocolos automatizados; (4) Desenvolvimento de um serviço \textit{web} para análise de sítios de ligação; (5) Desenvolvimento de ferramenta para análises dinâmica molecular; e (6) Desenvolvimento de um programa para representação em forma de grafos de interface de interação de biomoléculas.
 
 %%% Chapter 3
 
@@ -429,25 +430,23 @@ Essa representação em grafos permite uma análise mais simplificada e eficient
 
 \chapter{Plataforma KVFinder suite \label{sec:kvfinder-suite}}
 
-% https://cnpemcamp-my.sharepoint.com/:w:/r/personal/joao_guerra_lnbio_cnpem_br/_layouts/15/Doc.aspx?sourcedoc=%7BD0C80180-AF7E-412F-B94E-6C38D8D4C946%7D&file=Relat%C3%B3rio%20Plataforma%20Biologia%20Computacional%202022.2.docx&action=default&mobileredirect=true
-
 % \begin{itemize}
 %   \item Descreva cada um dos programas do KVFinder suite, explicando seus objetivos e principais características;
 %   \item Apresente exemplos de aplicação de cada programa em estudos de sítios de ligação em biomoléculas, mostrando os resultados obtidos e como eles contribuíram para a compreensão da função biológica das moléculas estudadas;
 %   \item Explique como os resultados obtidos pelo KVFinder suite podem ser validados experimentalmente.
 %  \end{itemize}
 
-% Composto por cinco ferramentas principais, o KVFinder Suite oferece uma ampla gama de funcionalidades para auxiliar na análise estrutural e no estudo de interações biomoleculares. A seguir, descrevemos cada uma das ferramentas e suas principais características.
+% https://cnpemcamp-my.sharepoint.com/:w:/r/personal/joao_guerra_lnbio_cnpem_br/_layouts/15/Doc.aspx?sourcedoc=%7BD0C80180-AF7E-412F-B94E-6C38D8D4C946%7D&file=Relat%C3%B3rio%20Plataforma%20Biologia%20Computacional%202022.2.docx&action=default&mobileredirect=true
 
-Processos biológicos são modulados por interações entre biomoléculas, variando de pequenas moléculas, como íons, até macromoléculas, como proteínas e ácidos nucleicos. Para o processo de interação, ligantes geralmente interagem em sítios de ligação específicos formados por fendas expostas ao solvente ou cavidades enterradas nos receptores. As interações receptor-ligante, como interações proteína-proteína (IPP) e proteína-ligante (IPL), são consequência da complementariedade espacial, estrutural e físico-química, que governam o reconhecimento molecular entre o par de interação, restringindo assim a um pequeno número de ligantes a interação eficiente com um dado receptor alvo. A identificação e avaliação de cavidades permite o entendimento da estrutura terciária da biomolécula e também de seus supostos sítios de ligação ao ligante, desempenhando um papel estratégico no desenvolvimento de novos fármacos. Neste cenário, o Laboratório de Biologia Computacional (LBC) integrou ferramentas de detecção e caracterização de sítios de ligação de biomoléculas em uma plataforma, chamada KVFinder-suite, contemplando os programas publicados anteriormente, parKVFinder (https://github.com/LBC-LNBio/parKVFinder) [1] e pyKVFinder (https://github.com/LBC-LNBio/pyKVFinder) [2]. Concomitantemente, o grupo está desenvolvendo novas ferramentas, como o KVFinder-web, SERD e KVFinderMD para integrarem a plataforma. 
+As interações entre biomoléculas desempenham um papel crucial em processos biológicos, envolvendo desde pequenas moléculas, como íons e fármacos, até macromoléculas, como proteínas e ácidos nucleicos. Essas interações receptor-ligante (\eg, IPPs, IPLs, IPRs e IPDs) ocorrem em sítios de ligação específicos, que podem ser fendas expostas ao solvente ou cavidades enterradas nos receptores. A complementariedade espacial, estrutural e físico-química entre os ligantes e receptores governa o reconhecimento molecular, restringindo a interação eficiente a um número limitado de ligantes. A identificação e avaliação dessas regiões são fundamentais para o entendimento da estrutura terciária da biomolécula e para o desenvolvimento de novos fármacos. Para atender a essa demanda, desenvolvemos a plataforma computacional \textbf{KVFinder suite}, que combina ferramentas precisas com processamento de alto desempenho, permitindo a análise de dados experimentais biomoleculares e a compreensão da estrutura e função das biomoléculas em sistemas biológicos.
+
+A KVFinder suite é composta por cinco ferramentas computacionais que oferecem funcionalidades abrangentes para análise estrutural e estudo de interações biomoleculares. As ferramentas incluídas na plataforma são: parKVFinder \cite{guerra2020}, pyKVFinder \cite{guerra2021}, KVFinder-web \cite{guerra2023A}, KVFinderMD e SERD. A seguir, descreveremos cada uma dessas ferramentas e suas principais características.
 
 \section{parKVFinder}
 
-\textbf{Parallel KVFinder (parKVFinder)} \cite{guerra2020} é uma ferramenta de código aberto (GPL v3.0) projetado para detecção e caracterização de qualquer tipo de cavidade biomolecular. Ele está disponível com um plugin gráfico para o visualizador molecular PyMOL, chamado \textit{PyMOL2 parKVFinder Tools}, de fácil utilização, que possui uma interface gráfica intuitiva, permitindo aos usuários explorar parâmetros personalizáveis para detecção e caracterização de cavidades. O plugin também permite visualizar as cavidades e suas caracterizações no PyMOL. O código-fonte e o plugin estão disponíveis em https://github.com/LBC-LNBio/parKVFinder.
+O \textbf{Parallel KVFinder (parKVFinder)} \cite{guerra2020} é uma ferramenta de código aberto, licenciado sob GPL v3.0, desenvolvida para detecção e caracterização de qualquer tipo de cavidade biomolecular.  Ele é acompanhado por um plugin gráfico chamado \textit{PyMOL2 parKVFinder Tools}, que é integrado ao visualizador molecular PyMOL. Esse plugin oferece uma interface gráfica intuitiva e fácil de usar, permitindo que os usuários explorem parâmetros personalizáveis para a detecção e caracterização de cavidades. Além disso, o plugin permite visualizar as cavidades detectadas e suas características no ambiente do PyMOL. Além da interface gráfica, o parKVFinder também possui uma interface de linha de comando (CLI; \textit{command-line interface}) para usuários avançados, o que permite a automação de tarefas e a integração com outros programas. O código-fonte do parKVFinder e o plugin estão disponíveis no seguinte repositório: https://github.com/LBC-LNBio/parKVFinder.
 
-% Também possui interface de linha de comando (CLI; command-line interface) for advanced users.
-
-O parKVFinder foi originalmente desenvolvido na dissertação de mestrado "Prospecção e caracterização de cavidades supramoleculares" \cite{guerra2019}, como uma versão otimizada e atualizada do KVFinder \cite{oliveira2014}. 
+O parKVFinder foi originalmente desenvolvido na dissertação de mestrado "Prospecção e caracterização de cavidades supramoleculares" \cite{guerra2019}, como uma versão atualizada e otimizada do KVFinder \cite{oliveira2014}. 
 
 % Posteriormente, a ferramenta foi refatorada e foi publicado na BMC Bioinformatics \cite{guerra2020} e em seguida, novamente otimizado para o KVFinder-web \cite{guerra2023A}.
 
