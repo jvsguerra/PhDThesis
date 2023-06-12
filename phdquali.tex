@@ -12,14 +12,27 @@
 % Para transformar caption em negrito:
 \usepackage[font=footnotesize,labelfont=bf]{caption}
 
+% Para citações no formato numérico da norma ABNT:
+\usepackage[hyphens]{url}
+\usepackage[num,abnt-etal-text=emph]{abntex2cite}
+\usepackage{cite}
+\renewcommand\citeleft{[}
+\renewcommand\citeright{]}
+
 % Para trocar o estilo dos hyperlinks:
 \usepackage{hyperref}
 \hypersetup{
   colorlinks   = true, % Colours links instead of ugly boxes
   urlcolor     = blue, % Colour for external hyperlinks
   linkcolor    = black, % Colour of internal links
-  citecolor   = black % Colour of citations
+  citecolor   = blue % Colour of citations
 }
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing
+
+% Usa a fonte Latin Modern
+\usepackage{lmodern}
 
 % Letras gregas (alfa, beta, gamma, etc) em modo texto:
 \usepackage{textgreek} % \textalpha, \textbeta, \textgamma, etc
@@ -29,8 +42,15 @@
 
 % Formatar \listoffigures
 \usepackage{tocloft}
-\renewcommand{\cftfigpresnum}{Figure }
+\renewcommand{\cftfigpresnum}{\bfseries Figura }
 \renewcommand{\cftfignumwidth}{6em}
+\renewcommand{\cftfigindent}{0em}
+\renewcommand{\cfttabpresnum}{\bfseries Tabela }
+\renewcommand{\cfttabnumwidth}{6em}
+\renewcommand{\cfttabindent}{0em}
+
+% Formatar list of abreviations
+\usepackage{acronym}
 
 % % Para acrescentar comentários ao PDF descomente:
 % \usepackage
@@ -152,24 +172,24 @@ The abstract must have at most 500 words and must fit in a single page.
 % A lista de abreviações e siglas é opcional:
 \prefacesection{Lista de Abreviações e Siglas}
 
-\begin{itemize}
-  \item[3D] Tridimensional
-  \item[GHECOM] \textit{Grid-based HECOMi finder}
-  \item[IPD] Interações Proteína-DNA
-  \item[IPL] Interações Proteína-Ligante
-  \item[IPR] Interações Proteína-RNA
-  \item[IPP] Interações Proteína-Proteína
-  \item[KVFinderMD] \textit{KVFinder for Molecular Dynamics analysis}
-  \item[LES] Superfície Excluída pelo Ligante (\textit{Ligand Excluded Surface})
-  \item[parKVFinder] \textit{Parallel KVFinder}
-  \item[Pi] \textit{Probe In}
-  \item[Po] \textit{Probe Out}
-  \item[pyKVFinder] \textit{Python-C Parallel KVFinder}
-  \item[SAS] Superfície Acessível ao Solvente (\textit{Solvent Accessible Surface})
-  \item[SES] Superfície Excluída pelo Solvente (\textit{Solvent Excluded Surface})
-  \item[vdW] van der Waals
-  \item[wwPDB] Worldwide Protein Data Bank
-\end{itemize}
+\begin{acronym}
+  \acro{3D}{Tridimensional}
+  \acro{GHECOM}{\textit{Grid-based HECOMi finder}}
+  \acro{IPD}{Interações Proteína-DNA}
+  \acro{IPL}{Interações Proteína-Ligante}
+  \acro{IPR}{Interações Proteína-RNA}
+  \acro{IPP}{Interações Proteína-Proteína}
+  \acro{KVFinderMD}{\textit{KVFinder for Molecular Dynamics analysis}}
+  \acro{LES}{Superfície Excluída pelo Ligante (\textit{Ligand Excluded Surface})}
+  \acro{parKVFinder}{\textit{Parallel KVFinder}}
+  \acro{Pi}{\textit{Probe In}}
+  \acro{Po}{\textit{Probe Out}}
+  \acro{pyKVFinder}{\textit{Python-C Parallel KVFinder}}
+  \acro{SAS}{Superfície Acessível ao Solvente (\textit{Solvent Accessible Surface})}
+  \acro{SES}{Superfície Excluída pelo Solvente (\textit{Solvent Excluded Surface})}
+  \acro{vdW}{van der Waals}
+  \acro{wwPDB}{Worldwide Protein Data Bank}
+\end{acronym}
 
 \clearpage
 
@@ -180,10 +200,8 @@ The abstract must have at most 500 words and must fit in a single page.
 % \renewcommand{\nomname}{Lista de Abreviações e Siglas}
 % \printnomenclature[3cm]
 
-
 % O sumário vem aqui:
 \tableofcontents
-
 
 % E esta linha deve ficar bem aqui:
 \fimdaspaginasiniciais
@@ -307,16 +325,16 @@ Este trabalho tem como objetivo o desenvolvimento de uma plataforma computaciona
 
 \section{Objetivos específicos}
 
-Os objetivos específicos incluem: 
+Os objetivos específicos incluem: (1) Aprimoramento e desenvolvimento de descritores de propriedades do KVFinder suite; (2) Implementação de diferentes codificações para biomoléculas e sítios de ligação; (3) Desenvolvimento de ferramenta para ciência de dados e protocolos automatizados; (4) Desenvolvimento de um serviço \textit{web} para análise de sítios de ligação; (5) Desenvolvimento de ferramenta para análises dinâmica molecular; e (6) Desenvolvimento de um programa para representação em forma de grafos de interface de interação de biomoléculas.
 
-\begin{itemize}
-  \item Aprimoramento e desenvolvimento de descritores de propriedades do KVFinder suite;
-  \item Implementação de diferentes codificações para biomoléculas e sítios de ligação; % cavidade, resíduos e grafos
-  \item Desenvolvimento de ferramenta para ciência de dados e protocolos automatizados; % pyKVFinder
-  \item Desenvolvimento de um serviço \textit{web} para análise de sítios de ligação; % KVFinder-web
-  \item Desenvolvimento de ferramenta para análises dinâmica molecular; % KVFinderMD
-  \item Desenvolvimento de um programa para representação gráfica de regiões expostas de biomoléculas. % SERD
-\end{itemize}
+% \begin{itemize}
+%   \item Aprimoramento e desenvolvimento de descritores de propriedades do KVFinder suite;
+%   \item Implementação de diferentes codificações para biomoléculas e sítios de ligação; % cavidade, resíduos e grafos
+%   \item Desenvolvimento de ferramenta para ciência de dados e protocolos automatizados; % pyKVFinder
+%   \item Desenvolvimento de um serviço \textit{web} para análise de sítios de ligação; % KVFinder-web
+%   \item Desenvolvimento de ferramenta para análises dinâmica molecular; % KVFinderMD
+%   \item Desenvolvimento de um programa para representação gráfica de regiões expostas de biomoléculas. % SERD
+% \end{itemize}
 
 %%% Chapter 3
 
@@ -330,9 +348,9 @@ Os objetivos específicos incluem:
 
 A codificação de biomoléculas e sítios de ligação desempenha papel fundamental na biologia estrutural, permitindo a representação e análise computacional de informações biológicas complexas. Esse processo converte informações biológicas em formatos compreensíveis e adequados para processamento por algoritmos e programas em sistemas computacionais. A codificação envolve a atribuição de valores ou categorias aos componentes biológicos, \eg, átomos, aminoácidos e bases nitrogenadas, para descrever ocupância, localização, forças, características físico-químicas e/ou propriedades estruturais. 
 
-Na biologia estrutural, a codificação de dados é importante para realizar análises avançadas, \eg modelagem molecular, simulações de dinâmica molecular e predição de interações. Existem várias aplicações que exemplificam a codificação de dados biológicas para análises computacionais. Por exemplo, na modelagem molecular, uma proteína pode ser codificada usando códigos de uma letra para representar os diferentes aminoácidos, como ocorre na representação de sequência de proteínas, para predizer o dobramento de proteínas, como aplicado no ESMFold \cite{lin2022}. Na simulação de dinâmica molecular, as coordenadas 3D de átomos ou conjunto de átomos, juntamente com vetores que representam forças ou outros atributos, são utilizados para representar a estrutura de uma biomolécula, como no GROMACS \cite{gromacs} ou AMBER \cite{amber} em simulações em escala atomística (\textit{fine-grained molecular dynamics simulation}) e no CafeMol em simulações em escala grosseiras (\textit{coarse-grained molecular dynamics simulation}) \cite{kenzaki2011}. Além disso, os sítios de ligação, após identificados por algoritmos computacionais, são codificados de diferentes maneiras para análises posteriores. Os sítios de ligação podem codificados para representar as características físico-químicas e estruturais de uma região de uma biomolécula, como as grades 3D utilizadas no KVFinder suite \cite{oliveira2014,guerra2020,guerra2021,guerra2023B}, ou as coordenadas 3D dos átomos, como no fpocket \cite{fpocket}.
+Na biologia estrutural, a codificação de dados é importante para realizar análises avançadas, \eg modelagem molecular, simulações de dinâmica molecular e predição de interações. Existem várias aplicações que exemplificam a codificação de dados biológicas para análises computacionais. Por exemplo, na modelagem molecular, uma proteína pode ser codificada usando códigos de uma letra para representar os diferentes aminoácidos, como ocorre na representação de sequência de proteínas, para predizer o dobramento de proteínas, como aplicado no ESMFold \cite{lin2022}. Na simulação de dinâmica molecular, as coordenadas 3D de átomos ou conjunto de átomos, juntamente com vetores que representam forças ou outros atributos, são utilizados para representar a estrutura de uma biomolécula, como no GROMACS \cite{gromacs} ou AMBER \cite{amber} em simulações em escala atomística (\textit{fine-grained molecular dynamics simulation}, em inglês) e no CafeMol em simulações em escala grosseiras (\textit{coarse-grained molecular dynamics simulation}, em inglês) \cite{kenzaki2011}. Além disso, os sítios de ligação, após identificados por algoritmos computacionais, são codificados de diferentes maneiras para análises posteriores. Os sítios de ligação podem codificados para representar as características físico-químicas e estruturais de uma região de uma biomolécula, como as grades 3D utilizadas no KVFinder suite \cite{oliveira2014,guerra2020,guerra2021,guerra2023B}, ou as coordenadas 3D dos átomos, como no fpocket \cite{fpocket}.
 
-Ao trabalhar com modelos computacionais para o estudo de biomoléculas, a codificação é essencial para a abstração e representação dos dados biológicos de forma computacional. Essa abstração é crucial para o desenvolvimento de ferramentas computacionais voltadas ao estudo de sistemas biomoleculares. Aqui, apresentamos as codificações implementadas para biomoléculas e sítios de ligação, \ie, representação em grade 3D, representação topológica e representação gráfica.
+Ao trabalhar com modelos computacionais para o estudo de biomoléculas, a codificação é essencial para a abstração e representação dos dados biológicos de forma computacional. Essa abstração é crucial para o desenvolvimento de ferramentas computacionais voltadas ao estudo de sistemas biomoleculares. Aqui, apresentamos as codificações implementadas para biomoléculas e sítios de ligação, \ie, representação em grade 3D, representação topológica e representação em grafos.
 
 \section{Representação em grade tridimensional}
 
@@ -393,7 +411,7 @@ Dessa forma, a representação topológica das biomoléculas e seus sítios de l
 
 A representação de interações ou relações entre elementos por meio de grafos é uma abordagem que tem sido utilizada em diversas áreas, como biologia, química, física, ciência da computação e matemática \cite{foulds1995,majeed2020}. Grafos são estruturas de dados poderosas e flexíveis que podem ser usadas para representar e analisar relações e interações entre elementos. No contexto de biomoléculas, essa representação já foi utilizada para investigar a estrutura, dobramento, estabilidade, função e dinâmica de proteínas \cite{vishveshwara2002}.
 
-Grafos são estruturas matemáticas compostas por um conjunto de vértices (também chamados de nós) e um conjunto de arestas que conectam esses vértices. No caso de moléculas, que são conjuntos de átomos (vértices) conectados por interações intramoleculares e intermoleculares (arestas), também têm sido amplamente investigadas pela teoria dos grafos \cite{vishveshwara2002,mason2007,}.
+Grafos são estruturas matemáticas compostas por um conjunto de vértices (também chamados de nós) e um conjunto de arestas que conectam esses vértices. No caso de moléculas, que são conjuntos de átomos (vértices) conectados por interações intramoleculares e intermoleculares (arestas), também têm sido amplamente investigadas pela teoria dos grafos \cite{vishveshwara2002,mason2007}.
 
 A representação de grafos implementada utiliza as coordenadas 3D (x, y, z) de uma estrutura ou complexo biomolecular e gera um grafo de resíduos, onde os vértices representam os resíduos e as arestas representam interações ou algum tipo de relação entre eles. A construção das arestas é baseada em cortes de distância customizáveis entre os átomos, como carbono \textalpha, carbono \textbeta\space ou qualquer outro átomo, que podem ser definidos pelo usuário (Figura \ref{fig:graph-representation}). Os parâmetros padrões definidos na implementação são uma distância de corte de 10 Å entre átomos carbono \textalpha, de 8 Å entre átomos carbono \textbeta\space (ou carbono \textalpha\space para glicina), e de 5 Å entre quaisquer dois átomos são estabelecido para definir relação ou interação entre resíduos, respectivamente \cite{vishveshwara2002,mason2007}. A Figura \ref{fig:graph-representation}A mostra um exemplo de grafo de resíduos gerado a partir de um sítio de ligação da adenosina (Figura \ref{fig:topology-representation}A) e a Figura \ref{fig:graph-representation}B mostra um exemplo de grafo de resíduos gerado a partir de uma superfície exposta ao solvente (Figura \ref{fig:topology-representation}B).
 
@@ -484,7 +502,7 @@ O reconhecimento molecular depende diretamente da acessibilidade de um ligante a
  \end{itemize}
 
 % As referências:
-\bibliographystyle{unsrt}
+\bibliographystyle{abnt-num}
 \bibliography{phdquali}
 
 
