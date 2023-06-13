@@ -23,7 +23,7 @@
 
 % Para citações no formato numérico da norma ABNT:
 \usepackage[hyphens]{url}
-\usepackage[num,abnt-etal-text=emph]{abntex2cite}
+\usepackage[num,abnt-etal-text=emph,bibjustif]{abntex2cite}
 \usepackage{cite}
 \renewcommand\citeleft{[}
 \renewcommand\citeright{]}
@@ -36,6 +36,12 @@
   linkcolor    = black, % Colour of internal links
   citecolor   = blue % Colour of citations
 }
+
+% Commando para links sem <url>:
+\newcommand{\link}[1]{{\color{blue}\href{#1}{#1}}}
+
+% Para quebrar a linha com urls muito longas:
+% \usepackage{breakurl}
 
 % Para usar letras no enumerate:
 \usepackage{enumitem}
@@ -444,15 +450,16 @@ A KVFinder suite é composta por cinco ferramentas computacionais que oferecem f
 
 \section{parKVFinder}
 
-O \textbf{Parallel KVFinder (parKVFinder)} \cite{guerra2020} é uma ferramenta de código aberto, licenciado sob GPL v3.0, desenvolvida para detecção e caracterização de qualquer tipo de cavidade biomolecular.  Ele é acompanhado por um plugin gráfico chamado \textit{PyMOL2 parKVFinder Tools}, que é integrado ao visualizador molecular PyMOL. Esse plugin oferece uma interface gráfica intuitiva e fácil de usar, permitindo que os usuários explorem parâmetros personalizáveis para a detecção e caracterização de cavidades. Além disso, o plugin permite visualizar as cavidades detectadas e suas características no ambiente do PyMOL. Além da interface gráfica, o parKVFinder também possui uma interface de linha de comando (CLI; \textit{command-line interface}) para usuários avançados, o que permite a automação de tarefas e a integração com outros programas. O código-fonte do parKVFinder e o plugin estão disponíveis no seguinte repositório: https://github.com/LBC-LNBio/parKVFinder.
+O \textbf{Parallel KVFinder (parKVFinder)} \cite{guerra2020} é uma ferramenta de código aberto, licenciada sob GPL v3.0, desenvolvida para detecção e caracterização de qualquer tipo de cavidade biomolecular. Ele é acompanhado por um plugin gráfico chamado \textit{PyMOL2 parKVFinder Tools}, que é integrado ao visualizador molecular PyMOL. Esse plugin oferece uma interface gráfica intuitiva e fácil de usar, permitindo que os usuários explorem parâmetros personalizáveis para a detecção e caracterização de cavidades. Além disso, o plugin permite visualizar as cavidades detectadas e suas características no ambiente do PyMOL. Além da interface gráfica, o parKVFinder também possui uma interface de linha de comando (CLI; \textit{command-line interface}) para usuários avançados, o que permite a automação de tarefas e a integração com outros programas. O código-fonte do parKVFinder e o plugin estão disponíveis no seguinte repositório: \link{https://github.com/LBC-LNBio/parKVFinder}.
 
-O parKVFinder foi originalmente desenvolvido na dissertação de mestrado "Prospecção e caracterização de cavidades supramoleculares" \cite{guerra2019}, como uma versão atualizada e otimizada do KVFinder \cite{oliveira2014}. 
+O parKVFinder foi desenvolvido originalmente na dissertação de mestrado intitulada "Prospecção e caracterização de cavidades supramoleculares" \cite{guerra2019}, como uma versão atualizada e otimizada do KVFinder \cite{oliveira2014}. 
+As rotinas de detecção e caracterização de cavidades foram paralelizadas utilizando a biblioteca OpenMP, aproveitando o processamento paralelo em sistemas \textit{multicore}. Além disso, foram aprimorados e desenvolvidos novos descritores moleculares mapeados nas cavidades, como área, profundidade, hidrofobicidade e frequência de resíduos.
 
-% Posteriormente, a ferramenta foi refatorada e foi publicado na BMC Bioinformatics \cite{guerra2020} e em seguida, novamente otimizado para o KVFinder-web \cite{guerra2023A}.
+A eficiência do parKVFinder foi validado em um conjunto de 1000 domínios proteicos, denominado kv1000 (\link{https://github.com/jvsguerra/kv1000}), apresentando resultados comparáveis aos do KVFinder, porém com um tempo de execução significativamente menor, aproximadamente 9.5 vezes mais rápido \cite{guerra2019,guerra2020}. Posteriormente, o parKVFinder foi publicado na BMC Bioinformatics \cite{guerra2020}, aprimorando a estimativa de área superficial, sendo lançado como \href{https://github.com/LBC-LNBio/parKVFinder/tree/v1.0}{parKVFinder v1.0}. Em seguida, houve uma nova atualização para o KVFinder-web \cite{guerra2023A}, adicionando os descritores de profundidade e hidrofobicidade, resultando no lançamento do \href{https://github.com/LBC-LNBio/parKVFinder/tree/v1.2.0}{parKVFinder v1.2.0}.
 
-% parKVFinder is available with an easy-to-use PyMOL plugin with an intuitive graphical user interface that allows users to explore customizable parameters for cavity detection and characterization. In it, cavity characterization (shape, volume, area, and surrounding residues) is performed in each detected cavity. The plugin also allows the user to visualize the cavities and their characterization in the PyMOL viewer. The source code and plugin are available at https://github.com/LBC-LNBio/parKVFinder.
+\subsection{Caso de estudo: Mayaro e outros \textalpha-vírus}
 
-% we developed parKVFinder, a highly versatile and easy-to-use parallelized software for cavity detection and characterization. parKVFinder provides accurate, fast and efficient steered detection and spatial characterization of biomolecular cavities, with a set of intuitive and customizable parameters, which users can interact via a graphical user interface (GUI) or a command-line interface.
+\subsection{Caso de estudo: SARS-CoV-2 e outras proteínas conservadas}
 
 % O parKVFinder fornece detecção direcionada e caracterização topológica precisa, rápida e eficiente (forma, volume, área e resíduos circundantes), com uma paralelização multithread implementada com OpenMP. A detecção de cavidade depende de um conjunto de parâmetros personalizáveis e intuitivos, com os quais o usuário pode interagir por meio de uma interface gráfica (plugin para o PyMOL) ou de uma interface de linha de comando.
 
