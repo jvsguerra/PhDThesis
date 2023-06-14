@@ -181,6 +181,7 @@ The abstract must have at most 500 words and must fit in a single page.
 \begin{acronym}
   \acro{3D}{Tridimensional}
   \acro{CLI}{\textit{command-line interface}}
+  \acro{DM}{Dinâmica molecular}
   \acro{GHECOM}{\textit{Grid-based HECOMi finder}}
   \acro{IPD}{Interações Proteína-DNA}
   \acro{IPL}{Interações Proteína-Ligante}
@@ -457,12 +458,131 @@ As rotinas de detecção e caracterização de cavidades foram paralelizadas uti
 
 A eficiência do parKVFinder foi validado em um conjunto de 1000 domínios proteicos, denominado kv1000 (\link{https://github.com/jvsguerra/kv1000}), apresentando resultados comparáveis aos do KVFinder, porém com um tempo de execução significativamente menor, aproximadamente 9.5 vezes mais rápido \cite{guerra2019,guerra2020}. Posteriormente, o parKVFinder foi publicado na BMC Bioinformatics \cite{guerra2020}, aprimorando a estimativa de área superficial, sendo lançado como \href{https://github.com/LBC-LNBio/parKVFinder/tree/v1.0}{parKVFinder v1.0}. Em seguida, houve uma nova atualização para o KVFinder-web \cite{guerra2023A}, adicionando os descritores de profundidade e hidrofobicidade, resultando no lançamento do \href{https://github.com/LBC-LNBio/parKVFinder/tree/v1.2.0}{parKVFinder v1.2.0}.
 
-\subsection{Caso de estudo: Mayaro e outros \textalpha-vírus}
-
-\subsection{Caso de estudo: SARS-CoV-2 e outras proteínas conservadas}
+% Melhorias defesa:
+% - Detalhar comparação com outros métodos
+% - Detalhar atualização para Python3 do plugin
 
 % O parKVFinder fornece detecção direcionada e caracterização topológica precisa, rápida e eficiente (forma, volume, área e resíduos circundantes), com uma paralelização multithread implementada com OpenMP. A detecção de cavidade depende de um conjunto de parâmetros personalizáveis e intuitivos, com os quais o usuário pode interagir por meio de uma interface gráfica (plugin para o PyMOL) ou de uma interface de linha de comando.
 
+\subsection{Casos de estudo}
+
+O parKVFinder foi aplicado em dois casos de estudo publicados em periódicos científicos para investigar proteínas de interesse terapêutico. Essas análises exploraram a dinâmica dos \textit{flaps} da HIV-1 protease \cite{guerra2020} e a caráter hidrofóbico de sítios de ligação em \textalpha-vírus \cite{ribeiro2021}. A seguir, descreveremos cada um desses casos de estudo em detalhes.
+
+\subsubsection{Dinâmica molecular da HIV-1 protease}
+
+% Review it
+
+Nesse estudo, investigamos a dinâmica molecular da HIV-1 protease por meio da identificação e avaliação do volume do sítio ativo durante simulações de dinâmica molecular (DM). O sítio ativo é um alvo terapêutico relevante e seu volume varia de acordo com a movimentação dos \textbeta-hairpins, conhecidos como \textit{flaps}, que controlam a acessibilidade do substrato ao sítio ativo do homodímero \cite{soares2016}. 
+
+O objetivo foi descrever a dinâmica de movimentação dos \textit{flaps} através do volume e forma da cavidade do sítio ativo como descritores conformacionais durante as simulações de MD. Para isso, simulações de DM foram realizadas por 200 ns, usando o pacote GROMACS 2019.4 \cite{gromacs} com o campo de força AMBER99SB-ws e o modelo de água TIP42005s, partindo da estrutura cristalográfica da protease do HIV-1 na conformação fechada \cite{lam1994}, sem o inibidor.
+
+O volume do sítio ativo foi acompanhado ao longo das simulações (Figura \ref{fig:hiv1-protease-dm-analysis}). Observou-se que o volume da cavidade começa no valor correspondente à conformação fechada e, após cerca de 25 ns, começa a aumentar até atingir o valor correspondente à conformação semi-aberta em cerca de 75 ns, indicando um processo de abertura ao longo da simulação. Após esse ponto, os \textit{flaps} se afastam ainda mais, e a cavidade atinge seu volume máximo em cerca de 175 ns antes de reverter para a conformação semi-aberta, que é mais estável. Essa dinâmica de volume correlaciona-se com o desvio médio quadrático (RMSD; \texit{Root-mean-square deviation}, em inglês) do C-\textalpha\space calculado a partir da conformação estável como estado de referência, indicando uma descrição adequada do estado conformacional da proteína ao longo da simulação. É importante destacar que o RMSD é uma métrica que descreve variações globais na estrutura, enquanto o volume estimado é uma métrica direta das mudanças conformacionais do sítio ativo, possivelmente relacionadas à acessibilidade do ligante.
+
+\begin{figure}[ht]
+  \centerline{\includegraphics[scale=0.15]{images/hiv1-protease-md-analysis.png}}
+  \caption[Volume de seu sítio ativo HIV-1 protease ao longo de uma simulação de dinâmica molecular de 200 ns]{\textbf{Volume de seu sítio ativo HIV-1 protease ao longo de uma simulação de dinâmica molecular de 200 ns.} As linhas verdes e vermelhas indicam o volume da cavidade para os estados fechado (PDB ID: 1HVR) e semi-aberto (PDB ID: 1HHP), respectivamente. As estruturas da proteína no início da simulação (0 ns) e no quadro com o maior RMSD (175.6 ns) são mostradas como diagramas. As cavidades correspondentes detectadas por cada software são mostradas como superfícies cinzas.}
+  \label{fig:hiv1-protease-dm-analysis}
+\end{figure}
+
+% Add cavvis and mspocket citations
+
+Comparou-se o desempenho do parKVFinder com outros programas baseados em geometria (Figura \ref{fig:hiv1-protease-dm-analysis}), \ie, GHECOM \cite{ghecom}, Fpocket \cite{fpocket}, MSPocket \cite{zhu2010} e CavVis \cite{simoes2019}. Além da acurácia na descrição do estado conformacional do sítio ativo, também avaliou-se o tempo computacional dos programas. O parKVFinder apresentou alta acurácia, assim como o GHECOM, na descrição do estado conformacional da protease do HIV-1. No entanto, o parKVFinder mostrou-se pelo menos quatro vezes mais rápido que o GHECOM devido às subrotinas de múltiplas threads implementadas no parKVFinder. Além disso, o parKVFinder superou o MSPocket e o CavVis em termos de tempo computacional, mas não foi tão rápido quanto o Fpocket, que utiliza um método baseado em tesselação de Voronoi e esferas alfa. No entanto, a implementação do Fpocket mostrou-se menos sensível na descrição detalhada das cavidades da protease do HIV-1. Portanto, considerando a acurácia e o desempenho, o parKVFinder se destacou como uma opção robusta para a detecção e caracterização espacial de cavidades no caso de estudo da protease do HIV-1 \cite{guerra2020}.
+
+É importante ressaltar que os resultados completos e detalhes das simulações e análises estão disponíveis no artigo publicado no periódico SoftwareX \cite{guerra2020}.
+
+% Essa comparação foi realizada identificando e avaliando o vo-
+% lume da cavidade que forma o sítio ativo da protease do HIV-1 durante simulações
+% de MD. A cavidade que forma o sítio é um alvo terapêutico bastante relevante e seu
+% volume varia de acordo com a movimentação dos β-hairpins, denominados flaps, os
+% quais controlam a acessibilidade do substrato ao sítio ativo do homodímero (Soares
+% et al., 2016). Estruturas cristalográficas apresentam estes flaps em suas conformações
+% fechada (Lam et al., 1994) e semi-aberta (Spinelli et al., 1991), enquanto simulações
+% de DM investigam a dinâmica de abertura dos flaps (Hornak et al., 2006; Soares et
+% al., 2016). O nosso objetivo foi, portanto, descrever a dinâmica de movimentação
+% dos flaps através do volume e forma da cavidade do sítio ativo como descritores
+% conformacionais durante simulações de DM partindo do estado fechado.
+% As simulações de DM (200 ns) foram realizadas com o pacote GROMACS 2019.4
+% 8(Spoel et al., 2005), usando o campo de força AMBER99SB-ws com o modelo de
+% água TIP42005s (Best, Zheng e Mittal, 2014), partindo da estrutura cristalográfica da
+% protease do HIV-1 na conformação fechada (Lam et al., 1994) sem o inibidor. Esses
+% dados também estão disponíveis no manuscrito submetido a SoftwareX (ANEXO) ,
+% assim como os resultados, que serão descritos a seguir.
+
+% O volume da cavidade do sítio ativo começa no volume correspondente à con-
+% formação fechada. Após ~25 ns, o volume começa a aumentar até que em ~75 ns
+% atinge o volume correspondente à conformação semi-aberta, indicando um pro-
+% cesso de abertura no decorrer da simulação. Após esta marca, os flaps ficam ainda
+% mais distantes, e a cavidade atinge seu volume máximo em ~175 ns até reverter à
+% conformação semi-aberta, sendo esta mais estável. Esta dinâmica do volume (Fi-
+% gura 4) se correlaciona (correlação de Pearson; ρ = 0, 72) com o (RMSD; root-mean-
+% square deviation) do Cα calculado a partir da conformação estável como estado de
+% referência, indicando a correta descrição do estado conformacional da proteína ao
+% longo da simulação. Vale ressaltar que o RMSD é uma métrica que descreve va-
+% riações globais em uma estrutura, já o volume estimado é uma métrica direta das
+% mudanças conformacionais do sítio ativo, possivelmente relacionados a acessibili-
+% dade do ligante.
+
+% As simulações de DM (200 ns) foram realizadas com o pacote GROMACS 2019.4 (Spoel et al., 2005), usando o campo de força AMBER99SB-ws com o modelo de
+% água TIP42005s (Best, Zheng e Mittal, 2014), partindo da estrutura cristalográfica da
+% protease do HIV-1 na conformação fechada (Lam et al., 1994) sem o inibidor. Esses
+% dados também estão disponíveis no manuscrito submetido a SoftwareX (ANEXO) ,
+% assim como os resultados, que serão descritos a seguir.
+% O volume da cavidade do sítio ativo começa no volume correspondente à con-
+% formação fechada. Após ~25 ns, o volume começa a aumentar até que em ~75 ns
+% atinge o volume correspondente à conformação semi-aberta, indicando um pro-
+% cesso de abertura no decorrer da simulação. Após esta marca, os flaps ficam ainda
+% mais distantes, e a cavidade atinge seu volume máximo em ~175 ns até reverter à
+% conformação semi-aberta, sendo esta mais estável. Esta dinâmica do volume (Fi-
+% gura 4) se correlaciona (correlação de Pearson; ρ = 0, 72) com o (RMSD; root-mean-
+% square deviation) do Cα calculado a partir da conformação estável como estado de
+% referência, indicando a correta descrição do estado conformacional da proteína ao
+% longo da simulação. Vale ressaltar que o RMSD é uma métrica que descreve va-
+% riações globais em uma estrutura, já o volume estimado é uma métrica direta das
+% mudanças conformacionais do sítio ativo, possivelmente relacionados a acessibili-
+% dade do ligante.
+
+% Os resultados e desempenho do parKVFinder foram comparados com outros
+% programas baseados em geometria (GHECOM (Kawabata, 2009), Fpocket (Guil-
+% loux, Schmidtke e Tuffery, 2009), MSPocket (Zhu e Pisabarro, 2010) e CavVis (Si-
+% mões e Gomes, 2019)). Primeiramente, avaliamos como o volume estimado por
+% cada programa se correlaciona com o RMSD, como realizamos para o parKVFinder.
+% O volume estimado pelo GHECOM também se correlaciona ao estado conformaci-
+% onal como o parKVFinder (ρ = 0, 75; Figura 4), possivelmente por ambos empre-
+% garem métodos baseados em grade e esfera. Porém, cavidades encontradas pelos
+% programas Fpocket (ρ0, 35), MSPocket (ρ = −0, 24) e CavVis (ρ = 0, 19) não se cor-
+% relacionam satisfatoriamente com a dinâmica conformacional do sítio ativo. Desta
+% forma, parKVFinder e GHECOM apresentaram uma alta acurácia na descrição do
+% estado conformacional do sítio ativo da protease do HIV-1.
+% Além de boa acurácia, os programas de detecção de cavidades também devem
+% ser capazes de realizar detecções e caracterizações rápidas; sendo assim, também
+% avaliamos o tempo computacional dos programas. Entre os métodos que apresen-
+% taram boa acurácia, o parKVFinder (t = 1h03m) teve um desempenho pelo menos
+% quatro vezes mais rápido do que o GHECOM (t = 4h32m e, apesar de ambos se-
+% rem baseados no mesmo método, as subrotinas de múltiplas threads do primeiro
+% melhoram drasticamente o seu desempenho. Além disso, o parKVFinder também
+% superou o MSPocket (t = 2h48m) e o CavVis (t = 3h45), mas não superou o Fpoc-
+% ket (t = 20m), o qual utiliza um método baseado em tesselação de Voroni e esferas
+% alfa, que é rapidamente computado, porém esta implementação do método se mos-
+% trou menos sensível para para descrever finamente as cavidades da protease do
+% HIV-1. Apesar deste último ser rápido, o mesmo falhou em diferenciar os estados
+% conformacionais do sítio ativo da protease do HIV-1. Portanto, unindo a acurácia e
+% o desempenho, o parKVFinder superou os métodos de benchmarking neste caso de
+% estudo da protease do HIV-1, ilustrando a robustez dos procedimentos paralelos de
+% detecção e caracterização espacial.
+
+\subsubsection{Mayaro e outros \textalpha-vírus}
+
+% On the other hand, hydropathy characterization gives valuable insights into the types of interaction and the water attractiveness of the binding site. For instance, we have previously compared the hydropathy profile of an amphipathic pocket located between the E1 and E2 domains of alphaviruses (24), which suggested that a chemically similar molecule (possibly, fatty acids) would bind to them.
+
+% E1 and E2 ectodomains of MAYV, SINDV (PDB ID: 6IMM), EEEV (PDB ID: 6MX4), VEEV (PDB ID: 3J0C) and CHIKV (PDB ID: 6NK5) alphaviruses were used for cavity detection and characterization. First, a hydrophobic phospholipid tail (C18) was ﬁtted to each structure and then, all ectodomains E1 and E2 were aligned. With these structures, we ran parKVFinder software31, with Probe Out of 6.0 Å, Removal Distance of 0.6 Å and a space segmentation by an optimized box, to detect the cavity, around a reference ligand (with a 5.0 Å cut off except CHIKV with 8.0 Å cut off) and estimate its volume. We also determine the interface residues with side-chain contacts that compose the cavity, and evaluate the distribution of aliphatic apolar, aromatic, polar uncharged, negatively charged and positively charged residues. Furthermore, with these interface residues, we projected the Eisenberg consensus scale63 of the residues that were closest to each surface point of the cavity. This procedure was repeated for MAYV C-proteins, except that we deﬁned a Probe Out of 7.5 Å and a Removal Distance of 1.2 Å, and we did not limit the cavity around a reference ligand.
+
+% To further understand the pocket environment and extract its chemical features, the whole MAYV pocket was prospected using the parKVFinder software31 and compared to other alphaviruses. In MAYV, the pocket between E1 and E2 TM domains has a volume around 850 Å3 (Supplementary Fig. 8). This volume is quite similar in SIND, EEEV and VEEV, but in CHIKV E1 and E2 are more distant from each other, which creates a larger volume. The hydrophobic nature of the pocket in alphaviruses is clearly noticed by the hydrophobicity surface mapping (Fig. 6C) and by the number of apolar residues forming the cavity core (Supplementary Fig. 7). The pocket density extends to polar residues, such as H362, T365 and T366 (from E2) at the posterior opening (Supplementary Fig. 7), indicating that the molecule could have an amphipathic nature, as a fatty acid. T365 and T366 have a conserved structural position in other alphaviruses or are changed to serine, an even more polar residue. At the posterior opening, another histidine (H352 from E2) helps to close the pocket. Most alphaviruses, except SINV, have histidine residues occupying a similar position. Altogether, these ﬁndings indicate that alphaviruses have a consistent amphipathic cavity formed between E1 and E2 domains at the outer leaﬂet membrane. Should the alphaviral pocket be occupied by a molecule, such molecule would be chemically similar in different alphaviruses. The MAYV density map suggests the extra density could be occupied by a fatty acid that may enhance interactions between E1 and E2. Thus, the pocket could be targeted for the development of antiviral compounds against MAYV and other alphaviruses, using rational drug design.
+
+% The hydrophobic pocket located between E1 and E2, ﬁrst described by Chen and colleagues30, was also observed in the MAYV structure. Pocket analysis using parKVFinder31 supports the hypothesis that a fatty acid occupies the region. Further structural and functional studies are necessary to conﬁrm the composition of the “pocket factor”, the function of the hydrophobic pocket in alphavirus biology and whether it could be targeted in the development of potential treatments.
+
+% No entanto, a metodologia mostrou limitações para aplicações automatizadas e comparações sistemáticas de cavidades. Com isso, um pacote mais voltado para data science é desejável. Nesse cenário, pyKVFinder surgiu. 
+% parKVFinder = bom para otimizar parametros de detecção pois tem visual cues devido ao plugin.
+% pyKVFinder = bom para automatizar e comparar cavidades pois tem uma API e é mais fácil de usar em scripts.
 
 \section{pyKVFinder}
 
