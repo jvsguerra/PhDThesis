@@ -193,6 +193,7 @@ The abstract must have at most 500 words and must fit in a single page.
   \acro{KVFinderMD}{\textit{KVFinder for Molecular Dynamics analysis}}
   \acro{LES}{Superfície Excluída pelo Ligante (\textit{Ligand Excluded Surface})}
   \acro{MAYV}{\textit{Mayaro virus}}
+  \acro{ndarray}{\textit{N-dimensional array}}
   \acro{parKVFinder}{\textit{Parallel KVFinder}}
   \acro{Pi}{\textit{Probe In}}
   \acro{Po}{\textit{Probe Out}}
@@ -557,6 +558,16 @@ Apesar de termos obtido sucesso na aplicação do parKVFinder em simulações de
 % pyKVFinder = bom para automatizar e comparar cavidades pois tem uma API e é mais fácil de usar em scripts.
 
 \section{pyKVFinder}
+
+No cenário de análise de cavidades de larga escala, os protocolos exigem rotinas e algoritmos eficientes construídos em estruturas de dados facilmente manipuláveis. Para atender a esse requisito, desenvolvemos \textbf{Python-C Parallel KVFinder (pyKVFinder)} \cite{guerra2020}, um pacote Python de código aberto, licenciado sob GPL v3.0, para detectar e caracterizar cavidades em estruturas biomoleculares em aplicações de ciência de dados e protocolos automatizados. 
+
+No pyKVFinder, a biomolécula alvo é inserida em uma grade 3D regular, que é armazenada como uma matriz N-dimensional (\textit{ndarray}; \textit{N-dimensional array}) do pacote NumPy \cite{numpy}. Para detectar cavidades, o pyKVFinder usa um algoritmo de dupla sonda que percorre a estrutura biomolecular, conforme descrito nos trabalhos do KVFinder e parKVFinder. Além das propriedades da cavidade, como volume, área e resíduos de interface, que são armazenados como dicionários de Python, o pyKVFinder calcula a profundidade e a hidropatia das cavidades. Assim como os pontos de cavidade, essas propriedades espaciais e físico-químicas são armazenadas como \textit{ndarrays} e podem ser visualizadas usando pacotes de visualização molecular do Python, \eg, NGLView \cite{nglview}. Assim, o pyKVFinder facilita a análise de dados bioestruturais com rotinas e algoritmos no ecossistema Python, além de servir como blocos de construção para novas aplicações de ciência de dados, desenho racional de fármacos e descoberta de fármacos. 
+
+% Assim, usuários experientes que precisam de aplicações em larga escala são incentivados a usar o pyKVFinder devido ao seu desempenho aprimorado e flexibilidade, enquanto os recém-chegados devem priorizar o parKVFinder devido à sua simplicidade de instalação e execução.
+
+% On the other hand, pyKVFinder is available as a Python package with efficient scripting routines built on easy-to-handle data structures, facilitating complex structural data analysis. In addition to spatial characterization, pyKVFinder also calculates cavity depth and hydropathy. Thus, pyKVFinder can be applied as a building block for data science, drug design, and drug discovery applications.
+
+% A eficiência do parKVFinder foi validado em um conjunto de 1000 domínios proteicos, denominado kv1000 (\link{https://github.com/jvsguerra/kv1000}), apresentando resultados comparáveis aos do KVFinder, porém com um tempo de execução significativamente menor, aproximadamente 9.5 vezes mais rápido \cite{guerra2019,guerra2020}. Posteriormente, o parKVFinder foi publicado na BMC Bioinformatics \cite{guerra2020}, aprimorando a estimativa de área superficial, sendo lançado como \href{https://github.com/LBC-LNBio/parKVFinder/tree/v1.0}{parKVFinder v1.0}. Em seguida, houve uma nova atualização para o KVFinder-web \cite{guerra2023A}, adicionando os descritores de profundidade e hidrofobicidade, resultando no lançamento do \href{https://github.com/LBC-LNBio/parKVFinder/tree/v1.2.0}{parKVFinder v1.2.0}.
 
 \subsection{Estimativa do volume molecular}
 
