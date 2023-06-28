@@ -580,6 +580,8 @@ O desempenho computacional do pyKVFinder também foi avaliado no kv1000 \cite{gu
 
 \subsection{Implementações de novas caracterizações}
 
+Dentro do contexto do pyKVFinder, em colaboração com o Dr. György Szalóki (Laboratoire Hétérochimie Fondamentale et Appliquée - Université Toulouse III Paul Sabatier - França), o escopo do KVFinder suite foi expandido para uma nova classe de moléculas chamadas de gaiolas supramoleculares. Essas gaiolas são moléculas interconectadas que se unem de forma não-covalente, formando uma cavidade interna capaz de encapsular moléculas ou íons. A forma e o tamanho da cavidade são parâmetros importantes que podem ser facilmente determinados por algoritmos geométricos, auxiliando no projeto racional de gaiolas supramoleculares. Nesse contexto, também foram desenvolvidas novas caracterizações aplicáveis tanto para o contexto de gaiolas quanto para biomoléculas.
+
 \subsection{Estimativa do volume molecular}
 
 \cite{guerra2023B}
@@ -596,14 +598,7 @@ O desempenho computacional do pyKVFinder também foi avaliado no kv1000 \cite{gu
 
 \subsubsection{Dinâmica molecular do domínio ADRP do SARS-CoV-2}
 
-% O desempenho computacional do pyKVFinder foi avaliado em simulações de dinâmica molecular do domínio ADRP do SARS-CoV-2 (PDB ID: 6WO2, chain B) sem seu ligante, a ADP-ribose, de 600 ns, extraindo quadros em intervalos regulares de 1 ns. Compared to its counterpart, parKVFinder,
-% pyKVFinder was 3.3 times faster in detecting ADRP binding site. The main reason
-% for the performance gain is the additional possibility to parallelize routines, \ie, the
-% insertion of atoms in the 3D grid in detect function, based on ndarrays. Hence, expe-
-% rienced users requiring scripting routines are encouraged to use pyKVFinder due to
-% its improved performance, while newcomers should prioritize parKVFinder due to its
-% simplicity of installation and execution. Further, the scalability of pyKVFinder, upon
-% increasing number of threads, follows the same behavior presented by parKVFinder \cite{guerra2020}. Portanto, usuários experientes que necessitam de aplicações em larga escala são incentivados a utilizar o pyKVFinder devido ao seu desempenho aprimorado e flexibilidade, enquanto os iniciantes devem considerar o parKVFinder devido à sua simplicidade de instalação e execução.
+% O desempenho computacional do pyKVFinder foi avaliado em simulações de dinâmica molecular do domínio ADRP do SARS-CoV-2 (PDB ID: 6WO2, chain B) sem seu ligante, a ADP-ribose, de 600 ns, extraindo quadros em intervalos regulares de 1 ns. Compared to its counterpart, parKVFinder,  pyKVFinder was 3.3 times faster in detecting ADRP binding site. The main reason for the performance gain is the additional possibility to parallelize routines, \ie, the insertion of atoms in the 3D grid in detect function, based on ndarrays. Hence, experienced users requiring scripting routines are encouraged to use pyKVFinder due to its improved performance, while newcomers should prioritize parKVFinder due to its simplicity of installation and execution. Further, the scalability of pyKVFinder, upon increasing number of threads, follows the same behavior presented by parKVFinder \cite{guerra2020}. Portanto, usuários experientes que necessitam de aplicações em larga escala são incentivados a utilizar o pyKVFinder devido ao seu desempenho aprimorado e flexibilidade, enquanto os iniciantes devem considerar o parKVFinder devido à sua simplicidade de instalação e execução.
 
 \section{KVFinder-web}
 
