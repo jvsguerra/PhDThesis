@@ -503,7 +503,7 @@ Comparou-se o desempenho do parKVFinder \cite{guerra2020} com outros programas b
 
 Além de boa acurácia, também foi avaliado o tempo computacional dos programas. O parKVFinder ($t = 1h03m$) foi pelo menos quatro vezes mais rápido que o GHECOM ($t = 4h32m$), devido às subrotinas de múltiplas \textit{threads} implementadas no parKVFinder. Além disso, o parKVFinder também superou o MSPocket ($t = 2h48m$) e o CavVis ($t = 3h45$) em termos de tempo computacional, mas não superou o Fpocket ($t = 20m$), que utiliza um método baseado em tesselação de Voroni e esferas alfa, sendo rapidamente computado. No entanto, essa implementação do Fpocket mostrou-se menos sensível na descrição detalhada do sítio ativo da HIV-1 protease, não diferenciando eficientemente os estados conformacionais do sítio ativo. Portanto, considerando a acurácia e o desempenho, o parKVFinder destacou-se como uma opção robusta para a detecção e caracterização espacial de cavidades no caso de estudo da HIV-1 protease \cite{guerra2020}.
 
-É importante ressaltar que os resultados completos e detalhes das simulações e análises estão disponíveis no artigo publicado no periódico SoftwareX \cite{guerra2020}.
+É importante ressaltar que os resultados completos e detalhes das simulações e análises estão disponíveis no artigo publicado no periódico \textit{SoftwareX} \cite{guerra2020}.
 
 \subsubsection{Mayaro e outros alphavírus}
 
@@ -550,7 +550,7 @@ O mapa de densidade do MAYV confirma a estrutura geralmente conservada da prote�
   \label{fig:mayv-c-e2-plots}
 \end{figure}
 
-É importante ressaltar que os resultados completos e detalhes das análises estão disponíveis no artigo publicado no periódico Nature Communications \cite{ribeiro2021}.
+É importante ressaltar que os resultados completos e detalhes das análises estão disponíveis no artigo publicado no periódico \textit{Nature Communications} \cite{ribeiro2021}.
 
 Apesar de termos obtido sucesso na aplicação do parKVFinder em simulações de dinâmica molecular \cite{guerra2020} e em um estudo comparativo \cite{ribeiro2021}, encontramos limitações ao utilizá-lo em aplicações automatizadas e comparações sistemáticas de sítios de ligação. Por essa razão, é necessário uma ferramenta mais apropriada para aplicações em ciência de dados, que ofereça um acesso simplificado a funções e estruturas de dados durante a análise. No entanto, é importante destacar que o parKVFinder ainda desempenha um papel importante na plataforma do KVFinder suite, principalmente na otimização dos parâmetros de detecção e caracterização, por meio do plugin gráfico do PyMOL (\textit{PyMOL2 parKVFinder Tools}), devido aos seus recursos visuais. Estes parâmetros otimizados podem ser posteriormente adotados em estudos automatizados e comparações sistemáticas de sítios de ligação. Por fim, o parKVFinder também continua sendo útil para análises estrutural e funcional focadas em uma única estrutura biomolecular.
 
@@ -580,21 +580,41 @@ O desempenho computacional do pyKVFinder também foi avaliado no kv1000 \cite{gu
 
 \subsection{Implementações de novas caracterizações}
 
-Dentro do contexto do pyKVFinder, em colaboração com o Dr. György Szalóki (Laboratoire Hétérochimie Fondamentale et Appliquée - Université Toulouse III Paul Sabatier - França), o escopo do KVFinder suite foi expandido para uma nova classe de moléculas chamadas de gaiolas supramoleculares. Essas gaiolas são moléculas interconectadas que se unem de forma não-covalente, formando uma cavidade interna capaz de encapsular moléculas ou íons. A forma e o tamanho da cavidade são parâmetros importantes que podem ser facilmente determinados por algoritmos geométricos, auxiliando no projeto racional de gaiolas supramoleculares. Nesse contexto, também foram desenvolvidas novas caracterizações aplicáveis tanto para o contexto de gaiolas quanto para biomoléculas.
+Dentro do contexto do pyKVFinder, em colaboração com o Dr. György Szalóki (Laboratoire Hétérochimie Fondamentale et Appliquée - Université Toulouse III Paul Sabatier - França), o escopo do KVFinder suite foi expandido para uma nova classe de moléculas chamadas de gaiolas supramoleculares. Essas gaiolas são moléculas interconectadas que se unem de forma não-covalente, formando uma cavidade interna capaz de encapsular moléculas ou íons. A forma e o tamanho da cavidade são parâmetros importantes que podem ser facilmente determinados por algoritmos geométricos, auxiliando no desenho racional de gaiolas supramoleculares. Nesse contexto, também foram desenvolvidas novas caracterizações aplicáveis tanto para o contexto de gaiolas quanto para biomoléculas.
 
-\subsection{Estimativa do volume molecular}
+\subsubsection{Estimativa do volume molecular}
 
-\cite{guerra2023B}
+Para a modelagem da superfície molecular, desenvolvemos a classe \textit{Molecule} no pyKVFinder, que permite a modelagem das superfícies moleculares, conforme ilustrado na Figura \ref{fig:surface-representation}, e estimativa do volume molecular, como apresentado na Figura \ref{fig:molecular-modeling}. Nessa abordagem, as moléculas são inseridas em uma grade 3D regular, levando em consideração os raios de vdW de cada um dos átomos da molécula. Os usuários tem a flexibilidade de definir esses raios por meio de um arquivo de configuração (\textit{\href{https://github.com/LBC-LNBio/pyKVFinder/blob/master/pyKVFinder/data/vdw.dat}{vdw.dat}}), assim como a representação de superfície escolhida. Na grade 3D, cada voxel corresponde a um ponto de molécula (0) ou de solvente (1). Portanto, o volume de van der Waals da molécula é estimado somando-se os voxels rotulados como molécula na grade 3D. Essa funcionalidade de estimativa do volume molecular está disponível no pyKVFinder a partir da versão \href{https://github.com/LBC-LNBio/pyKVFinder/tree/v0.5.1}{v0.5.1}. A implementação desses recursos de modelagem e caracterização de moléculas foi detalhada e aplicadas em um artigo publicado no periódico \textit{Journal of Chemical Information and Modeling} \cite{guerra2023B}.
 
-\subsection{Caracterização de aberturas}
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=1.5]{images/molecular-modeling.png}
+  \caption[Modelagem e estimativa de volume molecular do perclorato ($ClO_4$)]{\textbf{Modelagem e estimativa de volume molecular do perclorato ($ClO_4$).} \textbf{(A)} Superfície molecular de vdW (quadro esquerdo), SES (quadro central) e SAS (quadro direito) no visualizador molecular PyMOL. \textbf{(B)} Modelagem e estimativa do volume molecular de vdW (quadro esquerdo), SES (quadro central) e SAS (quadro direito) pelo pyKVFinder.}
+  \label{fig:molecular-modeling}
+\end{figure}
 
-\cite{guerra2023B}
+\subsubsection{Caracterização de aberturas}
+
+A compreensão das características das gaiolas supramoleculares, como volume (Figura \ref{fig:cage-characterization}A) e abertura (Figura \ref{fig:cage-characterization}B), que impulsionam o encapsulamento de intermediários reativos é fundamental para o desenho racional de novas gaiolas supramoleculares com propriedades catalíticas aprimoradas. Nesse sentido, desenvolvemos uma caracterização de abertura utilizando o pyKVFinder, que permite a identificação das aberturas, a determinação da área dessas aberturas e a maior sonda esférica (\ie, átomo) que pode passar por cada abertura, conforme ilustrado na Figura \ref{fig:cage-characterization}. 
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[scale=1.2]{images/cage-characterization.png}
+  \caption[Caracterizações de gaiolas supramoleculares]{\textbf{Caracterizações de gaiolas supramoleculares.} \textbf{(A)} Volume e profundidade. Os pontos são coloridos de acordo a profundidade, sendo azul para menor profundidade e vermelho para maior profundidade. \textbf{(B)} Abertura (pontos vermelhos) e área da abertura. \textbf{(C)} Maior sonda esférica (esfera azul) acessível à cavidade da gaiola.}
+  \label{fig:cage-characterization}
+\end{figure}
+
+% Melhorar descrição dos filtros espaciais
+
+O sistema de dupla sonda utiliza identificadores inteiros para os pontos de cavidade (1), pontos de biomolécula (0) e pontos de meio (-1). Após a agrupamento dos pontos de cavidade pelo algoritmo \textit{Depth-First Search} (DFS), os pontos de cavidade são marcados com valores >2, e os pontos de cavidades que não atingiram o volume de corte (parâmetro \textit{volume cutoff}) são mantidos com o valor 1. Nessa abordagem, os pontos de cavidade localizados a uma unidade de grade de um ponto de meio, seguindo a relação do elemento estruturante de \textit{rank} 3 e conectividade 1 (Figura \ref{fig:elementos-estruturantes}), são os pontos de fronteira cavidade-meio, que são marcados com o valor negativo do identificador numérico da cavidade correspondente, conforme descrito para o cálculo de profundidade \cite{guerra2019,guerra2021}. A partir desses pontos de fronteira, é calculada a área superficial utilizando o procedimento de estimativa de área da plataforma KVFinder suite \cite{guerra2019,guerra2020}, que é equivalente à área da abertura. Em seguida, os pontos de fronteira cavidade-meio localizados a uma unidade de grade de um ponto de biomolécula, seguindo a relação do elemento estruturante de \textit{rank} 3 e conectividade 1 (Figura \ref{fig:elementos-estruturantes}), são identificados como pontos de abertura. Nesse estágio, uma nova grade 3D é gerada para acumular os pontos de abertura, que são marcados com o valor 1, enquanto os demais pontos recebem o valor 0. Após o agrupamento dos pontos de abertura pelo algoritmo DFS, os pontos de abertura são marcados com valores >2 (Figura \ref{fig:cage-characterization}B), e aberturas com menos pontos do que um corte definido pelo usuário são marcadas com o valor 1. Por fim, para cada abertura identificada, é calculado o ponto médio e a maior esfera é determinada a partir desse ponto médio, definindo assim o maior átomo que pode passar por essa abertura (Figura \ref{fig:cage-characterization}C).
 
 \subsection{Casos de estudo}
 
+O pyKVFinder foi aplicado em dois casos de estudo publicados em periódicos científicos para investigar proteínas de interesse terapêutico. Essas análises exploraram as características de cavidades de proteínas homólogas ao domínio ADRP do SARS-CoV-2 e a dinâmica molecular do domínio ADRP do SARS-CoV-2 \cite{guerra2021}. A seguir, descreveremos cada um desses casos de estudo em detalhes.
+
 \subsubsection{SARS-CoV-2 e proteínas homólogas}
 
-% Para demonstrar as funcionalidades e vantagens do pyKVFinder, prospectamos e caracterizamos uma cavidade da proteína ADRP do SARS-CoV-2 que forma o sítio de ligação do substrato (Figura 2). Para evidenciar como o pyKVFinder se beneficia do ecossistema de Python, executamos suas funções em um Jupyter notebook. Ao detectar a cavidade, primeiramente caracterizamos seu volume, área e resíduos de interface (Figura 2A). Para visualizar a proteína e a cavidade de forma tridimensional não necessitamos do PyMOL, e podemos visualizá-los no próprio notebook através do pacote NGL Viewer. Em seguida determinamos a composição dos resíduos que formam a cavidade e, além de visualizarmos esses resíduos, apresentamos suas frequências em um histograma (Figura 2B), utilizando a pacote matplotlib. Para compararmos a composição dessa cavidade com a de outros coronavírus ou proteínas humanas relacionadas, realizamos a mesma análise em outras 7 proteínas. Como o pyKVFinder utiliza dicionários em Python para armazenar os resíduos que formam a cavidade, podemos facilmente calcular a frequência desses resíduos. Com essa informação, utilizamos o pacote SciPy para executar um método de agrupamento (clustering) hierárquico cujo resultado está representado no dendrograma da Figura 2C. Nesse dendrograma, observamos o agrupamento das proteínas humanas relacionadas a proteína ADRP de coronavírus, e o agrupamento de coronavírus da mesma família, como o SARS-CoV-2, o SARS-CoV e o MERS. Uma descrição detalhada dessa análise, assim como outras caracterizações dessa cavidade, estão descritas no manuscrito em anexo.
+% Para demonstrar as funcionalidades e vantagens do pyKVFinder, prospectamos e caracterizamos uma cavidade da proteína ADRP do SARS-CoV-2 que forma o sítio de ligação do substrato (Figura 2). Para evidenciar como o pyKVFinder se beneficia do ecossistema de Python, executamos suas funções em um Jupyter notebook. Ao detectar a cavidade, primeiramente caracterizamos seu volume, área e resíduos de interface (Figura 2A). Para visualizar a proteína e a cavidade de forma tridimensional não necessitamos do PyMOL, e podemos visualizá-los no próprio notebook através do pacote NGL Viewer. Em seguida determinamos a composição dos resíduos que formam a cavidade e, além de visualizarmos esses resíduos, apresentamos suas frequências em um histograma (Figura 2B), utilizando a pacote matplotlib. Para compararmos a composição dessa cavidade com a de outros coronavírus ou proteínas humanas relacionadas, realizamos a mesma análise em outras 7 proteínas. Como o pyKVFinder utiliza dicionários em Python para armazenar os resíduos que formam a cavidade, podemos facilmente calcular a frequência desses resíduos. Com essa informação, utilizamos o pacote SciPy para executar um método de agrupamento (\textit{clustering}, em inglês) hierárquico cujo resultado está representado no dendrograma da Figura 2C. Nesse dendrograma, observamos o agrupamento das proteínas humanas relacionadas a proteína ADRP de coronavírus, e o agrupamento de coronavírus da mesma família, como o SARS-CoV-2, o SARS-CoV e o MERS. Uma descrição detalhada dessa análise, assim como outras caracterizações dessa cavidade, estão descritas no manuscrito em anexo.
 
 \subsubsection{Dinâmica molecular do domínio ADRP do SARS-CoV-2}
 
@@ -652,6 +672,14 @@ O reconhecimento molecular depende diretamente da acessibilidade de um ligante a
   \includegraphics[scale=0.46]{images/pykvfinder-parkvfinder-kv1000-comparison.png}
   \caption[Ganho de velocidade do pyKVFinder comparado ao parKVFinder]{\textbf{Tempo computacional em função do número de átomos com diferentes números de \textit{threads} para o parKVFinder e o pyKVFinder.} Quadro superior esquerdo: parKVFinder. Quadro superior direito: pyKVFinder com caracterização padrão (volume, área e resíduos de interface). Quadro inferior esquerdo: pyKVFinder com caracterização padrão e de profundidade. Quadro inferior direito: pyKVFinder com caracterização padrão e de hidropatia}
   \label{fig:pykvfinder-parkvfinder-kv1000-comparison}
+\end{figure}
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[scale=1]{images/3D-binary-structure.png}
+  \centerline{\scriptsize{\textbf{Fonte:} Retirado de \url{https://docs.scipy.org/doc/scipy/tutorial/ndimage.html}}}
+  \caption[Elementos estruturantes para filtros espaciais]{\textbf{Elementos estruturantes para filtros espaciais.}}
+  \label{fig:elementos-estruturantes}
 \end{figure}
 
 \end{document}
