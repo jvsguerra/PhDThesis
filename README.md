@@ -6,7 +6,7 @@ Qualificação de Doutorado do Programa de Pós-graudação da Faculdade de Ciê
 Para instalar as dependências, execute:
 
 ```bash
-sudo apt install texlive-base texlive-latex-extra texlive-font-utils
+sudo apt-get install texlive-base texlive-latex-recommended texlive-latex-extra texlive-science texlive-font-utils texlive-lang-spanish texlive-publishers texlive-pictures abntex
 ```
 
 ## Contruindo o PDF
