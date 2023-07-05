@@ -23,7 +23,8 @@
 \usepackage{graphicx}
 
 % Para transformar caption em negrito:
-\usepackage[font=footnotesize,labelfont=bf]{caption}
+% \usepackage[font=footnotesize,labelfont=bf]{caption}
+\usepackage[font=scriptsize,labelfont=bf]{caption}
 
 % Para citações no formato numérico da norma ABNT:
 \usepackage[hyphens]{url}
@@ -156,7 +157,7 @@ Gostaria de expressar meus sinceros agradecimentos a todos que me apoiaram duran
 
 Gostaria de agradecer ao meu orientador, Dr. Paulo Sergio Lopes de Oliveira, por ter me dado liberdade científica e criativa para desenvolver esta tese e, acima de tudo, pela oportunidade de trabalhar em um centro de pesquisa de excelência. Agradeço aos meus colegas do Laboratório de Biologia Computacional, José Geraldo de Carvalho Pereira, Helder Veras Ribeiro Filho, Luiz Fernando Giolo Alves, Mariana Bortoletto Grizante, Gabriel Ernesto Jara e Leandro Oliveira Bortot, por terem me apoiado em momentos importantes, compartilhando ideias e sugestões para o desenvolvimento deste projeto. Sou imensamente grato a todos que me ajudaram nesta etapa essencial da minha formação acadêmica.
 
-Por fim, gostaria de agradecer ao Programa de Pós-Graduação em Ciências Farmacêuticas da Faculdade de Ciências Farmacêuticas da Universidade Estadual de Campinas, ao Laboratório Nacional de Biociências e ao Centro Nacional de Pesquisa em Energia e Materiais, por terem viabilizado este trabalho. Também sou grato pelo apoio financeiro da Fundação de Amparo à Pesquisa do Estado de São Paulo (FAPESP) pelo projeto de pesquisa regular (processo nº 2018/00629-0, Fundação de Amparo à Pesquisa do Estado de São Paulo (FAPESP))."
+Por fim, gostaria de agradecer ao Programa de Pós-Graduação em Ciências Farmacêuticas da Faculdade de Ciências Farmacêuticas da Universidade Estadual de Campinas, ao Laboratório Nacional de Biociências e ao Centro Nacional de Pesquisa em Energia e Materiais, por terem viabilizado este trabalho. Também sou grato pelo apoio financeiro da Fundação de Amparo à Pesquisa do Estado de São Paulo (FAPESP) pelo projeto de pesquisa regular (processo nº 2018/00629-0, Fundação de Amparo à Pesquisa do Estado de São Paulo (FAPESP)).
 
 
 % Sempre deve haver um resumo em português:
@@ -198,6 +199,8 @@ The abstract must have at most 500 words and must fit in a single page.
   \acro{DM}{Dinâmica molecular}
   \acro{EEEV}{\textit{Eastern Equine Encephalitis virus}}
   \acro{GHECOM}{\textit{Grid-based HECOMi finder}}
+  \acro{HIV-1}{\textit{Human Immunodeficiency Virus type 1}}
+  \acro{HTTP}{\textit{HyperText Transfer Protocol}}
   \acro{IPD}{Interações Proteína-DNA}
   \acro{IPL}{Interações Proteína-Ligante}
   \acro{IPR}{Interações Proteína-RNA}
@@ -208,6 +211,7 @@ The abstract must have at most 500 words and must fit in a single page.
   \acro{ndarray}{\textit{N-dimensional array}}
   \acro{Nsps}{\textit(\textit{Non-structural proteins})}
   \acro{parKVFinder}{\textit{Parallel KVFinder}}
+  \acro{PDB}{\textit{Protein Data Bank}}
   \acro{Pi}{\textit{Probe In}}
   \acro{Po}{\textit{Probe Out}}
   \acro{pyKVFinder}{\textit{Python-C Parallel KVFinder}}
@@ -474,7 +478,7 @@ A KVFinder suite é composta por cinco ferramentas computacionais que oferecem f
 
 O \textbf{Parallel KVFinder (parKVFinder)} \cite{guerra2020} é uma ferramenta de código aberto, licenciada sob GPL v3.0, desenvolvida para detecção e caracterização de qualquer tipo de cavidade biomolecular. A ferramenta foi desenvolvida originalmente na dissertação de mestrado intitulada "Prospecção e caracterização de cavidades supramoleculares" \cite{guerra2019}, como uma versão atualizada e otimizada do KVFinder \cite{oliveira2014}. Posteriormente, o parKVFinder foi publicado na SoftwareX \cite{guerra2020}, aprimorando a estimativa de área superficial, sendo lançado como \href{https://github.com/LBC-LNBio/parKVFinder/tree/v1.0}{parKVFinder v1.0}. Em seguida, houve uma nova atualização para o KVFinder-web \cite{guerra2023A}, adicionando os descritores de profundidade, hidrofobicidade e frequência de resíduos, resultando no lançamento do \href{https://github.com/LBC-LNBio/parKVFinder/tree/v1.2.0}{parKVFinder v1.2.0}.
 
-O parKVFinder é acompanhado por um plugin gráfico chamado \textit{PyMOL2 parKVFinder Tools}, que é integrado ao visualizador molecular PyMOL \cite{pymol}. Esse plugin oferece uma interface gráfica intuitiva e fácil de usar, permitindo que os usuários explorem parâmetros personalizáveis para a detecção e caracterização de cavidades. Além disso, o plugin permite visualizar as cavidades detectadas e suas características no ambiente do PyMOL. Além da interface gráfica, o parKVFinder também possui uma interface de linha de comando (CLI; \textit{command-line interface}) para usuários avançados, o que permite a automação de tarefas e a integração com outros programas. O código-fonte do parKVFinder e o plugin estão disponíveis no seguinte repositório: \url{https://github.com/LBC-LNBio/parKVFinder}.
+O parKVFinder é acompanhado por um plugin gráfico, denominado PyMOL2 parKVFinder Tools, que é integrado ao visualizador molecular PyMOL \cite{pymol}. Esse plugin oferece uma interface gráfica intuitiva e fácil de usar, permitindo que os usuários explorem parâmetros personalizáveis para a detecção e caracterização de cavidades. Além disso, o plugin permite visualizar as cavidades detectadas e suas características no ambiente do PyMOL. Além da interface gráfica, o parKVFinder também possui uma interface de linha de comando (CLI; \textit{command-line interface}) para usuários avançados, o que permite a automação de tarefas e a integração com outros programas. O código-fonte do parKVFinder e o plugin estão disponíveis no seguinte repositório: \url{https://github.com/LBC-LNBio/parKVFinder}.
 
 As rotinas de detecção e caracterização de cavidades foram paralelizadas utilizando a biblioteca OpenMP, aproveitando o processamento paralelo em sistemas \textit{multicore}. O desempenho computacional do parKVFinder foi avalidado em um conjunto de 1000 domínios proteicos, denominado kv1000 (\url{https://github.com/jvsguerra/kv1000}), apresentando um tempo de execução consideravelmente menor que o KVFinder, $\aproximadamente9,5$ vezes mais rápido \cite{guerra2019,guerra2020}.
 
@@ -486,7 +490,7 @@ As rotinas de detecção e caracterização de cavidades foram paralelizadas uti
 
 \subsection{Casos de estudo}
 
-O parKVFinder foi aplicado em dois casos de estudo publicados em periódicos científicos para investigar proteínas de interesse terapêutico. Essas análises exploraram a dinâmica dos \textit{flaps} da HIV-1 protease \cite{guerra2020} e o caráter hidropático de sítios de ligação em alphavírus \cite{ribeiro2021}. A seguir, descreveremos cada um desses casos de estudo em detalhes.
+O parKVFinder foi aplicado em dois casos de estudo publicados em periódicos científicos para investigar proteínas de interesse terapêutico. Essas análises exploraram a dinâmica dos \textit{flaps} da protease do Vírus da imunodeficiência humana 1 (HIV-1; \textit{Human Immunodeficiency Virus type 1}, em inglês) \cite{guerra2020} e o caráter hidropático de sítios de ligação em alphavírus \cite{ribeiro2021}. A seguir, descreveremos cada um desses casos de estudo em detalhes.
 
 \subsubsection{Dinâmica molecular da HIV-1 protease}
 
@@ -559,7 +563,7 @@ O mapa de densidade do MAYV confirma a estrutura geralmente conservada da prote�
 
 É importante ressaltar que os resultados completos e detalhes das análises estão disponíveis no artigo publicado no periódico \textit{Nature Communications} \cite{ribeiro2021}.
 
-Apesar de termos obtido sucesso na aplicação do parKVFinder em simulações de dinâmica molecular \cite{guerra2020} e em um estudo comparativo \cite{ribeiro2021}, encontramos limitações ao utilizá-lo em aplicações automatizadas e comparações sistemáticas de sítios de ligação. Por essa razão, é necessário uma ferramenta mais apropriada para aplicações em ciência de dados, que ofereça um acesso simplificado a funções e estruturas de dados durante a análise. No entanto, é importante destacar que o parKVFinder ainda desempenha um papel importante na plataforma do KVFinder suite, principalmente na otimização dos parâmetros de detecção e caracterização, por meio do plugin gráfico do PyMOL (\textit{PyMOL2 parKVFinder Tools}), devido aos seus recursos visuais. Estes parâmetros otimizados podem ser posteriormente adotados em estudos automatizados e comparações sistemáticas de sítios de ligação. Por fim, o parKVFinder também continua sendo útil para análises estrutural e funcional focadas em uma única estrutura biomolecular.
+Apesar de termos obtido sucesso na aplicação do parKVFinder em simulações de dinâmica molecular \cite{guerra2020} e em um estudo comparativo \cite{ribeiro2021}, encontramos limitações ao utilizá-lo em aplicações automatizadas e comparações sistemáticas de sítios de ligação. Por essa razão, é necessário uma ferramenta mais apropriada para aplicações em ciência de dados, que ofereça um acesso simplificado a funções e estruturas de dados durante a análise. No entanto, é importante destacar que o parKVFinder ainda desempenha um papel importante na plataforma do KVFinder suite, principalmente na otimização dos parâmetros de detecção e caracterização, por meio do plugin gráfico do PyMOL (PyMOL2 parKVFinder Tools), devido aos seus recursos visuais. Estes parâmetros otimizados podem ser posteriormente adotados em estudos automatizados e comparações sistemáticas de sítios de ligação. Por fim, o parKVFinder também continua sendo útil para análises estrutural e funcional focadas em uma única estrutura biomolecular.
 
 % Extra information:
 % - A total of 80 spikes, formed by trimers of E1–E2 heterodimers, protrude from the MAYV membrane. E1 and E2 proteins immerse into the lipid membrane through their transmembrane domain (TM) and the E2 C-terminal connects the spike to the capsid.
@@ -628,7 +632,7 @@ Conforme ilustrado na Figura \ref{fig:conservation-analysis}A, o sítio de liga�
 
 \begin{figure}[hp]
   \centering
-  \includegraphics[scale=0.36]{images/adrp-sars-cov-2-conservation-analysis.png}
+  \includegraphics[scale=0.4]{images/adrp-sars-cov-2-conservation-analysis.png}
   \centerline{\scriptsize{\textbf{Fonte:} Adaptado de \cite{guerra2021}.}}
   \caption[Estudo do sítio de ligação do substrato da ADRP do SARS-CoV-2 e proteínas relacionadas]{\textbf{Estudo do sítio de ligação do substrato da ADRP do SARS-CoV-2 e proteínas relacionadas.} \textbf{(A)} Caracterizações do sítio de ligação do substrato do domínio ADRP do SARS-CoV-2 (PDB ID: 6WEN). Esquerda: Cavidade detectada representada como uma superfície cinza e os resíduos ao redor dela como \textit{sticks} vermelhos. Centro: Cavidade colorida por profundidade. Direita: Cavidade colorida por hidropatia usando a escala de Eisenberg e Weiss. \textbf{(B)} Gráfico de barras das frequências de resíduos de interface. Esquerda: Aminoácidos. Direita: Classes de aminoácidos. \textbf{(C)} Análise de conservação do sítio de ligação do ADP-ribose no domínio ADRP do SARS-CoV-2 (PDB ID: 6WEN, cadeia A), SARS-CoV (PDB ID: 2ACF, cadeia B), MERS-CoV (PDB ID: 5HIH, cadeia A), NL63 (PDB ID: 2VRI, cadeia A), HCoV-229E (PDB ID: 3EJG, cadeia A), FCoV (PDB ID: 3ETI, cadeia B) e proteínas macrodomínio macroD1 (PDB ID: 2X47, cadeia A) e macroD2 (PDB ID: 6Y73, cadeia D) humanas. Os pontos de cavidade que foram detectados em pelo menos duas estruturas e os pontos são coloridos por porcentagem de conservação. \textbf{(D)} Perfil de hidropatia. \textbf{(E)} Dendrograma de agrupamento hierárquico da frequência de resíduos. A métrica de correlação de Pearson foi usada para avaliar a similaridade e o método completo foi escolhido como método de ligação. Todos os gráficos e imagens foram gerados em um Jupyter notebook. As imagens das estruturas tridimensionais foram geradas utilizando o pacote NGLView \cite{nglview} enquanto os gráficos foram construídos utilizando o pacote matplotlib \cite{matplotlib}.}
   \label{fig:conservation-analysis}
@@ -650,7 +654,7 @@ Nesse contexto, o desempenho computacional do pyKVFinder foi avaliado em simula�
   \centering
   \includegraphics[scale=0.75]{images/pykvfinder-benchmarking.png}
   \centerline{\scriptsize{\textbf{Fonte:} Adaptado de \cite{guerra2021}.}}
-  \caption[Avaliação de desempenho dos métodos de benchmarking para detecção do sítio de ligação do substrato da ADRP]{\textbf{Avaliação de desempenho dos métodos de benchmarking para detecção do sítio de ligação do substrato da ADRP.} \textbf{(A)} As estruturas da proteína (representadas em verde) no quadro 30 (com menor RMSD em comparação com a estrutura cristalográfica) da trajetória do domínio ADRP com as cavidades correspondentes detectadas (superfícies cinzas) por cada método de benchmarking. \textbf{(B)} O volume total das cavidades detectadas no sítio de ligação do substrato da ADRP ao longo da simulação de 600 ns. O volume total é calculado em uma janela de 20 quadros. A linha pontilhada vermelha indica o volume da superfície molecular da molécula de ADP-ribose, que ocupava originalmente o sítio de ligação do substrato da ADRP na estrutura cristalográfica (PDB ID: 6W02, cadeia B). \textbf{(C)} Tempo decorrido para detectar e caracterizar o sítio de ligação do substrato da ADRP. O protocolo padrão do pyKVFinder, assim como do parKVFinder, detecta as cavidades e aplica as caracterizações morfológicos (\eg, volume, área, forma) e topológicos (\eg, resíduos de interface e suas frequências). O protocolo completo do pyKVFinder inclui o protocolo padrão com as caracterizações de profundidade e hidropatia.}
+  \caption[Avaliação de desempenho dos métodos de benchmarking para detecção do sítio de ligação do substrato da ADRP]{\textbf{Avaliação de desempenho dos métodos de benchmarking para detecção do sítio de ligação do substrato da ADRP.} \textbf{(A)} As estruturas da proteína (representadas em verde) no quadro 30 (com menor RMSD em comparação com a estrutura cristalográfica) da trajetória do domínio ADRP com as cavidades correspondentes detectadas (superfícies cinzas) por cada método de benchmarking. \textbf{(B)} O volume total das cavidades detectadas no sítio de ligação do substrato da ADRP ao longo da simulação de 600 ns. O volume total é calculado em uma janela de 20 quadros. A linha pontilhada vermelha indica o volume da superfície molecular da molécula de ADP-ribose, que ocupava originalmente o sítio de ligação do substrato da ADRP na estrutura cristalográfica (PDB ID: 6W02, cadeia B). \textbf{(C)} Tempo decorrido para detectar e caracterizar o sítio de ligação do substrato da ADRP. O protocolo padrão do pyKVFinder, assim como do parKVFinder, detecta as cavidades e aplica as caracterizações morfológicos (\eg, volume, área e forma) e topológicos (\eg, resíduos de interface e suas frequências). O protocolo completo do pyKVFinder inclui o protocolo padrão com as caracterizações de profundidade e hidropatia.}
   \label{fig:pykvfinder-benchmarking}
 \end{figure}
 
@@ -661,17 +665,67 @@ Para demonstrar as funcionalidades e vantagens do pyKVFinder, realizamos esse es
 Apesar de cada método possuir seu próprio conjunto de caracterizações a serem realizadas nas cavidades detectadas, a estrutura de dados das cavidades só é acessível dentro do ecossistema Python no pyKVFinder, que fornece \textit{ndarrays} e dicionários em Python. Ao fornecer uma estrutura de dados acessível e flexível, o pyKVFinder permite aos usuários desenvolver novas caracterizações de cavidades, além de protocolos de análise baseados nessas estruturas de dados. Por exemplo, em um estudo recente conduzido por \cite{jefferson2023}, foi explorada a área transversal das cavidades em proteínas relacionadas usando o pyKVFinder. Esse estudo demonstrou como as estruturas de dados fornecidas pelo pyKVFinder podem ser utilizadas para aprofundar a exploração das cavidades e descobrir informações relevantes para o desenvolvimento de fármacos e a compreensão das interações moleculares. Além disso, a integração do pyKVFinder com o ecossistema Python amplia as possibilidades de análise e visualização de dados, aproveitando as bibliotecas científicas robustas disponíveis nessa linguagem. Essa integração facilita a implementação de análises avançadas e personalizadas, permitindo aos pesquisadores explorar de forma mais abrangente as propriedades das cavidades biomoleculares e obter \textit{insights} valiosos.
 
 Dessa forma, o pyKVFinder não apenas contribui para o avanço da pesquisa em descoberta e desenho racional de fármacos, mas também fortalece a colaboração e o compartilhamento de conhecimentos na comunidade científica. Ao disponibilizar uma ferramenta acessível, flexível e integrada ao ecossistema Python, o pyKVFinder capacita os pesquisadores a explorar as cavidades biomoleculares de forma mais eficiente e eficaz, impulsionando a descoberta de novos alvos terapêuticos e o desenvolvimento de medicamentos mais eficazes.
+
 \section{KVFinder-web}
 
-% Several web services have been proposed for the detection and/or characterization of binding sites in biomolecules. Amongst them, we could cite FpocketWeb (5), GHECOM (6), CaverWeb (7), CASTp (8), ConCavity (9), Depth (10), MoloVol (11) and 3DLigandSite (12).
+Nos últimos anos, serviços web que se comunicam por meio dos protocolos de transferência de hipertexto (HTTP; \textit{HyperText Transfer Protocol}, em inglês) se tornaram cada vez mais populares em ambientes de computação em nuvem. Esses serviços fornecem amplo acesso a recursos de dados e processamento. Vários serviços web foram propostos para a detecção e/ou caracterização de sítios de ligação em biomoléculas. Entre eles, podemos citar o FpocketWeb \cite{fpocketweb}, GHECOM \cite{ghecom}, CaverWeb \cite{caverweb}, MoloVol \cite{molovol} e 3DLigandSite \cite{3dligandsite}. Em comparação com outros softwares para detecção de cavidades, o parKVFinder possui um conjunto intuitivo de parâmetros e foi extensivamente testado na literatura quanto às suas capacidades de detecção e computacionais, oferecendo desempenho preciso e robusto com qualquer tipo de cavidade proteica, conforme ilustrado anteriormente \cite{guerra2019,guerra2020}. Embora outros métodos também possam detectar sítios de ligação proteicos, cada um possui seu conjunto específico de caracterizações. O parKVFinder se destaca por combinar caracterizações morfológicas, topológicas e fisico-químicas de sítios de ligação, auxiliando efetivamente os usuários na identificação de cavidades funcionalmente relevantes e no estudo do processo de reconhecimento molecular.
 
-O KVFinder-web é uma aplicação web de código aberto para detecção e caracterização de cavidades em qualquer tipo de estrutura biomolecular, que consiste em dois componentes independentes: um serviço web RESTful (KVFinder-web service) e uma interface web gráfica (KVFinder-web interface).  
+Além dos avanços em desempenho e usabilidade do parKVFinder \cite{guerra2019,guerra2020,guerra2023A}, os procedimentos de instalação e configuração da nossa aplicação web, assim como de outros softwares independentes para detecção de cavidades, ainda representam uma grande barreira para usuários que não possuem o conhecimento técnico idealmente necessário para executá-los. Além disso, cientistas, educadores e estudantes podem não ter os recursos computacionais locais necessários para os cálculos, o que pode afetar o uso adequado de métodos de detecção e caracterização de cavidades. Nesse cenário, desenvolvemos o \textbf{KVFinder-web}, que foi posteriormente  publicado no periódico \textit{Nucleic Acid Research} \cite{guerra2023A}. O KVFinder-web (Figura \ref{fig:kvweb-overview}), que está disponível em \url{https://kvfinder-web.cnpem.br}, é uma aplicação web de código aberto para detecção e caracterização de cavidades em qualquer tipo de estrutura biomolecular, que consiste em dois componentes independentes: um serviço web RESTful (KVFinder-web service) e uma interface web gráfica (KVFinder-web interface). Para aprimorar ainda mais a experiência do usuário, também fornecemos um plugin gráfico para o PyMOL (PyMOL KVFinder-web Tools).
 
-O serviço web do KVFinder (KVFinder-web service) detecta e caracteriza espacialmente cavidades usando o parKVFinder, que implementa um método geométrico baseado em grade e esfera, para detectar cavidades em estruturas biomoleculares, com um sistema de dupla sonda [1, 2, 3]. O serviço web possui uma arquitetura Web-Fila-Trabalho (em inglês, Web-Queue-Worker), que processa as solicitações e respostas HTTP da interface web, gerencia os trabalhos e executa o parKVFinder nos trabalhos aceitos. O KVFinder-web service foi testado em um conjunto de dados de 1.000 domínios de proteínas únicos [1] com 6 conjuntos diferentes de parâmetros de detecção, mostrando consistência neste teste de alta demanda. 
+\begin{figure}[hp]
+  \centering
+  \includegraphics[scale=1.5]{images/kvweb-overview.png}
+  \centerline{\scriptsize{\textbf{Fonte:} Adaptado de \cite{guerra2023A}.}}
+  \caption[Esquema representativo do funcionamento do KVFinder-web para detectar e caracterizar cavidades em estruturas funcionalmente relevantes]{\textbf{Esquema representativo do funcionamento do KVFinder-web para detectar e caracterizar cavidades em estruturas funcionalmente relevantes.}}
+  \label{fig:kvweb-overview}
+\end{figure}
 
-A interface web do KVFinder (KVFinder-web interface; Figura 11), desenvolvida em R Shiny, disponibiliza as principais funcionalidades do KVFinder-web service, no qual os usuários podem carregar uma biomolécula alvo de um arquivo PDB ou pelo código PDB, personalizar parâmetros de detecção de cavidades e modos de execução, e baixar e visualizar resultados. A interface fornece uma maneira fácil e interativa de obter e visualizar os resultados da detecção de cavidades (Figura 12). Os volumes e áreas de cada cavidade são mostrados em uma tabela interativa, disponível para download no formato TOML. Um visualizador de biomoléculas, alimentado pelo motor NGL para R, exibe a estrutura biomolecular com suas cavidades, para download no formato PDB, e permite várias personalizações, por exemplo, realçar cavidades e exibir resíduos de interface ao redor das cavidades. A KVFinder-web interface está disponível para testes à equipe do CNPEM desde agosto de 2022 para projetos internos. 
+\subsection{KVFinder-web interface}
+
+A interface gráfica interativa do KVFinder-web, denominada \textbf{KVFinder-web interface} (Figura \ref{fig:kvweb-interface}), oferece aos usuários, principalmente inexperientes, uma aplicação fácil de usar para executar o parKVFinder (v1.2.0) e analisar os resultados por meio de qualquer navegador. A KVFinder-web interface, desenvolvida em R Shiny, oferece um protocolo simples, direto, robusto e interativo para análise e visualização de cavidades, requerendo apenas uma biomolécula no formato Protein Data Bank (PDB) ou o código PDB. 
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.75]{images/kvweb-interface.png}
+  \caption[KVFinder-web interface]{\textbf{KVFinder-web interface.} \textbf{(A)} Página principal com as principais abas e as seções de entrada da biomolécula-alvo e escolha do modo de execução. \textbf{(B)} Visão detalhada de cada etapa que os usuários devem concluir antes de enviar a biomolécula-alvo para a análise da cavidade. A primeira etapa envolve a seleção da biomolécula-alvo, que pode ser feita fornecendo um ID do PDB e buscando no banco de dados do PDB (1) ou fazendo o upload de um arquivo PDB (2). Após o upload do PDB, o portal KVFinder-web verifica o PDB e informa sobre resíduos não padronizados detectados (3). Na próxima etapa, os usuários devem selecionar um modo de execução adequado (4) e personalizar, se necessário, os parâmetros de detecção (5).}
+  \label{fig:kvweb-interface}
+\end{figure}
+
+A interface disponibiliza as principais funcionalidades do KVFinder-web service, no qual os usuários podem carregar uma biomolécula-alvo a partir de um arquivo PDB ou fornecer o código PDB correspondente, personalizar parâmetros de detecção de cavidades e modos de execução (Figura \ref{fig:kvweb-interface}B). Four cavity detection modes are available (Figure 1B), to provide options that best suit to the users’ cavity analysis, that are: 
+
+\begin{itemize}
+  \item Whole structure (default): detection of cavities throughout the whole biomolecular structure with preset detection parameters;
+  \item Whole structure (customized): detection of cavities throughout the whole biomolecular structure with customizable detection parameters;
+  \item Around target molecule: detection of cavities within a radius of each atom of a ligand or molecule in the target biomolecular structure with customizable detection pa rameters;
+  \item Around target residues: detection of cavities within a custom box, which is drawn by selecting residues of the target biomolecular structure and box padding.
+\end{itemize}
+
+User can also customize a set of detection parameters that include ‘Probe In’ size (Å), ‘Probe Out’ size (Å), ‘Removal Distance’ (Å) and ‘Volume Cutoff’ (Å3 ) (Figure 1B). Briefly, the ‘Probe In’ consists of a smaller probe that rolls around the target biomolecule, defining its molecular surface (usually defined as a sphere the size of a water molecule – 1.4 Å), while the ‘Probe Out’ is a larger probe that rolls around the target biomolecule, defining inaccessibility regions. Thus, cavities are defined as the regions accessible to Probe In, typically more inclusive, but not to Probe Out. ‘Removal Distance’ is a length (in Å) removed from the cavity-bulk boundary to delineate the outer limits of the cavity. ‘Volume Cutoff’ is a cavity volume filter (in Å3 ) to exclude cavities with volumes smaller than this cutoff, probably functionally irrelevant cavities. For a more detailed explanation of each parameter, see (2,4,13).
+ 
+Além disso, a interface gráfica permite os usuários baixar e visualizar resultados de uma maneira fácil e interativa (Figura \ref{fig:kvweb-results}). As caracterizações morfológicas (volume, área e profundidade) e físico-químicas (hidrofobicidade) de cada cavidade são mostrados em uma tabela interativa, disponível para download no formato TOML. Um visualizador de biomoléculas, alimentado pelo motor gráfico NGL para R, exibe a estrutura biomolecular com suas cavidades, para download no formato PDB, e permite várias personalizações, por exemplo, realçar cavidades e exibir resíduos de interface ao redor das cavidades. 
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=1.75]{images/kvweb-results.png}
+  \caption[Visualização de resultados no KVFinder-web interface]{\textbf{Visualização de resultados no KVFinder-web interface.} \textbf{(A)} Seção de resultados do KVFinder-web interface. A caixa de estado (verde: 'concluído'; amarelo: 'em execução' ou 'em fila'; vermelho: 'cancelado') do trabalho enviado (1). Após a conclusão, a interface apresenta os resultados em uma tabela, incluindo volume, área, profundidade média, profundidade máxima e hidropatia média das cavidades (2). Os usuários podem baixar um arquivo ZIP contendo a biomolécula-alvo e os arquivos PDB das cavidades (3) ou um arquivo TOML com a caracterização das cavidades (4). \textbf{(B)} A biomolécula-alvo com as cavidades pode ser visualizada ao clicar no botão 'Visualizar' e os usuários podem personalizar a visualização da biomolécula e das cavidades.}
+  \label{fig:kvweb-results}
+\end{figure}
+
+\subsection{KVFinder-web service}
+
+% Meanwhile, the web service (KVFinder-web service) itself executes parKVFinder (13) with its geometric grid-and-sphere-based method, as detailed in (2,4,13).
+
+O serviço web do KVFinder (\textbf{KVFinder-web service}) detecta e caracteriza espacialmente cavidades usando o parKVFinder, que implementa um método geométrico baseado em grade e esfera, para detectar cavidades em estruturas biomoleculares, com um sistema de dupla sonda [1, 2, 3]. O serviço web possui uma arquitetura Web-Fila-Trabalho (em inglês, Web-Queue-Worker), que processa as solicitações e respostas HTTP da interface web, gerencia os trabalhos e executa o parKVFinder nos trabalhos aceitos. O KVFinder-web service foi testado em um conjunto de dados de 1.000 domínios de proteínas únicos [1] com 6 conjuntos diferentes de parâmetros de detecção, mostrando consistência neste teste de alta demanda. 
+
+\subsection{PyMOL KVFinder-web Tools}
 
 Por fim, a disponibilização do KVFinder-web pretende ampliar o uso desta robusta ferramenta de detecção de cavidades na comunidade científica. Isso facilitará o processo de detecção e caracterização de cavidades, mesmo para usuários menos experientes, com impacto direto no desenvolvimento racional de medicamentos e no entendimento das estruturas das biomoléculas. 
+
+\subsection{Caso de estudo}
+
+As an illustrative example of KVFinder-web (Figure 3), we detected and characterized the catalytic site of the Human Immunodeficiency Virus type 1 (HIV-1) protease bound to cyclic urea carbonyl oxygen (22), using KVFinder-web portal.
+
+Since HIV-1 protease is an effective therapeutic target, this catalytic site is the target of several antiretroviral drugs. However, the catalytic cycle depends on the movements of \textbeta-hairpins, which control the accessibility of substrates to the active site (13,27). Thus, we analyzed the structures of HIV-1 protease available in the PDB and compared their cavities (Supplementary Material). Based on the cavity volumes, we can clearly differentiate structures with bound ligands from those unbounded (Figure 3C), indicating a geometric complementarity between receptor and ligands, together with a physicochemical complementarity, shown by the hydropathy profile discussed earlier.
 
 \section{KVFinderMD}
 
