@@ -815,30 +815,29 @@ Nesse caso de estudo, detectamos 672 cavidades ao longo dos 201 quadros de simul
   \label{eq:silhouette-score}
 \end{equation}
 
-Em seguida, aplicamos o algoritmo de agrupamento hierárquico não supervisionado, otimizando o \textit{Silhouette Score} para cada métrica de distância, utilizando o método de ligação completo (Figura \ref{fig:hiv-1-clustering-results}). Para a representação em grade 3D, não exploramos diferentes métricas de distância devido ao tamanho dos dados ($\aproximadamente 10^6$ pontos por cavidade), e portanto, utilizamos a métrica de correlação de Pearson (Equação \ref{eq:correlacao}), onde encontramos 10 grupos com um \textit{Silhouette Score} máximo de $\aproximadamente 0,42$. Com a simplificação do tamanho dos dados para as duas representações restantes ($\aproximadamente 10^4$ pontos por cavidade), foi possível explorar as métricas de distância apropriadas. Para a representação topológica, a métrica de distância de cosseno (Equação \ref{eq:cosseno}) apresentou o maior número de grupos entre as métricas numéricas (\ie, 15 grupos) com um \textit{Silhouette Score} máximo de aproximadamente 0,54. Para a representação em forma de grafo, a métrica de distância de Dice (Equação \ref{eq:dice}) apresentou o maior número de grupos entre as métricas numéricas (\ie, 16 grupos) com um \textit{Silhouette Score} máximo de $\aproximadamente 0,52$.
+Em seguida, aplicamos o algoritmo de agrupamento hierárquico não supervisionado, otimizando o \textit{Silhouette Score} para cada métrica de distância, utilizando o método de ligação completo (Figura \ref{fig:hiv-1-clustering-results}). Para a representação em grade 3D, não exploramos diferentes métricas de distância devido ao tamanho dos dados ($\aproximadamente 10^6$ pontos por cavidade), e portanto, utilizamos a métrica de correlação de Pearson (Equação \ref{eq:correlacao}), onde encontramos 10 grupos com um \textit{Silhouette Score} máximo de $\aproximadamente 0,42$. Com a simplificação do tamanho dos dados para as duas representações restantes ($\aproximadamente 10^4$ pontos por cavidade), foi possível explorar as métricas de distância apropriadas. Para a representação topológica, a métrica de distância de cosseno (Equação \ref{eq:cosseno}) apresentou o maior número de grupos entre as métricas numéricas (\ie, 15 grupos) com um \textit{Silhouette Score} máximo de $\aproximadamente 0,54$. Para a representação em forma de grafo, a métrica de distância de Dice (Equação \ref{eq:dice}) apresentou o maior número de grupos entre as métricas numéricas (\ie, 16 grupos) com um \textit{Silhouette Score} máximo de $\aproximadamente 0,52$.
 
 \begin{figure}[h]
   \centering
-  \includegraphics[scale=1.2]{images/HIV-1-clustering-results.png}
+  \includegraphics[scale=1.1]{images/HIV-1-clustering-results.png}
   \caption[Agrupamento hierárquico das cavidades da protease do HIV-1]{\textbf{Agrupamento hierárquico das cavidades da protease do HIV-1.} Todas as cavidades detectadas ao longo da dinâmica molecular foram sobrepostas na mesma estrutura e coloridas de acordo com os rótulos atribuídos pelo agrupamento hierárquico da grade 3D (quadro esquerdo), da matriz de distâncias (quadro central) e da matriz de contatos (quadro direito). O gráfico de \textit{Silhouette Score} é apresentado para cada amostra de acordo com o rótulo atribuído. A linha vermelha indica o valor do \textit{Silhouette Score} médio para o agrupamento hierárquico.}
   \label{fig:hiv-1-clustering-results}
 \end{figure}
 
+% \begin{equation}
+%   Correla\'{c}\~{a}o = 1 - \frac{(u - \bar{u}) \cdot (v - \bar{v})}{{\|(u - \bar{u})\|}_2 {\|(v - \bar{v})\|}_2}
+%   \label{eq:correlacao}
+% \end{equation}
 
-\begin{equation}
-  Correla\'c\~ao = 1 - \frac{(u - \bar{u}) \cdot (v - \bar{v})}{{\|(u - \bar{u})\|}_2 {\|(v - \bar{v})\|}_2}
-  \label{eq:correlacao}
-\end{equation}
+% \begin{equation}
+%   Cosseno = 1 - \frac{u \cdot v}{\|u\|_2 \|v\|_2}.
+%   \label{eq:cosseno}
+% \end{equation}
 
-\begin{equation}
-  Cosseno = 1 - \frac{u \cdot v}{\|u\|_2 \|v\|_2}.
-  \label{eq:cosseno}
-\end{equation}
-
-\begin{equation}
-  Dice = \frac{c_{TF} + c_{FT}}{2c_{TT} + c_{FT} + c_{TF}}
- \label{eq:dice}
-\end{equation}
+% \begin{equation}
+%   Dice = \frac{c_{TF} + c_{FT}}{2c_{TT} + c_{FT} + c_{TF}}
+%  \label{eq:dice}
+% \end{equation}
 
 A partir desses agrupamentos, conseguimos agrupar com sucesso as cavidades e acompanhar a evolução delas ao longo da simulação de dinâmica molecular. Isso simplificou a comparação das características entre as cavidades ao longo do tempo. O uso das matrizes de distância e contatos mostrou-se efetivo devido à sua capacidade de agrupamento das cavidades. Além disso, essas representações foram mais rápidas e simples de agrupar as cavidades ao longo do tempo em simulações de dinâmica molecular, já que o algoritmo de agrupamento hierárquico tem uma complexidade de aproximadamente $\mathcal{O}(n^3)$ e o tamanho dos dados diminui em 100 vezes por cavidade em comparação com a estrutura original. Portanto, considerando que temos 672 cavidades nesse caso de estudo, a redução do uso de memória é de aproximadamente 67200 vezes.
 
