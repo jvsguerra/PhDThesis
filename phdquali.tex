@@ -209,6 +209,7 @@ The abstract must have at most 500 words and must fit in a single page.
   \acro{IPL}{Interações Proteína-Ligante}
   \acro{IPR}{Interações Proteína-RNA}
   \acro{IPP}{Interações Proteína-Proteína}
+  \acro{IV CEC}{IV Congresso de Estudantes do CNPEM}
   \acro{KVFinderMD}{\textit{KVFinder for Molecular Dynamics analysis}}
   \acro{LBC}{Laboratório de Biologia Computacional}
   \acro{LES}{Superfície Excluída pelo Ligante (\textit{Ligand Excluded Surface})}
@@ -290,7 +291,7 @@ Em geral, algoritmos baseados em geometria são os mais frequentemente usados pa
 A detecção de cavidades através de abordagens geométricas é amplamente utilizada, envolvendo diferentes técnicas \cite{simoes2017,guerra2020,krone2016}. Essas técnicas são simples, diretas e não requerem conhecimento prévio, tornando-as as mais comumente utilizadas na literatura \cite{henrich2010,oliveira2014}. Neste contexto, apresentamos uma breve classificação das abordagens geométricas para detecção de cavidades, incluindo técnicas baseadas em grade 3D, sonda, tesselação, superfície e suas combinações \cite{simoes2017,guerra2020,krone2016,guerra2023B}.
 
 \begin{itemize}
-  \item \textbf{Algoritmos baseados em grade 3D} (\eg, POVME 3.0 \cite{povme}) representam um conjunto de átomos como pontos discretos, geralmente usando uma grade 3D alinhada aos eixos, como um campo escalar, ou seja, um mapa de densidade, onde cada ponto discreto é um valor inteiro ou booleano. Esses mapas de grade são usados para agrupar pontos vazios relevantes (\ie, não pertencentes ao soluto) em cavidades usando algoritmos de agrupamento de voxels. Normalmente, esses métodos utilizam estruturas de dados simples, capazes de representar uma coleção de dados em um ponto discreto e identificar cavidades de forma automatizada. No entanto, a precisão geométrica, o tempo de computação e o consumo de memória dependem fortemente da resolução da grade, ou seja, da sensibilidade ao espaçamento da grade. Além disso, esses métodos não são invariantes à rotação, o que significa que a orientação de uma determinada molécula afeta ligeiramente a precisão, ou seja, a sensibilidade à orientação;
+  \item \textbf{Algoritmos baseados em grade 3D} (\eg, POVME 3.0 \cite{povme}) representam um conjunto de átomos como pontos discretos, geralmente usando uma grade 3D alinhada aos eixos, como um campo escalar, ou seja, um mapa de densidade, onde cada ponto discreto é um valor inteiro ou booleano. Esses mapas de grade são usados para agrupar pontos de espaço vazio relevantes (\ie, não pertencentes ao soluto) em cavidades usando algoritmos de agrupamento de voxels. Normalmente, esses métodos utilizam estruturas de dados simples, capazes de representar uma coleção de dados em um ponto discreto e identificar cavidades de forma automatizada. No entanto, a precisão geométrica, o tempo de computação e o consumo de memória dependem fortemente da resolução da grade, ou seja, da sensibilidade ao espaçamento da grade. Além disso, esses métodos não são invariantes à rotação, o que significa que a orientação de uma determinada molécula afeta ligeiramente a precisão, ou seja, a sensibilidade à orientação;
 
   \item \textbf{Algoritmos baseados em sondas} (\eg, pywindow \cite{pywindow}, PHECOM \cite{phecom}) utilizam um conjunto de átomos, considerando suas coordenadas 3D e raios de van der Waals, para representar a superfície molecular, que é analisada por uma ou mais sondas, geralmente esferas rígidas, para investigar seus níveis de acessibilidade. Essa técnica pode detectar qualquer tipo de cavidade e está relacionada à extensão espacial de ligantes em potencial; no entanto, pode ter dificuldades em encontrar e delinear de forma inequívoca os limites entre a cavidade e o solvente, ou seja, a ambiguidade na abertura da boca;
   
@@ -500,7 +501,7 @@ As rotinas de detecção e caracterização de cavidades foram paralelizadas uti
 
 O parKVFinder foi aplicado em dois casos de estudo publicados em periódicos científicos para investigar proteínas de interesse terapêutico. Essas análises exploraram a dinâmica dos \textit{flaps} da protease do Vírus da imunodeficiência humana 1 (HIV-1; \textit{Human Immunodeficiency Virus type 1}, em inglês) \cite{guerra2020} e o caráter hidropático de sítios de ligação em alphavírus \cite{ribeiro2021}. A seguir, descreveremos cada um desses casos de estudo em detalhes.
 
-\subsubsection{Dinâmica molecular da HIV-1 protease}
+\subsubsection{Dinâmica molecular da HIV-1 protease \label{sec:md-hiv1-protease}}
 
 Nesse estudo, foi investigado a dinâmica molecular da HIV-1 protease por meio da identificação e avaliação do volume do sítio ativo durante simulações de dinâmica molecular (DM). O sítio ativo é um alvo terapêutico relevante e seu volume varia de acordo com a movimentação dos \textbeta-hairpins, conhecidos como \textit{flaps}, que controlam a acessibilidade do substrato ao sítio ativo do homodímero \cite{soares2016}. % Add more references here
 
@@ -767,7 +768,7 @@ Em linhas gerais, a disponibilização do KVFinder-web visa ampliar o uso dessa 
   \label{fig:kvweb-case-study}
 \end{figure}
 
-\section{SERD}
+\section{SERD \label{sec:serd}}
 
 A teoria de grafos tem sido relevante tanto no campo da biologia quanto nas ciências farmacêuticas, sendo aplicada no estudo da estrutura, função e evolução de proteínas, bem como em análises de dinâmica molecular e redes de interação receptor-ligante \cite{vishveshwara2002,mason2007,hummer2023}. Conforme apresentado em \cite{hummer2023}, as representações de complexos proteína-proteína (\ie, complexos anticorpo-antígeno) podem ser aplicadas em técnicas de aprendizado de profundo (\textit{deep learning}, em inglês) para prever $\Delta \Delta G$ experimental. Além disso, as representações em forma de grafo podem ser utilizadas em uma ampla gama de técnicas de aprendizado de máquina e ciência de dados, conforme ilustrado na Seção \ref{sec:graph-representation} e discutido em estudos anteriores \cite{majeed2020,vishveshwara2002,mason2007}. Neste cenário, desenvolvemos o \textbf{SERD}, uma ferramenta para representação de estruturas biomoleculares na forma de grafos, desde sítios de ligação (\eg, cavidades identificadas pelo KVFinder suite) até complexos biomoleculares (\eg, IPPs, IPLs, IPRs e IPDs), conforme ilustrado na Figura \ref{fig:serd-graph}. Atualmente, o SERD está na versão \href{https://github.com/jvsguerra/SERD/tree/v0.1.2}{v0.1.2}. O código-fonte do SERD está disponível no seguinte repositório: \url{https://github.com/jvsguerra/SERD}.
 
@@ -777,13 +778,75 @@ Por fim, esta ferramenta é aplicada em duas colaborações do Laboratório de B
 
 \section{KVFinderMD}
 
-The protein-ligand and protein-protein interactions rely on the intrinsic dynamics of the target receptor, in which the classical lock and key model fails, and more recent binding models, e.g., induced-fit and conformation selection, thrive. Thus, molecular dynamics simulations are a useful tool to understand the underlying mechanisms of molecular recognition and, ultimately, the biomolecular function. In this scenario, we recently developed pyKVFinder, a Python package for detecting and characterizing biomolecular cavities in data science. Using it as a building block, we developed a new tool, called KVFinder for Molecular Dynamics analysis (KVFinderMD), to explore binding site dynamics in biomolecular structures of interest. Since the intrinsic biomolecule dynamics may change the shape and properties of the binding site over time, KVFinderMD can identify and characterize cavities in respect to volume, area, depth, hydropathy and interface residues, which are relevant properties to describe the molecular recognition process.
+Em algumas circunstâncias, para a formação do complexo receptor-ligante, os receptores utilizam sítios de ligação que não são facilmente identificados na forma não-ligada. Algumas interações biomoleculares (\eg, IPPs, IPLs, IPRs and IPDs) dependem da dinâmica intrínseca do receptor-alvo, nas quais o modelo clássico de chave-fechadura falha e modelos mais recentes de ligação, como ajuste induzido e seleção conformacional, são aplicáveis \cite{holyoak2013}. Nesse sentido, as simulações de DM são uma ferramenta útil para entender os mecanismos de reconhecimento molecular e, em última análise, a função biomolecular. Recentemente, desenvolvemos o pyKVFinder \cite{guerra2021} como um bloco de construção para aplicações mais complexas, como análises de simulações de DM. Utilizando-o como base, desenvolvemos uma nova ferramenta chamada \textbf{KVFinder for Molecular Dynamics analysis (KVFinderMD)}, um pacote em Python que permite explorar a dinâmica dos sítios de ligação em estruturas biomoleculares de interesse farmácológico. Uma vez que a dinâmica intrínseca da biomolécula pode alterar a forma e as propriedades do sítio de ligação ao longo do tempo, o KVFinderMD caracteriza cavidades em relação ao volume, área, profundidade, hidropatia e resíduos de interface, que são propriedades relevantes para descrever o processo de reconhecimento molecular (Figura \ref{fig:kvmd-overview}A). 
 
-Em algumas circunstâncias, para a formação do complexo receptor-ligante, os receptores utilizam sítios de ligação que não são facilmente identificados na forma não-ligada. Estas interações biomoleculares dependem da dinâmica intrínseca do receptor, nas quais o modelo clássico chave-fechadura falha, e modelos de ligação mais recentes, por exemplo, encaixe induzido e seleção de conformação, prosperam. Assim, as simulações de dinâmica molecular são uma ferramenta útil para entender os mecanismos de reconhecimento molecular e, em última análise, a função biomolecular. Nesse cenário, o LBC está desenvolvendo o KVFinderMD, usando o pyKVFinder [2] como bloco de construção, para explorar a dinâmica de sítios de ligação em estruturas biomoleculares de interesse farmacológico. Uma vez que a dinâmica intrínseca da biomolécula pode alterar a forma e as propriedades do sítio de ligação ao longo do tempo, o KVFinderMD pode identificar e caracterizar cavidades em relação ao volume, área, profundidade, hidropatia e resíduos de interface, que são propriedades relevantes para descrever o processo de reconhecimento molecular (Figura 14A). Além disso, também implementamos um algoritmo baseado em grafos, que considera distâncias carbono \textalpha, carbono \textbeta\space ou quaisquer átomos, para descrever topologicamente o sítio de ligação (Figura 14B).
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.8]{images/kvmd-overview.png}
+  \caption[Detecção, caracterizações e representações de cavidades em estudos de dinâmica molecular usando a ferramenta KVFinderMD]{\textbf{Detecção, caracterizações e representações de cavidades em estudos de dinâmica molecular usando a ferramenta KVFinderMD.} \textbf{(A)} Caracterizações morfológicas, topológicas e físico-químicas aplicadas no KVFinderMD. \textbf{(B)} Representação em forma de grafo das cavidades baseada nos resíduos de interface e suas relações topológicas. Distância entre C\textbeta (azul), C\textalpha (vermelho) e quaisquer átomos de um resíduo (magenta).}
+  \label{fig:kvmd-overview}
+\end{figure}
 
-Como provas de conceito, aplicamos o KVFinderMD em importantes alvos terapêuticos, como HIV-1 protease e ALDH1/2. Para HIV-1 protease, descrevemos com sucesso as alterações conformacionais que definem o sítio ativo, causadas principalmente pelos movimentos β-hairpins. Ainda, usando a representação gráfica de cavidades, exploramos algoritmos de agrupamento não supervisionados, como agrupamento hierárquico, com diferentes métricas de distância para agrupar com sucesso as cavidades ao longo da trajetória do receptor. No caso das ALDH1/2, exploramos as diferenças topológicas e volumétricas entre os sítios de ligação do substrato de ALDH1 e ALDH2, o que dita a preferência por aldeídos menores e maiores entre eles. Os resultados desse trabalho foram apresentados em detalhe no IV Congresso de Estudantes do CNPEM (IV CEC). 
+Para a leitura de dados binários gerados por programas de simulação de DM, como GROMACS \cite{gromacs}, AMBER \cite{amber} e CafeMol \cite{kenzaki2011}, utilizamos o pacote MDAnalysis \cite{mdanalysis} para integrar a leitura e processamento dos arquivos de trajetória de DM (\eg, GRO, CRD, NC, DCD, XTC/TRR) e os arquivos de topologia (\eg, PSF, PRMTOP, GRO, PDB) no KVFinderMD. Adicionalmente, implementamos um protocolo para a análise de conservação de cavidades ao longo da DM (Figura \ref{fig:kvmd-overview}A; quadro inferior direito), similar ao apresentado na análise de conservação do sítio de ligação do ADP-ribose no domínio ADRP do SARS-CoV-2 e proteínas relacionadas (Figura \ref{fig:conservation-analysis}). Por fim, também integramos a representação em forma de grafos, implementada no SERD (veja Seções \ref{sec:graph-representation} e \ref{sec:serd}), que considera distâncias carbono \textalpha, carbono \textbeta\space ou quaisquer átomos, para descrever o sítio de ligação (Figura \ref{fig:kvmd-overview}B). Desta forma, a similaridade das cavidades pode ser determinada a partir do agrupamento hierárquico das representação de grade 3D, topológica e em forma de grafos das cavidades, permitindo acompanhar as cavidades ao longo da DM.
 
-\section{\textit{Benchmarking} das ferramentas disponíveis}
+\subsection{Caso de estudo}
+
+% O KVFinderMD foi aplicado em dois casos de estudo para investigar proteínas de interesse terapêutico. Essas análises exploraram a similaridade de cavidades da protease da HIV-1 ao longo de uma simulação de DM e a caracterização dos sítios de ligação do substrato de ALDH1 e ALDH2. Ambos casos de estudo foram apresentados em detalhe no IV Congresso de Estudantes do CNPEM (IV CEC), realizado entre 22 e 24 de novembro de 2022, e receberam prêmio pela apresentação intitulada "KVFinderMD: a Python package to detect and describe binding sites in molecular dynamics trajectories".
+
+O KVFinderMD foi aplicado em um caso de estudo para explorar a similaridade de cavidades da protease da HIV-1 ao longo de uma simulação de DM. Este caso de estudo foi apresentado em detalhe no IV Congresso de Estudantes do CNPEM (IV CEC), realizado entre 22 e 24 de novembro de 2022, e receberam prêmio pela apresentação intitulada "KVFinderMD: a Python package to detect and describe binding sites in molecular dynamics trajectories".
+
+\subsubsection{Similaridade de cavidades da HIV-1 protease ao longo de uma simulação de dinâmica molecular}
+
+Partindo da dinâmica molecular da HIV-1 protease, onde descrevemos com sucesso as alterações conformacionais que definem o sítio ativo (veja Seção \ref{sec:md-hiv1-protease}), aplicamos um alinhamento estrutural das cavidades, usando representações em grade 3D, representação topológica e representação em grafos, da protease do HIV-1 ao longo da simulação de DM. Com as três representações de cavidades implementadas no KVFinder suite, exploramos algoritmos de agrupamento não-supervisionados, onde o agrupamento hierárquico apresentou os melhores resultados, além de fornecer uma medida de distância entre as cavidades. Além disso, exploramos diferentes métricas de distância para agrupar as cavidades ao longo da trajetória da HIV-1 protease.
+
+Para realizar o agrupamento, separamaos cada cavidade em uma estrutura de dados individual e adaptamos a codificação dos dados de sítios de ligação (Figura \ref{fig:hiv-1-representation}). Na representaçõa de grade 3D, transformamos os valores armazenados em booleanos, onde os pontos de cavidades são marcados com o valor 1, enquanto os demais pontos recebem o valor 0. Na representação topológica, transformamos os valores em uma matriz quadrada de distâncias entre os resíduos, ordenados de acordo com a sequência da proteínas. Por fim, na representação em grafo, transformamos os valores em uma matriz quadrada de contatos entre os resíduos, também ordenados de acordo com a sequência da proteínas. Para isso, utilizamos a distância entre os átomos de C\textbeta\space dos resíduos, com o corte de distância de 8 \AA para definir os contatos, que é a métrica padrão do SERD.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=1]{images/HIV-1-representation.png}
+  \caption[Codificação de dados para estudo de similaridade de cavidades da HIV-1 protease ao longo da trajetória de dinâmica molecular]{\textbf{Codificação de dados para estudo de similaridade de cavidades da HIV-1 protease ao longo da trajetória de dinâmica molecular.} Representação da cavidade do sítio ativo em grade 3D (quadro esquerdo), onde os pontos de cavidade são identificado por 1, enquanto os demais pontos (pontos de biomolécula, pontos de meio e pontos de espaço vazio) identificados o valor 0. Representação topológica do sítio ativo (quadro central), onde abstraímos as cavidades como um matriz de distância, ordenados pela sequência da proteína. Representação em forma de grafo das relações entre os resíduos do sítio ativo (quadro direito), onde abstraímos as cavidades como um matriz de contatos, ordenados pela sequência da proteína.}
+  \label{fig:hiv-1-representation}
+\end{figure}
+
+Nesse caso de estudo, detectamos 672 cavidades ao longo dos 201 quadros de simulação, \ie, teremos 672 estruturas de dados a serem agrupadas por agrupamento hierárquico, explorando as métricas de distância apropriadas para cada representação. Para valores booleanos, avaliamos as métricas de distância de Dice, Hamming, Jaccard, Kulsinki, Rogers-Tanimoto, Russell-Rao, Sokal-Michener, Sokal-Sneath e Yule. Para valores númericos, avaliamos as métricas de distância de correlação, Bray-Curtis, Canberra, Chebyshev, Cityblock, Cosine, Jensen-Shannon e Squared Euclidean. Como não existe um verdade absoluta para o agrupamento das cavidades, utilizamos o \textit{Silhouette Score} (Equação \ref{eq:silhouette-score}) para maximizar a semelhança entre membros de um grupo e diferência entre mebros de grupos distintos, onde o melhor valor é 1, o pior é -1 e 0 indica grupos sobrepostos (overlapping clusters). Assim, valores negativos geralmente indicam que uma amostra está no grupo errado, já que um grupo diferente é mais similar à amostra do que o grupo que ela está atribuída. Por fim, é importante destacar que os valores de \textit{Silhouette Score} não podem ser comparados entre diferentes métricas de distância. Portanto, comparamos os métodos com base no número ideal de grupos identificados pelo \textit{Silhouette Score} máximo dentro de uma mesma métrica de distância.
+
+\begin{equation}
+  \textit{Silhouette Score} = \frac{(b - a)}{max(a, b)}, \textit{Silhouette Score} \in [-1, 1]
+  \label{eq:silhouette-score}
+\end{equation}
+
+Em seguida, aplicamos o algoritmo de agrupamento hierárquico não supervisionado, otimizando o \textit{Silhouette Score} para cada métrica de distância, utilizando o método de ligação completo (Figura \ref{fig:hiv-1-clustering-results}). Para a representação em grade 3D, não exploramos diferentes métricas de distância devido ao tamanho dos dados ($\aproximadamente 10^6$ pontos por cavidade), e portanto, utilizamos a métrica de correlação de Pearson (Equação \ref{eq:correlacao}), onde encontramos 10 grupos com um \textit{Silhouette Score} máximo de $\aproximadamente 0,42$. Com a simplificação do tamanho dos dados para as duas representações restantes ($\aproximadamente 10^4$ pontos por cavidade), foi possível explorar as métricas de distância apropriadas. Para a representação topológica, a métrica de distância de cosseno (Equação \ref{eq:cosseno}) apresentou o maior número de grupos entre as métricas numéricas (\ie, 15 grupos) com um \textit{Silhouette Score} máximo de aproximadamente 0,54. Para a representação em forma de grafo, a métrica de distância de Dice (Equação \ref{eq:dice}) apresentou o maior número de grupos entre as métricas numéricas (\ie, 16 grupos) com um \textit{Silhouette Score} máximo de $\aproximadamente 0,52$.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=1.2]{images/HIV-1-clustering-results.png}
+  \caption[Agrupamento hierárquico das cavidades da protease do HIV-1]{\textbf{Agrupamento hierárquico das cavidades da protease do HIV-1.} Todas as cavidades detectadas ao longo da dinâmica molecular foram sobrepostas na mesma estrutura e coloridas de acordo com os rótulos atribuídos pelo agrupamento hierárquico da grade 3D (quadro esquerdo), da matriz de distâncias (quadro central) e da matriz de contatos (quadro direito). O gráfico de \textit{Silhouette Score} é apresentado para cada amostra de acordo com o rótulo atribuído. A linha vermelha indica o valor do \textit{Silhouette Score} médio para o agrupamento hierárquico.}
+  \label{fig:hiv-1-clustering-results}
+\end{figure}
+
+
+\begin{equation}
+  Correla\'c\~ao = 1 - \frac{(u - \bar{u}) \cdot (v - \bar{v})}{{\|(u - \bar{u})\|}_2 {\|(v - \bar{v})\|}_2}
+  \label{eq:correlacao}
+\end{equation}
+
+\begin{equation}
+  Cosseno = 1 - \frac{u \cdot v}{\|u\|_2 \|v\|_2}.
+  \label{eq:cosseno}
+\end{equation}
+
+\begin{equation}
+  Dice = \frac{c_{TF} + c_{FT}}{2c_{TT} + c_{FT} + c_{TF}}
+ \label{eq:dice}
+\end{equation}
+
+A partir desses agrupamentos, conseguimos agrupar com sucesso as cavidades e acompanhar a evolução delas ao longo da simulação de dinâmica molecular. Isso simplificou a comparação das características entre as cavidades ao longo do tempo. O uso das matrizes de distância e contatos mostrou-se efetivo devido à sua capacidade de agrupamento das cavidades. Além disso, essas representações foram mais rápidas e simples de agrupar as cavidades ao longo do tempo em simulações de dinâmica molecular, já que o algoritmo de agrupamento hierárquico tem uma complexidade de aproximadamente $\mathcal{O}(n^3)$ e o tamanho dos dados diminui em 100 vezes por cavidade em comparação com a estrutura original. Portanto, considerando que temos 672 cavidades nesse caso de estudo, a redução do uso de memória é de aproximadamente 67200 vezes.
+
+% \subsection{Estudo comparativo dos sítios de ligação do substrato da ALDH1 e ALDH2}
+
+% o caso das ALDH1/2, exploramos as diferenças topológicas e volumétricas entre os sítios de ligação do substrato de ALDH1 e ALDH2, o que dita a preferência por aldeídos menores e maiores entre eles.
+
+% \section{\textit{Benchmarking} das ferramentas disponíveis}
 
 %%% Chapter 5
 
@@ -796,6 +859,9 @@ Como provas de conceito, aplicamos o KVFinderMD em importantes alvos terapêutic
   \item Finalize apresentando o objetivo e a estrutura do seu trabalho.
  \end{itemize}
 
+%  KVFinderMD
+%  A ferramenta KVFinderMD se mostrou uma abordagem eficaz para explorar a dinâmica dos sítios de ligação em estruturas biomoleculares de interesse farmacológico. A análise da similaridade das cavidades da protease do HIV-1 ao longo de uma simulação de dinâmica molecular permitiu acompanhar a evolução das cavidades e comparar suas características ao longo do tempo. As representações em grade 3D, representação topológica e representação em grafo foram capazes de descrever as cavidades de forma precisa e eficiente. O uso de algoritmos de agrupamento hierárquico e diferentes métricas de distância contribuiu para a identificação dos grupos de cavidades mais similares. Além disso, a redução do tamanho dos dados e a simplificação da comparação entre as cavidades demonstraram a aplicabilidade prática do KVFinderMD. Essa ferramenta possui potencial para auxiliar na compreensão dos mecanismos de reconhecimento molecular e contribuir para o desenvolvimento de novas terapias farmacológicas.
+
 % As referências:
 \bibliographystyle{abnt-num}
 \bibliography{phdquali}
@@ -804,7 +870,7 @@ Como provas de conceito, aplicamos o KVFinderMD em importantes alvos terapêutic
 % Os anexos, se houver, vêm depois das referências:
 \appendix
 
-\chapter{Figuras suplementares}
+\chapter{Figuras suplementares \label{ap:figuras-suplementares}}
 
 \begin{figure}[htb]
   \centering
@@ -820,6 +886,18 @@ Como provas de conceito, aplicamos o KVFinderMD em importantes alvos terapêutic
   \caption[Elementos estruturantes para filtros espaciais]{\textbf{Elementos estruturantes para filtros espaciais.}}
   \label{fig:elementos-estruturantes}
 \end{figure}
+
+% \chapter{Casos de estudo aplicando as ferramentas do KVFinder suite \label{ap:casos-de-estudo}}}
+
+% Nesta seção, apresentamos os casos de estudo aplicando as ferramentas do KVFinder suite: parKVFinder, pyKVFinder, KVFinder-web e KVFinderMD.
+
+% \section{parKVFinder}
+
+% \section{pyKVFinder}
+
+% \section{KVFinder-web}
+
+% \section{KVFinderMD}
 
 \end{document}
 
