@@ -546,9 +546,7 @@ Dessa forma, o pyKVFinder não apenas contribui para o avanço da pesquisa em de
 
 Nos últimos anos, serviços web que se comunicam por meio dos protocolos de transferência de hipertexto (HTTP; \textit{HyperText Transfer Protocol}, em inglês) se tornaram cada vez mais populares em ambientes de computação em nuvem. Esses serviços fornecem amplo acesso a recursos de dados e processamento. Vários serviços web foram propostos para a detecção e/ou caracterização de sítios de ligação em biomoléculas. Entre eles, podemos citar o FpocketWeb \cite{fpocketweb}, GHECOM \cite{ghecom}, CaverWeb \cite{caverweb}, MoloVol \cite{molovol} e 3DLigandSite \cite{3dligandsite}. Em comparação com outras ferramentas para detecção de cavidades, o parKVFinder possui um conjunto intuitivo de parâmetros e foi extensivamente testado na literatura quanto às suas capacidades de detecção e computacionais, oferecendo desempenho preciso e robusto com qualquer tipo de cavidade proteica, conforme ilustrado anteriormente \cite{guerra2019,guerra2020}. Embora outros métodos também possam detectar sítios de ligação proteicos, cada um possui seu conjunto específico de caracterizações. O parKVFinder se destaca por combinar caracterizações morfológicas, topológicas e fisico-químicas de sítios de ligação, auxiliando efetivamente os usuários na identificação de cavidades funcionalmente relevantes e no estudo do processo de reconhecimento molecular.
 
-Além dos avanços em desempenho e usabilidade do parKVFinder \cite{guerra2019,guerra2020,guerra2023A}, os procedimentos de instalação e configuração da nossa aplicação web, assim como de outras ferramentas independentes para detecção de cavidades, ainda representam uma grande barreira para usuários que não possuem o conhecimento técnico idealmente necessário para executá-los. Além disso, cientistas, educadores e estudantes podem não ter os recursos computacionais locais necessários para os cálculos, o que pode afetar o uso adequado de métodos de detecção e caracterização de cavidades. Nesse cenário, desenvolvemos o \textbf{KVFinder-web}, que foi posteriormente  publicado no periódico \textit{Nucleic Acid Research} \cite{guerra2023A}. O KVFinder-web (Figura \ref{fig:kvweb-overview}), que está disponível em \url{https://kvfinder-web.cnpem.br}, é uma aplicação web de código aberto para detecção e caracterização de cavidades em qualquer tipo de estrutura biomolecular, que consiste em dois componentes independentes: um serviço web RESTful (KVFinder-web service) e uma interface web gráfica (KVFinder-web portal). Para aprimorar ainda mais a experiência do usuário, também fornecemos um plugin gráfico para o PyMOL (PyMOL KVFinder-web Tools).
-
-\begin{figure}[hp]
+\begin{figure}[h]
   \centering
   \includegraphics[scale=1.5]{images/kvweb-overview.png}
   \centerline{\scriptsize{\textbf{Fonte:} Adaptado de \cite{guerra2023A}.}}
@@ -556,18 +554,13 @@ Além dos avanços em desempenho e usabilidade do parKVFinder \cite{guerra2019,g
   \label{fig:kvweb-overview}
 \end{figure}
 
+Além dos avanços em desempenho e usabilidade do parKVFinder \cite{guerra2019,guerra2020,guerra2023A}, os procedimentos de instalação e configuração da nossa aplicação web, assim como de outras ferramentas independentes para detecção de cavidades, ainda representam uma grande barreira para usuários que não possuem o conhecimento técnico idealmente necessário para executá-los. Além disso, cientistas, educadores e estudantes podem não ter os recursos computacionais locais necessários para os cálculos, o que pode afetar o uso adequado de métodos de detecção e caracterização de cavidades. Nesse cenário, desenvolvemos o \textbf{KVFinder-web}, que foi posteriormente  publicado no periódico \textit{Nucleic Acid Research} \cite{guerra2023A}. O KVFinder-web (Figura \ref{fig:kvweb-overview}), que está disponível em \url{https://kvfinder-web.cnpem.br}, é uma aplicação web de código aberto para detecção e caracterização de cavidades em qualquer tipo de estrutura biomolecular, que consiste em dois componentes independentes: um serviço web RESTful (KVFinder-web service) e uma interface web gráfica (KVFinder-web portal). Para aprimorar ainda mais a experiência do usuário, também fornecemos um plugin gráfico para o PyMOL (PyMOL KVFinder-web Tools).
+
 \subsection{KVFinder-web portal}
 
 O \textbf{KVFinder-web portal} (Figura \ref{fig:kvweb-interface}) é uma interface gráfica interativa do KVFinder-web que oferece aos usuários, especialmente os inexperientes, uma aplicação fácil de usar para executar o parKVFinder (v1.2.0) e analisar os resultados por meio de qualquer navegador. Desenvolvido em R Shiny, o KVFinder-web portal fornece um protocolo simples, direto, robusto e interativo para análise e visualização de cavidades, exigindo apenas uma biomolécula no formato PDB ou o código PDB. Atualmente, o KVFinder-web portal está na versão \href{https://github.com/LBC-LNBio/KVFinder-web-portal/tree/v1.1.0}{v1.1.0}. O código-fonte do KVFinder-web portal está disponível no seguinte repositório: \url{https://github.com/LBC-LNBio/KVFinder-web-portal}.
 
 A interface oferece as principais funcionalidades do KVFinder-web service, permitindo que os usuários carreguem uma biomolécula-alvo a partir de um arquivo PDB ou fornecer o código PDB correspondente, e personalizem os parâmetros de detecção de cavidades e os modos de execução (Figura \ref{fig:kvweb-interface}B). Quatro modos de detecção de cavidades estão disponíveis, oferecendo opções que se adequam melhor à análise da cavidade pelos usuários:
-
-\begin{itemize}
-  \item \textit{Whole structure (default)}: detecção de cavidades em toda a estrutura biomolecular com parâmetros de detecção pré-definidos;
-  \item \textit{Whole structure (customized)}: detecção de cavidades em toda a estrutura biomolecular com parâmetros de detecção personalizáveis;
-  \item \textit{Around target molecule}: detecção de cavidades dentro de um raio ao redor de cada átomo de um ligante ou molécula na estrutura biomolecular-alvo com parâmetros de detecção personalizáveis;
-  \item \textit{Around target residues}: detecção de cavidades dentro de uma caixa personalizada, desenhada selecionando resíduos da estrutura biomolecular-alvo e margem da caixa.
-\end{itemize}
 
 \begin{figure}[H]
   \centering
@@ -576,6 +569,13 @@ A interface oferece as principais funcionalidades do KVFinder-web service, permi
   \caption[KVFinder-web portal]{\textbf{KVFinder-web portal.} \textbf{(A)} Página principal com as principais abas e as seções de entrada da biomolécula-alvo e escolha do modo de execução. \textbf{(B)} Visão detalhada de cada etapa que os usuários devem concluir antes de enviar a biomolécula-alvo para a análise da cavidade. A primeira etapa envolve a seleção da biomolécula-alvo, que pode ser feita fornecendo um ID do PDB e buscando no banco de dados do PDB (1) ou fazendo o upload de um arquivo PDB (2). Após o upload do PDB, o portal KVFinder-web verifica o PDB e informa sobre resíduos não padronizados detectados (3). Na próxima etapa, os usuários devem selecionar um modo de execução adequado (4) e personalizar, se necessário, os parâmetros de detecção (5).}
   \label{fig:kvweb-interface}
 \end{figure}
+
+\begin{itemize}
+  \item \textit{Whole structure (default)}: detecção de cavidades em toda a estrutura biomolecular com parâmetros de detecção pré-definidos;
+  \item \textit{Whole structure (customized)}: detecção de cavidades em toda a estrutura biomolecular com parâmetros de detecção personalizáveis;
+  \item \textit{Around target molecule}: detecção de cavidades dentro de um raio ao redor de cada átomo de um ligante ou molécula na estrutura biomolecular-alvo com parâmetros de detecção personalizáveis;
+  \item \textit{Around target residues}: detecção de cavidades dentro de uma caixa personalizada, desenhada selecionando resíduos da estrutura biomolecular-alvo e margem da caixa.
+\end{itemize}
 
 Os parâmetros personalizáveis de detecção incluem o \textit{Probe In}, o \textit{Probe Out}, o \textit{Removal Distance} e o \textit{Volume Cutoff} (Figura \ref{fig:kvweb-interface}B). Resumidamente, o \textit{Probe In} é uma sonda menor (em$\mAA$) que percorre a biomolécula-alvo, definindo sua superfície molecular (geralmente definida como uma esfera do tamanho de uma molécula de água - $1,4 \mAA$), enquanto o \textit{Probe Out} é uma sonda maior (em$\mAA$) que percorre a biomolécula-alvo, definindo regiões de inacessibilidade. Assim, as cavidades são definidas como as regiões acessíveis ao \textit{Probe In}, que normalmente são mais inclusivas, mas não ao \textit{Probe Out}. A \textit{Removal Distance} é uma distância (em$\mAA$) para remoção de pontos de cavidade a partir da fronteira cavidade-meio, a fim de delimitar os limites externos da cavidade. O \textit{Volume Cutoff} é um filtro de volume da cavidade (em$\mAA^3$) para excluir cavidades com volumes menores que esse limite, geralmente consideradas como cavidades sem relevância funcional. Para obter uma explicação mais detalhada de cada parâmetro, consulte as referências \cite{oliveira2014,guerra2019,guerra2020,guerra2021,guerra2023A}.
  
@@ -609,6 +609,8 @@ O desempenho computacional do KVFinder-web service também foi avaliado no kv100
 
 Para usuários familiarizados com o PyMOL \cite{pymol}, a ferramenta \textbf{PyMOL KVFinder-web Tools} (Figura \ref{fig:pymol-kvweb-tools}), desenvolvida em Python3 e Qt, integra o KVFinder-web service com o programa de visualização molecular. Essa interface gráfica de usuário (GUI; \textit{Graphical User Interface}, em inglês) amigável permite a personalização dos parâmetros de detecção para uma estrutura biomolecular-alvo e envia os trabalhos para um serviço KVFinder-web configurado (Figura \ref{fig:pymol-kvweb-tools}A). Atualmente, o PyMOL KVFinder-web Tools está na versão \href{https://github.com/LBC-LNBio/PyMOL-KVFinder-web-Tools/tree/v1.0.0}{v1.0.0}. O código-fonte do PyMOL KVFinder-web Tools está disponível no seguinte repositório: \url{https://github.com/LBC-LNBio/PyMOL-KVFinder-web-Tools}.
 
+Assim como no plugin parKVFinder para PyMOL \cite{guerra2020}, o espaço de busca também pode ser ajustado para uma caixa personalizada (\textit{box adjustment mode}) e/ou um raio ao redor de um ligante ou molécula-alvo (\textit{ligand adjustment mode}), em vez de detectar e caracterizar cavidades em toda a superfície biomolecular (\textit{whole protein mode}). Após o envio bem-sucedido, os trabalhos aceitos são solicitados rotineira e assincronamente ao KVFinder-web service. Quando um trabalho é concluído, o plugin processa automaticamente os dados recebidos, cavidades e caracterizações, para arquivos locais e os disponibiliza na GUI. Esse plugin gráfico opera de maneira semelhante ao KVFinder-web portal, as caracterizações são mostradas em listas (Figura \ref{fig:pymol-kvweb-tools}B) e as cavidades são personalizadas por suas propriedades no visualizador do PyMOL (Figura \ref{fig:pymol-kvweb-tools}C e D). No entanto, os trabalhos enviados no KVFinder-web portal podem ser carregados no PyMOL KVFinder-web Tools e vice-versa.
+
 \begin{figure}[H]
   \centering
   \includegraphics[scale=2.5]{images/pymol-kvweb-tools.png}
@@ -616,8 +618,6 @@ Para usuários familiarizados com o PyMOL \cite{pymol}, a ferramenta \textbf{PyM
   \caption[PyMOL KVFinder-web Tools]{\textbf{PyMOL KVFinder-web Tools.} Detecção de cavidades na estrutura da protease do HIV-1 (PDB ID: 1HVR), com \textit{Probe Out} definido como 12 Å. \textbf{(A)} Aba de parâmetros principais contendo parâmetros de detecção e estruturas moleculares a serem exploradas. \textbf{(B)} Aba de visualização contendo dados recebidos (cavidades e caracterizações) do serviço KVFinder-web exibidos na GUI. \textbf{(C)} Caracterização de profundidade e \textbf{(D)} caracterização de hidropatia de Eisenberg & Weiss, destacando o sítio ativo (cavidade KAG) na GUI e no visualizador do PyMOL.}
   \label{fig:pymol-kvweb-tools}
 \end{figure}
-
-Assim como no plugin parKVFinder para PyMOL \cite{guerra2020}, o espaço de busca também pode ser ajustado para uma caixa personalizada (\textit{box adjustment mode}) e/ou um raio ao redor de um ligante ou molécula-alvo (\textit{ligand adjustment mode}), em vez de detectar e caracterizar cavidades em toda a superfície biomolecular (\textit{whole protein mode}). Após o envio bem-sucedido, os trabalhos aceitos são solicitados rotineira e assincronamente ao KVFinder-web service. Quando um trabalho é concluído, o plugin processa automaticamente os dados recebidos, cavidades e caracterizações, para arquivos locais e os disponibiliza na GUI. Esse plugin gráfico opera de maneira semelhante ao KVFinder-web portal, as caracterizações são mostradas em listas (Figura \ref{fig:pymol-kvweb-tools}B) e as cavidades são personalizadas por suas propriedades no visualizador do PyMOL (Figura \ref{fig:pymol-kvweb-tools}C e D). No entanto, os trabalhos enviados no KVFinder-web portal podem ser carregados no PyMOL KVFinder-web Tools e vice-versa.
 
 \subsection{Caso de estudo}
 
@@ -667,7 +667,7 @@ Para realizar o agrupamento, separamaos cada cavidade em uma estrutura de dados 
   \label{fig:hiv-1-representation}
 \end{figure}
 
-Nesse caso de estudo, detectamos 672 cavidades ao longo dos 201 quadros de simulação, \ie, teremos 672 estruturas de dados a serem agrupadas por agrupamento hierárquico, explorando as métricas de distância apropriadas para cada representação. Para valores booleanos, avaliamos as métricas de distância de Dice, Hamming, Jaccard, Kulsinki, Rogers-Tanimoto, Russell-Rao, Sokal-Michener, Sokal-Sneath e Yule. Para valores númericos, avaliamos as métricas de distância de correlação, Bray-Curtis, Canberra, Chebyshev, Cityblock, Cosine, Jensen-Shannon e Squared Euclidean. Como não existe um verdade absoluta para o agrupamento das cavidades, utilizamos o \textit{Silhouette Score} (Equação \ref{eq:silhouette-score}) para maximizar a semelhança entre membros de um grupo e diferência entre mebros de grupos distintos, onde o melhor valor é 1, o pior é -1 e 0 indica grupos sobrepostos (overlapping clusters). Assim, valores negativos geralmente indicam que uma amostra está no grupo errado, já que um grupo diferente é mais similar à amostra do que o grupo que ela está atribuída. Por fim, é importante destacar que os valores de \textit{Silhouette Score} não podem ser comparados entre diferentes métricas de distância. Portanto, comparamos os métodos com base no número ideal de grupos identificados pelo \textit{Silhouette Score} máximo dentro de uma mesma métrica de distância.
+Nesse caso de estudo, detectamos 672 cavidades ao longo dos 201 quadros de simulação, \ie, teremos 672 estruturas de dados a serem agrupadas por agrupamento hierárquico, explorando as métricas de distância apropriadas para cada representação. Para valores booleanos, avaliamos as métricas de distância de Dice, Hamming, Jaccard, Kulsinki, Rogers-Tanimoto, Russell-Rao, Sokal-Michener, Sokal-Sneath e Yule. Para valores númericos, avaliamos as métricas de distância de correlação ($\rho$), Bray-Curtis, Canberra, Chebyshev, Cityblock, Cosine, Jensen-Shannon e Squared Euclidean. Como não existe um verdade absoluta para o agrupamento das cavidades, utilizamos o \textit{Silhouette Score} (Equação \ref{eq:silhouette-score}) para maximizar a semelhança entre membros de um grupo e diferência entre mebros de grupos distintos, onde o melhor valor é 1, o pior é -1 e 0 indica grupos sobrepostos (overlapping clusters). Assim, valores negativos geralmente indicam que uma amostra está no grupo errado, já que um grupo diferente é mais similar à amostra do que o grupo que ela está atribuída. Por fim, é importante destacar que os valores de \textit{Silhouette Score} não podem ser comparados entre diferentes métricas de distância. Portanto, comparamos os métodos com base no número ideal de grupos identificados pelo \textit{Silhouette Score} máximo dentro de uma mesma métrica de distância.
 
 \begin{equation}
   \textit{Silhouette Score} = \frac{(b - a)}{max(a, b)}, \textit{Silhouette Score} \in [-1, 1]
@@ -684,17 +684,17 @@ Em seguida, aplicamos o algoritmo de agrupamento hierárquico não supervisionad
 \end{figure}
 
 \begin{equation}
-  Correla\'{c}\~{a}o = 1 - \frac{(u - \bar{u}) \cdot (v - \bar{v})}{{\|(u - \bar{u})\|}_2 {\|(v - \bar{v})\|}_2}
+  \rho = 1 - \frac{(u - \bar{u}) \cdot (v - \bar{v})}{{\|(u - \bar{u})\|}_2 {\|(v - \bar{v})\|}_2}
   \label{eq:correlacao}
 \end{equation}
 
 \begin{equation}
-  Cosseno = 1 - \frac{u \cdot v}{\|u\|_2 \|v\|_2}.
+  d_{cosseno} = 1 - \frac{u \cdot v}{\|u\|_2 \|v\|_2}.
   \label{eq:cosseno}
 \end{equation}
 
 \begin{equation}
-  Dice = \frac{c_{TF} + c_{FT}}{2c_{TT} + c_{FT} + c_{TF}}
+  d_{Dice} = \frac{c_{TF} + c_{FT}}{2c_{TT} + c_{FT} + c_{TF}}
  \label{eq:dice}
 \end{equation}
 
@@ -737,7 +737,7 @@ Nesta seção, apresentamos os casos de estudo aplicando as ferramentas do KVFin
 
 \section{parKVFinder \label{ap:casos-de-estudo-parkvfinder}}
 
-\subsubsection{Dinâmica molecular da HIV-1 protease \label{sec:md-hiv1-protease}}
+\subsection{Dinâmica molecular da HIV-1 protease \label{sec:md-hiv1-protease}}
 
 Nesse estudo, foi investigado a dinâmica molecular da HIV-1 protease por meio da identificação e avaliação do volume do sítio ativo durante simulações de dinâmica molecular (DM). O sítio ativo é um alvo terapêutico relevante e seu volume varia de acordo com a movimentação dos \textbeta-hairpins, conhecidos como \textit{flaps}, que controlam a acessibilidade do substrato ao sítio ativo do homodímero \cite{lam1994,soares2016}. % Add more references here
 
@@ -757,7 +757,7 @@ Além de boa acurácia, também foi avaliado o tempo computacional dos programas
 
 É importante ressaltar que os resultados completos e detalhes das simulações e análises estão disponíveis no artigo publicado no periódico \textit{SoftwareX} \cite{guerra2020}.
 
-\subsubsection{Mayaro e outros alphavírus}
+\subsection{Mayaro e outros alphavírus}
 
 O vírus Mayaro (MAYV) é um arbovírus emergente das Américas Central e do Sul que pode causar uma doença debilitante e artritogênica. As proteínas E1 e E2 são importantes proteínas transmembranares organizadas em heterodímeros. Trímeros de heterodímeros de E1 e E2 compõem as espículas na superfície viral, que se estendem através da bicamada lipídica e interagem com as proteínas nucleocapsídicas C. As espículas estão envolvidas na ligação aos receptores celulares, internalização nas células e fusão de membrana. A liberação do RNA do MAYV no citoplasma resulta na expressão de proteínas virais, replicação viral e culmina na geração de progênie viral madura e infecciosa. As proteínas E1 e E2 do MAYV são os principais alvos para o desenvolvimento de vacinas e medicamentos antivirais \cite{ribeiro2021}. No entanto, a falta de informações estruturais sobre as proteínas E1 e E2 do MAYV tem dificultado o desenvolvimento de novas estratégias para combater a infecção pelo MAYV.
 
@@ -803,7 +803,7 @@ O mapa de densidade do MAYV confirma a estrutura geralmente conservada da prote�
 
 \section{pyKVFinder \label{ap:casos-de-estudo-pykvfinder}}
 
-\subsubsection{SARS-CoV-2 e proteínas homólogas}
+\subsection{SARS-CoV-2 e proteínas homólogas}
 
 Dentre as 15 proteínas não estruturais (Nsps; \textit{Non-structural proteins}, em inglês), do novo coronavírus da Síndrome Respiratória Aguda Grave 2 (SARS-CoV-2; \textit{Severe acute respiratory syndrome coronavirus 2}, em inglês), destaca-se o domínio da fosfatase de ADP-ribose (ADRP; também conhecido como macromodomínio, MacroD) \cite{michalska2020}. Esse domínio tem sido objeto de investigação para compreender suas funções exatas no ciclo de vida do coronavírus, uma vez que o domínio ADRP reconhece ADP-ribose 1'-fosfato e parece desempenhar um papel importante na virulência e na regulação da imunidade inata à infecção \cite{fehr2016,claverie2020}. Nesse sentido, esforços recentes têm sido feitos para caracterizar o sítio de ligação de substrato de ADP-ribose e avaliar esse local como um possível alvo de drogas antivirais.
 
@@ -827,7 +827,7 @@ Com o pyKVFinder, é possível calcular facilmente a frequência dos resíduos q
 
 Para demonstrar as funcionalidades e vantagens do pyKVFinder, realizamos esse estudo em um \textit{Jupyter notebook}, onde executamos passo a passo as funções do pyKVFinder. O notebook com o caso de estudo completo está disponível em \url{https://github.com/LBC-LNBio/pyKVFinder/blob/master/examples/conservation-analysis/conservation-analysis.ipynb}. Uma descrição detalhada dessa análise está disponível no artigo publicado no periódico \textit{BMC Bioinformatics} \cite{guerra2021}. 
 
-\subsubsection{Dinâmica molecular do domínio ADRP do SARS-CoV-2}
+\subsection{Dinâmica molecular do domínio ADRP do SARS-CoV-2}
 
 Nesse contexto, o desempenho computacional do pyKVFinder foi avaliado em simulações de dinâmica molecular do domínio ADRP do SARS-CoV-2 (PDB ID: 6W02, cadeia B) sem seu ligante, a ADP-ribose, por um período de 600 ns, com extração de quadros a cada 1 ns. Essa análise foi repetida com outras ferramentas bem conhecidas: parKVFinder \cite{guerra2020}, POVME \cite{povme}, fpocket \cite{fpocket}, GHECOM \cite{ghecom}, MSPocket \cite{mspocket} e Biobb\_vs \cite{biobbvs}. Todos esses métodos detectaram com sucesso o sítio de ligação do substrato da ADRP, no qual a forma e o volume variam ligeiramente durante a simulação de dinâmica molecular (Figura \ref{fig:pykvfinder-benchmarking}). A forma das cavidades detectadas pelo pyKVFinder e parKVFinder ajustam-se precisamente ao ligante original no sítio de ligação, assim como o MSPocket (Figura \ref{fig:pykvfinder-benchmarking}A). Além disso, o volume calculado pelo pyKVFinder ($346,8 \pm 78,7 \mAA^3$) e parKVFinder ($346,5 \pm 79,3 \mAA^3$) está intimamente relacionado ao volume da ADP-ribose ($351,1 \mAA^3$; volume da superfície molecular estimado pelo programa YASARA \cite{yasara}), o ligante que originalmente ocupava o sítio de ligação na estrutura cristalográfica utilizada nas simulações de dinâmica molecular (Figura \ref{fig:pykvfinder-benchmarking}B).
 
