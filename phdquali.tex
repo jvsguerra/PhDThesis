@@ -562,6 +562,13 @@ O \textbf{KVFinder-web portal} (Figura \ref{fig:kvweb-interface}) é uma interfa
 
 A interface oferece as principais funcionalidades do KVFinder-web service, permitindo que os usuários carreguem uma biomolécula-alvo a partir de um arquivo PDB ou fornecer o código PDB correspondente, e personalizem os parâmetros de detecção de cavidades e os modos de execução (Figura \ref{fig:kvweb-interface}B). Quatro modos de detecção de cavidades estão disponíveis, oferecendo opções que se adequam melhor à análise da cavidade pelos usuários:
 
+\begin{itemize}
+  \item \textit{Whole structure (default)}: detecção de cavidades em toda a estrutura biomolecular com parâmetros de detecção pré-definidos;
+  \item \textit{Whole structure (customized)}: detecção de cavidades em toda a estrutura biomolecular com parâmetros de detecção personalizáveis;
+  \item \textit{Around target molecule}: detecção de cavidades dentro de um raio ao redor de cada átomo de um ligante ou molécula na estrutura biomolecular-alvo com parâmetros de detecção personalizáveis;
+  \item \textit{Around target residues}: detecção de cavidades dentro de uma caixa personalizada, desenhada selecionando resíduos da estrutura biomolecular-alvo e margem da caixa.
+\end{itemize}
+
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.75]{images/kvweb-interface.png}
@@ -569,13 +576,6 @@ A interface oferece as principais funcionalidades do KVFinder-web service, permi
   \caption[KVFinder-web portal]{\textbf{KVFinder-web portal.} \textbf{(A)} Página principal com as principais abas e as seções de entrada da biomolécula-alvo e escolha do modo de execução. \textbf{(B)} Visão detalhada de cada etapa que os usuários devem concluir antes de enviar a biomolécula-alvo para a análise da cavidade. A primeira etapa envolve a seleção da biomolécula-alvo, que pode ser feita fornecendo um ID do PDB e buscando no banco de dados do PDB (1) ou fazendo o upload de um arquivo PDB (2). Após o upload do PDB, o portal KVFinder-web verifica o PDB e informa sobre resíduos não padronizados detectados (3). Na próxima etapa, os usuários devem selecionar um modo de execução adequado (4) e personalizar, se necessário, os parâmetros de detecção (5).}
   \label{fig:kvweb-interface}
 \end{figure}
-
-\begin{itemize}
-  \item \textit{Whole structure (default)}: detecção de cavidades em toda a estrutura biomolecular com parâmetros de detecção pré-definidos;
-  \item \textit{Whole structure (customized)}: detecção de cavidades em toda a estrutura biomolecular com parâmetros de detecção personalizáveis;
-  \item \textit{Around target molecule}: detecção de cavidades dentro de um raio ao redor de cada átomo de um ligante ou molécula na estrutura biomolecular-alvo com parâmetros de detecção personalizáveis;
-  \item \textit{Around target residues}: detecção de cavidades dentro de uma caixa personalizada, desenhada selecionando resíduos da estrutura biomolecular-alvo e margem da caixa.
-\end{itemize}
 
 Os parâmetros personalizáveis de detecção incluem o \textit{Probe In}, o \textit{Probe Out}, o \textit{Removal Distance} e o \textit{Volume Cutoff} (Figura \ref{fig:kvweb-interface}B). Resumidamente, o \textit{Probe In} é uma sonda menor (em$\mAA$) que percorre a biomolécula-alvo, definindo sua superfície molecular (geralmente definida como uma esfera do tamanho de uma molécula de água - $1,4 \mAA$), enquanto o \textit{Probe Out} é uma sonda maior (em$\mAA$) que percorre a biomolécula-alvo, definindo regiões de inacessibilidade. Assim, as cavidades são definidas como as regiões acessíveis ao \textit{Probe In}, que normalmente são mais inclusivas, mas não ao \textit{Probe Out}. A \textit{Removal Distance} é uma distância (em$\mAA$) para remoção de pontos de cavidade a partir da fronteira cavidade-meio, a fim de delimitar os limites externos da cavidade. O \textit{Volume Cutoff} é um filtro de volume da cavidade (em$\mAA^3$) para excluir cavidades com volumes menores que esse limite, geralmente consideradas como cavidades sem relevância funcional. Para obter uma explicação mais detalhada de cada parâmetro, consulte as referências \cite{oliveira2014,guerra2019,guerra2020,guerra2021,guerra2023A}.
  
