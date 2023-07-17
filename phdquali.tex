@@ -314,7 +314,7 @@ Nesse cenário, revisamos cuidadosamente à literatura para selecionar ferrament
 O KVFinder suite é uma plataforma abrangente de ferramentas para a codificação e caracterização de biomoléculas, bem como a detecção e caracterização de sítios de ligação nessas biomoléculas. Na plataforma, o algoritmo de detecção de cavidades (Figura \ref{fig:kvfinder-suite-schema}) utiliza uma metodologia de dupla sonda baseado na teoria de morfologia matemática, originalmente implementado na ferramenta KVFinder \cite{oliveira2014}. Nesse método, uma sonda menor (\textit{Probe In}) e uma sonda maior (\textit{Probe Out}) inspecionam os pontos da grade, definindo as cavidades como as regiões não sobrepostas percorridas por essas sondas. 
 
 \begin{figure}[ht]
-  \centerline{\includegraphics[scale=0.65]{images/kvfinder-suite-schema.png}}
+  \centerline{\includegraphics[scale=1]{images/kvfinder-suite-schema.png}}
   \centerline{\scriptsize{\textbf{Fonte:} Retirado de \cite{guerra2023B}.}}
   \caption[Representação esquemática do algoritmo de detecção de cavidades no KVFinder suite]{\textbf{Representação esquemática do algoritmo de detecção de cavidades no KVFinder suite.} \textbf{(A)} Uma estrutura biomolecular X, composta por átomos modelados como esferas rígidas com raios de van der Waals, é inserida em uma grade 3D. \textbf{(B)} A sonda \textit{Probe In} (Pi) percorre a superfície da estrutura, movendo-se pelos pontos da grade (laranja). \textbf{(C)} Em seguida, a sonda \textit{Probe Out} (Po) percorre os pontos acessíveis em azul. \textbf{(D)} Os pontos de cavidade (cinza claro) são definidos como a diferença entre os pontos acessíveis das sondas. Os pontos não alcançados por Pi (cinza escuro) definem a SES (padrão) ou a SAS, dependendo da representação de superfície escolhida pelo usuário. \textbf{(E)} Por fim, é aplicado um procedimento de remoção por distância para eliminar os pontos de cavidade que estão próximos à fronteira da cavidade-solvente (linha amarela).}
   \label{fig:kvfinder-suite-schema}
@@ -327,7 +327,7 @@ O KVFinder suite é uma plataforma abrangente de ferramentas para a codificaçã
 O Fpocket \cite{fpocket} é uma ferramenta baseada em tesselação que realiza a detecção de bolsões com base no conceito de \textalpha-esferas, introduzido por \cite{liang1998}. O algoritmo de detecção de cavidade (Figura \ref{fig:fpocket-schema}) determina o conjunto de \textalpha-esferas a partir da estrutura-alvo, utilizando o pacote \textit{qhull}, e elimina esferas fora de um tamanho de raio mínimo e máximo. As cavidades são agrupamentos de \textalpha-esferas, formadas com base em relações de proximidade e vizinhança, sendo que cavidades não interessantes são removidas da análise posterior. As cavidades restantes são avaliadas usando um conjunto de descritores dpocket \cite{fpocket} e classificadas de acordo com sua suposta capacidade de ligação a uma pequena molécula.
 
 \begin{figure}[ht]
-  \centerline{\includegraphics[scale=0.24]{images/fpocket-schema.png}}
+  \centerline{\includegraphics[scale=1]{images/fpocket-schema.png}}
   \centerline{\scriptsize{\textbf{Fonte:} Retirado de \cite{guerra2023B}.}}
   \caption[Representação esquemática do algoritmo de detecção de cavidades no Fpocket]{\textbf{Representação esquemática do algoritmo de detecção de cavidades no Fpocket.} \textbf{(A)} Diagrama de Voronoi dos centros atômicos. \textbf{(B)} Semelhante a uma esfera de Voronoi (círculos laranja pontilhados). \textbf{(C)} Exemplo de uma \textalpha-esfera (região verde); ela é centrada em um vértice de Voronoi (pontos laranja) e cresce até se tornar tangente aos átomos da superfície. \textbf{(D)} Cluster de \textalpha-esferas que preenchem o sítio de ligação.}
   \label{fig:fpocket-schema}
@@ -338,7 +338,7 @@ O Fpocket \cite{fpocket} é uma ferramenta baseada em tesselação que realiza a
 O GHECOM (\textit{Grid-based HECOMi finder}) \cite{ghecom} é uma ferramenta baseada em grade e esfera que detecta bolsos profundos e rasos, utilizando várias sondas esféricas diferentes (Figura \ref{fig:ghecom-schema}). O algoritmo de detecção de cavidade combina operações básicas de erosão e dilatação, da morfologia matemática, com diferentes sondas esféricas para relatar a abertura-fechamento de uma forma molecular-alvo, revelando assim bolsos profundos e rasos (\textit{multi-scale pockets}, em inglês). Dessa forma, um método de agrupamento de ligação simples agrupa regiões de bolsos e posteriormente estima seus volumes. Além disso, o GHECOM relaciona o volume e a profundidade de pontos por resíduo ou átomo em uma métrica chamada \textit{pocketness}, que indica o quanto eles contribuem para a interação com ligantes.
 
 \begin{figure}[ht]
-  \centerline{\includegraphics[scale=0.6]{images/ghecom-schema.png}}
+  \centerline{\includegraphics[scale=1]{images/ghecom-schema.png}}
   \centerline{\scriptsize{\textbf{Fonte:} Retirado de \cite{guerra2023B}.}}
   \caption[Representação esquemática do algoritmo de detecção de bolsões no GHECOM]{\textbf{Representação esquemática do algoritmo de detecção de bolsões no GHECOM.} Uma estrutura biomolecular (região verde; $X$) é fechada por uma sonda esférica P (esfera azul), definindo a região delimitada pelo contorno amarelo. Em seguida, a interseção de X fechado por P ($X \bullet P$) e o espaço fora da proteína ($X^c$) define a região não acessível à sonda P (região azul; $(X \bullet P) \cap X^c$). Posteriormente, essa região é aberta por uma sonda esférica S (esfera laranja), onde P é maior que S. Por fim, o bolsão (região laranja; $((X \bullet P) \cap X^c) \circ S$) é definido pelo espaço fora da forma molecular não acessível a P, mas acessível a S. Para detecção em múltiplas escalas, são usados diferentes tamanhos da sonda esférica P.}
   \label{fig:ghecom-schema}
@@ -349,7 +349,7 @@ O GHECOM (\textit{Grid-based HECOMi finder}) \cite{ghecom} é uma ferramenta bas
 O CAVER \cite{caver} foi originalmente uma ferramenta baseado em grade e superfície para o cálculo de túneis e canais, que posteriormente foi aprimorado no CAVER 3.0 \cite{caver3}, substituindo a grade alinhada aos eixos por uma abordagem de diagrama de Voronoi. A interface gráfica do usuário, CAVER Analyst 2.0 \cite{caveranalyst2}, incorpora o CAVER 3.0, que auxilia visualmente os usuários nos cálculos de túneis e cavidades. O algoritmo de detecção de cavidades (Figura \ref{fig:caver-schema}) constrói um pseudo-diagrama de Voronoi de uma estrutura biomolecular alvo. A partir dele, o CAVER 3.0 identifica caminhos como grafos compostos por vértices e arestas de Voronoi. Esses caminhos se assemelham a túneis que conectam cavidades ao solvente circundante e são caracterizados por comprimento, raio médio e raio do gargalo. Além disso, CAVER Analyst 2.0 também identifica regiões de espaço vazio, onde uma sonda pequena pode entrar de fora, mas uma sonda grande não pode, aplicando uma abordagem similar às descritas no KVFinder suite (Figura \ref{fig:kvfinder-suite-schema}) e GHECOM (Figura \ref{fig:ghecom-schema}).
 
 \begin{figure}[ht]
-  \centerline{\includegraphics[scale=0.18]{images/caver-schema.png}}
+  \centerline{\includegraphics[scale=1]{images/caver-schema.png}}
   \centerline{\scriptsize{\textbf{Fonte:} Retirado de \cite{guerra2023B}.}}
   \caption[Representação esquemática do algoritmo de detecção de canais e túneis no CAVER 3.0 e CAVER Analyst 2.0]{\textbf{Representação esquemática do algoritmo de detecção de canais e túneis no CAVER 3.0 e CAVER Analyst 2.0.} \textbf{(A)} Uma forma molecular é inspecionada por uma sonda esférica, chamada \textit{shell probe}, com um raio especificado pelo parâmetro \textit{shell radius}, para definir uma superfície externa SAS (linha vermelha). A partir dela, uma distância especificada pelo parâmetro \textit{shell depth} é removida para definir uma superfície interna (linha amarela). \textbf{(B)} Um pseudo-diagrama de Voronoi é construído com base na forma molecular. Vértices de Voronoi (pontos laranja) são usados para criar as linhas centrais do túnel/canal. \textbf{(C)} Um ponto de partida (ponto vermelho) é um parâmetro definido pelo usuário, definido como o centro de massa da forma molecular, e um ponto final (ponto azul) é definido no centro da superfície interna. A partir do ponto de partida, a linha central passa por arestas e vértices de Voronoi para formar um túnel/canal até a superfície externa e passa pelo ponto final. \textbf{(D)} Esferas são ajustadas em todos os pontos da linha central, do ponto de partida ao ponto final, o que define o raio do gargalo (abertura) ao longo do túnel e/ou canal.}
   \label{fig:caver-schema}
@@ -385,7 +385,7 @@ Ao trabalhar com modelos computacionais para o estudo de biomoléculas, a codifi
 As biomoléculas e seus sítios de ligação podem ser representadas em uma grade 3D subdividida em voxels (\textit{volumetric pixel}, em inglês). A grade 3D é uma estrutura de dados que armazena valores em uma matriz tridimensional, onde cada elemento da matriz é denominado voxel. O voxel representa um ponto discreto de dados em uma grade regular no espaço tridimensional, sendo que cada ponto pode conter mais de uma informação a fim de representar diferentes propriedades em uma certa porção de espaço de maneira simples e efetiva (Figura \ref{fig:voxel}). Em computação, a grade 3D é uma estrutura de dados comumente utilizada em aplicações de processamento de imagens e visão computacional, como em reconstrução de imagens, segmentação de imagens e detecção de objetos. 
 
 \begin{figure}[ht]
-  \centerline{\includegraphics[scale=0.75]{images/voxels.png}}
+  \centerline{\includegraphics[scale=1]{images/voxels.png}}
   \centerline{\scriptsize{\textbf{Fonte:} Retirado de \cite{guerra2021}.}}
   \caption[Representação esquemática de biomoléculas e seus sítios de ligação representadas em grade tridimensional]{\textbf{Representação esquemática de biomoléculas e seus sítios de ligação representadas em grade tridimensional.} Com base em uma grade tridimensional com dimensões (m, n, o), cada elemento corresponde a uma região de cavidade (>1), espaço vazio (1), biomolécula (0) ou solvente (-1). Além disso, propriedades também são armazenadas na mesma estrutura de dados, correspondendo ao valor da propriedade na região.}
   \label{fig:voxel}
@@ -406,7 +406,7 @@ A representação de superfícies moleculares é uma etapa fundamental na modela
 \end{enumerate}
 
 \begin{figure}[ht]
-  \centerline{\includegraphics[scale=0.8]{images/surface-representation.png}}
+  \centerline{\includegraphics[scale=1]{images/surface-representation.png}}
   \centerline{\scriptsize{\textbf{Fonte:} Retirado de \cite{guerra2023B}.}}
   \caption[Representações de superfície molecular]{\textbf{Representações de superfície molecular.} \textbf{(A)} Superfície de vdW. \textbf{(B)} SAS. \textbf{(C)} SES. Imagens geradas com PyMOL para a gaiola supramolecular (resorcin[4]areno-hexamérica). \textbf{(D)} Representação esquemática 2D das superfícies moleculares. A superfície de vdW (verde) é composta por átomos representados como esferas verdes. Uma sonda esférica (cinza), representando uma molécula de solvente, rola sobre os átomos da molécula para definir SES e SAS. O SES é definido pela superfície de vdW (verde) e pelo espaço não alcançado pela sonda esférica (laranja). O SAS é definido pelo envelope alcançado pelo centro da sonda esférica (azul).}
   \label{fig:surface-representation}
@@ -498,7 +498,7 @@ O desempenho computacional do pyKVFinder também foi avaliado no kv1000 \cite{gu
 
 \begin{figure}[ht]
   \centering
-  \includegraphics[scale=0.8]{images/pykvfinder-speedup.png}
+  \includegraphics[scale=1]{images/pykvfinder-speedup.png}
   \caption[Ganho de velocidade do pyKVFinder comparado ao parKVFinder]{\textbf{Ganho de velocidade do pyKVFinder comparado ao parKVFinder.} O \textit{speedup} é a razão entre o tempo de execução do pyKVFinder e o tempo de execução do parKVFinder, aplicando o mesmo número de OpenMP \textit{threads}, para diferentes números de átomos.}
   \label{fig:pykvfinder-speedup}
 \end{figure}
@@ -572,7 +572,7 @@ A interface oferece as principais funcionalidades do KVFinder-web service, permi
 
 \begin{figure}[H]
   \centering
-  \includegraphics[scale=0.75]{images/kvweb-interface.png}
+  \includegraphics[scale=1]{images/kvweb-interface.png}
   \centerline{\scriptsize{\textbf{Fonte:} Adaptado de \cite{guerra2023A}.}}
   \caption[KVFinder-web portal]{\textbf{KVFinder-web portal.} \textbf{(A)} Página principal com as principais abas e as seções de entrada da biomolécula-alvo e escolha do modo de execução. \textbf{(B)} Visão detalhada de cada etapa que os usuários devem concluir antes de enviar a biomolécula-alvo para a análise da cavidade. A primeira etapa envolve a seleção da biomolécula-alvo, que pode ser feita fornecendo um ID do PDB e buscando no banco de dados do PDB (1) ou fazendo o upload de um arquivo PDB (2). Após o upload do PDB, o portal KVFinder-web verifica o PDB e informa sobre resíduos não padronizados detectados (3). Na próxima etapa, os usuários devem selecionar um modo de execução adequado (4) e personalizar, se necessário, os parâmetros de detecção (5).}
   \label{fig:kvweb-interface}
@@ -642,7 +642,7 @@ Em algumas circunstâncias, para a formação do complexo receptor-ligante, os r
 
 \begin{figure}[h]
   \centering
-  \includegraphics[scale=0.8]{images/kvmd-overview.png}
+  \includegraphics[scale=1]{images/kvmd-overview.png}
   \caption[Detecção, caracterizações e representações de cavidades em estudos de dinâmica molecular usando a ferramenta KVFinderMD]{\textbf{Detecção, caracterizações e representações de cavidades em estudos de dinâmica molecular usando a ferramenta KVFinderMD.} \textbf{(A)} Caracterizações morfológicas, topológicas e físico-químicas aplicadas no KVFinderMD. \textbf{(B)} Representação em forma de grafo das cavidades baseada nos resíduos de interface e suas relações topológicas. Distância entre C\textbeta\space(azul), C\textalpha\space(vermelho) e quaisquer átomos de um resíduo (magenta).}
   \label{fig:kvmd-overview}
 \end{figure}
@@ -763,7 +763,7 @@ Nesse estudo, foi investigado a DM da HIV-1 protease por meio da identificação
 O volume do sítio ativo foi acompanhado ao longo das simulações (Figura \ref{fig:hiv1-protease-dm-analysis}). Observou-se que o volume inicial da cavidade corresponde à conformação fechada (linha verde) e, após cerca de 25 ns, aumenta até atingir o valor correspondente à conformação semi-aberta (linha vermelha) em cerca de 75 ns, indicando um processo de abertura ao longo da simulação. Posteriormente, os \textit{flaps} se afastam ainda mais, e a cavidade atinge seu volume máximo em cerca de 175 ns, antes de reverter para a conformação semi-aberta, que é mais estável. Essa dinâmica de mudança de volume correlaciona-se (correlação de Pearson; $\rho = 0,72$) com o desvio médio quadrático (RMSD; \textit{Root-mean-square deviation}, em inglês) do C\textalpha\space calculado a partir da conformação fechada como referência, indicando uma descrição adequada do estado conformacional da proteína ao longo da simulação. É importante destacar que o RMSD é uma métrica que descreve variações globais na estrutura, enquanto o volume estimado é uma métrica direta das mudanças conformacionais do sítio ativo, possivelmente relacionadas à acessibilidade do ligante.
 
 \begin{figure}[ht]
-  \centerline{\includegraphics[scale=0.15]{images/hiv1-protease-md-analysis.png}}
+  \centerline{\includegraphics[scale=1]{images/hiv1-protease-md-analysis.png}}
   \caption[Volume de seu sítio ativo HIV-1 protease ao longo de uma simulação de dinâmica molecular de 200 ns]{\textbf{Volume de seu sítio ativo HIV-1 protease ao longo de uma simulação de dinâmica molecular de 200 ns.} As linhas verdes e vermelhas indicam o volume da cavidade para os estados fechado (PDB ID: 1HVR) e semi-aberto (PDB ID: 1HHP), respectivamente. As estruturas da proteína no início da simulação (0 ns) e no quadro com o maior RMSD (175.6 ns) são mostradas como diagramas. As cavidades correspondentes detectadas por cada ferramenta são mostradas como superfícies cinzas.}
   \label{fig:hiv1-protease-dm-analysis}
 \end{figure}
@@ -781,7 +781,7 @@ O vírus Mayaro (MAYV) é um arbovírus emergente das Américas Central e do Sul
 A região central entre as proteínas E1 e E2 forma uma cavidade que é ocupada por uma densidade extra longa, que não pode ser explicada por resíduos de cadeia lateral (Figura \ref{fig:mayv-e1-e2}A e B). Um perfil de densidade similar foi observado anteriormente em um mapa crioeletrônico do vírus Sindbis (SINV), e os autores propuseram que uma cauda fosfolipídica hidrofóbica (C18), chamada de \textit{pocket factor} (fator de bolsão, em português), poderia ocupar essa densidade e estabilizar o bolsão hidrofóbico formada entre E1 e E2 \cite{chen2018}.
 
 \begin{figure}[t]
-  \centerline{\includegraphics[scale=0.4]{images/mayv-e1-e2.png}}
+  \centerline{\includegraphics[scale=1]{images/mayv-e1-e2.png}}
   \centerline{\scriptsize{\textbf{Fonte:} Adaptado de \cite{ribeiro2021}.}}
   \caption[Domínios transmembranares E1 e E2 do MAYV e a cavidade hidrofóbica]{\textbf{Domínios transmembranares E1 e E2 do MAYV e a cavidade hidrofóbica.} \textbf{(A)} Modelo atômico 3D do MAYV ajustado ao mapa de densidade, mostrando a porção superior das hélices TM de E1 e E2. A interseção entre E1-E2 forma uma cavidade com abertura anterior e posterior. A densidade extra observada dentro da cavidade está indicada. \textbf{(B)} Detalhe da densidade extra encontrada na região da cabeça de E1-E2 e os resíduos ao redor. O mapa de densidade do MAYV está representado em superfície ou malha. \textbf{(C)} Prospeção da cavidade em estruturas de alphavírus. A cavidade entre os domínios E1 e E2 está representada em superfície e colorida com base na escala de consenso de Eisenberg, utilizando os resíduos que formam a cavidade, conforme detalhado na seção de métodos. Apenas os resíduos polares estão representados como sticks. \textbf{(D)} Volume da cavidade estimado para os quatro heterodímeros E1-E2 (n = 4 estruturas independentes de heterodímeros) na unidade assimétrica. Um teste ANOVA unidirecional com comparação múltipla de Tukey foi utilizado para comparar o volume da cavidade do MAYV com outros alphavírus (* indica adj. p < 0,01 quando comparado aos alphavírus com MAYV). \textbf{(E)} Número de resíduos em cada um dos quatro heterodímeros E1-E2 (n = 4 estruturas independentes de heterodímeros) na unidade assimétrica, separados por classes. Um teste ANOVA unidirecional com comparação múltipla de Tukey foi utilizado para comparar o número de resíduos na classe alifática apolar com as outras classes na mesma espécie de alphavírus (* indica adj. p < 0,01 quando comparando a classe alifática apolar com as outras classes). Todos os dados são apresentados como valores médios +/- DP. Alifática apolar: ALA, VAL, ILE, LEU, GLY, PRO; Aromática: PHE, TYR, TRP; Polar não carregada: SER, THR, CYS, MET, ASN, GLN; Carregada negativamente: GLU, ASP; Carregada positivamente: ARG, LYS, HIS.}
   \label{fig:mayv-e1-e2}
@@ -796,7 +796,7 @@ Por outro lado, as proteínas nucleocapsídicas C dos alphavírus são compostas
 O mapa de densidade do MAYV confirma a estrutura geralmente conservada da proteína C, formando dois subdomínios ricos em folhas beta separados por uma cavidade rasa ($\aproximadamente500 \mAA^3$, Figura \ref{fig:mayv-c-e2}), na qual o domínio C-terminal da proteína E2 se liga não covalentemente. O fundo do bolsão é hidrofóbico, enquanto seu topo possui resíduos polares e carregados. A interface entre o capsídeo e a proteína E2 envolve o motivo de consenso TPY (resíduos T387, P398 e Y399; Figura \ref{fig:mayv-c-e2}), que é conservado dentro do gênero \textit{Alphavirus}. Curiosamente, pequenas moléculas propostas para inibir a interação entre o capsídeo e a proteína E2 contêm anéis heterocíclicos, o que reforça a relevância desse tipo de contato para a interação entre o capsídeo e a proteína E2 e destaca esse sítio como um potencial alvo de drogas.
 
 \begin{figure}[t]
-  \centerline{\includegraphics[scale=0.2]{images/mayv-c-e2.png}}
+  \centerline{\includegraphics[scale=1]{images/mayv-c-e2.png}}
   \centerline{\scriptsize{\textbf{Fonte:} Adaptado de \cite{ribeiro2021}.}}
   \caption[Interação da cápside do MAYV com o domínio C-terminal da proteína E2]{\textbf{Interação da cápside do MAYV com o domínio C-terminal da proteína E2.} \textbf{(A)} Modelo atômico 3D do MAYV ajustado ao mapa de densidade obtido por criomicroscopia eletrônica. As proteínas C, E1 e E2 são representadas como desenhos em ciano, roxo e azul, respectivamente. \textbf{(B)} A interação do motivo TPY (resíduos T387, P398 e Y399) com a proteína C. \textbf{(C)} Os resíduos P403 e T402 da E2 e sua interação com os resíduos aromáticos Y175 e W242 na proteína C. O mapa de densidade do MAYV é mostrado em representação de malha. \textbf{(D)} Prospeção da cavidade na proteína C do MAYV, mostrando um ambiente hidrofóbico na parte inferior do bolso e um ambiente polar e carregado nas bordas externas da cavidade. A cavidade da proteína C que se liga ao domínio C-terminal da E2 é representada em superfície e colorida de acordo com a escala hidrofóbica de consenso de Eisenberg. Os resíduos da proteína C que cercam a cavidade são representados como \textit{sticks}. \textbf{(E)} Boxplot do volume da cavidade estimado para as quatro cápsides (n = 4 estruturas independentes de cápside) na unidade assimétrica. No boxplot, a caixa representa a amplitude interquartil (IQR) ($67,5 \mAA^3$), o 75º percentil (Q3) ($526,2 \mAA^3$) e o 25º percentil (Q1) ($458,7 \mAA^3$). A linha central indica a mediana ($486,3 \mAA^3$) e a média ($498,6 \mAA^3$) é indicada por um ponto. As "whiskers" com valor mínimo ($395,7 \mAA^3$) e valor máximo ($626,2 \mAA^3$) são determinadas usando Q1-1,5 x IQR e Q3+1,5 x IQR, respectivamente.}
   \label{fig:mayv-c-e2}
@@ -816,7 +816,7 @@ Conforme ilustrado na Figura \ref{fig:conservation-analysis}A, o sítio de liga�
 
 \begin{figure}[hp]
   \centering
-  \includegraphics[scale=0.4]{images/adrp-sars-cov-2-conservation-analysis.png}
+  \includegraphics[scale=1]{images/adrp-sars-cov-2-conservation-analysis.png}
   \centerline{\scriptsize{\textbf{Fonte:} Adaptado de \cite{guerra2021}.}}
   \caption[Estudo do sítio de ligação do substrato da ADRP do SARS-CoV-2 e proteínas relacionadas]{\textbf{Estudo do sítio de ligação do substrato da ADRP do SARS-CoV-2 e proteínas relacionadas.} \textbf{(A)} Caracterizações do sítio de ligação do substrato do domínio ADRP do SARS-CoV-2 (PDB ID: 6WEN). Esquerda: Cavidade detectada representada como uma superfície cinza e os resíduos ao redor dela como \textit{sticks} vermelhos. Centro: Cavidade colorida por profundidade. Direita: Cavidade colorida por hidropatia usando a escala de Eisenberg e Weiss. \textbf{(B)} Gráfico de barras das frequências de resíduos de interface. Esquerda: Aminoácidos. Direita: Classes de aminoácidos. \textbf{(C)} Análise de conservação do sítio de ligação do ADP-ribose no domínio ADRP do SARS-CoV-2 (PDB ID: 6WEN, cadeia A), SARS-CoV (PDB ID: 2ACF, cadeia B), MERS-CoV (PDB ID: 5HIH, cadeia A), NL63 (PDB ID: 2VRI, cadeia A), HCoV-229E (PDB ID: 3EJG, cadeia A), FCoV (PDB ID: 3ETI, cadeia B) e proteínas macrodomínio macroD1 (PDB ID: 2X47, cadeia A) e macroD2 (PDB ID: 6Y73, cadeia D) humanas. Os pontos de cavidade que foram detectados em pelo menos duas estruturas e os pontos são coloridos por porcentagem de conservação. \textbf{(D)} Perfil de hidropatia. \textbf{(E)} Dendrograma de agrupamento hierárquico da frequência de resíduos. A métrica de correlação de Pearson foi usada para avaliar a similaridade e o método completo foi escolhido como método de ligação. Todos os gráficos e imagens foram gerados em um Jupyter notebook. As imagens das estruturas tridimensionais foram geradas utilizando o pacote NGLView \cite{nglview} enquanto os gráficos foram construídos utilizando o pacote matplotlib \cite{matplotlib}.}
   \label{fig:conservation-analysis}
@@ -836,7 +836,7 @@ Nesse contexto, o desempenho computacional do pyKVFinder foi avaliado em simula�
 
 \begin{figure}[h]
   \centering
-  \includegraphics[scale=0.75]{images/pykvfinder-benchmarking.png}
+  \includegraphics[scale=1]{images/pykvfinder-benchmarking.png}
   \centerline{\scriptsize{\textbf{Fonte:} Adaptado de \cite{guerra2021}.}}
   \caption[Avaliação de desempenho dos métodos de benchmarking para detecção do sítio de ligação do substrato da ADRP]{\textbf{Avaliação de desempenho dos métodos de benchmarking para detecção do sítio de ligação do substrato da ADRP.} \textbf{(A)} As estruturas da proteína (representadas em verde) no quadro 30 (com menor RMSD em comparação com a estrutura cristalográfica) da trajetória do domínio ADRP com as cavidades correspondentes detectadas (superfícies cinzas) por cada método de benchmarking. \textbf{(B)} O volume total das cavidades detectadas no sítio de ligação do substrato da ADRP ao longo da simulação de 600 ns. O volume total é calculado em uma janela de 20 quadros. A linha pontilhada vermelha indica o volume da superfície molecular da molécula de ADP-ribose, que ocupava originalmente o sítio de ligação do substrato da ADRP na estrutura cristalográfica (PDB ID: 6W02, cadeia B). \textbf{(C)} Tempo decorrido para detectar e caracterizar o sítio de ligação do substrato da ADRP. O protocolo padrão do pyKVFinder, assim como do parKVFinder, detecta as cavidades e aplica as caracterizações morfológicos (\eg, volume, área e forma) e topológicos (\eg, resíduos de interface e suas frequências). O protocolo completo do pyKVFinder inclui o protocolo padrão com as caracterizações de profundidade e hidropatia.}
   \label{fig:pykvfinder-benchmarking}
@@ -874,14 +874,14 @@ Conforme apresentado na Seção \ref{sec:md-hiv1-protease}, a protease do HIV-1 
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[scale=0.46]{images/pykvfinder-parkvfinder-kv1000-comparison.png}
+  \includegraphics[scale=1]{images/pykvfinder-parkvfinder-kv1000-comparison.png}
   \caption[Ganho de velocidade do pyKVFinder comparado ao parKVFinder]{\textbf{Tempo computacional em função do número de átomos com diferentes números de \textit{threads} para o parKVFinder e o pyKVFinder.} Quadro superior esquerdo: parKVFinder. Quadro superior direito: pyKVFinder com caracterização padrão (volume, área e resíduos de interface). Quadro inferior esquerdo: pyKVFinder com caracterização padrão e de profundidade. Quadro inferior direito: pyKVFinder com caracterização padrão e de hidropatia}
   \label{fig:pykvfinder-parkvfinder-kv1000-comparison}
 \end{figure}
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[scale=0.3]{images/3D-binary-structure.png}
+  \includegraphics[scale=1]{images/3D-binary-structure.png}
   \centerline{\scriptsize{\textbf{Fonte:} Retirado de \url{https://docs.scipy.org/doc/scipy/tutorial/ndimage.html}}}
   \caption[Elementos estruturantes para filtros espaciais]{\textbf{Elementos estruturantes para filtros espaciais.}}
   \label{fig:elementos-estruturantes}
