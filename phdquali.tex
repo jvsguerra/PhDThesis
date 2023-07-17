@@ -610,8 +610,6 @@ O desempenho computacional do KVFinder-web service também foi avaliado no kv100
 
 Para usuários familiarizados com o PyMOL \cite{pymol}, a ferramenta \textbf{PyMOL KVFinder-web Tools} (Figura \ref{fig:pymol-kvweb-tools}), desenvolvida em Python3 e Qt, integra o KVFinder-web service com o programa de visualização molecular. Essa interface gráfica de usuário (GUI; \textit{Graphical User Interface}, em inglês) amigável permite a personalização dos parâmetros de detecção para uma estrutura biomolecular-alvo e envia os trabalhos para um serviço KVFinder-web configurado (Figura \ref{fig:pymol-kvweb-tools}A). Atualmente, o PyMOL KVFinder-web Tools está na versão \href{https://github.com/LBC-LNBio/PyMOL-KVFinder-web-Tools/tree/v1.0.0}{v1.0.0}. O código-fonte do PyMOL KVFinder-web Tools está disponível no seguinte repositório: \url{https://github.com/LBC-LNBio/PyMOL-KVFinder-web-Tools}.
 
-Assim como no plugin parKVFinder para PyMOL \cite{guerra2020}, o espaço de busca também pode ser ajustado para uma caixa personalizada (\textit{box adjustment mode}) e/ou um raio ao redor de um ligante ou molécula-alvo (\textit{ligand adjustment mode}), em vez de detectar e caracterizar cavidades em toda a superfície biomolecular (\textit{whole protein mode}). Após o envio bem-sucedido, os trabalhos aceitos são solicitados rotineira e assincronamente ao KVFinder-web service. Quando um trabalho é concluído, o plugin processa automaticamente os dados recebidos, cavidades e caracterizações, para arquivos locais e os disponibiliza na GUI. Esse plugin gráfico opera de maneira semelhante ao KVFinder-web portal, as caracterizações são mostradas em listas (Figura \ref{fig:pymol-kvweb-tools}B) e as cavidades são personalizadas por suas propriedades no visualizador do PyMOL (Figura \ref{fig:pymol-kvweb-tools}C e D). No entanto, os trabalhos enviados no KVFinder-web portal podem ser carregados no PyMOL KVFinder-web Tools e vice-versa.
-
 \begin{figure}[H]
   \centering
   \includegraphics[scale=2.5]{images/pymol-kvweb-tools.png}
@@ -619,6 +617,8 @@ Assim como no plugin parKVFinder para PyMOL \cite{guerra2020}, o espaço de busc
   \caption[PyMOL KVFinder-web Tools]{\textbf{PyMOL KVFinder-web Tools.} Detecção de cavidades na estrutura da protease do HIV-1 (PDB ID: 1HVR), com \textit{Probe Out} definido como 12 Å. \textbf{(A)} Aba de parâmetros principais contendo parâmetros de detecção e estruturas moleculares a serem exploradas. \textbf{(B)} Aba de visualização contendo dados recebidos (cavidades e caracterizações) do serviço KVFinder-web exibidos na GUI. \textbf{(C)} Caracterização de profundidade e \textbf{(D)} caracterização de hidropatia de Eisenberg & Weiss, destacando o sítio ativo (cavidade KAG) na GUI e no visualizador do PyMOL.}
   \label{fig:pymol-kvweb-tools}
 \end{figure}
+
+Assim como no plugin parKVFinder para PyMOL \cite{guerra2020}, o espaço de busca também pode ser ajustado para uma caixa personalizada (\textit{box adjustment mode}) e/ou um raio ao redor de um ligante ou molécula-alvo (\textit{ligand adjustment mode}), em vez de detectar e caracterizar cavidades em toda a superfície biomolecular (\textit{whole protein mode}). Após o envio bem-sucedido, os trabalhos aceitos são solicitados rotineira e assincronamente ao KVFinder-web service. Quando um trabalho é concluído, o plugin processa automaticamente os dados recebidos, cavidades e caracterizações, para arquivos locais e os disponibiliza na GUI. Esse plugin gráfico opera de maneira semelhante ao KVFinder-web portal, as caracterizações são mostradas em listas (Figura \ref{fig:pymol-kvweb-tools}B) e as cavidades são personalizadas por suas propriedades no visualizador do PyMOL (Figura \ref{fig:pymol-kvweb-tools}C e D). No entanto, os trabalhos enviados no KVFinder-web portal podem ser carregados no PyMOL KVFinder-web Tools e vice-versa.
 
 \subsection{Caso de estudo}
 
@@ -642,7 +642,7 @@ Em algumas circunstâncias, para a formação do complexo receptor-ligante, os r
 
 \begin{figure}[h]
   \centering
-  \includegraphics[scale=1]{images/kvmd-overview.png}
+  \includegraphics[scale=0.8]{images/kvmd-overview.png}
   \caption[Detecção, caracterizações e representações de cavidades em estudos de dinâmica molecular usando a ferramenta KVFinderMD]{\textbf{Detecção, caracterizações e representações de cavidades em estudos de dinâmica molecular usando a ferramenta KVFinderMD.} \textbf{(A)} Caracterizações morfológicas, topológicas e físico-químicas aplicadas no KVFinderMD. \textbf{(B)} Representação em forma de grafo das cavidades baseada nos resíduos de interface e suas relações topológicas. Distância entre C\textbeta\space(azul), C\textalpha\space(vermelho) e quaisquer átomos de um resíduo (magenta).}
   \label{fig:kvmd-overview}
 \end{figure}
