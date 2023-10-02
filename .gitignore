@@ -1,7 +1,7 @@
 # Build outputs
 texer.out
 texer.err
-phdquali.pdf
+phdthesis.pdf
 
 ## Core latex/pdflatex auxiliary files:
 *.aux

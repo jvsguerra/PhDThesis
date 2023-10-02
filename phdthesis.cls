@@ -1,28 +1,28 @@
 % Instituto de Computação - Unicamp
 % LaTeX document class for theses and dissertations.
-% phdquali 2018-10-17
+% phdthesis 2023-10-02
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{phdquali}[]
-\typeout{phdquali}
+\ProvidesClass{phdthesis}[]
+\typeout{phdthesis}
 
 \def\thesislanguage#1{\gdef\@thesislanguage{#1}}
 \DeclareOption{Ingles}{
   \thesislanguage{0}
-  \typeout{phdquali: ingles.}
+  \typeout{phdthesis: ingles.}
 }
 \DeclareOption{Espanhol}{
   \thesislanguage{1}
-  \typeout{phdquali: espanhol.}
+  \typeout{phdthesis: espanhol.}
 }
 \DeclareOption{Portugues}{
   \thesislanguage{2}
-  \typeout{phdquali: portugues.}
+  \typeout{phdthesis: portugues.}
 }
 \newif\iffinalversion
 \DeclareOption{Final}{
   \finalversiontrue
-  \typeout{phdquali: versao final.}
+  \typeout{phdthesis: versao final.}
 }
 
 
@@ -44,8 +44,8 @@
 
 \RequirePackage{fancyhdr}
 
-\newcommand{\@FCF}{FACULDADE DE CIÊNCIAS FARMACÊUTICAS}
-\newcommand{\@UNICAMP}{UNIVERSIDADE ESTADUAL DE CAMPINAS}
+\newcommand{\@FCF}{Faculdade de Ciências Farmacêuticas}
+\newcommand{\@UNICAMP}{Universidade Estadual de Campinas}
 
 % User fields:
 \let\@autor\relax
@@ -227,37 +227,31 @@
   \normalsize
   \hfill\begin{minipage}[t]{0.54\textwidth}
     \supresshyphen
-    % Qualificação
-    Relatório apresentado à Faculdade de Ciências Farmacêuticas da
-    Universidade Estadual de Campinas, nível Doutorado para Exame de 
-    Qualificação.\newline\newlineÁrea de concentração: Fármacos, 
-    Medicamentos e Insumos para a Saúde.
-    % Defesa
-    % \@monopt\xspace apresentada à Faculdade de Ciências Farmacêuticas da
-    % Universidade Estadual de Campinas como parte dos requisitos para a
-    % obten\c{c}\~ao do t\'{\i}tulo de \@degnamept\xspace em Ci\^encias, 
-    % na área de Fármacos, Medicamentos e Insumos para a Saúde\ifx
-    % \@cotutela\relax\else\xspace no \^ambito do acordo
-    % de Cotutela firmado entre a Unicamp e a \@cotutela\fi.
+    \@monopt\xspace apresentada à Faculdade de Ciências Farmacêuticas da
+    Universidade Estadual de Campinas como parte dos requisitos para a
+    obten\c{c}\~ao do t\'{\i}tulo de \@degnamept\xspace em Ci\^encias, 
+    na área de Fármacos, Medicamentos e Insumos para a Saúde\ifx
+    \@cotutela\relax\else\xspace no \^ambito do acordo
+    de Cotutela firmado entre a Unicamp e a \@cotutela\fi.
   \end{minipage}
   \ifcase\@thesislanguage
     \vskip 8mm
     \hfill\begin{minipage}[t]{0.54\textwidth}
       \supresshyphen
-      \@monoen\xspace presented to the Institute of Computing of the
+      \@monoen\xspace presented to the Faculty of Pharmaceutical Sciences of the
       University of Campinas in partial fulfillment of the requirements for
-      the degree of \@degnameen\xspace in Computer
-      Science\ifx\@cotutela\relax\else\xspace under the double-diploma
-      agreement between Unicamp and \@cotutela\fi.
+      the degree of \@degnameen\xspace in Science, specializing in Pharmaceuticals, 
+      Medicines and Health Supplies\ifx\@cotutela\relax\else\xspace under 
+      the double-diploma agreement between Unicamp and \@cotutela\fi.
     \end{minipage}
   \or
     \vskip 8mm
     \hfill\begin{minipage}[t]{0.54\textwidth}
       \supresshyphen
-      \@monoes\xspace presentada al Instituto de la Computaci\'on de la
+      \@monoes\xspace presentada al Facultad de Ciencias Farmacéuticas de la
       Universidad de Campinas para obtener el t\'{\i}tulo de
-      \@degnamees\xspace en Ciencias de la
-      Computaci\'on\ifx\@cotutela\relax\else\xspace en el \'ambito del
+      \@degnamees\xspace en Ciencias, en el área de Fármacos, Medicamentos e 
+      Insumos para la Salud\ifx\@cotutela\relax\else\xspace en el \'ambito del
       acuerdo de Cotutela firmando entre la Universidad Estatal de Campinas
       y la \@cotutela\fi.
     \end{minipage}
@@ -286,15 +280,15 @@
   \iffinalversion
     \begin{minipage}[t]{0.5\textwidth}
       \supresshyphen
-      ESTE TRABALHO CORRESPONDE À VERSÃO FINAL DA \@MONOPT\xspace DEFENDIDA PELO ALUNO \MakeUppercase{\@autor}, ORIENTADA PELO PROF DR \MakeUppercase{\@orientador}.
+      Este exemplar corresponde \`{a} vers\~{a}o final da \@monopt\xspace defendida por
+      \if\@autora\relax\@autor\else\@autora\fi\xspace e orientada
+      \if\@orientadora\relax pelo \@orientador\else pela \@orientadora\fi.
     \end{minipage}
   \else
     \begin{minipage}[t]{0.5\textwidth}
       \supresshyphen
-      % Qualificação
-
-      % Defesa
-      % ESTE TRABALHO CORRESPONDE À VERSÃO FINAL DA \@MONOPT\xspace DEFENDIDA PELO ALUNO \MakeUppercase{\@autor}, ORIENTADA PELO PROF DR \MakeUppercase{\@orientador}.
+      Este exemplar corresponde \`{a} vers\~{a}o da \@monopt\xspace entregue
+      \`{a} banca antes da defesa.
     \end{minipage}
   \fi
   \vfill
@@ -306,82 +300,82 @@
 }
 
 % DEFESA
-% \def\cathpage{
-%   \ifx\@fichacatalografica\relax
-%   Na vers\~ao final esta p\'agina ser\'a substitu\'{\i}da pela
-%   ficha catalogr{\'a}fica. \\\\
-%   De acordo com o padr\~ao da CCPG: ``Quando se tratar de Teses e
-%   Disserta\c{c}\~oes financiadas por ag\^encias de fomento, os beneficiados
-%   dever\~ao inserir no formul\'ario de solicita\c{c}\~ao da ficha 
-%   catalogr\'afica as informa\c{c}\~oes sobre ag\^encia e  n\'umero do processo 
-%   pelo qual receberam o aux\'{\i}lio, por\'em essa informa\c{c}\~ao n\~ao
-%   ficar\'a vis\'ivel na ficha, ser\'a utilizada para fins estat\'isticos. Os
-%   aux\'ilios recebidos devem tamb\'em ser citados na se\c{c}\~ao 
-%   ``Agradecimento'' seguindo os padr\~oes exigidos pelas ag\^encias de 
-%   fomento.''\\e\\``caso a   tese de doutorado seja feita em Cotutela, 
-%   ser\'a necess\'ario informar na ficha catalogr\'afica o fato, a Universidade 
-%   convenente, o pa\'{\i}s e o  nome do orientador.''
-%   \else
-%   \includepdf[pagecommand={}]{\@fichacatalografica}
-%   \fi
-% }
+\def\cathpage{
+  \ifx\@fichacatalografica\relax
+  Na vers\~ao final esta p\'agina ser\'a substitu\'{\i}da pela
+  ficha catalogr{\'a}fica. \\\\
+  De acordo com o padr\~ao da CCPG: ``Quando se tratar de Teses e
+  Disserta\c{c}\~oes financiadas por ag\^encias de fomento, os beneficiados
+  dever\~ao inserir no formul\'ario de solicita\c{c}\~ao da ficha 
+  catalogr\'afica as informa\c{c}\~oes sobre ag\^encia e  n\'umero do processo 
+  pelo qual receberam o aux\'{\i}lio, por\'em essa informa\c{c}\~ao n\~ao
+  ficar\'a vis\'ivel na ficha, ser\'a utilizada para fins estat\'isticos. Os
+  aux\'ilios recebidos devem tamb\'em ser citados na se\c{c}\~ao 
+  ``Agradecimento'' seguindo os padr\~oes exigidos pelas ag\^encias de 
+  fomento.''\\e\\``caso a   tese de doutorado seja feita em Cotutela, 
+  ser\'a necess\'ario informar na ficha catalogr\'afica o fato, a Universidade 
+  convenente, o pa\'{\i}s e o  nome do orientador.''
+  \else
+  \includepdf[pagecommand={}]{\@fichacatalografica}
+  \fi
+}
 
 % DEFESA
-% \def\approvalpage{
-%   \iffinalversion
-%     \logos
-%     \vskip 20mm
-%     \begin{center}
-%       \large
-%       {\bf \if\@autora\relax\@autor\else\@autora\fi}
-%       \vskip 15mm
-%       \ifcase\@thesislanguage
-%         {\bf\@title}
-%         \vskip 8mm
-%       \or
-%         {\bf\@title}
-%         \vskip 8mm
-%       \fi
-%       {\bf \@titulo}
-%     \end{center}
-%     \vfill
-%     {\bf Banca Examinadora:}
-%     \ifx\@avalA\relax
-%     \else
-%       \begin{itemize}
-%       \item \@avalA\newline\@instavalA
-%       \ifx\@avalB\relax\else \item \@avalB\newline\@instavalB\fi
-%       \ifx\@avalC\relax\else \item \@avalC\newline\@instavalC\fi
-%       \ifx\@avalD\relax\else \item \@avalD\newline\@instavalD\fi
-%       \ifx\@avalE\relax\else \item \@avalE\newline\@instavalE\fi
-%       \ifx\@avalF\relax\else \item \@avalF\newline\@instavalF\fi
-%       \end{itemize}
-%     \fi
-%     \vfill
-%     \hfill\begin{minipage}[t]{\textwidth}
-%       \begin{center}
-%       \supresshyphen
-%       A ata da defesa, assinada pelos membros da Comiss\~ao Examinadora, consta no
-%       SIGA/Sistema de Fluxo de Disserta\c{c}\~ao/Tese e na Secretaria do Programa da Unidade.
-%       \end{center}
-%     \end{minipage}
-%     \vfill
-%     \hfill\begin{minipage}[t]{\textwidth}
-%       \begin{center}
-%       Campinas, \@dia\xspace de
-%       \ifcase \@mes \or janeiro\or fevereiro\or mar\c{c}o\or abril\or maio\or
-%       junho\or julho\or agosto\or setembro\or outubro\or novembro\or
-%       dezembro\fi\xspace
-%       de \@ano
-%       \end{center}
-%     \end{minipage}
-%     \vfill
-%   \else
-%     Na vers\~ao final, esta p\'agina ser\'a substitu\'{\i}da por outra
-%     informando a composi\c{c}\~ao da banca e que a ata de defesa est\'a arquivada
-%     pela Unicamp.
-%   \fi
-% }
+\def\approvalpage{
+  \iffinalversion
+    \logos
+    \vskip 20mm
+    \begin{center}
+      \large
+      {\bf \if\@autora\relax\@autor\else\@autora\fi}
+      \vskip 15mm
+      \ifcase\@thesislanguage
+        {\bf\@title}
+        \vskip 8mm
+      \or
+        {\bf\@title}
+        \vskip 8mm
+      \fi
+      {\bf \@titulo}
+    \end{center}
+    \vfill
+    {\bf Banca Examinadora:}
+    \ifx\@avalA\relax
+    \else
+      \begin{itemize}
+      \item \@avalA\newline\@instavalA
+      \ifx\@avalB\relax\else \item \@avalB\newline\@instavalB\fi
+      \ifx\@avalC\relax\else \item \@avalC\newline\@instavalC\fi
+      \ifx\@avalD\relax\else \item \@avalD\newline\@instavalD\fi
+      \ifx\@avalE\relax\else \item \@avalE\newline\@instavalE\fi
+      \ifx\@avalF\relax\else \item \@avalF\newline\@instavalF\fi
+      \end{itemize}
+    \fi
+    \vfill
+    \hfill\begin{minipage}[t]{\textwidth}
+      \begin{center}
+      \supresshyphen
+      A ata da defesa, assinada pelos membros da Comiss\~ao Examinadora, consta no
+      SIGA/Sistema de Fluxo de Disserta\c{c}\~ao/Tese e na Secretaria do Programa da Unidade.
+      \end{center}
+    \end{minipage}
+    \vfill
+    \hfill\begin{minipage}[t]{\textwidth}
+      \begin{center}
+      Campinas, \@dia\xspace de
+      \ifcase \@mes \or janeiro\or fevereiro\or mar\c{c}o\or abril\or maio\or
+      junho\or julho\or agosto\or setembro\or outubro\or novembro\or
+      dezembro\fi\xspace
+      de \@ano
+      \end{center}
+    \end{minipage}
+    \vfill
+  \else
+    Na vers\~ao final, esta p\'agina ser\'a substitu\'{\i}da por outra
+    informando a composi\c{c}\~ao da banca e que a ata de defesa est\'a arquivada
+    pela Unicamp.
+  \fi
+}
 
 
 \def\prefacesection#1{

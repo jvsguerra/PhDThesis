@@ -1,23 +1,24 @@
-# QualificacaoDoutorado
-Qualificação de Doutorado do Programa de Pós-graudação da Faculdade de Ciências Farmacêuticas
+# PhD Thesis
 
-## Dependências
+PhD Thesis for the [Postgraduate Program in Pharmaceutical Sciences](https://www.fcf.unicamp.br/en/postgraduate/) at the [Faculty of Pharmaceutical Sciences](https://www.fcf.unicamp.br/en/home-english/) at [University of Campinas (UNICAMP)](https://www.unicamp.br/unicamp/).
 
-Para instalar as dependências, execute:
+## Dependencies
+
+To install the dependencies, run:
 
 ```bash
 sudo apt-get install texlive-base texlive-latex-recommended texlive-latex-extra texlive-science texlive-font-utils texlive-lang-spanish texlive-publishers texlive-pictures abntex
 ```
 
-## Contruindo o PDF
+## Building the PDF
 
-Para construir o PDF da qualificação, execute:
+To generate the PDF for the PhD thesis, run:
 
 ```bash
 make build
 ```
 
-Para limpar os arquivos intermediários, execute:
+To remove intermediate files and clean up the directory, run:
 
 ```bash
 make cleanup
