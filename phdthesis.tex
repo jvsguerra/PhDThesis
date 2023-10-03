@@ -51,12 +51,19 @@
 % Para usar letras no enumerate:
 \usepackage{enumitem}
 
-% Formatar \listoffigures
+% Formatar \listoffigures, \listoftables and \tableofcontents
 \usepackage{tocloft}
-\renewcommand{\cftfigpresnum}{\bfseries Figura }
+
+% \tableofcontents: Replace "english" with the language you use
+\addto\captionsenglish{\renewcommand{\contentsname}{Table of Contents}}
+\renewcommand{\cfttoctitlefont}{\Large\bfseries}
+
+% \listoffigures
+\renewcommand{\cftloftitlefont}{\Large\bfseries}
+\renewcommand{\cftfigpresnum}{\bfseries Figure }
 \renewcommand{\cftfignumwidth}{6em}
 \renewcommand{\cftfigindent}{0em}
-\renewcommand{\cfttabpresnum}{\bfseries Tabela }
+\renewcommand{\cfttabpresnum}{\bfseries Table }
 \renewcommand{\cfttabnumwidth}{6em}
 \renewcommand{\cfttabindent}{0em}
 
@@ -181,60 +188,63 @@ Lastly, I appreciate the Postgraduate Program in Pharmaceutical Sciences (PPGCF)
 %\end{resumen}
 
 % A lista de figuras é opcional:
+\addcontentsline{toc}{chapter}{\listfigurename}
 \listoffigures
 \clearpage
 
 % A lista de tabelas é opcional:
+\addcontentsline{toc}{chapter}{\listtablename}
 % \listoftables
 % \clearpage
 
 % A lista de abreviações e siglas é opcional:
-\prefacesection{Lista de Abreviações e Siglas}
+\prefacesection{List of Abbreviations}
 
 \begin{acronym}
-  \acro{3D}{Tridimensional}
-  \acro{ADRP}{\textit{ADP-ribose phosphatase}}
-  \acro{API}{\textit{Application Programming Interface}}
-  \acro{CHIKV}{\textit{Chikungunya virus}}
-  \acro{CLI}{\textit{command-line interface}}
-  \acro{CNPEM}{Centro Nacional de Pesquisa em Energia e Materiais}
-  \acro{DFS}{\textit{Depth-First Search}}
-  \acro{DM}{Dinâmica molecular}
-  \acro{EEEV}{\textit{Eastern Equine Encephalitis virus}}
-  \acro{FAPESP}{Fundação de Amparo à Pesquisa do Estado de São Paulo}
-  \acro{FCF}{Faculdade de Ciências Farmacêuticas}
-  \acro{GHECOM}{\textit{Grid-based HECOMi finder}}
-  \acro{GUI}{\textit{Graphical User Interface}}
-  \acro{HIV-1}{\textit{Human Immunodeficiency Virus type 1}}
-  \acro{HTTP}{\textit{HyperText Transfer Protocol}}
-  \acro{IA}{Inteligência Artificial}
-  \acro{IPD}{Interações Proteína-DNA}
-  \acro{IPL}{Interações Proteína-Ligante}
-  \acro{IPR}{Interações Proteína-RNA}
-  \acro{IPP}{Interações Proteína-Proteína}
-  \acro{IV CEC}{IV Congresso de Estudantes do CNPEM}
-  \acro{KVFinderMD}{\textit{KVFinder for Molecular Dynamics analysis}}
-  \acro{LBC}{Laboratório de Biologia Computacional}
-  \acro{LES}{Superfície Excluída pelo Ligante (\textit{Ligand Excluded Surface})}
-  \acro{LNBio}{Laboratório Nacional de Biociências}
-  \acro{MAYV}{\textit{Mayaro virus}}
-  \acro{ndarray}{\textit{N-dimensional array}}
-  \acro{Nsps}{\textit{Non-structural proteins}}
-  \acro{parKVFinder}{\textit{Parallel KVFinder}}
-  \acro{PDB}{\textit{Protein Data Bank}}
-  \acro{Pi}{\textit{Probe In}}
-  \acro{Po}{\textit{Probe Out}}
-  \acro{PPGCF}{Programa de Pós-Graduação em Ciências Farmacêuticas}
-  \acro{pyKVFinder}{\textit{Python-C Parallel KVFinder}}
-  \acro{RMSD}{\textit{Root-Mean-Square Deviation}}
-  \acro{SARS-CoV-2}{\textit{Severe acute respiratory syndrome Coronavirus 2}}
-  \acro{SAS}{Superfície Acessível ao Solvente (\textit{Solvent Accessible Surface})}
-  \acro{SES}{Superfície Excluída pelo Solvente (\textit{Solvent Excluded Surface})}
-  \acro{SINV}{\textit{Sindbis virus}}
-  \acro{UNICAMP}{Universidade Estadual de Campinas}
-  \acro{vdW}{van der Waals}
-  \acro{VEEV}{\textit{Venezuelan Equine Encephalitis virus}}
-  \acro{wwPDB}{Worldwide Protein Data Bank}
+  \acro{AI}{Artificial intelligence}
+  \acro{ML}{Machine learning}
+  \acro{PPI}{Protein-protein interaction}
+  \acro{PLI}{Protein-ligand interaction}
+  \acro{PRI}{Protein-RNA interaction}
+  \acro{PDI}{Protein-DNA interaction}
+  % \acro{3D}{Tridimensional}
+  % \acro{ADRP}{\textit{ADP-ribose phosphatase}}
+  % \acro{API}{\textit{Application Programming Interface}}
+  % \acro{CHIKV}{\textit{Chikungunya virus}}
+  % \acro{CLI}{\textit{command-line interface}}
+  % \acro{CNPEM}{Centro Nacional de Pesquisa em Energia e Materiais}
+  % \acro{DFS}{\textit{Depth-First Search}}
+  % \acro{DM}{Dinâmica molecular}
+  % \acro{EEEV}{\textit{Eastern Equine Encephalitis virus}}
+  % \acro{FAPESP}{Fundação de Amparo à Pesquisa do Estado de São Paulo}
+  % \acro{FCF}{Faculdade de Ciências Farmacêuticas}
+  % \acro{GHECOM}{\textit{Grid-based HECOMi finder}}
+  % \acro{GUI}{\textit{Graphical User Interface}}
+  % \acro{HIV-1}{\textit{Human Immunodeficiency Virus type 1}}
+  % \acro{HTTP}{\textit{HyperText Transfer Protocol}}
+  % \acro{IV CEC}{IV Congresso de Estudantes do CNPEM}
+  % \acro{KVFinderMD}{\textit{KVFinder for Molecular Dynamics analysis}}
+  % \acro{LBC}{Laboratório de Biologia Computacional}
+  % \acro{LES}{Superfície Excluída pelo Ligante (\textit{Ligand Excluded Surface})}
+  % \acro{LNBio}{Laboratório Nacional de Biociências}
+  % \acro{MAYV}{\textit{Mayaro virus}}
+  % \acro{ndarray}{\textit{N-dimensional array}}
+  % \acro{Nsps}{\textit{Non-structural proteins}}
+  % \acro{parKVFinder}{\textit{Parallel KVFinder}}
+  % \acro{PDB}{\textit{Protein Data Bank}}
+  % \acro{Pi}{\textit{Probe In}}
+  % \acro{Po}{\textit{Probe Out}}
+  % \acro{PPGCF}{Programa de Pós-Graduação em Ciências Farmacêuticas}
+  % \acro{pyKVFinder}{\textit{Python-C Parallel KVFinder}}
+  % \acro{RMSD}{\textit{Root-Mean-Square Deviation}}
+  % \acro{SARS-CoV-2}{\textit{Severe acute respiratory syndrome Coronavirus 2}}
+  % \acro{SAS}{Superfície Acessível ao Solvente (\textit{Solvent Accessible Surface})}
+  % \acro{SES}{Superfície Excluída pelo Solvente (\textit{Solvent Excluded Surface})}
+  % \acro{SINV}{\textit{Sindbis virus}}
+  % \acro{UNICAMP}{Universidade Estadual de Campinas}
+  % \acro{vdW}{van der Waals}
+  % \acro{VEEV}{\textit{Venezuelan Equine Encephalitis virus}}
+  % \acro{wwPDB}{Worldwide Protein Data Bank}
 \end{acronym}
 
 \clearpage
@@ -258,15 +268,35 @@ Lastly, I appreciate the Postgraduate Program in Pharmaceutical Sciences (PPGCF)
 
 \chapter{Introduction}
 
-Biomoléculas, como proteínas e ácidos nucleios, são moléculas complexas que desempenham funções biológicas essenciais para a vida. Processos biológicos, como a transdução de sinal, a integridade estrutural, a adesão celular e a apoptose, são modulados por interações biomoleculares \cite{sotriffer2002,henrich2010}. Essas interações são extremamente importantes para a compreensão de processo biológicos e para o desenvolvimento e/ou aprimoramento de terapias farmacológicas \cite{henrich2010}. No entanto, os estudos dos mecanismos intrínsicos dessas interações ou possíveis pontos de interação são desafiadores, devido à complexidade das biomoléculas e à diversidade das interações que ocorrem entre elas.
+Biomolecules, such as proteins, nucleic acids, carbohydrates, and lipids, play crucial roles in various biological processes within organisms. Fundamental biological processes, including signal transduction, structural integrity, cell adhesion, and apoptosis, are intricately regulated by biomolecular interactions \cite{sotriffer2002,henrich2010}. These interactions are vital for unraveling biological processes and advancing pharmacological therapies \cite{henrich2010}. However, investigating the intrinsic mechanisms of these interactions and potential binding sites proves challenging due to the intricate nature of biomolecules and the myriad interactions among them.
 
-Usualmente, essas interações ocorrem entre os receptores e ligantes, que variam de íons, como ferro e fosfato, a macromoléculas, como proteínas, RNA e DNA \cite{oliveira2014}. Para execução dessas interações, estruturas moleculares se dobram orquestradamente para criar sítios de ligação específicos, comumente localizados em cavidades ao longo da superfície molecular, expondo padrões topológicos e físico-químicos para acomodar ligantes específicos \cite{henrich2010,guerra2021}. As interações receptor-ligante, como interações proteína-proteína (IPP), proteína-ligante (IPL), proteína-RNA (IPR) e proteína-DNA (IPD), são consequência da complementariedade entre as superfícies moleculares do par de interação, restringindo assim a um pequeno número de ligantes a interação eficiente com um dado receptor \cite{henrich2010,simoes2017}.
+These interactions involve receptors and ligands, spanning ions, such as iron and phosphate to macromolecules such as proteins, RNA, and DNA \cite{oliveira2014}. Molecular structures intricately fold, creating specific binding sites often nestled in cavities along the molecular surface, exposing geometrical, topological and physicochemical patterns to accommodate specific ligands \cite{henrich2010,guerra2021}. Receptor-ligand interactions, including protein-protein interaction (PPI), protein-ligand interaction (PLI), protein-RNA interaction (PRI), and protein-DNA interaction (PDI), arise from complementarity between the molecular surfaces of the interacting pair, limiting efficient interaction to a select few ligands with a given receptor \cite{henrich2010,simoes2017}.
 
-Dada a importância das interações biomoleculares, o estudo das biomoléculas e seus sítios de ligação é essencial para compreensão de processos biológicos e para o aprimoramento e desenvolvimento de novos fármacos. A utilização de abordagens computacionais para identificar sítios de ligação e caracterizar interações biomoleculares tem se mostrado uma alternativa eficaz para complementar os métodos experimentais e fornecer informações detalhadas sobre as interações moleculares \cite{simoes2017}. A identificação de sítios de ligação é um problema de classificação, onde o objetivo é determinar se um dado ponto na superfície de uma biomolécula é um sítio de ligação ou não \cite{sotriffer2002,henrich2010,simoes2017}. Enquanto isso, avanços em recursos computacionais e base de dados têm impulsionado o uso de métodos \textit{in silico} para simular a dinâmica de biomoléculas e implementar aplicações de IA para estudar estruturas biomoleculares \cite{tunyasuvunakool2021}. Juntos, todos esses dados estruturais fornecem terreno fértil para interpretação de dados por meio de ciência de dados ou protocolos automatizados, mas a análise intensiva de dados requer rotinas eficientes e integráveis com uma estrutura de dados facilmente manipulável.
+Given the paramount importance of biomolecular interactions, a comprehensive study of biomolecules and their binding sites is imperative for understanding biological processes and advancing pharmaceutical development. Computational methods for identifying binding sites and characterizing biomolecular interactions offer an effective alternative to experimental methods, providing detailed information \cite{simoes2017}. Identifying binding sites poses a classification problem, aiming to determine whether a specific point on a biomolecule's surface functions as a binding site or not \cite{sotriffer2002,henrich2010,simoes2017}. Advancements in computational resources and databases have led to the adoption of \textit{in silico} methods for simulating biomolecular dynamics and implementing artificial intelligence (AI) applications to study biomolecular structures \cite{tunyasuvunakool2021}. These structural data collectively provide fertile ground for data interpretation through data science or automated protocols, yet intensive data analysis requires efficient routines integrated with a user-friendly data structure.
 
-Nesse cenário, ainda há a necessidade de ferramentas computacionais robustas e abrangentes para estudos computacionais de sistemas biomoleculares, capazes de cobrir as diferentes formas de interação. Ferramentas que sirvam como blocos de construção, para aplicações, programas e/ou protocolos automatizados de biologia computacional, biologia estrutural, aprendizado de máquina e áreas correlatas, são essenciais para análise de biomoléculas e/ou sítios de ligação. O desenvolvimento de ferramentas que possam ser utilizadas em diferentes tipos de aplicações e potencialidades é de suma importância nesse contexto.
+In this context, the development of robust and comprehensive computational tools is crucial for the systematic study of biomolecular systems, accommodating various forms of user interaction. Foundational components for applications, programs, and/or automated protocols in computational biology, structural biology, machine learning (ML), and related fields are indispensable for the analysis of biomolecules and/or binding sites. This research addresses this need by introducing the KVFinder suite, a comprehensive computational platform.
 
-Nesse sentido, o KVFinder suite é uma plataforma computacional que tem como objetivo atender a essas demandas. O KVFinder suite é composto por um conjunto de ferramentas para codificação e caracterização de biomoléculas e detecção e caracterização de sítios de ligação nessas biomoléculas. O KVFinder suite é composto por cinco ferramentas: parKVFinder \cite{guerra2020}, pyKVFinder \cite{guerra2021}, KVFinder-web \cite{guerra2023A}, SERD e KVFinderMD. Essa plataforma tem o potencial de ser uma ferramenta robusta e abrangente para estudos computacionais de sistemas biomoleculares, e pode ser utilizada em diferentes aplicações e contextos, desde a biologia estrutural até a ciência de dados.
+The KVFinder suite comprises five tools, each serving a specific purpose:
+
+\begin{itemize}
+  \item \textbf{parKVFinder:} developed for the detection and characterization of any type of biomolecular cavity, integrated with a graphical plugin for PyMOL \cite{guerra2019,guerra2020};
+  \item \textbf{pyKVFinder:} a Python package for detecting and characterizing cavities in biomolecular structures in automated protocols and data science applications \cite{guerra2021};
+  \item \textbf{KVFinder-web:} a web application with a simplified protocol for detecting and characterizing cavities in any type of biomolecular structure \cite{guerra2023A};
+  \item \textbf{SERD:} a Python package for determining solvent accessibility of residues and representing biomolecular structures as graphs; and
+  \item \textbf{KVFinderMD:} a Python package for exploring the dynamics of binding sites in biomolecular structures.
+\end{itemize}
+
+The KVFinder suite is positioned to serve as a robust and comprehensive toolkit for the systematic study of biomolecular systems, offering applicability across diverse domains ranging from structural biology to data science. Functioning as a versatile platform, it not only encodes structural information and relevant features of binding sites but also facilitates the analysis and characterization of this information. Furthermore, the basic units of the KVFinder suite are designed to be adaptable for applications in data science and AI.
+
+\chapter{Objective}
+
+This work aims to develop a computational platform known as \textbf{KVFinder suite}, with a focus on studying biomolecular systems within the domain of structural biology.
+
+The specific objectives encompass the following: (1) Enhancement and development of descriptors for the KVFinder suite; (2) Implementation of different encodings for biomolecules and binding sites; (3) Development of a tool for data science and automated protocols; (4) Development of a tool for assessing solvent accessibility; and (5) Development of a tool specifically for the analysis of molecular dynamics.
+
+% (6) Expansion of the user base of the KVFinder suite; ?
+
+\chapter{Literature Review}
 
 \section{Identificação de sítios de ligação em biomoléculas \label{sec:binding-sites}}
 

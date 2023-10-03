@@ -380,7 +380,7 @@
 
 \def\prefacesection#1{
   \chapter*{#1}
-  %\addcontentsline{toc}{chapter}{#1}
+  \addcontentsline{toc}{chapter}{#1}
   \pagestyle{empty}
   \thispagestyle{empty}
 }
