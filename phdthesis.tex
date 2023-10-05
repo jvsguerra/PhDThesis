@@ -264,7 +264,7 @@ Lastly, I appreciate the Postgraduate Program in Pharmaceutical Sciences (PPGCF)
 
 % O corpo da dissertação ou tese começa aqui:
 
-%%% Chapter 1
+%%% Chapter 1: Introduction
 
 \chapter{Introduction}
 
@@ -298,7 +298,23 @@ The specific objectives encompass the following: (1) Enhancement and development
 
 \chapter{Literature Review}
 
-\section{Identificação de sítios de ligação em biomoléculas \label{sec:binding-sites}}
+In the forthcoming sections, we will delve into computational approaches for identifying binding sites, a spectrum of binding site properties and the current state of the art. Computational methods leverage the wealth of structural information from both bound and unbounded states to identify potential binding sites. Within the receptor-ligand complex, the binding phenomenon is intricately governed by the geometrical, topological, and physicochemical patterns exhibited by native or transient binding sites, creating a high complementarity between the receptor and the ligand \cite{holyoak2013,sotriffer2002,henrich2010,guerra2019}. Together, they help elucidate deficiencies in understanding molecular recognition within biological systems.
+
+\section{Binding Site Identification \label{sec:cavity-detection}}
+
+%% Figure of cavity classification here
+
+In biomolecules, particularly proteins and nucleic acids, solvent-exposed clefts or buried cavities are crucial for ligand binding, ultimately regulating biological function \cite{liang1998}. These binding sites are commonly situated in a wide variety of cavities, \ie, clefts, grooves, tunnels, channels, voids and invaginations \cite{sotriffer2002,henrich2010,simoes2017}. The identification and characterization of these binding sites are fundamental for comprehending the intricate biomolecular interactions and their diverse functions. Geometrical, topological and physicochemical properties at the contact interface, \eg, shape, volume, area, charge, hydrophobicity, solvation, and type of interactions, dictate the functions and interactions of biomolecule \cite{hubbard1994,bohacek1997,sotriffer2002,henrich2010,guerra2019}. Identifying and sizing these cavities are initial steps in designing ligands based on protein structures \cite{liang1998}. Moreover, the structural and physicochemical characteristics of proteins are valuable in drug discovery and optimization \cite{guerra2019}.
+
+At present, we are going through the era of data science and the computational and structural biology fields have hugely benefited from the growing availability of biostructural data, as pointed out by \cite{mura2018}: “Structural biology meets data science”. Advances in X-ray crystallography and electron microscopy techniques have expanded the determination of novel structures \cite{burley2018}. Biomolecules actively participates in various biological processes, such as protein folding, enzyme catalysis, DNA replication, DNA repair, cell signaling, virus-host interactions, and drug resistance. Dysregulation of these interactions is associated with numerous pathologies, including cancer, metabolic disorders, and pathogenic diseases \cite{scott2013}. For this reason, the identification and characterization of ligand-binding sites are the basis of rational structure-based drug discovery and design \cite{sotriffer2002,henrich2010}. Therefore, the imperative to identify targetable regions within the interaction area for new drugs becomes more apparent each day.
+
+\section{Binding Site Characterization \label{sec:biomolecular-characterization}}
+
+\section{State of the Art \label{sec:state-of-the-art}}
+
+\subsection{Geometric Approaches \label{sec:geometric-approaches}}
+
+\subsection{Principal Available Computational Tools \label{sec:computational-tools}}
 
 Ao longo das últimas décadas, diversas abordagens \textit{in silico} foram desenvolvidas para identificação de sítios de ligação em proteínas para aprofundar os conhecimentos acerca da função de uma determinada proteína e para descoberta e melhoramento de fármacos \cite{liang1998}. No entanto, apenas algumas metodologias são aplicáveis a outros tipos de biomoléculas, \eg, ácidos núcleicos, carboidratos e lípideos. As abordagens computacionais publicadas podem ser divididas em três categorias principais: geométricas, energéticas e evolutivas \cite{oliveira2014,simoes2017}.
 
