@@ -1,6 +1,6 @@
 # PhD Thesis
 
-PhD Thesis for the [Postgraduate Program in Pharmaceutical Sciences](https://www.fcf.unicamp.br/en/postgraduate/) at the [Faculty of Pharmaceutical Sciences](https://www.fcf.unicamp.br/en/home-english/) at [University of Campinas (UNICAMP)](https://www.unicamp.br/unicamp/).
+PhD Thesis entitled "Development of a computational platform for structural and functional characterization of biomolecules and binding sites" for the [Postgraduate Program in Pharmaceutical Sciences](https://www.fcf.unicamp.br/en/postgraduate/) at the [Faculty of Pharmaceutical Sciences](https://www.fcf.unicamp.br/en/home-english/) at [University of Campinas (UNICAMP)](https://www.unicamp.br/unicamp/).
 
 ## Dependencies
 
