@@ -201,6 +201,7 @@ Finally, I express my thanks to the Postgraduate Program in Pharmaceutical Scien
 \prefacesection{List of Abbreviations}
 
 \begin{acronym}
+  \acro{3D}{Tridimensional}
   \acro{AI}{Artificial intelligence}
   \acro{CNPEM}{\textit{Centro Nacional de Pesquisa em Energia e Materiais}}
   \acro{FAPESP}{\textit{Fundação de Amparo à Pesquisa do Estado de São Paulo}}
@@ -211,14 +212,17 @@ Finally, I express my thanks to the Postgraduate Program in Pharmaceutical Scien
   \acro{mmCIF}{macromolecular Crystallographic Information File}
   \acro{PDB}{Protein Data Bank}
   \acro{PDI}{Protein-DNA interaction}
+  \acro{Pi}{\textit{Probe In}}
+  \acro{Po}{\textit{Probe Out}}
   \acro{PLI}{Protein-ligand interaction}
   \acro{PPGCF}{\textit{Programa de Pós-Graduação em Ciências Farmacêuticas}}
   \acro{PPI}{Protein-protein interaction}
   \acro{PRI}{Protein-RNA interaction}
+  \acro{SAS}{Solvent Accessible Surface}
+  \acro{SES}{Solvent Excluded Surface}
   \acro{UNICAMP}{\textit{Universidade Estadual de Campinas}}
   \acro{vdW}{van der Waals}
   \acro{wwPDB}{Worldwide Protein Data Bank}
-  % \acro{3D}{Tridimensional}
   % \acro{ADRP}{\textit{ADP-ribose phosphatase}}
   % \acro{API}{\textit{Application Programming Interface}}
   % \acro{CHIKV}{\textit{Chikungunya virus}}
@@ -237,13 +241,9 @@ Finally, I express my thanks to the Postgraduate Program in Pharmaceutical Scien
   % \acro{ndarray}{\textit{N-dimensional array}}
   % \acro{Nsps}{\textit{Non-structural proteins}}
   % \acro{parKVFinder}{\textit{Parallel KVFinder}}
-  % \acro{Pi}{\textit{Probe In}}
-  % \acro{Po}{\textit{Probe Out}}
   % \acro{pyKVFinder}{\textit{Python-C Parallel KVFinder}}
   % \acro{RMSD}{\textit{Root-Mean-Square Deviation}}
   % \acro{SARS-CoV-2}{\textit{Severe acute respiratory syndrome Coronavirus 2}}
-  % \acro{SAS}{Superfície Acessível ao Solvente (\textit{Solvent Accessible Surface})}
-  % \acro{SES}{Superfície Excluída pelo Solvente (\textit{Solvent Excluded Surface})}
   % \acro{SINV}{\textit{Sindbis virus}}
   % \acro{VEEV}{\textit{Venezuelan Equine Encephalitis virus}}
 \end{acronym}
@@ -271,7 +271,7 @@ Finally, I express my thanks to the Postgraduate Program in Pharmaceutical Scien
 
 Biomolecules, such as proteins, nucleic acids, carbohydrates, and lipids, play crucial roles in various biological processes within organisms. Fundamental biological processes, including signal transduction, structural integrity, cell adhesion, and apoptosis, are intricately regulated by biomolecular interactions \cite{sotriffer2002,henrich2010}. These interactions are vital for unraveling biological processes and advancing pharmacological therapies \cite{henrich2010}. However, investigating the intrinsic mechanisms of these interactions and potential binding sites proves challenging due to the intricate nature of biomolecules and the myriad interactions among them.
 
-These interactions involve receptors and ligands, spanning ions, such as iron and phosphate to macromolecules such as proteins, RNA, and DNA \cite{oliveira2014}. Molecular structures intricately fold, creating specific binding sites often nestled in cavities along the molecular surface, exposing geometrical, topological and physicochemical patterns to accommodate specific ligands \cite{henrich2010,guerra2021}. Receptor-ligand interactions, including protein-protein interaction (PPI), protein-ligand interaction (PLI), protein-RNA interaction (PRI), and protein-DNA interaction (PDI), arise from complementarity between the molecular surfaces of the interacting pair, limiting efficient interaction to a select few ligands with a given receptor \cite{henrich2010,simoes2017}.
+These interactions involve receptors and ligands, spanning ions, such as iron and phosphate to macromolecules such as proteins, RNA, and DNA \cite{oliveira2014}. Molecular structures intricately fold, creating specific binding sites often nestled in cavities along the molecular surface, exposing morphological, topological and physicochemical patterns to accommodate specific ligands \cite{henrich2010,guerra2021}. Receptor-ligand interactions, including protein-protein interaction (PPI), protein-ligand interaction (PLI), protein-RNA interaction (PRI), and protein-DNA interaction (PDI), arise from complementarity between the molecular surfaces of the interacting pair, limiting efficient interaction to a select few ligands with a given receptor \cite{henrich2010,simoes2017}.
 
 Given the paramount importance of biomolecular interactions, a comprehensive study of biomolecules and their binding sites is imperative for understanding biological processes and advancing pharmaceutical development. Computational methods for identifying binding sites and characterizing biomolecular interactions offer an effective alternative to experimental methods, providing detailed information \cite{simoes2017}. Identifying binding sites poses a classification problem, aiming to determine whether a specific point on a biomolecule's surface functions as a binding site or not \cite{sotriffer2002,henrich2010,simoes2017}. Advancements in computational resources and databases have led to the adoption of \textit{in silico} methods for simulating biomolecular dynamics and implementing artificial intelligence (AI) applications to study biomolecular structures \cite{tunyasuvunakool2021}. These structural data collectively provide fertile ground for data interpretation through data science or automated protocols, yet intensive data analysis requires efficient routines integrated with a user-friendly data structure.
 
@@ -303,11 +303,11 @@ The specific objectives encompass the following: (1) Enhancement and development
 
 \chapter{Literature Review}
 
-In the forthcoming sections, we will delve into computational approaches for identifying binding sites, a spectrum of binding site properties and the current state of the art. Computational methods leverage the wealth of structural information from both bound and unbounded states to identify potential binding sites. Within the receptor-ligand complex, the binding phenomenon is intricately governed by the geometrical, topological, and physicochemical patterns exhibited by native or transient binding sites, creating a high complementarity between the receptor and the ligand \cite{holyoak2013,sotriffer2002,henrich2010,guerra2019}. Together, they help elucidate deficiencies in understanding molecular recognition within biological systems.
+In the forthcoming sections, we will delve into computational approaches for identifying binding sites, a spectrum of binding site properties and the current state of the art. Computational methods leverage the wealth of structural information from both bound and unbounded states to identify potential binding sites. Within the receptor-ligand complex, the binding phenomenon is intricately governed by the morphological, topological, and physicochemical patterns exhibited by native or transient binding sites, creating a high complementarity between the receptor and the ligand \cite{holyoak2013,sotriffer2002,henrich2010,guerra2019}. Together, they help elucidate deficiencies in understanding molecular recognition within biological systems.
 
 \section{Binding Site Identification \label{sec:cavity-detection}}
 
-In biomolecules, particularly proteins and nucleic acids, solvent-exposed clefts or buried cavities are crucial for ligand binding, ultimately regulating biological function \cite{liang1998,sotriffer2002,henrich2010}. These binding sites are commonly situated in a diverse array of cavities (Figure \ref{fig:cavity-classification}), \ie, clefts, grooves, tunnels, channels, voids and invaginations \cite{simoes2017,guerra2019}. The identification and characterization of these binding sites are fundamental for comprehending the intricate biomolecular interactions and their diverse functions. Geometrical, topological and physicochemical properties at the contact interface, \eg, shape, volume, area, charge, hydrophobicity, solvation, and type of interactions, dictate the functions and interactions of biomolecules \cite{hubbard1994,bohacek1997,sotriffer2002,henrich2010,guerra2019}. Identifying and sizing these cavities are initial steps in designing ligands based on protein structures \cite{liang1998}. Moreover, the structural and physicochemical characteristics of proteins are valuable in drug discovery and optimization \cite{guerra2019}.
+In biomolecules, particularly proteins and nucleic acids, solvent-exposed clefts or buried cavities are crucial for ligand binding, ultimately regulating biological function \cite{liang1998,sotriffer2002,henrich2010}. These binding sites are commonly situated in a diverse array of cavities (Figure \ref{fig:cavity-classification}), \ie, clefts, grooves, tunnels, channels, voids and invaginations \cite{simoes2017,guerra2019}. The identification and characterization of these binding sites are fundamental for comprehending the intricate biomolecular interactions and their diverse functions. Morphological, topological and physicochemical properties at the contact interface, \eg, shape, volume, area, charge, hydrophobicity, solvation, and type of interactions, dictate the functions and interactions of biomolecules \cite{hubbard1994,bohacek1997,sotriffer2002,henrich2010,guerra2019}. Identifying and sizing these cavities are initial steps in designing ligands based on protein structures \cite{liang1998}. Moreover, the structural and physicochemical characteristics of proteins are valuable in drug discovery and optimization \cite{guerra2019}.
 
 \begin{figure}[H]
   \centerline{\includegraphics[scale=1]{images/cavity-classification.png}}
@@ -327,70 +327,70 @@ Over the past decades, various \textit{in silico} have been developed for identi
   \item \textbf{Geometric methods:} identify cavities by analyzing the geometric characteristics of the molecular surface.
 \end{itemize}
 
-Each category of methods has its own advantages and disadvantages \cite{sotriffer2002,henrich2010,simoes2017,krone2016}. Evolutionary algorithms heavily depend on sequence information or databases of active binding sites and the quality of the alignment procedure, while energetic methods rely on filtering procedures, force field parameterizations, and applied scoring functions. On the other hand, geometric detection methods are relatively simple and straightforward, requiring no non-geometric knowledge, only structural data of the protein, \ie, the file in Protein Data Bank (PDB), XYZ, macromolecular Crystallographic Information File (mmCIF), or equivalent format, containing the Cartesian coordinates of atoms, easily accessible through the Worldwide Protein Data Bank (wwPDB). Once atom coordinates are available, geometric methods should be able to represent any type of biomolecule \cite{henrich2010,oliveira2014,simoes2017}. Although purely geometric methods are efficient in identifying all types of cavities in a target molecule, identifying those that are functionally relevant poses a challenge. However, characterizing cavities in terms of well-chosen geometrical, topological and physicochemical properties can lead to the identification of functionally relevant cavities, \ie, binding sites for a specific set of ligands \cite{sotriffer2002,henrich2010,liang1998,guerra2019}. 
+Each category of methods has its own advantages and disadvantages \cite{sotriffer2002,henrich2010,simoes2017,krone2016}. Evolutionary algorithms heavily depend on sequence information or databases of active binding sites and the quality of the alignment procedure, while energetic methods rely on filtering procedures, force field parameterizations, and applied scoring functions. On the other hand, geometric detection methods are relatively simple and straightforward, requiring no non-geometric knowledge, only structural data of the protein, \ie, the file in Protein Data Bank (PDB), XYZ, macromolecular Crystallographic Information File (mmCIF), or equivalent format, containing the Cartesian coordinates of atoms, easily accessible through the Worldwide Protein Data Bank (wwPDB). Once atom coordinates are available, geometric methods should be able to represent any type of biomolecule \cite{henrich2010,oliveira2014,simoes2017}. Although purely geometric methods are efficient in identifying all types of cavities in a target molecule, identifying those that are functionally relevant poses a challenge. However, characterizing cavities in terms of well-chosen morphological, topological and physicochemical properties can lead to the identification of functionally relevant cavities, \ie, binding sites for a specific set of ligands \cite{sotriffer2002,henrich2010,liang1998,guerra2019}. 
 
 In this context, geometry-based algorithms are the most widely used in the literature, as it is simple, direct, and does not require prior knowledge \cite{henrich2010,oliveira2014}. While evolution-based methods would be limited to proteins because they depend on principles of biological evolution, energy-based methods could be applicable but would require fine-tuning of force field parameters adapted to other types of biomolecules. As nucleic acids, carbohydrates, and lipids may have distinct properties compared to proteins, methods that rely solely on geometric information (e.g., three-dimensional Cartesian coordinates and atom size) are desirable.
 
 \subsection{Geometric Approaches \label{sec:geometric-approaches}}
 
-The detection of cavities through geometric approaches is widely used, involving different techniques \cite{simoes2017,guerra2020,krone2016}. These techniques are simple, straightforward, and do not require prior knowledge, making them the most commonly used in the literature \cite{henrich2010,oliveira2014}. In this context, we present a brief classification of geometric approaches for cavity detection, including techniques based on 3D grids, probes, tessellation, surface, and their combinations \cite{simoes2017,guerra2020,krone2016,guerra2023B}.
+%% Add infographic similar to Simões et al. 2017, summarizing classification of geometric approaches, methodologies in each category and their advantages and disadvantages (?)
+
+The detection of cavities through geometric approaches is widespread, encompassing various techniques \cite{simoes2017,guerra2020,krone2016}. These techniques are simple, straightforward, and do not require prior knowledge, making them the most commonly used in the literature \cite{henrich2010,oliveira2014}. In this context, we present a brief classification of geometric approaches for cavity detection, including techniques based on tridimensional (3D) grids, probes, tessellation, surface, and their combinations \cite{simoes2017,guerra2020,krone2016,guerra2023B}.
 
 \begin{itemize}
-  \item \textbf{Grid-based algorithms} (\eg, POVME 3.0 \cite{povme}) represent a set of atoms as discrete points, usually using a 3D grid aligned to the axes as a scalar field, \ie, a density map, where each discrete point is an integer or boolean value. These grid maps are used to cluster relevant empty space points (\ie, not belonging to the solute) into cavities using voxel clustering algorithms. Typically, these methods use simple data structures capable of representing a collection of data at a discrete point and identifying cavities automatically. However, geometric accuracy, computation time, and memory consumption heavily depend on the grid resolution, \ie, grid-spacing sensitivity. Additionally, these methods are not rotationally invariant, meaning that the orientation of a given molecule slightly affects accuracy, \ie, orientation sensitivity;
-  \item \textbf{Probe-based algorithms} (\eg, pywindow \cite{pywindow}, PHECOM \cite{phecom}) use a set of atoms, considering their 3D coordinates and van der Waals (vdW) radii, to represent the molecular surface, which is analyzed by one or more probes, usually rigid spheres, to investigate its accessibility levels. This technique can detect any type of cavity and is related to the spatial extension of potential ligands; however, it may struggle to find and unequivocally delineate the boundaries between the cavity and the solvent, \ie, mouth-opening ambiguity;
-  \item \textbf{Tessellation-based algorithms} (\eg, Fpocket \cite{fpocket}, CAVER 3.0 \cite{caver3}) rely on computational geometry techniques, such as \textalpha-shapes, \textbeta-shapes, Voronoi diagrams, and Apollonius diagrams. Specifically, \textalpha-shapes and Voronoi tessellation use atomic centers, implicitly constant-radius spheres to model atoms, while \textbeta-shapes and Apollonius-based methods depend on variable-radius spheres to model these atoms, which are explored to identify cavities. Typically, these methods do not depend on any information from the molecular surface to detect cavities but may struggle to identify the correct binding site location, delineate the boundaries between the cavity and the solvent, and define the number of surface atoms;
-  \item \textbf{Surface-based algorithms} (\eg, NSA \cite{nsa}, MSPocket \cite{mspocket}) do not use a rigid sphere model but rather a molecular surface model, such as vdW surface, solvent-excluded surface (SES), solvent-accessible surface (SAS), and ligand-excluded surface (LES), defining the molecular interface and its environment. Analysis of the molecular interface identifies cavities based on accessibility to a specific solvent or ligand. In this case, cavity detection occurs automatically, as in grid-based methods, but without mouth-opening ambiguity. However, in some cases, these algorithms may struggle to detect all types of cavities and their complete extent.
+  \item \textbf{Grid-based algorithms} (\eg, CavitySearch \cite{cavitysearch}, POCKET \cite{pocket}, LIGSITE \cite{ligsite}, POVME 3.0 \cite{povme}) represent a set of atoms as discrete points, usually using a 3D grid aligned to the axes as a scalar field, \ie, a density map, where each discrete point is an integer or boolean value. These grid maps are used to cluster relevant empty space points (\ie, not belonging to the solute) into cavities using voxel clustering algorithms. Typically, these methods use simple data structures capable of representing a collection of data at a discrete point and identifying cavities automatically. However, geometric accuracy, computation time, and memory consumption heavily depend on the grid resolution, \ie, grid-spacing sensitivity. Additionally, these methods are not rotationally invariant, meaning that the orientation of a given molecule slightly affects accuracy, \ie, orientation sensitivity;
+  \item \textbf{Probe-based algorithms} (\eg, Kuntz et al. \cite{kuntz1982}, PASS \cite{pass}, PHECOM \cite{phecom}, pywindow \cite{pywindow}) use a set of atoms, considering their 3D coordinates and van der Waals (vdW) radii, to represent the molecular surface, which is analyzed by one or more probes, usually rigid spheres, to investigate its accessibility levels. This technique can detect any type of cavity and is related to the spatial extension of potential ligands; however, it may struggle to find and unequivocally delineate the boundaries between the cavity and the solvent, \ie, mouth-opening ambiguity;
+  \item \textbf{Surface-based algorithms} (\eg, NSA \cite{nsa}, MSPocket \cite{mspocket}) do not use a rigid sphere model but rather a molecular surface model, such as vdW surface, solvent-excluded surface (SES), solvent-accessible surface (SAS), and ligand-excluded surface (LES), defining the molecular interface and its environment. Analysis of the molecular interface identifies cavities based on accessibility to a specific solvent or ligand. In this case, cavity detection occurs automatically, as in grid-based methods, but without mouth-opening ambiguity. However, in some cases, these algorithms may struggle to detect all types of cavities and their complete extent;
+  \item \textbf{Tessellation-based algorithms} (\eg, APROPOS \cite{apropos}, Fpocket \cite{fpocket}, CAVER 3.0 \cite{caver3}) rely on computational geometry techniques, such as \textalpha-shapes, \textbeta-shapes, Voronoi diagrams, and Apollonius diagrams. Specifically, \textalpha-shapes and Voronoi tessellation use atomic centers, implicitly constant-radius spheres to model atoms, while \textbeta-shapes and Apollonius-based methods depend on variable-radius spheres to model these atoms, which are explored to identify cavities. Typically, these methods do not depend on any information from the molecular surface to detect cavities but may struggle to identify the correct binding site location, delineate the boundaries between the cavity and the solvent, and define the number of surface atoms.
 \end{itemize}
 
-Generally, the combination of these techniques (\eg, parKVFinder \cite{guerra2020}, pyKVFinder \cite{guerra2021}, KVFinder-web \cite{guerra2023B}, GHECOM \cite{ghecom}, MoloVol \cite{molovol}) aims to leverage the capabilities of each and correct or mitigate their individual deficiencies to obtain a more robust technique, such as grid-and-sphere-based methods, which are not sensitive to orientation such as grid-based methods. Therefore, each technique has its own strengths and weaknesses, making each method more suitable for specific applications \cite{simoes2017,krone2016}.
+This classification illustrates that each technique has its own inherent strengths and weaknesses, rendering them more suitable for specific applications \cite{simoes2017,krone2016,guerra2020}. The cohesive combination of these techniques aims to leverage the capabilities of each and mitigate their individual shortcomings, resulting in more robust approaches. Within this broader context, two notable subcategories emerge:
+
+\begin{itemize}
+  \item \textbf{Grid-and-probe-based methods} (\eg, VOIDOO \cite{voidoo}, POCASA \cite{pocasa}, GHECOM \cite{ghecom}, 3V \cite{3v}, KVFinder \cite{oliveira2014}) combine the strengths of both grid- and probe-based methods. Analogous to grid-based methods, they rely on a scalar field defined at each grid point and predominantly use large probe spheres rolling on the vdW surface. These probes define cavities between the probe-generated surface and the molecular surface. This combined approach mitigates mouth-opening ambiguity and orientation sensitivity, common in grid-based methods \cite{simoes2017}. The mouth-opening ambiguity is also known as cavity ceiling problem, which can be controlled by customizable probe sizes \cite{simoes2017,oliveira2014}. However, grid-spacing sensitivity remains, unless we use a grid spacing of at most half of the smaller probe to mitigate it. The usage of probes in grid-based methods follows three techniques, that are atom fattening (originating SAS or SAS-like surfaces), exemplified by VOIDOO \cite{voidoo}, rolling probes of unequal radii on the vdW surface, as seen in POCASA \cite{pocasa}, GHECOM \cite{ghecom}, and 3V \cite{3v}, and concentric probes of unequal radii at grid points, specifically incorporated in KVFinder software \cite{oliveira2014};
+  \item \textbf{Grid-and-surface-based methods} (\eg, FRODO \cite{frodo}, CAVER \cite{caver}) combine the strengths of both grid- and surface-based methods. Similar to probe spheres, surfaces resolve the ambiguity issue in grid-based methods, particularly in defining cavity ceilings (and, consequently, mouth openings). These methods employ a scalar field in conjunction with a 3D grid, where the scalar field may be defined by various functions. In summary, the utilization of surfaces with grids overcomes common issues associated with grid-based methods, namely, orientation sensitivity and mouth-opening ambiguity. However, the challenge of grid-spacing sensitivity persists unless a grid spacing of at most half of the smaller probe.
+\end{itemize}
+
+In this context, the exploration of geometric approaches for cavity detection reveals a diverse landscape of techniques, each with its unique strengths and weaknesses. The simplicity and accessibility of these methods have made them foundational in biomolecular research \cite{henrich2010,simoes2017}. This classification, encompassing grid-based, probe-based, surface-based, and tessellation-based algorithms, provides a comprehensive overview of the strategies employed in structural and functional characterization of biomolecules and binding sites \cite{simoes2017}. The cohesive integration of these techniques, as seen in grid-and-probe-based or grid-and-surface-based methods, represents a strategic effort to overcome individual limitations and enhance the robustness of cavity detection methodologies. By acknowledging the strengths of each approach and strategically combining them, researchers aim to optimize the efficacy of computational platforms, paving the way for more nuanced and accurate structural and functional insights into biomolecules.
 
 \section{Binding Site Characterization \label{sec:biomolecular-characterization}}
 
 The efficiency of identifying all cavities within a target protein using purely geometric approaches is noteworthy. However, the complexity arises in discriminating which of these cavities serve as functionally relevant binding sites \cite{sotriffer2002,henrich2010,liang1998,guerra2019}. While there is no simple and universally effective approach,  characterizing binding sites based on their properties can lead to the identification of functionally relevant ones. As interactions within a cavity are inherently linked to its properties, elucidating these interactions becomes indispensable for determining the biological function of the biomolecule \cite{sotriffer2002,henrich2010}. 
 
-Biomolecular interactions (\eg, PPI, PLI, PRI and PDI) arise from distinctive property fingerprints at native or transient binding sites, where the molecular recognition hinges on the geometrical and physicochemical complementarity between the target biomolecule and its binding partner \cite{sotriffer2002,henrich2010,guerra2019}. Binding sites impose geometrical and physicochemical constraints on putative ligands, with each interaction triggering a distinct biological function. Therefore, describing potential binding sites in terms of geometrical, topological, and physicochemical characteristics becomes essential for rational drug discovery and design, and assessing binding site druggability \cite{hubbard1994,liang1998,guerra2019}.
+Biomolecular interactions (\eg, PPI, PLI, PRI and PDI) arise from distinctive property fingerprints at native or transient binding sites, where the molecular recognition hinges on the morphological, topological and physicochemical complementarity between the target biomolecule and its binding partner \cite{sotriffer2002,henrich2010,guerra2019}. Binding sites impose morphological, topological and physicochemical constraints on putative ligands, with each interaction triggering a distinct biological function. Thus, describing potential binding sites in terms of morphological, topological, and physicochemical characteristics becomes essential for rational drug discovery and design, and assessing binding site druggability \cite{hubbard1994,liang1998,guerra2019}.
 
-The geometrical attributes of biomolecular cavities establish stringent constraints on the geometry profiles of ligands capable of interacting efficiently within them. High affinity between the binding site and potential binders relies on sufficiently large interaction interfaces---extensive surface areas within the biomolecular cavity. The specificity of the binding site is dictated by geometric restrictions, including shape, size, and burial extent \cite{laskowski1996,liang1998}. Importantly, the cavity volume must accommodate the potential ligand \cite{stank2016}. The shape complementarity between the receptor and the ligand plays a decisive role in the binding process, with small ligands typically binding to buried concave sites on the molecular surface \cite{henrich2010}. Empirical studies have revealed that the active site often constitutes the largest and deepest cavity in enzymatic proteins \cite{laskowski1996}.
+The morphological attributes of biomolecular cavities establish stringent constraints on the geometry profiles of ligands capable of interacting efficiently within them. High affinity between the binding site and potential binders relies on sufficiently large interaction interfaces---extensive surface areas within the biomolecular cavity. The specificity of the binding site is dictated by geometric restrictions, including shape, size, and burial extent \cite{laskowski1996,liang1998}. Importantly, the cavity volume must accommodate the potential ligand \cite{stank2016}. The shape complementarity between the receptor and the ligand plays a decisive role in the binding process, with small ligands typically binding to buried concave sites on the molecular surface \cite{henrich2010}. Empirical studies have revealed that the active site often constitutes the largest and deepest cavity in enzymatic proteins \cite{laskowski1996}.
 
 Topological characteristics of protein cavities contribute to functional analysis. The inference of the functionality of protein cavities has been achieved through comparison with homologous proteins, which exhibit homology and sequential similarity at the active site \cite{juncker2009}. Conserved local structural patterns, such as the catalytic triads of serine proteases \cite{dodson1998}, exemplify these homologous features. In enzymes, these specific configurations assume preferential spatial arrangements to execute elementary steps of the catalytic reaction, influencing the molecular recognition process of ligands by active sites \cite{sotriffer2002,henrich2010,thornton2000}. Describing a protein cavity according to the location of its different types of residues---hydrogen donors, electron receptors, hydrophobic contacts, and aromatics---becomes an insightful approach. Binding sites exhibit conserved amino acid sequences within protein families, offering valuable functional information \cite{henrich2010}. Amino acid composition distinguishes enzymatic from non-enzymatic binding sites, revealing varying compositions across different proteins \cite{guerra2019,carlson2008}.
 
 Physicochemical characteristics play an essential role in selecting energetically favorable interactions. The synergy of van der Waals, hydrophobic, electrostatic, hydrogen bonding, and solvation interactions creates an energetically favorable environment for the binding process \cite{henrich2010}. For instance, hydrophobicity, quantified by the partition coefficient P, influences the kinetic and dynamic characteristics of drug action \cite{mannhold2009}. It is modulated by the shape of the binding site and the exposed area of residues \cite{henrich2010}. Various approaches generate distinct hydrophobicity scales for amino acids \cite{heiden1993}, such as Eisenberg \& Weiss \cite{eisenberg1984}, Hessa \& Heijne \cite{hessa2005}, Kyte \& Doolittle \cite{kyte1982}, Moon \& Fleming \cite{moon2011}, Radzicka \& Wolfenden \cite{radzicka1988}, Wimley \& White \cite{wimley1996}, and Zhao \& London \cite{zhao2006}. Conversely, the electrostatic potential, calculated by the Poisson-Boltzmann equation \cite{honig1995}, estimates ligand anchoring points, interaction free energy, biomolecule stability, and average atomic forces.
 
-% Review all below
+Therefore, the complexity lies in the discrimination of these sites, prompting the characterization of binding sites based on their distinctive properties. Biomolecular interactions, shaped by morphological, topological, and physicochemical complementarity, form the foundation for understanding the biological function of biomolecules. As we unravel the intricate interplay of these properties, we gain essential insights into rational drug discovery, design, and the assessment of binding site druggability, marking a pivotal step toward advancing biomolecular research and therapeutic interventions.
 
 \section{Well-established Computational Tools \label{sec:computational-tools}}
 
-The vast majority of cavity detection tools were originally developed for proteins (see Section \ref{sec:geometric-approaches}). Although these algorithms are robust enough to describe and analyze any molecular system (\eg, protein, DNA, RNA, inorganic material, supramolecular cage, etc), so far, only a few tools have been applied to other biomolecular systems, excluding proteins, to assess structural characteristics such as the shape and volume of their cavities and openings.
+The vast majority of cavity detection tools were originally developed for proteins (see Section \ref{sec:geometric-approaches}). Although these algorithms exhibit robustness in describing and analyzing any molecular system (\eg, protein, DNA, RNA, inorganic material, supramolecular cage, etc.), so far, only a few tools have been applied to other biomolecular systems, excluding proteins, to assess structural characteristics such as the shape, volume, area and mouth openings. Our literature review led us to identify tools meeting specific criteria: applicability to any molecular system, availability as free software, comprehensive documentation, robust developer support, a well-conceived set of characterizations, and recognition within the scientific community. Guided by these stringent criteria, we spotlight four well-established cavity detection tools: KVFinder suite, Fpocket, GHECOM, and CAVER tools.
 
-In this scenario, we carefully reviewed the literature to select detection tools capable of studying any molecular system, free, well-documented, with adequate support from developers, and recognized in the scientific community. Based on these criteria, we describe the four well-established identified cavity detection tools. Below is a brief description of their algorithms and functionalities.
+\subsection{KVFinder suite}
 
-\subsubsection{KVFinder suite}
-
-% Falar do primeiro método de duas esferas: Qual?
-
-The KVFinder suite is a comprehensive platform of tools for encoding and characterizing biomolecules, as well as detecting and characterizing binding sites in these biomolecules. In the platform, the cavity detection algorithm (Figure \ref{fig:kvfinder-suite-schema}) uses a dual-probe methodology based on mathematical morphology theory \cite{matheron1974,serra1982}, originally implemented in the KVFinder software \cite{oliveira2014}. In this method, a smaller probe (\textit{Probe In}) and a larger probe (\textit{Probe Out}) inspect grid points, defining cavities as the non-overlapping regions traversed by these probes.
+The KVFinder suite is a comprehensive computational platform, encompassing tools for biomolecular encoding, characterization, and the detection of binding sites within these biomolecules. In the platform, the grid-and-probe-based cavity detection algorithm (Figure \ref{fig:kvfinder-suite-schema}) employs a dual-probe methodology based on mathematical morphology theory \cite{matheron1974,serra1982}. Originally implemented in the KVFinder software \cite{oliveira2014}, this algorithm involves two probes, a smaller probe (\textit{Probe In}) and a larger probe (\textit{Probe Out}), inspecting grid points to define cavities as the non-overlapping regions traversed by these probes.
 
 \begin{figure}[ht]
   \centerline{\includegraphics[scale=1]{images/kvfinder-suite-schema.png}}
-  \centerline{\scriptsize{\textbf{Source:} Adapted from \cite{guerra2023B}.}}
-  \caption[Schematic representation of the cavity detection algorithm in the KVFinder suite]{\textbf{Schematic representation of the cavity detection algorithm in the KVFinder suite.} \textbf{(A)} A biomolecular structure X, composed of atoms modeled as rigid spheres with van der Waals radii, is inserted into a 3D grid. \textbf{(B)} The \textit{Probe In} (Pi) probe traverses the surface of the structure, moving through grid points (orange). \textbf{(C)} Next, the \textit{Probe Out} (Po) probe traverses accessible points in blue. \textbf{(D)} Cavity points (light gray) are defined as the difference between the accessible points of the probes. Points not reached by Pi (dark gray) define the SES (standard) or SAS, depending on the surface representation chosen by the user. \textbf{(E)} Finally, a distance-based removal procedure is applied to eliminate cavity points near the cavity-solvent boundary (yellow line).}
+  \centerline{\tiny{\textbf{Source:} Reprinted with permission from \cite{guerra2023B}. Copyright 2023 American Chemical Society.}}
+  \caption[Schematic representation of the cavity detection algorithm in the KVFinder suite]{\textbf{Schematic representation of the cavity detection algorithm in the KVFinder suite.} \textbf{(A)} A biomolecular structure X, composed of atoms modeled as rigid spheres with van der Waals radii, is inserted into a 3D grid. \textbf{(B)} The \textit{Probe In} (Pi) probe traverses the surface of the structure, moving through grid points (orange). \textbf{(C)} Next, the \textit{Probe Out} (Po) probe traverses accessible points in blue. \textbf{(D)} Cavity points (light gray) are defined as the difference between the accessible points of the probes. Points not reached by Pi (dark gray) define the SES (standard) or SAS, depending on the surface representation chosen by the user. \textbf{(E)} Finally, a distance-based removal procedure is applied to eliminate cavity points near the cavity-bulk boundary (yellow line).}
   \label{fig:kvfinder-suite-schema}
 \end{figure}
 
-% PERMISSION/LICENSE IS GRANTED FOR YOUR ORDER AT NO CHARGE
+It is noteworthy that the original KVFinder software \cite{oliveira2014}, introduced in 2014, has been deprecated. However, subsequent implementations, namely parKVFinder \cite{guerra2020}, pyKVFinder \cite{guerra2021}, and KVFinder-web \cite{guerra2023A}, have been developed to enhance computational performance and usability. Each of these tools addresses different scientific community demands in a flexible manner. Cavity characterization in these tools includes morphological descriptors (\eg, volume, area, shape, and depth), topological descriptors (\eg, interface residues surrounding the cavities and their classification---aliphatic, aromatic, polar uncharged, negatively charged, and positively charged---), and physicochemical descriptors (\eg, hydrophobicity). Further details on the KVFinder suite can be found in Chapter \ref{ch:kvfinder-suite}.
 
-% This type of permission/license, instead of the standard Terms and Conditions, is sent to you because no fee is being charged for your order. Please note the following:
+\subsection{Fpocket}
 
-% - Permission is granted for your request in both print and electronic formats, and translations.
-% - If figures and/or tables were requested, they may be adapted or used in part.
-% - Please print this page for your records and send a copy of it to your publisher/graduate school.
-% - Appropriate credit for the requested material should be given as follows: "Reprinted (adapted) with permission from {COMPLETE REFERENCE CITATION}. Copyright {YEAR} American Chemical Society." Insert appropriate information in place of the capitalized words.
-% - One-time permission is granted only for the use specified in your RightsLink request. No additional uses are granted (such as derivative works or other editions). For any uses, please submit a new request.
+Fpocket \cite{fpocket} is a tessellation-based tool that performs pocket detection based on the concept of \textalpha-spheres, introduced by \cite{liang1998}. The cavity detection algorithm (Figure \ref{fig:fpocket-schema}) determines the set of \textalpha-spheres from the target structure, using the \textit{qhull} package, and removes spheres outside a minimum and maximum radius size. Cavities are clusters of \textalpha-spheres, formed based on proximity and neighborhood relationships, with uninteresting cavities removed from further analysis. The remaining cavities are assessed using a set of dpocket descriptors \cite{fpocket} and classified according to their presumed binding capacity to a small molecule.
 
-% If credit is given to another source for the material you requested from RightsLink, permission must be obtained from that source.
+\subsection{GHECOM}
 
-
-It is important to note that the KVFinder software \cite{oliveira2014}, originally published in 2014, is deprecated. However, new implementations have been developed to improve computational performance and usability, resulting in the computational tools parKVFinder \cite{guerra2020}, pyKVFinder \cite{guerra2021}, and KVFinder-web \cite{guerra2023A}. Each of these tools addresses different demands from the scientific community in a flexible manner. Cavity characterization in these tools includes morphological descriptors such as volume, area, shape, and depth, as well as topological descriptors like interface residues surrounding the cavities and physicochemical descriptors like hydrophobicity. For more information on the KVFinder suite, see Section \ref{sec:kvfinder-suite}.
+\subsection{CAVER tools}
 
 % \subsection{Principais ferramentas disponíveis para detecção e caracterização de sítios de ligação}
 
@@ -398,18 +398,18 @@ It is important to note that the KVFinder software \cite{oliveira2014}, original
 
 % Nesse cenário, revisamos cuidadosamente à literatura para selecionar ferramentas de detecção capazes de estudar qualquer sistema molecular, gratuitos, bem documentados, com suporte adequado pelos desenvolvedores e reconhecidos na comunidade científica. Com base nesses critérios, descrevemos as quatro principais ferramentas de detecção de cavidades identificadas. A seguir, uma breve descrição de seus algoritmos e funcionalidades.
 
-\subsubsection{KVFinder suite}
+% \subsubsection{KVFinder suite}
 
-O KVFinder suite é uma plataforma abrangente de ferramentas para a codificação e caracterização de biomoléculas, bem como a detecção e caracterização de sítios de ligação nessas biomoléculas. Na plataforma, o algoritmo de detecção de cavidades (Figura \ref{fig:kvfinder-suite-schema}) utiliza uma metodologia de dupla sonda baseado na teoria de morfologia matemática, originalmente implementado na ferramenta KVFinder \cite{oliveira2014}. Nesse método, uma sonda menor (\textit{Probe In}) e uma sonda maior (\textit{Probe Out}) inspecionam os pontos da grade, definindo as cavidades como as regiões não sobrepostas percorridas por essas sondas. 
+% O KVFinder suite é uma plataforma abrangente de ferramentas para a codificação e caracterização de biomoléculas, bem como a detecção e caracterização de sítios de ligação nessas biomoléculas. Na plataforma, o algoritmo de detecção de cavidades (Figura \ref{fig:kvfinder-suite-schema}) utiliza uma metodologia de dupla sonda baseado na teoria de morfologia matemática, originalmente implementado na ferramenta KVFinder \cite{oliveira2014}. Nesse método, uma sonda menor (\textit{Probe In}) e uma sonda maior (\textit{Probe Out}) inspecionam os pontos da grade, definindo as cavidades como as regiões não sobrepostas percorridas por essas sondas. 
 
-\begin{figure}[ht]
-  \centerline{\includegraphics[scale=1]{images/kvfinder-suite-schema.png}}
-  \centerline{\scriptsize{\textbf{Fonte:} Retirado de \cite{guerra2023B}.}}
-  \caption[Representação esquemática do algoritmo de detecção de cavidades no KVFinder suite]{\textbf{Representação esquemática do algoritmo de detecção de cavidades no KVFinder suite.} \textbf{(A)} Uma estrutura biomolecular X, composta por átomos modelados como esferas rígidas com raios de van der Waals, é inserida em uma grade 3D. \textbf{(B)} A sonda \textit{Probe In} (Pi) percorre a superfície da estrutura, movendo-se pelos pontos da grade (laranja). \textbf{(C)} Em seguida, a sonda \textit{Probe Out} (Po) percorre os pontos acessíveis em azul. \textbf{(D)} Os pontos de cavidade (cinza claro) são definidos como a diferença entre os pontos acessíveis das sondas. Os pontos não alcançados por Pi (cinza escuro) definem a SES (padrão) ou a SAS, dependendo da representação de superfície escolhida pelo usuário. \textbf{(E)} Por fim, é aplicado um procedimento de remoção por distância para eliminar os pontos de cavidade que estão próximos à fronteira da cavidade-solvente (linha amarela).}
-  \label{fig:kvfinder-suite-schema}
-\end{figure}
+% \begin{figure}[ht]
+%   \centerline{\includegraphics[scale=1]{images/kvfinder-suite-schema.png}}
+%   \centerline{\tiny{\textbf{Fonte:} Retirado de \cite{guerra2023B}.}}
+%   \caption[Representação esquemática do algoritmo de detecção de cavidades no KVFinder suite]{\textbf{Representação esquemática do algoritmo de detecção de cavidades no KVFinder suite.} \textbf{(A)} Uma estrutura biomolecular X, composta por átomos modelados como esferas rígidas com raios de van der Waals, é inserida em uma grade 3D. \textbf{(B)} A sonda \textit{Probe In} (Pi) percorre a superfície da estrutura, movendo-se pelos pontos da grade (laranja). \textbf{(C)} Em seguida, a sonda \textit{Probe Out} (Po) percorre os pontos acessíveis em azul. \textbf{(D)} Os pontos de cavidade (cinza claro) são definidos como a diferença entre os pontos acessíveis das sondas. Os pontos não alcançados por Pi (cinza escuro) definem a SES (padrão) ou a SAS, dependendo da representação de superfície escolhida pelo usuário. \textbf{(E)} Por fim, é aplicado um procedimento de remoção por distância para eliminar os pontos de cavidade que estão próximos à fronteira da cavidade-solvente (linha amarela).}
+%   \label{fig:kvfinder-suite-schema}
+% \end{figure}
 
-É importante destacar que a ferramenta KVFinder \cite{oliveira2014}, originalmente publicada em 2014, está descontinuada. No entanto, novas implementações foram desenvolvidas para aprimorar o desempenho computacional e a usabilidade, resultando nas ferramentas parKVFinder \cite{guerra2020}, pyKVFinder \cite{guerra2021} e KVFinder-web \cite{guerra2023A}. Cada uma dessas ferramentas aborda diferentes demandas da comunidade científica de forma flexível. A caracterização das cavidades nessas ferramentas inclui descritores morfológicos, como volume, área, forma e profundidade, bem como descritores topológicos, como os resíduos de interface que cercam as cavidades, e descritores físico-químicos, como a hidrofobicidade. Para mais informações sobre o KVFinder suite, veja a Seção \ref{sec:kvfinder-suite}.
+% É importante destacar que a ferramenta KVFinder \cite{oliveira2014}, originalmente publicada em 2014, está descontinuada. No entanto, novas implementações foram desenvolvidas para aprimorar o desempenho computacional e a usabilidade, resultando nas ferramentas parKVFinder \cite{guerra2020}, pyKVFinder \cite{guerra2021} e KVFinder-web \cite{guerra2023A}. Cada uma dessas ferramentas aborda diferentes demandas da comunidade científica de forma flexível. A caracterização das cavidades nessas ferramentas inclui descritores morfológicos, como volume, área, forma e profundidade, bem como descritores topológicos, como os resíduos de interface que cercam as cavidades, e descritores físico-químicos, como a hidrofobicidade. Para mais informações sobre o KVFinder suite, veja a Seção \ref{sec:kvfinder-suite}.
 
 \subsubsection{Fpocket}
 
@@ -417,7 +417,7 @@ O Fpocket \cite{fpocket} é uma ferramenta baseada em tesselação que realiza a
 
 \begin{figure}[ht]
   \centerline{\includegraphics[scale=1]{images/fpocket-schema.png}}
-  \centerline{\scriptsize{\textbf{Fonte:} Retirado de \cite{guerra2023B}.}}
+  \centerline{\tiny{\textbf{Fonte:} Retirado de \cite{guerra2023B}.}}
   \caption[Representação esquemática do algoritmo de detecção de cavidades no Fpocket]{\textbf{Representação esquemática do algoritmo de detecção de cavidades no Fpocket.} \textbf{(A)} Diagrama de Voronoi dos centros atômicos. \textbf{(B)} Semelhante a uma esfera de Voronoi (círculos laranja pontilhados). \textbf{(C)} Exemplo de uma \textalpha-esfera (região verde); ela é centrada em um vértice de Voronoi (pontos laranja) e cresce até se tornar tangente aos átomos da superfície. \textbf{(D)} Cluster de \textalpha-esferas que preenchem o sítio de ligação.}
   \label{fig:fpocket-schema}
 \end{figure}
@@ -428,23 +428,23 @@ O GHECOM (\textit{Grid-based HECOMi finder}) \cite{ghecom} é uma ferramenta bas
 
 \begin{figure}[H]
   \centerline{\includegraphics[scale=0.9]{images/ghecom-schema.png}}
-  \centerline{\scriptsize{\textbf{Fonte:} Retirado de \cite{guerra2023B}.}}
+  \centerline{\tiny{\textbf{Fonte:} Retirado de \cite{guerra2023B}.}}
   \caption[Representação esquemática do algoritmo de detecção de bolsões no GHECOM]{\textbf{Representação esquemática do algoritmo de detecção de bolsões no GHECOM.} Uma estrutura biomolecular (região verde; $X$) é fechada por uma sonda esférica P (esfera azul), definindo a região delimitada pelo contorno amarelo. Em seguida, a interseção de X fechado por P ($X \bullet P$) e o espaço fora da proteína ($X^c$) define a região não acessível à sonda P (região azul; $(X \bullet P) \cap X^c$). Posteriormente, essa região é aberta por uma sonda esférica S (esfera laranja), onde P é maior que S. Por fim, o bolsão (região laranja; $((X \bullet P) \cap X^c) \circ S$) é definido pelo espaço fora da forma molecular não acessível a P, mas acessível a S. Para detecção em múltiplas escalas, são usados diferentes tamanhos da sonda esférica P.}
   \label{fig:ghecom-schema}
 \end{figure}
 
-\subsubsection{CAVER}
+\subsubsection{CAVER tools}
 
 O CAVER \cite{caver} foi originalmente uma ferramenta baseada em grade e superfície para o cálculo de túneis e canais, que posteriormente foi aprimorada no CAVER 3.0 \cite{caver3}, substituindo a grade alinhada aos eixos por uma abordagem de diagrama de Voronoi. A interface gráfica do usuário, CAVER Analyst 2.0 \cite{caveranalyst2}, incorpora o CAVER 3.0, que auxilia visualmente os usuários nos cálculos de túneis e cavidades. O algoritmo de detecção de cavidades (Figura \ref{fig:caver-schema}) constrói um pseudo-diagrama de Voronoi de uma estrutura biomolecular alvo. A partir dele, o CAVER 3.0 identifica caminhos como grafos compostos por vértices e arestas de Voronoi. Esses caminhos se assemelham a túneis que conectam cavidades ao solvente circundante e são caracterizados por comprimento, raio médio e raio do gargalo. Além disso, CAVER Analyst 2.0 também identifica regiões de espaço vazio, onde uma sonda pequena pode entrar de fora, mas uma sonda grande não pode, aplicando uma abordagem similar às descritas no KVFinder suite (Figura \ref{fig:kvfinder-suite-schema}) e GHECOM (Figura \ref{fig:ghecom-schema}).
 
 \begin{figure}[ht]
   \centerline{\includegraphics[scale=1]{images/caver-schema.png}}
-  \centerline{\scriptsize{\textbf{Fonte:} Retirado de \cite{guerra2023B}.}}
+  \centerline{\tiny{\textbf{Fonte:} Retirado de \cite{guerra2023B}.}}
   \caption[Representação esquemática do algoritmo de detecção de canais e túneis no CAVER 3.0 e CAVER Analyst 2.0]{\textbf{Representação esquemática do algoritmo de detecção de canais e túneis no CAVER 3.0 e CAVER Analyst 2.0.} \textbf{(A)} Uma forma molecular é inspecionada por uma sonda esférica, chamada \textit{shell probe}, com um raio especificado pelo parâmetro \textit{shell radius}, para definir uma superfície externa SAS (linha vermelha). A partir dela, uma distância especificada pelo parâmetro \textit{shell depth} é removida para definir uma superfície interna (linha amarela). \textbf{(B)} Um pseudo-diagrama de Voronoi é construído com base na forma molecular. Vértices de Voronoi (pontos laranja) são usados para criar as linhas centrais do túnel/canal. \textbf{(C)} Um ponto de partida (ponto vermelho) é um parâmetro definido pelo usuário, definido como o centro de massa da forma molecular, e um ponto final (ponto azul) é definido no centro da superfície interna. A partir do ponto de partida, a linha central passa por arestas e vértices de Voronoi para formar um túnel/canal até a superfície externa e passa pelo ponto final. \textbf{(D)} Esferas são ajustadas em todos os pontos da linha central, do ponto de partida ao ponto final, o que define o raio do gargalo (abertura) ao longo do túnel e/ou canal.}
   \label{fig:caver-schema}
 \end{figure}
 
-% %%% Chapter 3
+% %%% Chapter 4
 
 % \chapter{Codificação de biomoléculas e seus sítios de ligação}
 
@@ -460,7 +460,7 @@ O CAVER \cite{caver} foi originalmente uma ferramenta baseada em grade e superf�
 
 % \begin{figure}[ht]
 %   \centerline{\includegraphics[scale=1]{images/voxels.png}}
-%   \centerline{\scriptsize{\textbf{Fonte:} Retirado de \cite{guerra2021}.}}
+%   \centerline{\tiny{\textbf{Fonte:} Retirado de \cite{guerra2021}.}}
 %   \caption[Representação esquemática de biomoléculas e seus sítios de ligação representadas em grade tridimensional]{\textbf{Representação esquemática de biomoléculas e seus sítios de ligação representadas em grade tridimensional.} Com base em uma grade tridimensional com dimensões (m, n, o), cada elemento corresponde a uma região de cavidade (>1), espaço vazio (1), biomolécula (0) ou solvente (-1). Além disso, propriedades também são armazenadas na mesma estrutura de dados, correspondendo ao valor da propriedade na região.}
 %   \label{fig:voxel}
 % \end{figure}
@@ -481,7 +481,7 @@ O CAVER \cite{caver} foi originalmente uma ferramenta baseada em grade e superf�
 
 % \begin{figure}[ht]
 %   \centerline{\includegraphics[scale=1]{images/surface-representation.png}}
-%   \centerline{\scriptsize{\textbf{Fonte:} Retirado de \cite{guerra2023B}.}}
+%   \centerline{\tiny{\textbf{Fonte:} Retirado de \cite{guerra2023B}.}}
 %   \caption[Representações de superfície molecular]{\textbf{Representações de superfície molecular.} \textbf{(A)} Superfície de vdW. \textbf{(B)} SAS. \textbf{(C)} SES. Imagens geradas com PyMOL para a gaiola supramolecular (resorcin[4]areno-hexamérica). \textbf{(D)} Representação esquemática 2D das superfícies moleculares. A superfície de vdW (verde) é composta por átomos representados como esferas verdes. Uma sonda esférica (cinza), representando uma molécula de solvente, rola sobre os átomos da molécula para definir SES e SAS. O SES é definido pela superfície de vdW (verde) e pelo espaço não alcançado pela sonda esférica (laranja). O SAS é definido pelo envelope alcançado pelo centro da sonda esférica (azul).}
 %   \label{fig:surface-representation}
 % \end{figure}
@@ -527,9 +527,9 @@ O CAVER \cite{caver} foi originalmente uma ferramenta baseada em grade e superf�
 
 % Essa representação em grafos permite uma análise mais simplificada e eficiente das interações e relações entre os resíduos, proporcionando uma visualização clara das características estruturais e funcionais da biomolécula. Além disso, diversas propriedades e medidas podem ser calculadas a partir dos grafos, como caminhos, distâncias, centralidade e outras métricas que auxiliam na compreensão da estrutura e função da biomolécula \cite{majeed2020,vishveshwara2002,mason2007}. Em resumo, a representação em grafos é uma abordagem poderosa e versátil para analisar a estrutura e as interações em biomoléculas, permitindo uma compreensão mais aprofundada de sua função biológica e fornecendo \textit{insights} importantes para o desenvolvimento de terapias e intervenções terapêuticas.
 
-% %%% Chapter 4
+% %%% Chapter 5: KVFinder suite
 
-% \chapter{Plataforma KVFinder suite \label{sec:kvfinder-suite}}
+\chapter{KVFinder suite \label{ch:kvfinder-suite}}
 
 % % https://cnpemcamp-my.sharepoint.com/:w:/r/personal/joao_guerra_lnbio_cnpem_br/_layouts/15/Doc.aspx?sourcedoc=%7BD0C80180-AF7E-412F-B94E-6C38D8D4C946%7D&file=Relat%C3%B3rio%20Plataforma%20Biologia%20Computacional%202022.2.docx&action=default&mobileredirect=true
 
@@ -624,7 +624,7 @@ O CAVER \cite{caver} foi originalmente uma ferramenta baseada em grade e superf�
 % \begin{figure}[h]
 %   \centering
 %   \includegraphics[scale=1.6]{images/kvweb-overview.png}
-%   \centerline{\scriptsize{\textbf{Fonte:} Adaptado de \cite{guerra2023A}.}}
+%   \centerline{\tiny{\textbf{Fonte:} Adaptado de \cite{guerra2023A}.}}
 %   \caption[Esquema representativo do funcionamento do KVFinder-web para detectar e caracterizar cavidades em estruturas funcionalmente relevantes]{\textbf{Esquema representativo do funcionamento do KVFinder-web para detectar e caracterizar cavidades em estruturas funcionalmente relevantes.}}
 %   \label{fig:kvweb-overview}
 % \end{figure}
@@ -647,7 +647,7 @@ O CAVER \cite{caver} foi originalmente uma ferramenta baseada em grade e superf�
 % \begin{figure}[H]
 %   \centering
 %   \includegraphics[scale=1.2]{images/kvweb-interface.png}
-%   \centerline{\scriptsize{\textbf{Fonte:} Adaptado de \cite{guerra2023A}.}}
+%   \centerline{\tiny{\textbf{Fonte:} Adaptado de \cite{guerra2023A}.}}
 %   \caption[KVFinder-web portal]{\textbf{KVFinder-web portal.} \textbf{(A)} Página principal com as principais abas e as seções de entrada da biomolécula-alvo e escolha do modo de execução. \textbf{(B)} Visão detalhada de cada etapa que os usuários devem concluir antes de enviar a biomolécula-alvo para a análise da cavidade. A primeira etapa envolve a seleção da biomolécula-alvo, que pode ser feita fornecendo um ID do PDB e buscando no banco de dados do PDB (1) ou fazendo o upload de um arquivo PDB (2). Após o upload do PDB, o portal KVFinder-web verifica o PDB e informa sobre resíduos não padronizados detectados (3). Na próxima etapa, os usuários devem selecionar um modo de execução adequado (4) e personalizar, se necessário, os parâmetros de detecção (5).}
 %   \label{fig:kvweb-interface}
 % \end{figure}
@@ -659,7 +659,7 @@ O CAVER \cite{caver} foi originalmente uma ferramenta baseada em grade e superf�
 % \begin{figure}[h]
 %   \centering
 %   \includegraphics[scale=1.8]{images/kvweb-results.png}
-%   \centerline{\scriptsize{\textbf{Fonte:} Adaptado de \cite{guerra2023A}.}}
+%   \centerline{\tiny{\textbf{Fonte:} Adaptado de \cite{guerra2023A}.}}
 %   \caption[Visualização de resultados no KVFinder-web portal]{\textbf{Visualização de resultados no KVFinder-web portal.} \textbf{(A)} Seção de resultados do KVFinder-web portal. A caixa de estado (verde: 'concluído'; amarelo: 'em execução' ou 'em fila'; vermelho: 'cancelado') do trabalho enviado (1). Após a conclusão, a interface apresenta os resultados em uma tabela, incluindo volume, área, profundidade média, profundidade máxima e hidropatia média das cavidades (2). Os usuários podem baixar um arquivo ZIP contendo a biomolécula-alvo e os arquivos PDB das cavidades (3) ou um arquivo TOML com a caracterização das cavidades (4). \textbf{(B)} A biomolécula-alvo com as cavidades pode ser visualizada ao clicar no botão 'Visualizar' e os usuários podem personalizar a visualização da biomolécula e das cavidades.}
 %   \label{fig:kvweb-results}
 % \end{figure}
@@ -671,7 +671,7 @@ O CAVER \cite{caver} foi originalmente uma ferramenta baseada em grade e superf�
 % \begin{figure}[H]
 %   \centering
 %   \includegraphics[scale=1.5]{images/kvweb-performance.png}
-%   \centerline{\scriptsize{\textbf{Fonte:} Adaptado de \cite{guerra2023A}.}}
+%   \centerline{\tiny{\textbf{Fonte:} Adaptado de \cite{guerra2023A}.}}
 %   \caption[Efeitos dos parâmetros de detecção no desempenho do KVFinder-web service]{\textbf{Efeitos dos parâmetros de detecção no desempenho do KVFinder-web service.} A detecção de cavidades foi realizada no kv1000 \cite{guerra2020}, variando os parâmetros \textit{Probe Out} e \textit{Removal Distance}. O tempo decorrido em relação ao número de átomos na estrutura-alvo foi registrado, variando \textbf{(A)} os tamanhos do \textit{Probe Out} e \textbf{(B)} a \textit{Removal Distance}. Os cálculos foram realizados em um computador com processador AMD Ryzen 7 1700 de 8 núcleos e 3,0 GHz, 32GB de RAM, executando o sistema operacional Ubuntu 22.04 LTS.}
 %   \label{fig:kvweb-performance}
 % \end{figure}
@@ -687,7 +687,7 @@ O CAVER \cite{caver} foi originalmente uma ferramenta baseada em grade e superf�
 % \begin{figure}[H]
 %   \centering
 %   \includegraphics[scale=2.5]{images/pymol-kvweb-tools.png}
-%   \centerline{\scriptsize{\textbf{Fonte:} Adaptado de \cite{guerra2023A}.}}
+%   \centerline{\tiny{\textbf{Fonte:} Adaptado de \cite{guerra2023A}.}}
 %   \caption[PyMOL KVFinder-web Tools]{\textbf{PyMOL KVFinder-web Tools.} Detecção de cavidades na estrutura da protease do HIV-1 (PDB ID: 1HVR), com \textit{Probe Out} definido como 12 Å. \textbf{(A)} Aba de parâmetros principais contendo parâmetros de detecção e estruturas moleculares a serem exploradas. \textbf{(B)} Aba de visualização contendo dados recebidos (cavidades e caracterizações) do serviço KVFinder-web exibidos na GUI. \textbf{(C)} Caracterização de profundidade e \textbf{(D)} caracterização de hidropatia de Eisenberg & Weiss, destacando o sítio ativo (cavidade KAG) na GUI e no visualizador do PyMOL.}
 %   \label{fig:pymol-kvweb-tools}
 % \end{figure}
@@ -856,7 +856,7 @@ O CAVER \cite{caver} foi originalmente uma ferramenta baseada em grade e superf�
 
 % \begin{figure}[hp]
 %   \centerline{\includegraphics[scale=1]{images/mayv-e1-e2.png}}
-%   \centerline{\scriptsize{\textbf{Fonte:} Adaptado de \cite{ribeiro2021}.}}
+%   \centerline{\tiny{\textbf{Fonte:} Adaptado de \cite{ribeiro2021}.}}
 %   \caption[Domínios transmembranares E1 e E2 do MAYV e a cavidade hidrofóbica]{\textbf{Domínios transmembranares E1 e E2 do MAYV e a cavidade hidrofóbica.} \textbf{(A)} Modelo atômico 3D do MAYV ajustado ao mapa de densidade, mostrando a porção superior das hélices TM de E1 e E2. A interseção entre E1-E2 forma uma cavidade com abertura anterior e posterior. A densidade extra observada dentro da cavidade está indicada. \textbf{(B)} Detalhe da densidade extra encontrada na região da cabeça de E1-E2 e os resíduos ao redor. O mapa de densidade do MAYV está representado em superfície ou malha. \textbf{(C)} Prospeção da cavidade em estruturas de alfavírus. A cavidade entre os domínios E1 e E2 está representada em superfície e colorida com base na escala de consenso de Eisenberg, utilizando os resíduos que formam a cavidade, conforme detalhado na seção de métodos. Apenas os resíduos polares estão representados como sticks. \textbf{(D)} Volume da cavidade estimado para os quatro heterodímeros E1-E2 (n = 4 estruturas independentes de heterodímeros) na unidade assimétrica. Um teste ANOVA unidirecional com comparação múltipla de Tukey foi utilizado para comparar o volume da cavidade do MAYV com outros alfavírus (* indica adj. p < 0,01 quando comparado aos alfavírus com MAYV). \textbf{(E)} Número de resíduos em cada um dos quatro heterodímeros E1-E2 (n = 4 estruturas independentes de heterodímeros) na unidade assimétrica, separados por classes. Um teste ANOVA unidirecional com comparação múltipla de Tukey foi utilizado para comparar o número de resíduos na classe alifática apolar com as outras classes na mesma espécie de alfavírus (* indica adj. p < 0,01 quando comparando a classe alifática apolar com as outras classes). Todos os dados são apresentados como valores médios +/- DP. Alifática apolar: ALA, VAL, ILE, LEU, GLY, PRO; Aromática: PHE, TYR, TRP; Polar não carregada: SER, THR, CYS, MET, ASN, GLN; Carregada negativamente: GLU, ASP; Carregada positivamente: ARG, LYS, HIS.}
 %   \label{fig:mayv-e1-e2}
 % \end{figure}
@@ -869,7 +869,7 @@ O CAVER \cite{caver} foi originalmente uma ferramenta baseada em grade e superf�
 
 % \begin{figure}[hp]
 %   \centerline{\includegraphics[scale=1]{images/mayv-c-e2.png}}
-%   \centerline{\scriptsize{\textbf{Fonte:} Adaptado de \cite{ribeiro2021}.}}
+%   \centerline{\tiny{\textbf{Fonte:} Adaptado de \cite{ribeiro2021}.}}
 %   \caption[Interação da cápside do MAYV com o domínio C-terminal da proteína E2]{\textbf{Interação da cápside do MAYV com o domínio C-terminal da proteína E2.} \textbf{(A)} Modelo atômico 3D do MAYV ajustado ao mapa de densidade obtido por criomicroscopia eletrônica. As proteínas C, E1 e E2 são representadas como desenhos em ciano, roxo e azul, respectivamente. \textbf{(B)} A interação do motivo TPY (resíduos T387, P398 e Y399) com a proteína C. \textbf{(C)} Os resíduos P403 e T402 da E2 e sua interação com os resíduos aromáticos Y175 e W242 na proteína C. O mapa de densidade do MAYV é mostrado em representação de malha. \textbf{(D)} Prospeção da cavidade na proteína C do MAYV, mostrando um ambiente hidrofóbico na parte inferior do bolso e um ambiente polar e carregado nas bordas externas da cavidade. A cavidade da proteína C que se liga ao domínio C-terminal da E2 é representada em superfície e colorida de acordo com a escala hidrofóbica de consenso de Eisenberg. Os resíduos da proteína C que cercam a cavidade são representados como \textit{sticks}. \textbf{(E)} Boxplot do volume da cavidade estimado para as quatro cápsides (n = 4 estruturas independentes de cápside) na unidade assimétrica. No boxplot, a caixa representa a amplitude interquartil (IQR) ($67,5 \mAA^3$), o 75º percentil (Q3) ($526,2 \mAA^3$) e o 25º percentil (Q1) ($458,7 \mAA^3$). A linha central indica a mediana ($486,3 \mAA^3$) e a média ($498,6 \mAA^3$) é indicada por um ponto. As "whiskers" com valor mínimo ($395,7 \mAA^3$) e valor máximo ($626,2 \mAA^3$) são determinadas usando Q1-1,5 x IQR e Q3+1,5 x IQR, respectivamente.}
 %   \label{fig:mayv-c-e2}
 % \end{figure}
@@ -891,7 +891,7 @@ O CAVER \cite{caver} foi originalmente uma ferramenta baseada em grade e superf�
 % \begin{figure}[hp]
 %   \centering
 %   \includegraphics[scale=1]{images/adrp-sars-cov-2-conservation-analysis.png}
-%   \centerline{\scriptsize{\textbf{Fonte:} Adaptado de \cite{guerra2021}.}}
+%   \centerline{\tiny{\textbf{Fonte:} Adaptado de \cite{guerra2021}.}}
 %   \caption[Estudo do sítio de ligação do substrato da ADRP do SARS-CoV-2 e proteínas relacionadas]{\textbf{Estudo do sítio de ligação do substrato da ADRP do SARS-CoV-2 e proteínas relacionadas.} \textbf{(A)} Caracterizações do sítio de ligação do substrato do domínio ADRP do SARS-CoV-2 (PDB ID: 6WEN). Esquerda: Cavidade detectada representada como uma superfície cinza e os resíduos ao redor dela como \textit{sticks} vermelhos. Centro: Cavidade colorida por profundidade. Direita: Cavidade colorida por hidropatia usando a escala de Eisenberg e Weiss. \textbf{(B)} Gráfico de barras das frequências de resíduos de interface. Esquerda: Aminoácidos. Direita: Classes de aminoácidos. \textbf{(C)} Análise de conservação do sítio de ligação do ADP-ribose no domínio ADRP do SARS-CoV-2 (PDB ID: 6WEN, cadeia A), SARS-CoV (PDB ID: 2ACF, cadeia B), MERS-CoV (PDB ID: 5HIH, cadeia A), NL63 (PDB ID: 2VRI, cadeia A), HCoV-229E (PDB ID: 3EJG, cadeia A), FCoV (PDB ID: 3ETI, cadeia B) e proteínas macrodomínio macroD1 (PDB ID: 2X47, cadeia A) e macroD2 (PDB ID: 6Y73, cadeia D) humanas. Os pontos de cavidade que foram detectados em pelo menos duas estruturas e os pontos são coloridos por porcentagem de conservação. \textbf{(D)} Perfil de hidropatia. \textbf{(E)} Dendrograma de agrupamento hierárquico da frequência de resíduos. A métrica de correlação de Pearson foi usada para avaliar a similaridade e o método completo foi escolhido como método de ligação. Todos os gráficos e imagens foram gerados em um Jupyter notebook. As imagens das estruturas tridimensionais foram geradas utilizando o pacote NGLView \cite{nglview} enquanto os gráficos foram construídos utilizando o pacote matplotlib \cite{matplotlib}.}
 %   \label{fig:conservation-analysis}
 % \end{figure}
@@ -911,7 +911,7 @@ O CAVER \cite{caver} foi originalmente uma ferramenta baseada em grade e superf�
 % \begin{figure}[h]
 %   \centering
 %   \includegraphics[scale=0.9]{images/pykvfinder-benchmarking.png}
-%   \centerline{\scriptsize{\textbf{Fonte:} Adaptado de \cite{guerra2021}.}}
+%   \centerline{\tiny{\textbf{Fonte:} Adaptado de \cite{guerra2021}.}}
 %   \caption[Avaliação de desempenho dos métodos de benchmarking para detecção do sítio de ligação do substrato da ADRP]{\textbf{Avaliação de desempenho dos métodos de benchmarking para detecção do sítio de ligação do substrato da ADRP.} \textbf{(A)} As estruturas da proteína (representadas em verde) no quadro 30 (com menor RMSD em comparação com a estrutura cristalográfica) da trajetória do domínio ADRP com as cavidades correspondentes detectadas (superfícies cinzas) por cada método de benchmarking. \textbf{(B)} O volume total das cavidades detectadas no sítio de ligação do substrato da ADRP ao longo da simulação de 600 ns. O volume total é calculado em uma janela de 20 quadros. A linha pontilhada vermelha indica o volume da superfície molecular da molécula de ADP-ribose, que ocupava originalmente o sítio de ligação do substrato da ADRP na estrutura cristalográfica (PDB ID: 6W02, cadeia B). \textbf{(C)} Tempo decorrido para detectar e caracterizar o sítio de ligação do substrato da ADRP. O protocolo padrão do pyKVFinder, assim como do parKVFinder, detecta as cavidades e aplica as caracterizações morfológicos (\eg, volume, área e forma) e topológicos (\eg, resíduos de interface e suas frequências). O protocolo completo do pyKVFinder inclui o protocolo padrão com as caracterizações de profundidade e hidropatia.}
 %   \label{fig:pykvfinder-benchmarking}
 % \end{figure}
@@ -929,7 +929,7 @@ O CAVER \cite{caver} foi originalmente uma ferramenta baseada em grade e superf�
 % \begin{figure}[hp]
 %   \centering
 %   \includegraphics[scale=1.8]{images/kvweb-case-study.png}
-%   \centerline{\scriptsize{\textbf{Fonte:} Adaptado de \cite{guerra2023A}.}}
+%   \centerline{\tiny{\textbf{Fonte:} Adaptado de \cite{guerra2023A}.}}
 %   \caption[Exemplo ilustrativo da detecção de cavidades na protease do HIV-1]{\textbf{Exemplo ilustrativo da detecção de cavidades na protease do HIV-1.} Estrutura molecular da protease do HIV-1 (PDB ID: 1HVR) com cavidades detectadas. \textbf{(A)} Detecção de cavidades em toda a estrutura da proteína (modelo em cartoon). Os pontos das cavidades são coloridos de acordo com a profundidade (pontos coloridos em uma escala de cores arco-íris). \textbf{(B)} Hidropatia mapeada nos pontos de cavidade na superfície nas regiões ao redor dos ácidos aspárticos catalíticos (painel esquerdo) e ao redor dos β-hairpins (painel direito). A escala de hidrofobicidade de Eisenberg & Weiss varia de -1,42 (altamente hidrofóbica) a 2,6 (altamente hidrofílica). A proteína é mostrada como uma superfície cinza e os resíduos de interface são mostrados como átomos coloridos em sticks. \textbf{(C)} Gráfico de violino do volume do sítio ativo das estruturas da protease do HIV-1 do RCSB PDB para as estruturas com ligantes ligados no sítio ativo (azul) e as estruturas sem ligantes (laranja). As estruturas com uma mediana de volume e a cavidade correspondente são mostradas como modelo em cartoon e superfície, respectivamente.}
 %   \label{fig:kvweb-case-study}
 % \end{figure}
@@ -956,7 +956,7 @@ O CAVER \cite{caver} foi originalmente uma ferramenta baseada em grade e superf�
 % \begin{figure}[htb]
 %   \centering
 %   \includegraphics[scale=1]{images/3D-binary-structure.png}
-%   \centerline{\scriptsize{\textbf{Fonte:} Retirado de \url{https://docs.scipy.org/doc/scipy/tutorial/ndimage.html}}}
+%   \centerline{\tiny{\textbf{Fonte:} Retirado de \url{https://docs.scipy.org/doc/scipy/tutorial/ndimage.html}}}
 %   \caption[Elementos estruturantes para filtros espaciais]{\textbf{Elementos estruturantes para filtros espaciais.}}
 %   \label{fig:elementos-estruturantes}
 % \end{figure}
