@@ -443,7 +443,7 @@ Biomolecules and their binding sites can be represented in a 3D grid subdivided 
 \begin{figure}[ht]
   \centerline{\includegraphics[scale=1]{images/voxels.png}}
   \centerline{\tiny{\textbf{Source:} Reprinted from \cite{guerra2021}. Licensed under \href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}.}}
-  \caption[Schematic representation of biomolecules and their binding sites in a three-dimensional grid]{\textbf{Schematic representation of biomolecules and their binding sites in a three-dimensional grid.} Based on a 3D grid with dimensions (m, n, o), each element corresponds to a region of cavity (>1), empty space (1), biomolecule (0), or solvent (-1). Additionally, properties are stored in the same data structure, corresponding to the property value in the region.}
+  \caption[Grid representations]{\textbf{Grid representations.} Based on a 3D grid with dimensions (m, n, o), each element corresponds to a region of cavity (>1), empty space (1), biomolecule (0), or solvent (-1). Additionally, properties are stored in the same data structure, corresponding to the property value in the region.}
   \label{fig:voxel}
 \end{figure}
 
@@ -484,7 +484,7 @@ Instead of representing structural data through voxels in a 3D grid, biomolecule
 
 \begin{figure}[ht]
   \centerline{\includegraphics[scale=2]{images/atomistic-representation.png}}
-  \caption[Atomistic representations of interaction interfaces in biomolecular structures]{\textbf{Atomistic representations of interaction interfaces in biomolecular structures.} \textbf{(A)} Atoms and amino acids (\textit{sticks} in green) forming the adenosine binding site (transparent surface). \textbf{(B)} Atoms and amino acids (\textit{sticks} in blue) exposed to the solvent, excluding binding sites for small molecules, with an inhibitor bound (\textit{sticks} in green). Images generated with PyMOL for a subunit of cyclic AMP-dependent protein kinase (PDB ID: 1FMO).}
+  \caption[Atomistic representations]{\textbf{Atomistic representations.} \textbf{(A)} Atoms and amino acids (\textit{sticks} in green) forming the adenosine binding site (transparent surface). \textbf{(B)} Atoms and amino acids (\textit{sticks} in blue) exposed to the solvent, excluding binding sites for small molecules, with an inhibitor bound (\textit{sticks} in green). Images generated with PyMOL for a subunit of cyclic AMP-dependent protein kinase (PDB ID: 1FMO).}
   \label{fig:atomistic-representation}
 \end{figure}
 
@@ -509,7 +509,7 @@ The graph representation implemented utilizes the 3D coordinates (x, y, z) of a 
 
 \begin{figure}[ht]
 \centerline{\includegraphics[scale=1.9]{images/graph-representation.png}}
-\caption[Graph-based representations in biomolecular structures]{\textbf{Graph-based representations in biomolecular structures.} \textbf{(A)} Adenosine binding site as graphs with edges based on the distance cutoff of carbon \textalpha\space (spheres and sticks in red), carbon \textbeta\space (spheres and sticks in yellow), and any atoms of the residues (spheres and sticks in cyan). \textbf{(B)} Solvent-exposed surface, excluding binding sites for small molecules, as graphs with edges based on the distance cutoff of carbon \textalpha\space (spheres and sticks in red), carbon \textbeta\space (spheres and sticks in yellow), and any atoms of the residues (spheres and sticks in cyan). Images generated with PyMOL for a subunit of cyclic AMP-dependent protein kinase (PDB ID: 1FMO).}
+\caption[Graph representations]{\textbf{Graph representations.} \textbf{(A)} Adenosine binding site as graphs with edges based on the distance cutoff of carbon \textalpha\space (spheres and sticks in red), carbon \textbeta\space (spheres and sticks in yellow), and any atoms of the residues (spheres and sticks in cyan). \textbf{(B)} Solvent-exposed surface, excluding binding sites for small molecules, as graphs with edges based on the distance cutoff of carbon \textalpha\space (spheres and sticks in red), carbon \textbeta\space (spheres and sticks in yellow), and any atoms of the residues (spheres and sticks in cyan). Images generated with PyMOL for a subunit of cyclic AMP-dependent protein kinase (PDB ID: 1FMO).}
 \label{fig:graph-representation}
 \end{figure}
 
