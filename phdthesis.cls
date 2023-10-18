@@ -44,8 +44,8 @@
 
 \RequirePackage{fancyhdr}
 
-\newcommand{\@FCF}{Faculdade de Ciências Farmacêuticas}
-\newcommand{\@UNICAMP}{Universidade Estadual de Campinas}
+\newcommand{\@FCF}{FACULDADE DE CIÊNCIAS FARMACÊUTICAS}
+\newcommand{\@UNICAMP}{UNIVERSIDADE ESTADUAL DE CAMPINAS}
 
 % User fields:
 \let\@autor\relax
@@ -170,11 +170,12 @@
   \noindent
   \begin{center}
   \begin{tabular}{cc}
-    \raisebox{-.5\height}{\includegraphics[width=2.2cm]{images/logo-unicamp.png}}
+    \raisebox{-.5\height}{\includegraphics[width=2.5cm]{images/logo-unicamp.png}}
     &
     \begin{minipage}{.7\textwidth}
-      \centering
+      \raggedright
       \textbf{\@UNICAMP} \\
+      \vspace{0.2cm}
       \textbf{\@FCF} \\
     \end{minipage}
     &
