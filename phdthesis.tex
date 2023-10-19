@@ -80,6 +80,10 @@
 % Formatar list of abreviations
 \usepackage{acronym}
 
+% Para criar diagramas:
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta}
+
 % Para renderizar formulas matemáticas:
 \usepackage{amsmath}
 \newcommand{\mAA}{~\text{\AA}}
@@ -200,8 +204,10 @@ In recent years, data science and artificial intelligence have revolutionized di
   \acro{FAPESP}{\textit{Fundação de Amparo à Pesquisa do Estado de São Paulo}}
   \acro{FCF}{\textit{Faculdade de Ciências Farmacêuticas}}
   \acro{GHECOM}{Grid-based HECOMi finder}
+  \acro{HPC}{High-Performance Computing}
   \acro{LBC}{\textit{Laboratório de Biologia Computacional}}
   \acro{LNBio}{\textit{Laboratório Nacional de Biociências}}
+  \acro{MIMD}{Multiple Instruction, Multiple Data}
   \acro{ML}{Machine learning}
   \acro{mmCIF}{macromolecular Crystallographic Information File}
   \acro{PDB}{Protein Data Bank}
@@ -214,6 +220,8 @@ In recent years, data science and artificial intelligence have revolutionized di
   \acro{PRI}{Protein-RNA interaction}
   \acro{SAS}{Solvent Accessible Surface}
   \acro{SES}{Solvent Excluded Surface}
+  \acro{SMID}{Single Instruction, Multiple Data}
+  \acro{SMP}{Symmetric Multiprocessing}
   \acro{UNICAMP}{\textit{Universidade Estadual de Campinas}}
   \acro{vdW}{van der Waals}
   \acro{wwPDB}{Worldwide Protein Data Bank}
@@ -426,17 +434,66 @@ CAVER tools comprise a series of computational methods designed for tunnel and c
 
 \section{Parallel Computing \label{sec:parallel-computing}}
 
-Parallel computing is a paradigm that revolutionizes traditional sequential computing by harnessing the power of multiple processors or computing units to perform tasks concurrently. This approach is driven by the need for enhanced computational speed and efficiency, especially as we confront escalating data volumes and complex problem-solving requirements. 
+Computational problems are typically divided into distinct parts, each comprising sets of instructions. In computing, two fundamental approaches exist: serial computing, which executes instructions sequentially, and parallel computing, which leverages multiple computational resources simultaneously. This concurrent execution enables the simultaneous resolution of instructions, thereby reducing computational time---a critical advantage in the context of modern computers  featuring parallel architectures with multiple processors \cite{foster1995,grama2003}.
 
-The roots of parallel computing trace back to the early days of computing, but it gained prominence as computational demands surged. Early parallel systems were tightly coupled, sharing memory and closely coordinating tasks. The evolution of parallel computing architectures progressed from SIMD (Single Instruction, Multiple Data) to MIMD (Multiple Instruction, Multiple Data) systems, marking a shift towards greater flexibility and efficiency.
+% Add tikz diagram for serial x parallel computing
+% Template:
+% \begin{figure}
+%   \centering
+%   \begin{tikzpicture}[node distance=1.5cm]
+%       \node (start) [circle, draw] {Start};
+%       \node (task1) [rectangle, draw, below of=start] {Task 1};
+%       \node (task2) [rectangle, draw, below of=task1] {Task 2};
+%       \node (dots) [below of=task2] {...};
+%       \node (taskn) [rectangle, draw, below of=dots] {Task n};
+%       \node (end) [circle, draw, below of=taskn] {End};
+      
+%       \draw [->] (start) -- (task1);
+%       \draw [->] (task1) -- (task2);
+%       \draw [->] (task2) -- (dots);
+%       \draw [->] (dots) -- (taskn);
+%       \draw [->] (taskn) -- (end);
+%   \end{tikzpicture}
+  
+%   \centering
+%   \begin{tikzpicture}[node distance=1.5cm]
 
-Parallel computing architectures encompass diverse designs tailored to specific computational needs. Shared-memory architectures, such as Symmetric Multiprocessing (SMP), enable processors to access a common memory pool. Distributed-memory architectures, on the other hand, like those in clusters or grids, involve processors with their dedicated memory. Hybrid architectures combine these models, leveraging the strengths of both shared and distributed memory systems.
+%     % Define nodes
+%     \node (start) [circle, draw] {Start};
+%     \node (task1) [rectangle, draw, below of=start] {Task 1};
+%     \node (task2) [rectangle, draw, below right=1cm and 2cm of task1] {Task 2};
+%     \node (task3) [rectangle, draw, below left=1cm and 2cm of task2] {Task 3};
+%     \node (task4) [rectangle, draw, below right=1cm and 2cm of task3] {Task 4};
+%     \node (end) [circle, draw, below of=task4] {End};
 
-While parallel computing offers immense potential, it introduces challenges that demand careful consideration. Coordinating parallel tasks, managing data synchronization, and minimizing communication overhead are critical concerns. Load balancing becomes pivotal to ensure uniform utilization of resources, preventing bottlenecks that can hinder performance gains. Additionally, designing algorithms that effectively parallelize tasks is a complex endeavor, requiring a deep understanding of both the problem domain and the intricacies of parallel architectures.
+%     % Draw arrows
+%     \draw [->] (start) -- (task1);
+%     \draw [->] (task1) -- (task2);
+%     \draw [->] (task1) -- (task3);
+%     \draw [->] (task2) -- (task4);
+%     \draw [->] (task3) -- (task4);
+%     \draw [->] (task4) -- (end);
+  
+%   \end{tikzpicture}
 
-Parallel computing finds applications across diverse domains, from scientific simulations and data analytics to artificial intelligence and beyond. High-performance computing (HPC) clusters tackle intricate scientific problems, while parallel processing accelerates the training of machine learning models. Parallel algorithms play a crucial role in speeding up tasks like sorting, searching, and graph traversal, contributing to improved efficiency in various computational domains.
+%   \caption[Diagram of serial and parallel computing]{\textbf{Diagram of serial and parallel computing.}}
+%   \label{fig:computing}
+% \end{figure}
 
-The future of parallel computing is shaped by ongoing advancements in hardware, software, and algorithms. Emerging technologies such as quantum computing introduce new dimensions to parallelism. Exploring novel ways to harness parallelism efficiently, overcoming scalability challenges, and integrating parallel computing into mainstream applications are among the ongoing research directions. In summary, parallel computing stands as a cornerstone in addressing the escalating demands for computational power. 
+Parallel computing marks a paradigm shift from traditional sequential approaches, employing multiple processors or computing units to concurrently perform tasks. This paradigm has gained prominence in response to growing computational demands, especially with the increasing complexity of data volumes and problem-solving requirements. Early parallel systems were tightly coupled, sharing memory and closely coordinating tasks. The evolution of parallel computing architectures progressed from Single Instruction, Multiple Data (SIMD) to Multiple Instruction, Multiple Data (MIMD) systems, reflecting a shift towards greater flexibility and efficiency. Diverse parallel computing architectures are designed to meet specific computational needs. Shared-memory architectures, like Symmetric Multiprocessing (SMP), enable processors to access a common memory pool. In contrast, distributed-memory architectures, seen in clusters or grids, involve processors with their dedicated memory. Hybrid architectures combine these models, capitalizing on the strengths of both shared and distributed memory systems \cite{matloff2012}.
+
+Despite its potential, parallel computing introduces challenges that necessitate careful consideration. Coordinating parallel tasks, managing data synchronization, and minimizing communication overhead are critical concerns. Load balancing becomes pivotal to ensure uniform resource utilization, preventing bottlenecks that hinder performance gains. Additionally, designing algorithms that effectively parallelize tasks is a complex endeavor, requiring a deep understanding of both the problem domain and the intricacies of parallel architectures \cite{grama2003,matloff2012}.
+
+One key metric in evaluating parallel computing performance is \textit{speedup}. Speedup (Equation \ref{eq:speedup}) is a relative measure used to analyze the efficiency gained by employing multiple processing elements compared to a single processor. The ideal speedup is linear, meaning that doubling the number of processing elements should ideally halve the computation time. However, achieving this ideal speedup is challenging, and many algorithms exhibit nearly linear speedup for a small number of processors, reaching an asymptotic behavior for a large number of processing elements \cite{grama2003,matloff2012}.
+
+\begin{equation}
+  S \colon (T_1, T_p) \mapsto \frac{T_1}{T_p} \in [0,\inf)
+  \label{eq:speedup}
+\end{equation}
+
+\noindent where \(S\) is the speedup, \(T_1\) is the execution time on a single processor, \(T_p\) is the execution time on \(p\) processors.
+
+Applications of parallel computing span various domains, from scientific simulations and data analytics to artificial intelligence. High-performance computing (HPC) clusters address intricate scientific problems, such as simulating climate models, conducting molecular dynamics simulations for drug discovery, or analyzing large-scale genomics data. On the other hand, parallel processing significantly accelerates tasks like training machine learning models for image recognition, natural language processing, and recommendation systems. Additionally, parallel algorithms play a crucial role in speeding up tasks like sorting, searching, and graph traversal, contributing to improved efficiency in various computational domains. The future of parallel computing is influenced by ongoing advancements in hardware, software, and algorithms. Emerging technologies, such as quantum computing, introduce new dimensions to parallelism. Ongoing research explores novel ways to harness parallelism efficiently, overcome scalability challenges, and integrate parallel computing into mainstream applications. In summary, parallel computing stands as a cornerstone in addressing the escalating demands for computational power.
 
 %%% Chapter 4: Data Coding in Structural Biology
 
