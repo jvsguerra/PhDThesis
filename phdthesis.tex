@@ -22,9 +22,15 @@
 \usepackage{float}
 \usepackage{graphicx}
 
+% Para definir a profundidade do sumário:
+% \setcounter{tocdepth}{4}
+
+% Para definir a profundidade da numeração de seções:
+\setcounter{secnumdepth}{4}
+
 % Para transformar caption em negrito:
-% \usepackage[font=footnotesize,labelfont=bf]{caption}
-\usepackage[font=scriptsize,labelfont=bf]{caption}
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+% \usepackage[font=scriptsize,labelfont=bf]{caption}
 
 % Para citações no formato numérico da norma ABNT:
 \usepackage[hyphens]{url}
@@ -32,6 +38,16 @@
 \usepackage{cite}
 \renewcommand\citeleft{[}
 \renewcommand\citeright{]}
+
+% Para ignorar citações em figuras:
+\makeatletter
+\def\ignorecitefornumbering#1{%
+     \begingroup
+         \@fileswfalse
+         #1%                     % do \cite comand
+    \endgroup
+}
+\makeatother
 
 \usepackage{hyperref}
 % Para trocar o estilo dos hyperlinks:
@@ -82,7 +98,10 @@
 
 % Para criar diagramas:
 \usepackage{tikz}
-\usetikzlibrary{positioning, arrows.meta}
+\usetikzlibrary{positioning,shapes,shadows,arrows}
+
+% Estilos para os diagramas do tiks:
+\tikzstyle{box}=[rectangle, draw=black, fill=gray!20, drop shadow, text centered, anchor=north, align=center]
 
 % Para renderizar formulas matemáticas:
 \usepackage{amsmath}
@@ -350,9 +369,64 @@ In this context, geometry-based algorithms are the most widely used in the liter
 
 \subsection{Geometric Approaches \label{sec:geometric-approaches}}
 
-%% Add infographic similar to Simões et al. 2017, summarizing classification of geometric approaches, methodologies in each category and their advantages and disadvantages (?)
+The detection of cavities through geometric approaches is widespread, encompassing various techniques \cite{simoes2017,guerra2020}. These techniques are simple, straightforward, and do not require prior knowledge, making them the most commonly used in the literature \cite{henrich2010,oliveira2014}. In this context, we present a brief classification of geometric approaches for cavity detection (Figure \ref{fig:cavity-methods-infographic}), including techniques based on tridimensional (3D) grids, probes, surface, tessellation and their combinations \cite{simoes2017,guerra2020,guerra2023B}.
 
-The detection of cavities through geometric approaches is widespread, encompassing various techniques \cite{simoes2017,guerra2020}. These techniques are simple, straightforward, and do not require prior knowledge, making them the most commonly used in the literature \cite{henrich2010,oliveira2014}. In this context, we present a brief classification of geometric approaches for cavity detection, including techniques based on tridimensional (3D) grids, probes, tessellation, surface, and their combinations \cite{simoes2017,guerra2020,guerra2023B}.
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}[node distance=0.5cm]
+
+    \node (GeomBased) [box, text width=6cm] {\textbf{Geometry-based methods}};
+    \node (AuxNode01) [below=of GeomBased] {};
+    \node (ProbeBased) [box, text width=3cm, rectangle split, rectangle split parts=2, below left=0.5cm and 4cm of AuxNode01] 
+    {
+      \textbf{Probe-based methods}
+      \nodepart{two}{Kuntz et al. \ignorecitefornumbering{\cite{kuntz1982}}\\ PASS \ignorecitefornumbering{\cite{pass}}\\ PHECOM \ignorecitefornumbering{\cite{phecom}}\\ pywindow \ignorecitefornumbering{\cite{pywindow}}}
+    };
+    \node (GridBased) [box, text width=3.5cm, rectangle split, rectangle split parts=2, below left=0.5cm and 0cm of AuxNode01]
+    {
+      \textbf{Grid-based methods}
+      \nodepart{two}{CavitySearch \ignorecitefornumbering{\cite{cavitysearch}}\\ POCKET \ignorecitefornumbering{\cite{pocket}}\\ LIGSITE \ignorecitefornumbering{\cite{ligsite}}\\ POVME 3.0 \ignorecitefornumbering{\cite{povme}}}
+    };
+    \node (SurfBased) [box, text width=3cm, rectangle split, rectangle split parts=2, below right=0.5cm and 0.0cm of AuxNode01]
+    {
+      \textbf{Surface-based methods}
+      \nodepart{two}{NSA \ignorecitefornumbering{\cite{nsa}}\\ MSPocket \ignorecitefornumbering{\cite{mspocket}}}
+    };
+    \node (TessBased) [box, text width=4cm, rectangle split, rectangle split parts=2, below right=0.5cm and 3.5cm of AuxNode01]
+    {
+      \textbf{Tesselation-based methods}
+      \nodepart{two}{APROPOS \ignorecitefornumbering{\cite{apropos}}\\ Fpocket \ignorecitefornumbering{\cite{fpocket}}\\ CAVER 3.0 \ignorecitefornumbering{\cite{caver3}}}
+    };
+    \node (AuxNode02) [below left=4.25cm and 6cm of AuxNode01] {};
+    \node (AuxNode03) [below left=4.25cm and 2.5cm of AuxNode01] {};
+    \node (AuxNode04) [below left=4.25cm and 4.5cm of AuxNode01] {};
+    \node (GPBased) [box, rectangle split, rectangle split parts=2, below=0.5cm of AuxNode04, text width=4cm]
+    {
+      \textbf{Grid-and-probe-based methods}
+      \nodepart{two}{VOIDOO \ignorecitefornumbering{\cite{voidoo}}\\ POCASA \ignorecitefornumbering{\cite{pocasa}}\\ GHECOM \ignorecitefornumbering{\cite{ghecom}}\\ 3V \ignorecitefornumbering{\cite{3v}}\\ KVFinder \ignorecitefornumbering{\cite{oliveira2014}}\\ parKVFinder \ignorecitefornumbering{\cite{guerra2019,guerra2020}}\\ pyKVFinder \ignorecitefornumbering{\cite{guerra2021}}\\ KVFinder-web \ignorecitefornumbering{\cite{guerra2023A}}}
+    };
+    \node (GSBased) [box, rectangle split, rectangle split parts=2, below=5cm of AuxNode01, text width=4cm]
+    {
+      \textbf{Grid-and-surface-based methods}
+      \nodepart{two}{FRODO \ignorecitefornumbering{\cite{frodo}}\\ CAVER \ignorecitefornumbering{\cite{caver}}}
+    };
+    \node (AuxNode05) [below left=4.25cm and 1.25cm of AuxNode01] {};
+    \node (AuxNode06) [below right=4.25cm and 0.75cm of AuxNode01] {};
+    \node (AuxNode07) [below=4.25cm of AuxNode01] {};
+
+    \draw [->] (GeomBased.south) -- (AuxNode01)+(0,0.12) -| (ProbeBased.north);
+    \draw [->] (GeomBased.south) -- (AuxNode01)+(0,0.12) -| (GridBased.north);
+    \draw [->] (GeomBased.south) -- (AuxNode01)+(0,0.12) -| (SurfBased.north);
+    \draw [->] (GeomBased.south) -- (AuxNode01)+(0,0.12) -| (TessBased.north);
+    \draw [-] (ProbeBased.south)+(-1,0) |- (AuxNode03);
+    \draw [->] (GridBased.south)+(-0.5,0) |- (AuxNode02)-| (GPBased.north);
+    \draw [-] (SurfBased.south)+(0,0) |- (AuxNode05);
+    \draw [->] (GridBased.south)+(0,0) |- (AuxNode06)-| (GSBased.north);
+
+  \end{tikzpicture}
+  \caption[Classification of geometry-based methods]{\textbf{Classification of geometry-based methods.}}
+  \label{fig:cavity-methods-infographic}
+\end{figure}
 
 \begin{itemize}
   \item \textbf{Grid-based algorithms} (\eg, CavitySearch \cite{cavitysearch}, POCKET \cite{pocket}, LIGSITE \cite{ligsite}, POVME 3.0 \cite{povme}) represent a set of atoms as discrete points, usually using a 3D grid aligned to the axes as a scalar field, \ie, a density map, where each discrete point is an integer or boolean value. These grid maps are used to cluster relevant empty space points (\ie, not belonging to the solute) into cavities using voxel clustering algorithms. Typically, these methods use simple data structures capable of representing a collection of data at a discrete point and identifying cavities automatically. However, geometric accuracy, computation time, and memory consumption heavily depend on the grid resolution, \ie, grid-spacing sensitivity. Additionally, these methods are not rotationally invariant, meaning that the orientation of a given molecule slightly affects accuracy, \ie, orientation sensitivity;
@@ -364,23 +438,11 @@ The detection of cavities through geometric approaches is widespread, encompassi
 This classification illustrates that each technique has its own inherent strengths and weaknesses, rendering them more suitable for specific applications \cite{simoes2017,guerra2020}. The cohesive combination of these techniques aims to leverage the capabilities of each and mitigate their individual shortcomings, resulting in more robust approaches. Within this broader context, two notable subcategories emerge:
 
 \begin{itemize}
-  \item \textbf{Grid-and-probe-based methods} (\eg, VOIDOO \cite{voidoo}, POCASA \cite{pocasa}, GHECOM \cite{ghecom}, 3V \cite{3v}, KVFinder \cite{oliveira2014}) combine the strengths of both grid- and probe-based methods. Analogous to grid-based methods, they rely on a scalar field defined at each grid point and predominantly use large probe spheres rolling on the vdW surface. These probes define cavities between the probe-generated surface and the molecular surface. This combined approach mitigates mouth-opening ambiguity and orientation sensitivity, common in grid-based methods \cite{simoes2017}. The mouth-opening ambiguity is also known as cavity ceiling problem, which can be controlled by customizable probe sizes \cite{simoes2017,oliveira2014}. However, grid-spacing sensitivity remains, unless we use a grid spacing of at most half of the smaller probe to mitigate it. The usage of probes in grid-based methods follows three techniques, that are atom fattening (originating SAS or SAS-like surfaces), exemplified by VOIDOO \cite{voidoo}, rolling probes of unequal radii on the vdW surface, as seen in POCASA \cite{pocasa}, GHECOM \cite{ghecom}, and 3V \cite{3v}, and concentric probes of unequal radii at grid points, specifically implemented in KVFinder software \cite{oliveira2014};
+  \item \textbf{Grid-and-probe-based methods} (\eg, VOIDOO \cite{voidoo}, POCASA \cite{pocasa}, GHECOM \cite{ghecom}, 3V \cite{3v}, KVFinder \cite{oliveira2014}, parKVFinder \cite{guerra2019,guerra2020}) combine the strengths of both grid- and probe-based methods. Analogous to grid-based methods, they rely on a scalar field defined at each grid point and predominantly use large probe spheres rolling on the vdW surface. These probes define cavities between the probe-generated surface and the molecular surface. This combined approach mitigates mouth-opening ambiguity and orientation sensitivity, common in grid-based methods \cite{simoes2017}. The mouth-opening ambiguity is also known as cavity ceiling problem, which can be controlled by customizable probe sizes \cite{simoes2017,oliveira2014}. However, grid-spacing sensitivity remains, unless we use a grid spacing of at most half of the smaller probe to mitigate it. The usage of probes in grid-based methods follows three techniques, that are atom fattening (originating SAS or SAS-like surfaces), exemplified by VOIDOO \cite{voidoo}, rolling probes of unequal radii on the vdW surface, as seen in POCASA \cite{pocasa}, GHECOM \cite{ghecom}, and 3V \cite{3v}, and concentric probes of unequal radii at grid points, specifically implemented in KVFinder software \cite{oliveira2014};
   \item \textbf{Grid-and-surface-based methods} (\eg, FRODO \cite{frodo}, CAVER \cite{caver}) combine the strengths of both grid- and surface-based methods. Similar to probe spheres, surfaces resolve the ambiguity issue in grid-based methods, particularly in defining cavity ceilings (and, consequently, mouth openings). These methods employ a scalar field in conjunction with a 3D grid, where the scalar field may be defined by various functions. In summary, the utilization of surfaces with grids overcomes common issues associated with grid-based methods, namely, orientation sensitivity and mouth-opening ambiguity. However, the challenge of grid-spacing sensitivity persists unless a grid spacing of at most half of the smaller probe.
 \end{itemize}
 
 In this context, the exploration of geometric approaches for cavity detection reveals a diverse landscape of techniques, each with its unique strengths and weaknesses. The simplicity and accessibility of these methods have made them foundational in biomolecular research \cite{henrich2010,simoes2017}. This classification, encompassing grid-based, probe-based, surface-based, and tessellation-based algorithms, provides a comprehensive overview of the strategies employed in structural and functional characterization of biomolecules and binding sites \cite{simoes2017}. The cohesive integration of these techniques, as seen in grid-and-probe-based or grid-and-surface-based methods, represents a strategic effort to overcome individual limitations and enhance the robustness of cavity detection methodologies. By acknowledging the strengths of each approach and strategically combining them, researchers aim to optimize the efficacy of computational platforms, paving the way for more nuanced and accurate structural and functional insights into biomolecules.
-
-\subsection{Computational complexity \label{sec:computational-complexity}}
-
-The effectiveness of cavity detection algorithms is not solely determined by their ability to accurately identify binding sites; computational efficiency also plays a pivotal role, especially in the context of large biomolecular structures and extensive datasets. The computational complexity of cavity detection algorithms is a critical aspect that influences their practical utility and scalability. In this section, we explore the computational considerations associated with various approaches, shedding light on the challenges and advancements in handling the inherent complexity of biomolecular systems.
-
-Grid-based algorithms (\eg, CavitySearch \cite{cavitysearch}, POVME 3.0 \cite{povme}) rely on discretizing the molecular structure into a 3D grid. The computational complexity of these methods is inherently tied to the grid spacing, often expressed using big-O notation. The time complexity of algorithms using 3D grids is typically expressed as $\mathcal{O}(n_{v})$, where $n_{v}$ represents the number of voxels, denoting the computational time increase linearly with respect to the number of voxels. A finer grid provides a more detailed representation of the molecular surface but increases the number of grid points to be processed. As a result, there exists a delicate balance between achieving sufficient resolution for accurate cavity detection and maintaining computational efficiency. The spatial complexity, referring to the memory requirements, is also $\mathcal{O}(n_{v})$ as it scales with the number of voxels. Implementing strategies to optimize grid-based algorithms involves finding ways to reduce this linear relationship, such as through sparse grid representations or parallel processing.
-
-Probe-based algorithms (\eg, pywindow \cite{pywindow}) introduce a different set of considerations, with the choice of probe size significantly impacting the precision and sensitivity of cavity detection. The time complexity of probe-based algorithms is often expressed as $\mathcal{O}(n_{p} \cdot n_{a})$, where $n_{p}$ is the number of probes and $n_{a}$ is the number of atoms. The spatial complexity can also be $\mathcal{O}(n_{a})$ as it depends on the number of atoms.
-
-Surface-based algorithms (\eg, NSA \cite{nsa}, MSPocket \cite{mspocket}) focus on the molecular surface characteristics. The computational complexity of surface-based algorithms is associated with the surface representation and analysis techniques employed. These methods typically involve operations on the molecular surface mesh or point cloud, leading to complexities that depend on factors such as surface resolution, mesh complexity, and the nature of surface analysis. These complexities can range from linear (\eg, vertex transformation) to polynomial (\eg, convex hull computation), and optimizations often revolve around efficient mesh processing and surface characterization techniques.
-
-Tessellation-based algorithms (\eg, Fpocket \cite{fpocket} and CAVER 3.0 \cite{caver3}) leverage geometric constructs such as Voronoi diagrams and \textalpha\space spheres. The computational complexity here is intricately linked to the efficiency of these geometric operations. The time complexity of tessellation-based algorithms often involves complex geometric operations and is expressed as $\mathcal{O}(n_{a} \cdot \log{n_{a}})$, where $n_{a}$ is the number of atoms. The spatial complexity can also be $\mathcal{O}(n_{a})$ as it depends on the number of points used in the geometric calculations.
 
 \subsection{Well-established Computational Tools \label{sec:computational-tools}}
 
@@ -428,57 +490,68 @@ CAVER tools comprise a series of computational methods designed for tunnel and c
 \begin{figure}[H]
   \centerline{\includegraphics[scale=1.1]{images/caver-schema.png}}
   \centerline{\tiny{\textbf{Source:} Reprinted with permission from \cite{guerra2023B}. Copyright 2023 American Chemical Society.}}
-  \caption[Channel and tunnel detection algorithm in CAVER 3.0 and CAVER Analyst 2.0]{\textbf{Channel and tunnel detection algorithm in CAVER 3.0 and CAVER Analyst 2.0.} \textbf{(A)} A molecular shape is probed by a spherical probe, called the \textit{shell probe}, with a radius specified by the \textit{shell radius} parameter, to define an outer surface SAS (red line). From it, a distance specified by the \textit{shell depth} parameter is removed to define an inner surface (yellow line). \textbf{(B)} A pseudo-Voronoi diagram is constructed based on the molecular shape. Voronoi vertices (orange points) are used to create the central lines of the tunnel/channel. \textbf{(C)} A starting point (red point) is a user-defined parameter set as the center of mass of the molecular shape, and an endpoint (blue point) is set at the center of the inner surface. From the starting point, the central line passes through Voronoi edges and vertices to form a tunnel/channel to the outer surface and passes through the endpoint. \textbf{(D)} Spheres are fitted at all points of the central line, from the starting point to the endpoint, defining the bottleneck (mouth opening) radius along the tunnel and/or channel.}
+  \caption[Channel and tunnel detection algorithm in CAVER 3.0]{\textbf{Channel and tunnel detection algorithm in CAVER 3.0.} \textbf{(A)} A molecular shape is probed by a spherical probe, called the \textit{shell probe}, with a radius specified by the \textit{shell radius} parameter, to define an outer surface SAS (red line). From it, a distance specified by the \textit{shell depth} parameter is removed to define an inner surface (yellow line). \textbf{(B)} A pseudo-Voronoi diagram is constructed based on the molecular shape. Voronoi vertices (orange points) are used to create the central lines of the tunnel/channel. \textbf{(C)} A starting point (red point) is a user-defined parameter set as the center of mass of the molecular shape, and an endpoint (blue point) is set at the center of the inner surface. From the starting point, the central line passes through Voronoi edges and vertices to form a tunnel/channel to the outer surface and passes through the endpoint. \textbf{(D)} Spheres are fitted at all points of the central line, from the starting point to the endpoint, defining the bottleneck (mouth opening) radius along the tunnel and/or channel.}
   \label{fig:caver-schema}
 \end{figure}
 
+\section{Computational Complexity \label{sec:computational-complexity}}
+
+The effectiveness of cavity detection algorithms is not solely determined by their ability to accurately identify binding sites; computational efficiency also plays a pivotal role, especially in the context of large biomolecular structures and extensive datasets. The computational complexity of cavity detection algorithms is a critical aspect that influences their practical utility and scalability. In this section, we explore the computational considerations associated with various approaches, shedding light on the challenges and advancements in handling the inherent complexity of biomolecular systems.
+
+Grid-based algorithms (\eg, CavitySearch \cite{cavitysearch}, POVME 3.0 \cite{povme}) rely on discretizing the molecular structure into a 3D grid. The computational complexity of these methods is inherently tied to the grid spacing, often expressed using big-O notation. The time complexity of algorithms using 3D grids is typically expressed as $\mathcal{O}(n_{v})$, where $n_{v}$ represents the number of voxels, denoting the computational time increase linearly with respect to the number of voxels. A finer grid provides a more detailed representation of the molecular surface but increases the number of grid points to be processed. As a result, there exists a delicate balance between achieving sufficient resolution for accurate cavity detection and maintaining computational efficiency. The spatial complexity, referring to the memory requirements, is also $\mathcal{O}(n_{v})$ as it scales with the number of voxels. Implementing strategies to optimize grid-based algorithms involves finding ways to reduce this linear relationship, such as through sparse grid representations or parallel processing.
+
+Probe-based algorithms (\eg, pywindow \cite{pywindow}) introduce a different set of considerations, with the choice of probe size significantly impacting the precision and sensitivity of cavity detection. The time complexity of probe-based algorithms is often expressed as $\mathcal{O}(n_{p} \cdot n_{a})$, where $n_{p}$ is the number of probes and $n_{a}$ is the number of atoms. The spatial complexity can also be $\mathcal{O}(n_{a})$ as it depends on the number of atoms.
+
+Surface-based algorithms (\eg, NSA \cite{nsa}, MSPocket \cite{mspocket}) focus on the molecular surface characteristics. The computational complexity of surface-based algorithms is associated with the surface representation and analysis techniques employed. These methods typically involve operations on the molecular surface mesh or point cloud, leading to complexities that depend on factors such as surface resolution, mesh complexity, and the nature of surface analysis. These complexities can range from linear (\eg, vertex transformation) to polynomial (\eg, convex hull computation), and optimizations often revolve around efficient mesh processing and surface characterization techniques.
+
+Tessellation-based algorithms (\eg, Fpocket \cite{fpocket} and CAVER 3.0 \cite{caver3}) leverage geometric constructs such as Voronoi diagrams and \textalpha\space spheres. The computational complexity here is intricately linked to the efficiency of these geometric operations. The time complexity of tessellation-based algorithms often involves complex geometric operations and is expressed as $\mathcal{O}(n_{a} \cdot \log{n_{a}})$, where $n_{a}$ is the number of atoms. The spatial complexity can also be $\mathcal{O}(n_{a})$ as it depends on the number of points used in the geometric calculations.
+
 \section{Parallel Computing \label{sec:parallel-computing}}
 
-Computational problems are typically divided into distinct parts, each comprising sets of instructions. In computing, two fundamental approaches exist: serial computing, which executes instructions sequentially, and parallel computing, which leverages multiple computational resources simultaneously. This concurrent execution enables the simultaneous resolution of instructions, thereby reducing computational time---a critical advantage in the context of modern computers  featuring parallel architectures with multiple processors \cite{foster1995,grama2003}.
+Computational problems are typically divided into distinct parts, each comprising sets of instructions. In computing, two fundamental approaches exist: serial computing, which executes instructions sequentially, and parallel computing, which leverages multiple computational resources simultaneously (Figure \ref{fig:computing}). This concurrent execution enables the simultaneous resolution of instructions, thereby reducing computational time---a critical advantage in the context of modern computers  featuring parallel architectures with multiple processors \cite{foster1995,grama2003}.
 
 % Add tikz diagram for serial x parallel computing
 % Template:
-% \begin{figure}
-%   \centering
-%   \begin{tikzpicture}[node distance=1.5cm]
-%       \node (start) [circle, draw] {Start};
-%       \node (task1) [rectangle, draw, below of=start] {Task 1};
-%       \node (task2) [rectangle, draw, below of=task1] {Task 2};
-%       \node (dots) [below of=task2] {...};
-%       \node (taskn) [rectangle, draw, below of=dots] {Task n};
-%       \node (end) [circle, draw, below of=taskn] {End};
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[node distance=1.5cm,scale=0.49]
+      \node (start) [circle, draw] {Start};
+      \node (task1) [rectangle, draw, below of=start] {Task 1};
+      \node (task2) [rectangle, draw, below of=task1] {Task 2};
+      \node (dots) [below of=task2] {\vdots};
+      \node (taskn) [rectangle, draw, below of=dots] {Task n};
+      \node (end) [circle, draw, below of=taskn] {End};
       
-%       \draw [->] (start) -- (task1);
-%       \draw [->] (task1) -- (task2);
-%       \draw [->] (task2) -- (dots);
-%       \draw [->] (dots) -- (taskn);
-%       \draw [->] (taskn) -- (end);
-%   \end{tikzpicture}
+      \draw [->] (start) -- (task1);
+      \draw [->] (task1) -- (task2);
+      \draw [->] (task2) -- (dots);
+      \draw [->] (dots) -- (taskn);
+      \draw [->] (taskn) -- (end);
+  \end{tikzpicture}
+  \hspace{3cm} % Space between diagrams
+  \begin{tikzpicture}[node distance=1.5cm,scale=0.49]
+
+    % Define nodes
+    \node (start) [circle, draw] {Start};
+    \node (task1) [rectangle, draw, below of=start] {Task 1};
+    \node (task2) [rectangle, draw, below right=1cm and 2cm of task1] {Task 2};
+    \node (task3) [rectangle, draw, below left=1cm and 2cm of task2] {Task 3};
+    \node (task4) [rectangle, draw, below right=1cm and 2cm of task3] {Task 4};
+    \node (end) [circle, draw, below of=task4] {End};
+
+    % Draw arrows
+    \draw [->] (start) -- (task1);
+    \draw [->] (task1) -- (task2);
+    \draw [->] (task1) -- (task3);
+    \draw [->] (task2) -- (task4);
+    \draw [->] (task3) -- (task4);
+    \draw [->] (task4) -- (end);
   
-%   \centering
-%   \begin{tikzpicture}[node distance=1.5cm]
+  \end{tikzpicture}
 
-%     % Define nodes
-%     \node (start) [circle, draw] {Start};
-%     \node (task1) [rectangle, draw, below of=start] {Task 1};
-%     \node (task2) [rectangle, draw, below right=1cm and 2cm of task1] {Task 2};
-%     \node (task3) [rectangle, draw, below left=1cm and 2cm of task2] {Task 3};
-%     \node (task4) [rectangle, draw, below right=1cm and 2cm of task3] {Task 4};
-%     \node (end) [circle, draw, below of=task4] {End};
-
-%     % Draw arrows
-%     \draw [->] (start) -- (task1);
-%     \draw [->] (task1) -- (task2);
-%     \draw [->] (task1) -- (task3);
-%     \draw [->] (task2) -- (task4);
-%     \draw [->] (task3) -- (task4);
-%     \draw [->] (task4) -- (end);
-  
-%   \end{tikzpicture}
-
-%   \caption[Diagram of serial and parallel computing]{\textbf{Diagram of serial and parallel computing.}}
-%   \label{fig:computing}
-% \end{figure}
+  \caption[Diagram of serial and parallel computing]{\textbf{Diagram of serial and parallel computing.}}
+  \label{fig:computing}
+\end{figure}
 
 Parallel computing marks a paradigm shift from traditional sequential approaches, employing multiple processors or computing units to concurrently perform tasks. This paradigm has gained prominence in response to growing computational demands, especially with the increasing complexity of data volumes and problem-solving requirements. Early parallel systems were tightly coupled, sharing memory and closely coordinating tasks. The evolution of parallel computing architectures progressed from Single Instruction, Multiple Data (SIMD) to Multiple Instruction, Multiple Data (MIMD) systems, reflecting a shift towards greater flexibility and efficiency. Diverse parallel computing architectures are designed to meet specific computational needs. Shared-memory architectures, like Symmetric Multiprocessing (SMP), enable processors to access a common memory pool. In contrast, distributed-memory architectures, seen in clusters or grids, involve processors with their dedicated memory. Hybrid architectures combine these models, capitalizing on the strengths of both shared and distributed memory systems \cite{matloff2012}.
 
