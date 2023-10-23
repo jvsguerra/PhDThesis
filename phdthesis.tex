@@ -101,7 +101,10 @@
 \usetikzlibrary{positioning,shapes,shadows,arrows}
 
 % Estilos para os diagramas do tiks:
-\tikzstyle{box}=[rectangle, draw=black, fill=gray!20, drop shadow, text centered, anchor=north, align=center]
+\tikzstyle{BoxNode}=[rectangle, draw=black, fill=gray!20, drop shadow, anchor=north, align=center]
+\tikzstyle{StartEndNode}=[rectangle, draw=black, fill = blue!20!white, rounded corners=6pt, minimum width=1.5cm]
+\tikzstyle{OperationNode}=[rectangle, draw=black, fill = gray!30!white, minimum width=1.5cm]
+\tikzstyle{ConnNode}=[circle, draw=black, radius = 5pt]
 
 % Para renderizar formulas matemáticas:
 \usepackage{amsmath}
@@ -375,43 +378,43 @@ The detection of cavities through geometric approaches is widespread, encompassi
   \centering
   \begin{tikzpicture}[node distance=0.5cm]
 
-    \node (GeomBased) [box, text width=6cm] {\textbf{Geometry-based methods}};
+    \node (GeomBased) [BoxNode, text width=6cm] {\textbf{Geometry-based methods}};
     \node (AuxNode01) [below=of GeomBased] {};
-    \node (ProbeBased) [box, text width=3cm, rectangle split, rectangle split parts=2, below left=0.5cm and 4cm of AuxNode01] 
+    \node (ProbeBased) [BoxNode, text width=3cm, rectangle split, rectangle split parts=2, below left=0.5cm and 4cm of AuxNode01] 
     {
       \textbf{Probe-based methods}
       \nodepart{two}{Kuntz et al. \ignorecitefornumbering{\cite{kuntz1982}}\\ PASS \ignorecitefornumbering{\cite{pass}}\\ PHECOM \ignorecitefornumbering{\cite{phecom}}\\ pywindow \ignorecitefornumbering{\cite{pywindow}}}
     };
-    \node (GridBased) [box, text width=3.5cm, rectangle split, rectangle split parts=2, below left=0.5cm and 0cm of AuxNode01]
+    \node (GridBased) [BoxNode, text width=3.5cm, rectangle split, rectangle split parts=2, below left=0.5cm and 0cm of AuxNode01]
     {
       \textbf{Grid-based methods}
       \nodepart{two}{CavitySearch \ignorecitefornumbering{\cite{cavitysearch}}\\ POCKET \ignorecitefornumbering{\cite{pocket}}\\ LIGSITE \ignorecitefornumbering{\cite{ligsite}}\\ POVME 3.0 \ignorecitefornumbering{\cite{povme}}}
     };
-    \node (SurfBased) [box, text width=3cm, rectangle split, rectangle split parts=2, below right=0.5cm and 0.0cm of AuxNode01]
+    \node (SurfBased) [BoxNode, text width=3cm, rectangle split, rectangle split parts=2, below right=0.5cm and 0.0cm of AuxNode01]
     {
       \textbf{Surface-based methods}
       \nodepart{two}{NSA \ignorecitefornumbering{\cite{nsa}}\\ MSPocket \ignorecitefornumbering{\cite{mspocket}}}
     };
-    \node (TessBased) [box, text width=4cm, rectangle split, rectangle split parts=2, below right=0.5cm and 3.5cm of AuxNode01]
+    \node (TessBased) [BoxNode, text width=4cm, rectangle split, rectangle split parts=2, below right=0.5cm and 3.5cm of AuxNode01]
     {
       \textbf{Tesselation-based methods}
       \nodepart{two}{APROPOS \ignorecitefornumbering{\cite{apropos}}\\ Fpocket \ignorecitefornumbering{\cite{fpocket}}\\ CAVER 3.0 \ignorecitefornumbering{\cite{caver3}}}
     };
-    \node (AuxNode02) [below left=4.25cm and 6cm of AuxNode01] {};
-    \node (AuxNode03) [below left=4.25cm and 2.5cm of AuxNode01] {};
+    \node (AuxNode02) [below left=4.25cm and 4.7cm of AuxNode01] {};
+    \node (AuxNode03) [below left=4.25cm and 4.3cm of AuxNode01] {};
     \node (AuxNode04) [below left=4.25cm and 4.5cm of AuxNode01] {};
-    \node (GPBased) [box, rectangle split, rectangle split parts=2, below=0.5cm of AuxNode04, text width=4cm]
+    \node (GPBased) [BoxNode, rectangle split, rectangle split parts=2, below=0.5cm of AuxNode04, text width=4cm]
     {
       \textbf{Grid-and-probe-based methods}
       \nodepart{two}{VOIDOO \ignorecitefornumbering{\cite{voidoo}}\\ POCASA \ignorecitefornumbering{\cite{pocasa}}\\ GHECOM \ignorecitefornumbering{\cite{ghecom}}\\ 3V \ignorecitefornumbering{\cite{3v}}\\ KVFinder \ignorecitefornumbering{\cite{oliveira2014}}\\ parKVFinder \ignorecitefornumbering{\cite{guerra2019,guerra2020}}\\ pyKVFinder \ignorecitefornumbering{\cite{guerra2021}}\\ KVFinder-web \ignorecitefornumbering{\cite{guerra2023A}}}
     };
-    \node (GSBased) [box, rectangle split, rectangle split parts=2, below=5cm of AuxNode01, text width=4cm]
+    \node (GSBased) [BoxNode, rectangle split, rectangle split parts=2, below=5cm of AuxNode01, text width=4cm]
     {
       \textbf{Grid-and-surface-based methods}
       \nodepart{two}{FRODO \ignorecitefornumbering{\cite{frodo}}\\ CAVER \ignorecitefornumbering{\cite{caver}}}
     };
-    \node (AuxNode05) [below left=4.25cm and 1.25cm of AuxNode01] {};
-    \node (AuxNode06) [below right=4.25cm and 0.75cm of AuxNode01] {};
+    \node (AuxNode05) [below left=4.25cm and 0.0cm of AuxNode01] {};
+    \node (AuxNode06) [below right=4.25cm and 0.0cm of AuxNode01] {};
     \node (AuxNode07) [below=4.25cm of AuxNode01] {};
 
     \draw [->] (GeomBased.south) -- (AuxNode01)+(0,0.12) -| (ProbeBased.north);
@@ -508,49 +511,82 @@ Tessellation-based algorithms (\eg, Fpocket \cite{fpocket} and CAVER 3.0 \cite{c
 
 \section{Parallel Computing \label{sec:parallel-computing}}
 
-Computational problems are typically divided into distinct parts, each comprising sets of instructions. In computing, two fundamental approaches exist: serial computing, which executes instructions sequentially, and parallel computing, which leverages multiple computational resources simultaneously (Figure \ref{fig:computing}). This concurrent execution enables the simultaneous resolution of instructions, thereby reducing computational time---a critical advantage in the context of modern computers  featuring parallel architectures with multiple processors \cite{foster1995,grama2003}.
+Computational problems are typically divided into distinct parts, each comprising sets of instructions. In computing, two fundamental approaches exist: serial computing, which executes instructions sequentially, and parallel computing, which leverages multiple computational resources simultaneously (Figure \ref{fig:computing-strategies}). This concurrent execution enables the simultaneous resolution of instructions, thereby reducing computational time---a critical advantage in the context of modern computers  featuring parallel architectures with multiple processors \cite{foster1995,grama2003}.
 
-% Add tikz diagram for serial x parallel computing
-% Template:
 \begin{figure}
-  \centering
-  \begin{tikzpicture}[node distance=1.5cm,scale=0.49]
-      \node (start) [circle, draw] {Start};
-      \node (task1) [rectangle, draw, below of=start] {Task 1};
-      \node (task2) [rectangle, draw, below of=task1] {Task 2};
-      \node (dots) [below of=task2] {\vdots};
-      \node (taskn) [rectangle, draw, below of=dots] {Task n};
-      \node (end) [circle, draw, below of=taskn] {End};
+  \raggedright
+  \textbf{Serial Computing} \\
+  \vspace{0.2cm}
+  \begin{tikzpicture}[node distance=2.37cm]
       
-      \draw [->] (start) -- (task1);
-      \draw [->] (task1) -- (task2);
-      \draw [->] (task2) -- (dots);
-      \draw [->] (dots) -- (taskn);
-      \draw [->] (taskn) -- (end);
-  \end{tikzpicture}
-  \hspace{3cm} % Space between diagrams
-  \begin{tikzpicture}[node distance=1.5cm,scale=0.49]
-
-    % Define nodes
-    \node (start) [circle, draw] {Start};
-    \node (task1) [rectangle, draw, below of=start] {Task 1};
-    \node (task2) [rectangle, draw, below right=1cm and 2cm of task1] {Task 2};
-    \node (task3) [rectangle, draw, below left=1cm and 2cm of task2] {Task 3};
-    \node (task4) [rectangle, draw, below right=1cm and 2cm of task3] {Task 4};
-    \node (end) [circle, draw, below of=task4] {End};
-
-    % Draw arrows
+    \node (start) [StartEndNode] {Start};
+    \node (task1) [OperationNode, right of=start] {Task 1};
+    \node (task2) [OperationNode, right of=task1] {Task 2};
+    \node (task3) [OperationNode, right of=task2] {Task 3};
+    \node (dots) [right of=task3] {\dots};
+    \node (taskn) [OperationNode, right of=dots] {Task N};
+    \node (end) [StartEndNode, right of=taskn] {End};
+    
     \draw [->] (start) -- (task1);
     \draw [->] (task1) -- (task2);
-    \draw [->] (task1) -- (task3);
-    \draw [->] (task2) -- (task4);
-    \draw [->] (task3) -- (task4);
-    \draw [->] (task4) -- (end);
-  
-  \end{tikzpicture}
+    \draw [->] (task2) -- (task3);
+    \draw [->] (task3) -- (dots);
+    \draw [->] (dots) -- (taskn);
+    \draw [->] (taskn) -- (end);
+  \end{tikzpicture} \\ 
+  \vspace{0.5cm} % Space between diagrams
+  \textbf{Parallel Computing} \\
+  \vspace{0.2cm}
+  \begin{tikzpicture}[node distance=0.4cm]
+    
+    \node (start) [StartEndNode] {Start};
+    \node (task1) [OperationNode, right=0.75cm of start] {Task 1};
+    \node (ConnNode01) [ConnNode, right=of task1] {};
+    \node (task2) [OperationNode, rectangle split, rectangle split parts=2, above right=0.75cm and 1.25cm of task1, text width=1.5cm, text centered] {
+      Task 2
+      \nodepart{two}{\scriptsize{\textit{Task 2.1}\\ \textit{Task 2.2}\\ \dots \\ \textit{Task 2.N}}}
+    };
+    \node (task3) [OperationNode, rectangle split, rectangle split parts=2, below right=0.75cm and 1.25cm of task1, text width=1.5cm, text centered] {
+      Task 3
+      \nodepart{two}{\scriptsize{\textit{Task 3.1}\\ \textit{Task 3.2}\\ \dots \\ \textit{Task 3.N}}}
+    };
+    \node (ConnNode02) [ConnNode, right=3.5cm of task1] {};
+    \node (task4) [OperationNode, right=0.75cm of ConnNode02] {Task 4};
+    \node (ConnNode03) [ConnNode, right=of task4] {};
+    \node (task5) [OperationNode, rectangle split, rectangle split parts=2, above right=1.25cm and 0.5cm of ConnNode03, text width=1.5cm, text centered] {
+      Task 5
+      \nodepart{two}{\scriptsize{\textit{Task 5.1}\\ \textit{Task 5.2}\\ \dots \\ \textit{Task 5.N}}}
+    };
+    \node (task6) [OperationNode, rectangle split, rectangle split parts=2, right=0.45cm of ConnNode03, text width=1.5cm, text centered] {
+      Task 6
+      \nodepart{two}{\scriptsize{\textit{Task 6.1}\\ \textit{Task 6.2}\\ \dots \\ \textit{Task 6.N}}}
+    };
+    \node (dots) [below right=0.85cm and 1.15cm of ConnNode03] {\vdots};
+    \node (taskn) [OperationNode, rectangle split, rectangle split parts=2, below right=1.75cm and 0.5cm of ConnNode03, text width=1.5cm, text centered] {
+      Task N
+      \nodepart{two}{\scriptsize{\textit{Task N.1}\\ \textit{Task N.2}\\ \dots \\ \textit{Task N.N}}}
+    };
+    \node (ConnNode04) [ConnNode, right=of task6] {};
+    \node (end) [StartEndNode, right=of ConnNode04] {End};
 
+    \draw [->] (start) -- (task1);
+    \draw [->] (task1) -- (ConnNode01);
+    \draw [->] (ConnNode01) |- (task2);
+    \draw [->] (ConnNode01) |- (task3);
+    \draw [->] (task2) -| (ConnNode02);
+    \draw [->] (task3) -| (ConnNode02);
+    \draw [->] (ConnNode02) -- (task4);
+    \draw [->] (task4) -- (ConnNode03);
+    \draw [->] (ConnNode03) |- (task5);
+    \draw [->] (ConnNode03) -- (task6);
+    \draw [->] (ConnNode03) |- (taskn);
+    \draw [->] (task5) -| (ConnNode04);
+    \draw [->] (task6) -- (ConnNode04);
+    \draw [->] (taskn) -| (ConnNode04);
+    \draw [->] (ConnNode04) -- (end);
+  \end{tikzpicture}
   \caption[Diagram of serial and parallel computing]{\textbf{Diagram of serial and parallel computing.}}
-  \label{fig:computing}
+  \label{fig:computing-strategies}
 \end{figure}
 
 Parallel computing marks a paradigm shift from traditional sequential approaches, employing multiple processors or computing units to concurrently perform tasks. This paradigm has gained prominence in response to growing computational demands, especially with the increasing complexity of data volumes and problem-solving requirements. Early parallel systems were tightly coupled, sharing memory and closely coordinating tasks. The evolution of parallel computing architectures progressed from Single Instruction, Multiple Data (SIMD) to Multiple Instruction, Multiple Data (MIMD) systems, reflecting a shift towards greater flexibility and efficiency. Diverse parallel computing architectures are designed to meet specific computational needs. Shared-memory architectures, like Symmetric Multiprocessing (SMP), enable processors to access a common memory pool. In contrast, distributed-memory architectures, seen in clusters or grids, involve processors with their dedicated memory. Hybrid architectures combine these models, capitalizing on the strengths of both shared and distributed memory systems \cite{matloff2012}.
