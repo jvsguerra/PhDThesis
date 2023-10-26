@@ -67,7 +67,9 @@ eval "$pdflatex" 1>> texer.out 2>> texer.err
 echo ""
 echo "Finished!"
 
-err=`cat texer.out | grep '[eE][rR][rR][oO][rR]'`
+# err=`cat texer.out | grep '[eE][rR][rR][oO][rR]'
+# Ignore pgfplots lines -> they are not errors
+err=`cat texer.out | grep '[eE][rR][rR][oO][rR]' | grep -v 'pgfplots'`
 if [ ! -z "$err" ];
 then
 	echo "There would be errors, please check."
