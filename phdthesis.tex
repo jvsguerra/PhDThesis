@@ -106,6 +106,11 @@
 \tikzstyle{OperationNode}=[rectangle, draw=black, fill=gray!30!white, minimum width=1.5cm]
 \tikzstyle{ConnNode}=[circle, draw=black, radius=5pt]
 
+% Para criar gráficos em Latex:
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{statistics}
+
 % Para renderizar formulas matemáticas:
 \usepackage{amsmath}
 \newcommand{\mAA}{~\text{\AA}}
@@ -511,7 +516,7 @@ Tessellation-based algorithms (\eg, Fpocket \cite{fpocket} and CAVER 3.0 \cite{c
 
 \section{Parallel Computing \label{sec:parallel-computing}}
 
-Computational problems are typically divided into distinct parts, each comprising sets of instructions. In computing, two fundamental approaches exist: serial computing, which executes instructions sequentially, and parallel computing, which leverages multiple computational resources simultaneously (Figure \ref{fig:computing-strategies}). This concurrent execution enables the simultaneous resolution of instructions, thereby reducing computational time---a critical advantage in the context of modern computers  featuring parallel architectures with multiple processors \cite{foster1995,grama2003}.
+Computational problems are typically divided into distinct parts, each comprising sets of instructions. In computing, two fundamental approaches exist: serial computing, which executes instructions sequentially, and parallel computing, which leverages multiple computational resources simultaneously (Figure \ref{fig:computing-strategies}). This concurrent execution enables the simultaneous execution of instructions, thereby reducing computational time---a critical advantage in the context of modern computers featuring parallel architectures with multiple processors \cite{foster1995,grama2003}. Despite its potential, parallel computing introduces new challenges that necessitate careful consideration. Coordinating parallel tasks, managing data synchronization, and minimizing communication overhead are critical concerns. Load balancing becomes pivotal to ensure uniform resource utilization, preventing bottlenecks that hinder performance gains. Additionally, designing algorithms that effectively parallelize tasks is a complex endeavor, requiring a deep understanding of both the problem domain and the intricacies of parallel architectures \cite{grama2003,matloff2012}.
 
 \begin{figure}
   \raggedright
@@ -589,11 +594,9 @@ Computational problems are typically divided into distinct parts, each comprisin
   \label{fig:computing-strategies}
 \end{figure}
 
-Parallel computing marks a paradigm shift from traditional sequential approaches, employing multiple processors or computing units to concurrently perform tasks. This paradigm has gained prominence in response to growing computational demands, especially with the increasing complexity of data volumes and problem-solving requirements. Early parallel systems were tightly coupled, sharing memory and closely coordinating tasks. The evolution of parallel computing architectures progressed from Single Instruction, Multiple Data (SIMD) to Multiple Instruction, Multiple Data (MIMD) systems, reflecting a shift towards greater flexibility and efficiency. Diverse parallel computing architectures are designed to meet specific computational needs. Shared-memory architectures, like Symmetric Multiprocessing (SMP), enable processors to access a common memory pool. In contrast, distributed-memory architectures, seen in clusters or grids, involve processors with their dedicated memory. Hybrid architectures combine these models, capitalizing on the strengths of both shared and distributed memory systems \cite{matloff2012}.
+Parallel computing marks a paradigm shift from traditional sequential approaches, employing multiple processors or computing units to concurrently perform tasks. This paradigm has gained prominence in response to growing computational demands, especially with the increasing complexity of data volumes and problem-solving requirements. Early parallel systems were tightly coupled, sharing memory and closely coordinating tasks. The evolution of parallel computing architectures progressed from Single Instruction, Multiple Data (SIMD) to Multiple Instruction, Multiple Data (MIMD) systems, reflecting a shift towards greater flexibility and efficiency. Diverse parallel computing architectures are designed to meet specific computational needs. Shared-memory architectures, such as Symmetric Multiprocessing (SMP), enable processors to access a common memory pool. In contrast, distributed-memory architectures, seen in clusters or grids, involve processors with their dedicated memory. Hybrid architectures combine these models, capitalizing on the strengths of both shared and distributed memory systems \cite{matloff2012}.
 
-Despite its potential, parallel computing introduces challenges that necessitate careful consideration. Coordinating parallel tasks, managing data synchronization, and minimizing communication overhead are critical concerns. Load balancing becomes pivotal to ensure uniform resource utilization, preventing bottlenecks that hinder performance gains. Additionally, designing algorithms that effectively parallelize tasks is a complex endeavor, requiring a deep understanding of both the problem domain and the intricacies of parallel architectures \cite{grama2003,matloff2012}.
-
-One key metric in evaluating parallel computing performance is \textit{speedup}. Speedup (Equation \ref{eq:speedup}) is a relative measure used to analyze the efficiency gained by employing multiple processing elements compared to a single processor. The ideal speedup is linear, meaning that doubling the number of processing elements should ideally halve the computation time. However, achieving this ideal speedup is challenging, and many algorithms exhibit nearly linear speedup for a small number of processors, reaching an asymptotic behavior for a large number of processing elements \cite{grama2003,matloff2012}.
+One key metric in evaluating parallel computing performance is \textit{speedup}. Speedup (Eq. \ref{eq:speedup}) is a relative measure used to analyze the efficiency gained by employing multiple processing elements compared to a single processor. The ideal speedup is linear, meaning that doubling the number of processing elements should ideally halve the computation time. However, achieving this ideal speedup is challenging, and many algorithms exhibit nearly linear speedup for a small number of processors, reaching an asymptotic behavior for a large number of processing elements \cite{grama2003,matloff2012}.
 
 \begin{equation}
   S \colon (T_1, T_p) \mapsto \frac{T_1}{T_p} \in [0,\inf)
@@ -602,7 +605,79 @@ One key metric in evaluating parallel computing performance is \textit{speedup}.
 
 \noindent where \(S\) is the speedup, \(T_1\) is the execution time on a single processor, \(T_p\) is the execution time on \(p\) processors.
 
-Applications of parallel computing span various domains, from scientific simulations and data analytics to artificial intelligence. High-performance computing (HPC) clusters address intricate scientific problems, such as simulating climate models, conducting molecular dynamics simulations for drug discovery, or analyzing large-scale genomics data. On the other hand, parallel processing significantly accelerates tasks like training machine learning models for image recognition, natural language processing, and recommendation systems. Additionally, parallel algorithms play a crucial role in speeding up tasks like sorting, searching, and graph traversal, contributing to improved efficiency in various computational domains. The future of parallel computing is influenced by ongoing advancements in hardware, software, and algorithms. Emerging technologies, such as quantum computing, introduce new dimensions to parallelism. Ongoing research explores novel ways to harness parallelism efficiently, overcome scalability challenges, and integrate parallel computing into mainstream applications. In summary, parallel computing stands as a cornerstone in addressing the escalating demands for computational power.
+This performance gain can be predicted by two models (Figure \ref{fig:laws-plot}): Amdahl's Law \cite{amdahl1967} and Gustafson's Law \cite{gustafson1988}. Amdahl's Law (Eq. \ref{eq:amdahl}), assumes the size of the computational problem is fixed, and the non-parallelizable fraction of the program is independent of the number of processors. Gustafson's Law (Eq. \ref{eq:gustafson}) addresses the deficiencies of Amdahl's Law, proposing that programmers tend to define the size of problems to exploit the computational power that becomes available as resources improve. In a way, Gustafson's Law redefines efficiency due to the possibility that limitations imposed by the sequential fraction of a program can be combated by an increase in available computational resources.
+
+\begin{equation}
+  S_A \colon (f_p, N_p) \mapsto \frac{1}{(1 - f_p) + \frac{f_p}{N_p}}
+  \label{eq:amdahl}
+\end{equation}
+
+\begin{equation}
+  S_G \colon (f_p, N_p) \mapsto (1 - f_p) + N_p \cdot f_p
+  \label{eq:gustafson}
+\end{equation}
+
+\noindent where \(S_A\) is the speedup estimated by Amdahl's Law, \(S_G\) is the speedup estimated by Gustafson's Law, \(f_p\) is the parallelizable fraction of the code, and \(N_p\) is the number of available processors.
+
+\begin{figure}[hb]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      xlabel={Number of processors},
+      ylabel={$Speedup$},
+      title=\textbf{Amdahl's Law},
+      grid=major,
+      xmin=1, xmax=20,
+      ymin=0, ymax=20,
+      height=0.48\textwidth, width=0.48\textwidth,
+      domain=1:20,
+      legend pos=north west,
+      legend style={font=\scriptsize},
+      legend cell align={left},
+    ]
+    \addplot[black, thick] {1 / ((1.0 - 1.0) + (1.0 / x))};
+    \addlegendentry{$N_p=1.00$ (ideal)};
+    \addplot[blue, thick] {1 / ((1.0 - 0.75) + (0.75 / x))};
+    \addlegendentry{$N_p=0.75$};
+    \addplot[orange, thick] {1 / ((1.0 - 0.5) + (0.5 / x))};
+    \addlegendentry{$N_p=0.50$};
+    \addplot[green, thick] {1 / ((1.0 - 0.25) + (0.25 / x))};
+    \addlegendentry{$N_p=0.25$};
+    \addplot[red, thick] {1 / ((1.0 - 0.0) + (0.0 / x))};
+    \addlegendentry{$N_p=0.00$};
+    \end{axis}
+  \end{tikzpicture}
+  \begin{tikzpicture}
+    \begin{axis}[
+      xlabel={Number of processors},
+      ylabel={$Speedup$},
+      title=\textbf{Gustafson's Law},
+      grid=major,
+      xmin=1, xmax=20,
+      ymin=0, ymax=20,
+      height=0.48\textwidth, width=0.48\textwidth,
+      domain=1:20,
+      legend pos=north west,
+      legend style={font=\scriptsize},
+      legend cell align={left},
+    ]
+    \addplot[black, thick] {(1 - 1.0) + (1.0 * x)};
+    \addlegendentry{$N_p=1.00$ (ideal)};
+    \addplot[blue, thick] {(1 - 0.75) + (0.75 * x)};
+    \addlegendentry{$N_p=0.75$};
+    \addplot[orange, thick] {(1 - 0.5) + (0.5 * x)};
+    \addlegendentry{$N_p=0.50$};
+    \addplot[green, thick] {(1 - 0.25) + (0.25 * x)};
+    \addlegendentry{$N_p=0.25$};
+    \addplot[red, thick] {(1 - 0.0) + (0.0 * x)};
+    \addlegendentry{$N_p=0.00$};
+    \end{axis}
+  \end{tikzpicture}
+  \caption[Speedup according to Amdahl's and Gustafson's Laws]{\textbf{Speedup according to Amdahl's and Gustafson's Laws.} The speedup is presented as a function of the number of available processors for different fractions of parallelizable code ($N_p$), considering the estimates of Amdahl's and Gustafson's laws.}
+  \label{fig:laws-plot}
+\end{figure}
+
+Following these rules, applications of parallel computing span various domains, from scientific simulations and data analytics to artificial intelligence. High-performance computing (HPC) clusters address intricate scientific problems, such as simulating climate models, conducting molecular dynamics simulations for drug discovery, or analyzing large-scale genomics data. On the other hand, parallel processing significantly accelerates tasks like training machine learning models for image recognition, natural language processing, and recommendation systems. Additionally, parallel algorithms play a crucial role in speeding up tasks like sorting, searching, and graph traversal, contributing to improved efficiency in various computational domains. The future of parallel computing is influenced by ongoing advancements in hardware, software, and algorithms. Emerging technologies, such as quantum computing, introduce new dimensions to parallelism. Ongoing research explores novel ways to harness parallelism efficiently, overcome scalability challenges, and integrate parallel computing into mainstream applications. In summary, parallel computing stands as a cornerstone in addressing the escalating demands for computational power. Its comprehensive application ensures the development of efficient computational platforms for different research fields.
 
 %%% Chapter 4: Data Coding in Structural Biology
 
@@ -630,9 +705,9 @@ Among various molecular surface representations, the 3D grid composed of voxels 
 % Discuss time complexity and spatial complexity of parKVFinder
 % Discuss bit-depth for int grid, char grid and double grid
 
-% In general scenario, the cavity detection algorithms scale linearly with the input size. For grid-based approaches and their hybrid counterparts, the algorithms that scale linearly with the number of voxels are considered efficient, while those that scale exponentially are considered inefficient. Every grid-based method is sensitive to grid spacing. Higher density grids enable richer spatial representation, which are useful for detailed study of cavities, but imply higher computational costs. In fact, a grid with smaller voxels implies more memory space consumption and poorer time performance. For tesselation-based approaches, usually the algorithms scale linearly with the number of atoms, which is the input size. 
+% In general scenario, the cavity detection algorithms scale linearly with the input size. For grid-based approaches and their hybrid variations, the algorithms that scale linearly with the number of voxels are considered efficient, while those that scale exponentially are considered inefficient. Every grid-based method is sensitive to grid spacing. Higher density grids enable richer spatial representation, which are useful for detailed study of cavities, but imply higher computational costs. In fact, a grid with smaller voxels implies more memory space consumption and poorer time performance. 
 
-% In this context, we present a brief analysis of the computational complexity of the parKVFinder algorithm. Specifically, for parKVFiner software, the voxel length is a user-defined parameter, and the default value is 0.6 Å. For this class of algorithm, grid spacing oscillates from 0.5 to 0.8 Å. However, the user can set a different value, depending on the application. For instance, if the user is interested in more accuracte morphological characterization of the biomolecular cavity, a smaller voxel length is recommended, such as 0.25 Å. The complexity of the problem is intricately linked to the number of voxels, denoted as O(n), where n represents the number of voxels. No entanto, vale ressaltar que o tamanho médio da grade tridimensional é aproximadamente 150x150x150. The challenge intensifies as the region of interest, dictated by the probe size, influences the voxel count. The inherent nature of the algorithm, focused on voxel-level analysis, amplifies computational demands. 
+% In this context, we present a brief analysis of the computational complexity of the parKVFinder algorithm. Specifically, for parKVFiner software, the voxel length is a user-defined parameter, and the default value is 0.6 Å. For this class of algorithm, grid spacing oscillates from 0.5 to 0.8 Å. However, the user can set a different value, depending on the application. For instance, if the user is interested in more accuracte morphological characterization of the biomolecular cavity, a smaller voxel length is recommended, such as 0.25 Å. The complexity of the problem is intricately linked to the number of voxels, denoted as O(n), where n represents the number of voxels. No entanto, vale ressaltar que o tamanho médio da grade tridimensional é aproximadamente 120x120x120. The challenge intensifies as the region of interest, dictated by the probe size, influences the voxel count. The inherent nature of the algorithm, focused on voxel-level analysis, amplifies computational demands. 
 
 % In a general scenario, the time spatial complexity is O(n). The most expansive step being the voxel clustering algorithm, that is a recursive implementation of the DFS algorithm. The bit-depth of grid elements is a significant factor influencing memory usage and precision. In C language, the choice between int (32-bit integer) and double (64-bit floating-point) is pivotal. This choice balances memory efficiency with the precision required for accurate calculations. Implemented in C, ParKVFinder adopts a nuanced approach by utilizing both int and double for grid elements. This choice reflects a careful consideration of memory efficiency and precision requirements. The decision to use int or double hinges on the algorithm's needs and the characteristics of the processed data.
 
