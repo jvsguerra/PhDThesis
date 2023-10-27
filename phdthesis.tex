@@ -77,7 +77,9 @@
 \usepackage{enumitem}
 
 % Formatar \listoffigures, \listoftables and \tableofcontents
-
+\addto\captionsenglish{% Replace "english" with the language you use
+  \renewcommand{\contentsname}{Table of Contents}
+}
 
 % Formatar lista de abreviações e siglas
 \usepackage{acronym}
@@ -199,17 +201,22 @@ In recent years, data science and artificial intelligence have revolutionized di
 
 % A lista de figuras é opcional:
 \addcontentsline{toc}{chapter}{\listfigurename}
-% {%
-% \let\oldnumberline\numberline%
-% \renewcommand{\numberline}{\figurename~\oldnumberline}%
-% \listoffigures%
-% }
-\listoffigures
+{%
+\let\oldnumberline\numberline%
+\renewcommand{\numberline}{\figurename~\oldnumberline}%
+\listoffigures%
+}
+% \listoffigures
 \clearpage
 
 % A lista de tabelas é opcional:
 \addcontentsline{toc}{chapter}{\listtablename}
-\listoftables
+{%
+\let\oldnumberline\numberline%
+\renewcommand{\numberline}{\tablename~\oldnumberline}%
+\listoftables%
+}
+% \listoftables
 \clearpage
 
 % A lista de abreviações e siglas é opcional:
