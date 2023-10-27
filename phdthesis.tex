@@ -30,7 +30,6 @@
 
 % Para transformar caption em negrito:
 \usepackage[font=footnotesize,labelfont=bf]{caption}
-% \usepackage[font=scriptsize,labelfont=bf]{caption}
 
 % Para citações no formato numérico da norma ABNT:
 \usepackage[hyphens]{url}
@@ -78,22 +77,9 @@
 \usepackage{enumitem}
 
 % Formatar \listoffigures, \listoftables and \tableofcontents
-\usepackage{tocloft}
 
-% \tableofcontents: Replace "english" with the language you use
-\addto\captionsenglish{\renewcommand{\contentsname}{Table of Contents}}
-\renewcommand{\cfttoctitlefont}{\Large\bfseries}
 
-% \listoffigures
-\renewcommand{\cftloftitlefont}{\Large\bfseries}
-\renewcommand{\cftfigpresnum}{\bfseries Figure }
-\renewcommand{\cftfignumwidth}{6em}
-\renewcommand{\cftfigindent}{0em}
-\renewcommand{\cfttabpresnum}{\bfseries Table }
-\renewcommand{\cfttabnumwidth}{6em}
-\renewcommand{\cfttabindent}{0em}
-
-% Formatar list of abreviations
+% Formatar lista de abreviações e siglas
 \usepackage{acronym}
 
 % Para criar diagramas:
@@ -213,13 +199,18 @@ In recent years, data science and artificial intelligence have revolutionized di
 
 % A lista de figuras é opcional:
 \addcontentsline{toc}{chapter}{\listfigurename}
+% {%
+% \let\oldnumberline\numberline%
+% \renewcommand{\numberline}{\figurename~\oldnumberline}%
+% \listoffigures%
+% }
 \listoffigures
 \clearpage
 
 % A lista de tabelas é opcional:
 \addcontentsline{toc}{chapter}{\listtablename}
-% \listoftables
-% \clearpage
+\listoftables
+\clearpage
 
 % A lista de abreviações e siglas é opcional:
 \prefacesection{List of Abbreviations}
@@ -234,6 +225,7 @@ In recent years, data science and artificial intelligence have revolutionized di
   \acro{HPC}{High-Performance Computing}
   \acro{LBC}{\textit{Laboratório de Biologia Computacional}}
   \acro{LNBio}{\textit{Laboratório Nacional de Biociências}}
+  \acro{MD}{Molecular Dynamics}
   \acro{MIMD}{Multiple Instruction, Multiple Data}
   \acro{ML}{Machine learning}
   \acro{mmCIF}{macromolecular Crystallographic Information File}
@@ -257,7 +249,6 @@ In recent years, data science and artificial intelligence have revolutionized di
   % \acro{CHIKV}{\textit{Chikungunya virus}}
   % \acro{CLI}{\textit{command-line interface}}
   % \acro{DFS}{\textit{Depth-First Search}}
-  % \acro{DM}{Dinâmica molecular}
   % \acro{EEEV}{\textit{Eastern Equine Encephalitis virus}}
   % \acro{GUI}{\textit{Graphical User Interface}}
   % \acro{HIV-1}{\textit{Human Immunodeficiency Virus type 1}}
@@ -278,12 +269,20 @@ In recent years, data science and artificial intelligence have revolutionized di
 
 \clearpage
 
-% A lista de símbolos é opcional:
-% \prefacesection{Lista de Símbolos}
-
 % Quem usa o pacote nomencl pode incluir:
 % \renewcommand{\nomname}{Lista de Abreviações e Siglas}
 % \printnomenclature[3cm]
+
+% A lista de símbolos é opcional:
+\prefacesection{List of Symbols}
+
+\begin{acronym}
+  \acro{$n_v$}{Number of voxels}
+  \acro{}{}
+  \acro{}{}
+\end{acronym}
+
+\clearpage
 
 % O sumário vem aqui:
 \tableofcontents
@@ -335,7 +334,7 @@ In the forthcoming sections, we will delve into computational approaches for ide
 
 In biomolecules, particularly proteins and nucleic acids, solvent-exposed clefts or buried cavities are crucial for ligand binding, ultimately regulating biological function \cite{liang1998,sotriffer2002,henrich2010}. These binding sites are commonly situated in a diverse array of cavities (Figure \ref{fig:cavity-classification}), \ie, clefts, grooves, tunnels, channels, voids and invaginations \cite{simoes2017,guerra2019}. The identification and characterization of these binding sites are fundamental for comprehending the intricate biomolecular interactions and their diverse functions. Morphological, topological and physicochemical properties at the contact interface, \eg, shape, volume, area, charge, hydrophobicity, solvation, and type of interactions, dictate the functions and interactions of biomolecules \cite{hubbard1994,bohacek1997,sotriffer2002,henrich2010,guerra2019}. Identifying and sizing these cavities are initial steps in designing ligands based on protein structures \cite{liang1998}. Moreover, the structural and physicochemical characteristics of proteins are valuable in drug discovery and design \cite{guerra2019}.
 
-\begin{figure}[H]
+\begin{figure}[ht]
   \centerline{\includegraphics[scale=1]{images/cavity-classification.png}}
   \caption[Types of biomolecular cavities]{\textbf{Types of biomolecular cavities.} A biomolecular cavity (gray region) as a contiguous segment within the complement space of the biomolecule (black region), as defined by \cite{lay2013}. The categorization of these cavities follows an n-ary classification, where 'n' denotes the number of mouth openings. Specifically, a 0-ary cavity is identified as a void, representing an enclosed spatial configuration without external openings. In contrast, a 1-ary cavity, illustrated by a pocket, includes a single mouth opening. It is noteworthy that pockets encompass diverse forms like tunnels, invaginations, clefts, and grooves. Meanwhile, a 2-ary cavity, exemplified by a channel, features two mouth openings, facilitating the transit of molecular entities \cite{simoes2017}.}
   \label{fig:cavity-classification}
@@ -504,15 +503,17 @@ CAVER tools comprise a series of computational methods designed for tunnel and c
 
 \section{Computational Complexity \label{sec:computational-complexity}}
 
-The effectiveness of cavity detection algorithms is not solely determined by their ability to accurately identify binding sites; computational efficiency also plays a pivotal role, especially in the context of large biomolecular structures and extensive datasets. The computational complexity of cavity detection algorithms is a critical aspect that influences their practical utility and scalability. In this section, we explore the computational considerations associated with various approaches, shedding light on the challenges and advancements in handling the inherent complexity of biomolecular systems.
+The effectiveness of cavity detection algorithms is not solely determined by their ability to accurately identify binding sites; computational efficiency also plays a pivotal role, especially in the context of biomolecular structures and large datasets. The computational complexity of cavity detection algorithms is a critical aspect that influences their practical utility and scalability.
 
-Grid-based algorithms (\eg, CavitySearch \cite{cavitysearch}, POVME 3.0 \cite{povme}) rely on discretizing the molecular structure into a 3D grid. The computational complexity of these methods is inherently tied to the grid spacing, often expressed using big-O notation. The time complexity of algorithms using 3D grids is typically expressed as $\mathcal{O}(n_{v})$, where $n_{v}$ represents the number of voxels, denoting the computational time increase linearly with respect to the number of voxels. A finer grid provides a more detailed representation of the molecular surface but increases the number of grid points to be processed. As a result, there exists a delicate balance between achieving sufficient resolution for accurate cavity detection and maintaining computational efficiency. The spatial complexity, referring to the memory requirements, is also $\mathcal{O}(n_{v})$ as it scales with the number of voxels. Implementing strategies to optimize grid-based algorithms involves finding ways to reduce this linear relationship, such as through sparse grid representations or parallel processing.
+Grid-based algorithms (\eg, CavitySearch \cite{cavitysearch}, POVME 3.0 \cite{povme}) rely on discretizing the molecular structure into a 3D grid. The computational complexity of these methods is inherently tied to the grid spacing, often expressed using big-O notation. The time complexity of algorithms using 3D grids is typically expressed as $\mathcal{O}(n_{v})$, where $n_{v}$ represents the number of voxels, denoting the computational time increase linearly with respect to the number of voxels. A finer grid provides a more detailed representation of the molecular surface but increases the number of grid points to be processed. Consequently, there exists a delicate balance between achieving sufficient resolution for accurate cavity detection and maintaining computational efficiency. The spatial complexity, referring to the memory requirements, is also $\mathcal{O}(n_{v})$ as it scales with the number of voxels. Implementing strategies to optimize grid-based algorithms involves finding ways to reduce this linear relationship, such as through sparse grid representations or parallel processing.
 
-Probe-based algorithms (\eg, pywindow \cite{pywindow}) introduce a different set of considerations, with the choice of probe size significantly impacting the precision and sensitivity of cavity detection. The time complexity of probe-based algorithms is often expressed as $\mathcal{O}(n_{p} \cdot n_{a})$, where $n_{p}$ is the number of probes and $n_{a}$ is the number of atoms. The spatial complexity can also be $\mathcal{O}(n_{a})$ as it depends on the number of atoms.
+Probe-based algorithms (\eg, PHECOM \cite{phecom}, pywindow \cite{pywindow}) introduce a distinct set of considerations, where the chosen probe size significantly influences precision and sensitivity in cavity detection. The time complexity of probe-based algorithms is often expressed as $\mathcal{O}(n_{p} \cdot n_{a})$, where $n_{p}$ is the number of probes, and $n_{a}$ is the number of atoms. Conversely, spatial complexity depends solely on the number of atoms, denoted as $\mathcal{O}(n_{a})$.
 
 Surface-based algorithms (\eg, NSA \cite{nsa}, MSPocket \cite{mspocket}) focus on the molecular surface characteristics. The computational complexity of surface-based algorithms is associated with the surface representation and analysis techniques employed. These methods typically involve operations on the molecular surface mesh or point cloud, leading to complexities that depend on factors such as surface resolution, mesh complexity, and the nature of surface analysis. These complexities can range from linear (\eg, vertex transformation) to polynomial (\eg, convex hull computation), and optimizations often revolve around efficient mesh processing and surface characterization techniques.
 
-Tessellation-based algorithms (\eg, Fpocket \cite{fpocket} and CAVER 3.0 \cite{caver3}) leverage geometric constructs such as Voronoi diagrams and \textalpha\space spheres. The computational complexity here is intricately linked to the efficiency of these geometric operations. The time complexity of tessellation-based algorithms often involves complex geometric operations and is expressed as $\mathcal{O}(n_{a} \cdot \log{n_{a}})$, where $n_{a}$ is the number of atoms. The spatial complexity can also be $\mathcal{O}(n_{a})$ as it depends on the number of points used in the geometric calculations.
+Tessellation-based algorithms (\eg, Fpocket \cite{fpocket} and CAVER 3.0 \cite{caver3}) leverage geometric techniques such as Voronoi diagrams and \textalpha\space spheres. The computational complexity here is intricately linked to the efficiency of these geometric operations. The time complexity of tessellation-based algorithms often involves complex geometric operations and is expressed as $\mathcal{O}(n_{a} \cdot \log{n_{a}})$, where $n_{a}$ is the number of atoms. Spatial complexity depends on the number of points (\ie, number of atoms) used in the geometric calculations, expressed as $\mathcal{O}(n_{a})$.
+
+Thus, systematic evaluation of the computational complexity inherent in a given algorithm unveils opportunities for optimization.  The intrinsic complexity of biomolecular systems requires the development of efficient algorithms capable of handling large datasets. In this context, parallel computing emerges as a promising avenue for enhancing the computational efficiency of computational biology algorithms, including tasks such as cavity detection, cavity characterization, solvent accessibility determination, and beyond.
 
 \section{Parallel Computing \label{sec:parallel-computing}}
 
@@ -691,7 +692,7 @@ When working with computational models for the study of biomolecules, data codin
 
 \section{Volumetric Representation}
 
-Biomolecules and their binding sites can be represented in a 3D grid, subdivided into volumetric pixels, commonly known as voxels. This grid stores values in a matrix where each element is denoted as a voxel. A voxel, in this context, represents a discrete point of data within a 3D grid, and each point can contain multiple types of information, allowing the representation of different properties within a specific portion of space in a straightforward and efficient manner (Figure \ref{fig:voxel}). In computer science, the 3D grid is a data structure commonly used in image processing and computer vision applications, inclusing tasks such as image reconstruction, image segmentation, and object detection.
+Biomolecules and their binding sites can be represented in a 3D grid, subdivided into volumetric pixels, commonly known as voxels. This grid stores values in each element (voxel) of a matrix (\eg, a numpy array). A voxel, in this context, represents a discrete point of data within a 3D grid, and each point can contain multiple types of information, allowing the representation of different properties within a specific portion of space in a straightforward and efficient manner (Figure \ref{fig:voxel}). In computer science, the 3D grid is a data structure commonly used in image processing and computer vision applications, inclusing tasks such as image reconstruction, image segmentation, and object detection.
 
 \begin{figure}[ht]
   \centerline{\includegraphics[scale=1]{images/voxels.png}}
@@ -700,11 +701,11 @@ Biomolecules and their binding sites can be represented in a 3D grid, subdivided
   \label{fig:voxel}
 \end{figure}
 
-Among various molecular surface representations, the 3D grid composed of voxels is the simplest and most suitable for representing multiple properties under various conditions, as each voxel in the 3D grid can store multiple information, \eg, charge distribution, burial extent (depth), hydrophobicity, hydrogen-bond-forming regions and cavity identifier. Moreover, the 3D grid is an efficient data structure for storing and accessing values and/or attributes at a 3D position, enabling the performance of mathematical and logical operations within a 3D region. Its versatility makes it an ideal choice for the development of computational algorithms, leveraging parallel computing techniques to expedite the processing of substantial datasets.
+Among various molecular surface representations, the 3D grid composed of voxels is the simplest and most suitable for representing multiple properties under various conditions, as each voxel in the 3D grid can store multiple information, \eg, charge distribution, burial extent (depth), hydrophobicity, hydrogen-bond-forming regions and cavity identifier. Moreover, the 3D grid is an efficient data structure for storing and accessing values and/or attributes at a 3D position, enabling the performance of mathematical and logical operations within a 3D region. Its versatility makes it an ideal choice for the development of computational algorithms, leveraging parallel computing techniques to accelerate the processing of large datasets.
 
-The computational complexity of grid-based algorithms heavily relies on the input size, \ie, the number of voxels. Higher density grids offer a more detailed spatial representation, which proves beneficial for in-depth studies but comes at the cost of increased computational requirements, \ie, increased memory consumption and poorer time performance. For cavity detection algorithms, efficiency is often assessed based on the linear scalability of time complexity with the number of voxels, deeming exponential scalability inefficient. Within this context, the voxel clustering algorithm emerges as the most time-intensive step, primarily due to its limited parallelizability. In the parKVFiner software, the voxel length is a user-defined parameter, with default value of 0.6 Å. However, users have the flexibility to adjust this value based on the specific demands of their case studies. For instance, a smaller voxel length, such as 0.25 Å, is recommended for those seeking a more accurate morphological characterization of biomolecular cavities. The computational challenge is intricately tied to the number of voxels, denoted as $\mathcal{O}(n_v)$, where $n_v$ represents the voxel count. Under typical conditions, the average dimensions of the 3D grid, denoted as $(\bar{m},\bar{n},\bar{o})$, are roughly $(120,120,120)$, along the x, y, and z axes, respectively. The challenge intensifies as the region of interest, dictated by the probe size, influences the voxel count. The voxel-level analysis, inherent to the algorithm, amplifies computational demands.
+The computational complexity of grid-based algorithms heavily relies on the input size, \ie, the number of voxels. Higher density grids offer a more detailed spatial representation, which proves beneficial for in-depth studies but comes at the cost of increased computational requirements, \ie, increased memory consumption and poorer time performance. For cavity detection algorithms, efficiency is often assessed based on the linear scalability of time complexity with the number of voxels, deeming exponential scalability inefficient. Within this context, the voxel clustering algorithm emerges as the most time-intensive step, primarily due to its limited parallelizability. In the parKVFiner software, the voxel length is a user-defined parameter, with default value of 0.6 Å. However, users have the flexibility to adjust this value based on the specific demands of their case studies. For instance, a smaller voxel length, such as 0.25 Å, is recommended for those seeking a more accurate morphological characterization of biomolecular cavities. The computational complexity is intricately tied to the number of voxels, denoted as $\mathcal{O}(n_v)$, where $n_v$ represents the voxel count. Under typical conditions, the average dimensions of the 3D grid, denoted as $(\bar{m},\bar{n},\bar{o})$, are roughly $(120,120,120)$, along the x, y, and z axes, respectively. The complexity increases as the region of interest, dictated by the biomolecule and the probe size, influences the number of voxels, where the voxel-level analysis, inherent to the algorithm, amplifies computational demands.
 
-Turning to spatial complexity, the number of voxels and the bit-depth of grid elements significantly influence memory usage, with the latter also impacting precision. The choice between int (32-bit integer) and double (64-bit floating-point) in the C-coded parKVFinder reflects a balance between memory efficiency and the precision required for accurate calculations. Spatial complexity scales linearly with the number of voxels, denoted as $\mathcal{O}(n_v)$, where $n_v$ represents the voxel count. In parKVFinder, the grid for cavity and surface points identifiers is an integer grid (32-bit), while cavity properties, such as point depth and hydrophobicity, are stored in a double grid (64-bit floating-point).
+Turning to spatial complexity, the number of voxels and the bit-depth of grid elements significantly influence memory usage, with the latter also impacting precision. The choice between int (32-bit integer) and double (64-bit floating-point) in the C-coded parKVFinder reflects a balance between memory efficiency and the precision required for accurate calculations. Spatial complexity scales linearly with the number of voxels, denoted as $\mathcal{O}(n_v)$, where $n_v$ represents the number of voxels. In parKVFinder, the grid for cavity and surface points identifiers is an integer grid (32-bit), while cavity properties, such as point depth and hydrophobicity, are stored in a double grid (64-bit floating-point).
 
 \subsection{Molecular Surface Representation}
 

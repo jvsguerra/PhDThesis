@@ -429,8 +429,8 @@
 
 \usepackage{titlesec}
 \titleformat{\chapter}[hang] 
-{\normalfont\Large\bfseries}{\chaptertitlename\ \thechapter:}{12pt}{}{}
-% {\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter:}{12pt}{}{}
+{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter:}{12pt}{}{}
+% {\normalfont\Large\bfseries}{\chaptertitlename\ \thechapter:}{12pt}{}{}
 
 \let\@oldbiblio\thebibliography
 \renewcommand{\thebibliography}[1]{\newpage\addcontentsline{toc}{chapter}{\bibname}\@oldbiblio{#1}}
