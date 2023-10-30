@@ -701,7 +701,7 @@ When working with computational models for the study of biomolecules, data codin
 
 Biomolecules and their binding sites can be represented in a 3D grid, subdivided into volumetric pixels, commonly known as voxels. This grid stores values in each element (voxel) of a matrix (\eg, a numpy array). A voxel, in this context, represents a discrete point of data within a 3D grid, and each point can contain multiple types of information, allowing the representation of different properties within a specific portion of space in a straightforward and efficient manner (Figure \ref{fig:voxel}). In computer science, the 3D grid is a data structure commonly used in image processing and computer vision applications, inclusing tasks such as image reconstruction, image segmentation, and object detection.
 
-\begin{figure}[ht]
+\begin{figure}[h]
   \centerline{\includegraphics[scale=1]{images/voxels.png}}
   \centerline{\tiny{\textbf{Source:} Reprinted from \cite{guerra2021}. Licensed under \href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}.}}
   \caption[Grid representations]{\textbf{Grid representations.} Based on a 3D grid with dimensions (m, n, o), each element corresponds to a region of cavity (>1), empty space (1), biomolecule (0), or solvent (-1). Additionally, properties are stored in the same data structure, corresponding to the property value in the region.}
@@ -720,12 +720,12 @@ The representation of molecular surfaces is a crucial step in the modeling and a
 
 \begin{enumerate}[label=\textbf{(\Alph*)}]
   \item \textbf{vdW surface:} represents each atom as a sphere whose radius is proportional to its van der Waals radius. The vdW surface is depicted as the union of these spherical atoms;
-  \item \textbf{SAS (Solvent Accessible Surface):} represents regions of a molecule that can be accessed by a solvent molecule (e.g., a water molecule), approximated by a spherical probe;
-  \item \textbf{SES (Solvent Excluded Surface):} is similar to SAS but considers the outer shell of the probe instead of the probe's center.
+  \item \textbf{SAS:} represents regions of a molecule that can be accessed by a solvent molecule (e.g., a water molecule), approximated by a spherical probe;
+  \item \textbf{SES:} is similar to SAS but considers the outer shell of the probe instead of the probe's center.
 \end{enumerate}
   
-\begin{figure}[ht]
-  \centerline{\includegraphics[scale=1]{images/surface-representation.png}}
+\begin{figure}[H]
+  \centerline{\includegraphics[scale=0.9]{images/surface-representation.png}}
   \centerline{\tiny{\textbf{Source:} Reprinted with permission from \cite{guerra2023B}. Copyright 2023 American Chemical Society.}}
   \caption[Molecular surface representations]{\textbf{Molecular surface representations.} \textbf{(A)} vdW surface. \textbf{(B)} SAS. \textbf{(C)} SES. Images generated with PyMOL for the supramolecular cage (resorcin[4]arene-hexameric). \textbf{(D)} 2D schematic representation of molecular surfaces. The vdW surface (green) consists of atoms represented as green spheres. A spherical probe (gray), representing a solvent molecule, rolls over the atoms of the molecule to define SES and SAS. SES is defined by the vdW surface (green) and the space not reached by the spherical probe (orange). SAS is defined by the envelope reached by the center of the spherical probe (blue).}
   \label{fig:surface-representation}
@@ -736,17 +736,16 @@ The representation of molecular surfaces is a crucial step in the modeling and a
 % Melhorias para a Defesa:
 % - Descrever implementação: Lista de listas (em Python) com informações sobre átomos, aminoácidos e/ou bases nitrogenadas.
 
-Instead of representing structural data through voxels in a 3D grid, biomolecules and their binding sites can also be portrayed through their atomistic representation (Figure \ref{fig:atomistic-representation}), following approaches similar to molecular dynamics simulations, such as GROMACS \cite{gromacs}, AMBER \cite{amber}, and CafeMol \cite{kenzaki2011}. In this representation, atoms, residues, and/or nucleotide bases are modeled as hard sphere models in 3D coordinates (x, y, z), along with vectors (\eg, forces, velocities, and accelerations) and properties (\eg, mass, charge, and van der Waals radius).
+Instead of representing structural data through voxels in a 3D grid, biomolecules and their binding sites can also be portrayed through their atomistic representation (Figure \ref{fig:atomistic-representation}), following approaches similar to molecular dynamics simulations, such as GROMACS \cite{gromacs}, AMBER \cite{amber}, and CafeMol \cite{kenzaki2011}. In this representation, atoms, residues, and/or nucleobases are modeled as hard sphere models in 3D coordinates (x, y, z), along with vectors (\eg, forces, velocities, and accelerations) and properties (\eg, mass, charge, and van der Waals radius).
 
-\begin{figure}[ht]
+\begin{figure}[h]
   \centerline{\includegraphics[scale=2]{images/atomistic-representation.png}}
   \caption[Atomistic representations]{\textbf{Atomistic representations.} \textbf{(A)} Atoms and amino acids (\textit{sticks} in green) forming the adenosine binding site (transparent surface). \textbf{(B)} Atoms and amino acids (\textit{sticks} in blue) exposed to the solvent, excluding binding sites for small molecules, with an inhibitor bound (\textit{sticks} in green). Images generated with PyMOL for a subunit of cyclic AMP-dependent protein kinase (PDB ID: 1FMO).}
   \label{fig:atomistic-representation}
 \end{figure}
 
-However, when studying interaction regions, it's necessary to filter areas of interest, such as binding sites (Figure \ref{fig:atomistic-representation}A) or solvent-exposed surfaces (Figure \ref{fig:atomistic-representation}B), to perform specific structural and functional analyses. This topological representation allows targeted analyses, focusing on interactions and structural features relevant to biological function. Additionally, topological information can be utilized in molecular docking studies, rational drug design, and prediction of molecular interactions. These applications contribute to the development of new therapeutic compounds and aid in understanding the molecular mechanisms involved in biological processes.
+However, when studying interaction regions, it is necessary to filter areas of interest, such as binding sites (Figure \ref{fig:atomistic-representation}A) or solvent-exposed surfaces (Figure \ref{fig:atomistic-representation}B), to perform specific structural and functional analyses. This atomistic representation allows precise and in-depth analysis, focusing on interactions and structural features relevant to biological function. Additionally, atomistic information can be utilized in molecular docking studies, rational drug design, and prediction of molecular interactions. These applications contribute to the development of new therapeutic compounds and aid in understanding the molecular mechanisms involved in biological processes.
 
-Thus, the atomistic representation of biomolecules and their binding sites provides a detailed and specialized view of relevant structural characteristics, enabling a more precise and in-depth analysis of molecular interactions and their impact on biological function
 
 \section{Graph Representation \label{sec:graph-representation}}
 
