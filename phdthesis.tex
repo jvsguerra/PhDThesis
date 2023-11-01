@@ -491,14 +491,14 @@ The vast majority of cavity detection tools were originally developed for protei
 
 parKVFinder \cite{guerra2019,guerra2020}, a grid-and-probe-based approach, detects and characterizes any type of biomolecular cavity, integrated with a graphical plugin for PyMOL \cite{pymol}. The cavity detection algorithm (Figure \ref{fig:parkvfinder-schema}) employs a dual-probe methodology based on mathematical morphology theory \cite{matheron1974,serra1982}. Originally implemented in the KVFinder software \cite{oliveira2014}, this algorithm involves two probes, a smaller probe (\textit{Probe In}) and a larger probe (\textit{Probe Out}), inspecting grid points to define cavities as the non-overlapping regions traversed by these probes.
 
-\begin{figure}[ht]
+\begin{figure}[h]
   \centerline{\includegraphics[scale=1]{images/kvfinder-suite-schema.png}}
   \centerline{\tiny{\textbf{Source:} Reprinted with permission from \cite{guerra2023B}. Copyright 2023 American Chemical Society.}}
   \caption[Cavity detection algorithm in parKVFinder]{\textbf{Cavity detection algorithm in parKVFinder.} \textbf{(A)} A biomolecular structure X, composed of atoms modeled as rigid spheres with van der Waals radii, is inserted into a 3D grid. \textbf{(B)} The \textit{Probe In} (Pi) probe traverses the surface of the structure, moving through grid points (orange). \textbf{(C)} Next, the \textit{Probe Out} (Po) probe traverses accessible points in blue. \textbf{(D)} Cavity points (light gray) are defined as the difference between the accessible points of the probes. Points not reached by Pi (dark gray) define the SES (standard) or SAS, depending on the surface representation chosen by the user. \textbf{(E)} Finally, a distance-based removal procedure is applied to eliminate cavity points near the cavity-bulk boundary (yellow line).}
   \label{fig:parkvfinder-schema}
 \end{figure}
 
-It is noteworthy that the original KVFinder software \cite{oliveira2014}, introduced in 2014, has been deprecated. However, subsequent implementations, namely parKVFinder \cite{guerra2020}, pyKVFinder \cite{guerra2021}, and KVFinder-web \cite{guerra2023A}, have been developed to enhance computational performance and usability. Each of these tools addresses different scientific community demands in a flexible manner. Cavity characterization in these tools includes morphological descriptors (\eg, volume, area, shape, and depth), topological descriptors (\eg, interface residues surrounding the cavities and their classification---aliphatic, aromatic, polar uncharged, negatively charged, and positively charged---), and physicochemical descriptors (\eg, hydrophobicity). Further details on the parKVFinder can be found in Chapter \ref{sec:parkvfinder}.
+It is noteworthy that the original KVFinder software \cite{oliveira2014}, introduced in 2014, has been deprecated. However, subsequent implementations, namely parKVFinder \cite{guerra2020}, pyKVFinder \cite{guerra2021}, and KVFinder-web \cite{guerra2023A}, have been developed to enhance computational performance and usability. Each of these tools addresses different scientific community demands in a flexible manner. Cavity characterization in these tools includes morphological descriptors (\eg, volume, area, shape, and depth), topological descriptors (\eg, interface residues surrounding the cavities and their classification---aliphatic, aromatic, polar uncharged, negatively charged, and positively charged---), and physicochemical descriptors (\eg, hydrophobicity). Further details on the parKVFinder can be found in Section \ref{sec:parkvfinder}.
 
 \subsubsection{Fpocket}
 
@@ -895,7 +895,7 @@ The interactions between biomolecules play a crucial role in biological processe
 
 The KVFinder suite consists of five computational tools that offer comprehensive functionalities for structural analysis and the study of biomolecular interactions. The tools included in the platform are: parKVFinder \cite{guerra2019,guerra2020}, pyKVFinder \cite{guerra2021}, KVFinder-web \cite{guerra2023A}, SERD, and KVFinderMD. Below, we will describe each of these tools, their main features, and their guideline applications.
 
-\section{parKVFinder}
+\section{parKVFinder \label{sec:parkvfinder}}
 
 % Melhorias defesa:
 % - Detalhar comparação com outros métodos
