@@ -752,11 +752,11 @@ The computational complexity of grid-based algorithms heavily relies on the inpu
 In the parKVFiner software, the voxel length is a user-defined parameter, with default value of 0.6 Å. However, users have the flexibility to adjust this value based on the specific demands of their case studies. For instance, a smaller voxel length, such as 0.25 Å, is recommended for those seeking a more accurate morphological characterization of biomolecular cavities. The computational complexity is intricately tied to the number of voxels ($n_v$), denoted as $\mathcal{O}(n_v)$. User inputs determine the number of voxels (Eq. \ref{eq:nv}), calculated as follows:
 
 \begin{equation}
-  n_v \colon (l_x,l_y,l_z,Po,s) \mapsto \frac{\lceil l_x + 2 \cdot Po + s \rceil \cdot \lceil l_y + 2 \cdot Po + s \rceil \cdot \lceil l_z + 2 \cdot Po + s \rceil}{s}
+  n_v \colon (l_x,l_y,l_z,Po,s) \mapsto \left \lceil \frac{l_x + 2 \cdot Po + s}{s} \right \rceil \cdot \left \lceil \frac{l_y + 2 \cdot Po + s}{s} \right \rceil \cdot \left \lceil \frac{l_z + 2 \cdot Po + s}{s} \right \rceil
   \label{eq:nv}
 \end{equation}
 
-\noindent where $l_x$, $l_y$, $l_z$ are the lengths of the target biomolecule along x, y, and z-axis, respectively, $Po$ is the \textit{Probe Out} size, and $s$ is the grid spacing.
+\noindent where $l_x$, $l_y$, $l_z$ are the lengths of the target biomolecule along x, y, and z-axis, respectively, $Po$ is the \textit{Probe Out} size, $s$ is the grid spacing, and $\lceil \cdot \rceil$ is the ceiling function.
 
 Under typical conditions, the average dimensions of the 3D grid, denoted as $(\bar{m},\bar{n},\bar{o})$, are roughly $(120,120,120)$, along the x, y, and z axes, respectively. The computational complexity increases as the region of interest, dictated by the biomolecule and the probe size, influences the number of voxels, where the voxel-level analysis, inherent to the algorithm, amplifies computational demands.
 
