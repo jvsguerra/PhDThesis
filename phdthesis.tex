@@ -273,6 +273,7 @@ In recent years, data science and artificial intelligence have revolutionized di
   \acro{PPGCF}[PPGCF]{\textit{Programa de Pós-Graduação em Ciências Farmacêuticas}}
   \acro{PPI}[PPI]{\LU{P}{p}rotein-\LU{P}{p}rotein \LU{I}{i}nteraction}
   \acro{PRI}[PRI]{\LU{P}{p}rotein-RNA \LU{I}{i}nteraction}
+  \acro{pyKVFinder}[pyKVFinder]{Python-C parallel KVFinder}
   \acro{RMSD}[RMSD]{Root-Mean-Square Deviation}
   \acro{SAS}[SAS]{Solvent Accessible Surface}
   \acro{SES}[SES]{Solvent Excluded Surface}
@@ -290,12 +291,9 @@ In recent years, data science and artificial intelligence have revolutionized di
   % \acro{HTTP}{\textit{HyperText Transfer Protocol}}
   % \acro{IV CEC}{IV Congresso de Estudantes do CNPEM}
   % \acro{KVFinderMD}{\textit{KVFinder for Molecular Dynamics analysis}}
-  % \acro{LES}{Superfície Excluída pelo Ligante (\textit{Ligand Excluded Surface})}
   % \acro{ndarray}{\textit{N-dimensional array}}
   % \acro{Nsps}{\textit{Non-structural proteins}}
-  % \acro{pyKVFinder}{\textit{Python-C parallel KVFinder}}
   % \acro{SARS-CoV-2}{\textit{Severe acute respiratory syndrome Coronavirus 2}}
-   
 \end{acronym}
 
 \clearpage
@@ -1008,7 +1006,7 @@ Despite the successful application of parKVFinder in \acs{MD} simulations \cite{
 
 \section{pyKVFinder}
 
-% In data science or automated analysis frameworks, 
+In data science, pipelines demand efficient routines and algorithms built on easily manipulable data structures. Cavities identified by parKVFinder, like those in other well-known programs such as fpocket \cite{fpocket}, GHECOM \cite{ghecom}, and POVME 3.0 \cite{povme}, are human-readable and easily displayed in molecular visualization programs. However, they are not suitably structured to directly import into automated protocols or data science applications. To address this need, we developed the \ac{pyKVFinder} \cite{guerra2021}, an open-source Python package, licensed under GPL v3.0, for cavity detection and characterization in biomolecular structures within automated protocols and data science applications. The pyKVFinder, featured in BMC Bioinformatics \cite{guerra2021}, has been released as pyKVFinder \href{https://github.com/LBC-LNBio/pyKVFinder/tree/v0.2.5}{pyKVFinder v0.2.5}, available at GitHub. It has since progressed to version \href{https://github.com/LBC-LNBio/pyKVFinder/tree/v0.6.2}{v0.6.2}.
 
 % No cenário de análise de cavidades de larga escala, os protocolos exigem rotinas e algoritmos eficientes construídos em estruturas de dados de fácil manipulação. As cavidades do parKVFinder, assim como em outros programas bem conhecidos, \eg, fpocket \cite{fpocket}, GHECOM \cite{ghecom} e POVME 3.0 \cite{povme}, são legíveis para humanos e facilmente exibidas em programas de visualização molecular, mas não são adequadamente estruturadas para serem diretamente incorporadas em protocolos automatizados ou aplicações de ciência de dados. Para atender essa necessidade, desenvolvemos o \textbf{Python-C Parallel KVFinder (pyKVFinder)} \cite{guerra2021}, um pacote Python de código aberto, licenciado sob GPL v3.0, para detectar e caracterizar cavidades em estruturas biomoleculares em protocolos automatizados e aplicações de ciência de dados. Posteriormente, o pyKVFinder foi publicado na BMC Bioinformatics \cite{guerra2021}, sendo lançado como \href{https://github.com/LBC-LNBio/pyKVFinder/tree/v0.2.5}{pyKVFinder v0.2.5}. Atualmente, o pyKVFinder está na versão \href{https://github.com/LBC-LNBio/pyKVFinder/tree/v0.6.2}{v0.6.2}. O código-fonte do pyKVFinder está disponível no seguinte repositório: \url{https://github.com/LBC-LNBio/pyKVFinder}.
 
