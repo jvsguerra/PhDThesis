@@ -101,7 +101,8 @@
   \newcommand{\ACF}[1]{{\@in@acrolisttrue\acf{#1}}}
 \makeatother
 
-% Para
+% Para renderizar formulas matemáticas:
+\usepackage{amsmath}
 
 % Para criar diagramas:
 \usepackage{tikz}
@@ -117,11 +118,6 @@
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
 \usepgfplotslibrary{statistics}
-
-% Para renderizar formulas matemáticas:
-\usepackage{amsmath}
-\newcommand{\mAA}{~\text{\AA}}
-\newcommand{\less}{\raise.2ex\hbox{$\scriptstyle{<}$}}
 
 % Define atalhos
 \def\ie{i.e.\onedot} 
@@ -219,22 +215,22 @@ In recent years, data science and artificial intelligence have revolutionized di
 
 % A lista de figuras é opcional:
 \addcontentsline{toc}{chapter}{\listfigurename}
-{%
-\let\oldnumberline\numberline%
-\renewcommand{\numberline}{\figurename~\oldnumberline}%
-\listoffigures%
-}
-% \listoffigures
+% {%
+% \let\oldnumberline\numberline%
+% \renewcommand{\numberline}{\figurename~\oldnumberline}%
+% \listoffigures%
+% }
+\listoffigures
 \clearpage
 
 % A lista de tabelas é opcional:
 \addcontentsline{toc}{chapter}{\listtablename}
-{%
-\let\oldnumberline\numberline%
-\renewcommand{\numberline}{\tablename~\oldnumberline}%
-\listoftables%
-}
-% \listoftables
+% {%
+% \let\oldnumberline\numberline%
+% \renewcommand{\numberline}{\tablename~\oldnumberline}%
+% \listoftables%
+% }
+\listoftables
 \clearpage
 
 % A lista de abreviações e siglas é opcional:
