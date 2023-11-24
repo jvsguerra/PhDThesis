@@ -26,7 +26,7 @@
 \usepackage{subcaption}
 
 % Para definir a profundidade do sumário:
-% \setcounter{tocdepth}{4}
+\setcounter{tocdepth}{4}
 
 % Para definir a profundidade da numeração de seções:
 \setcounter{secnumdepth}{4}
@@ -967,7 +967,7 @@ Beyond accuracy, the computational time of the programs was also assessed (Figur
 
 It is important to highlight that the details of the simulations and analyses are available in the article published in the \textit{SoftwareX} journal \cite{guerra2020}.
 
-\subsubsection{Mayaro and other alphaviruses}
+\subsubsection{Mayaro and Other Alphaviruses}
 
 \ac{MAYV} is an emerging arbovirus prevalent in Central and South America, associated with a debilitating and arthritogenic disease. The ectodmains E1 and E2 are essential transmembrane alphaviral proteins that form heterodimers. These heterodimers, organized into trimers, compose the spikes on the viral surface, extending through the lipid bilayer and interacting with the nucleocapsid proteins C. These spikes play a crucial role in binding to cellular receptors, cell internalization, and membrane fusion. The subsquent release of \acs{MAYV} RNA into the cytoplasm triggers viral protein expression, replication, and the production of mature and infectious viral progeny. Given their central role, the E1 and E2 proteins of \acs{MAYV} are key targets for vaccine development and antiviral drugs \cite{ribeiro2021}. However, the lack of detailed structural information on these proteins has hindered the development of effective strategies to combat \acs{MAYV} infection.
 
@@ -1106,9 +1106,9 @@ With pyKVFinder, we can calculate the frequency of residues composing the cavity
 
 To demonstrate the functionalities and advantages of pyKVFinder, we conducted this study in a Jupyter notebook, executing step-by-step pyKVFinder functions. The notebook with the complete case study is available at \url{https://github.com/LBC-LNBio/pyKVFinder/blob/master/examples/conservation-analysis/conservation-analysis.ipynb}. A detailed description of this analysis is provided in the article published in the \textit{BMC Bioinformatics} journal \cite{guerra2021}.
 
-\subsubsection{Molecular dynamics of the ADRP domain of SARS-CoV-2}
+\subsubsection{Molecular Dynamics of the ADRP Domain of SARS-CoV-2}
 
-In this context, the computational performance of pyKVFinder was evaluated in \acs{MD} simulations of the ADRP domain of SARS-CoV-2 (PDB ID: 6W02, chain B) without its ligand, ADP-ribose, for a period of 600 ns, with frame extraction every 1 ns. This analysis was repeated with other well-known tools: parKVFinder v1.1.3 \cite{guerra2020}, POVME 3.0 \cite{povme}, fpocket \cite{fpocket}, GHECOM \cite{ghecom}, MSPocket \cite{mspocket}, and Biobb_vs \cite{biobbvs}. All these methods successfully detected the substrate-binding site of the ADRP, where the shape and volume varied slightly during the MD simulation (Figure \ref{fig:pykvfinder-benchmarking}). The shapes of the cavities detected by pyKVFinder and parKVFinder precisely fit the original ligand in the binding site, similar to MSPocket (Figure \ref{fig:pykvfinder-benchmarking}A). Additionally, the volume calculated by pyKVFinder ($346.8 \pm 78.7 \AA^3$) and parKVFinder ($346.5 \pm 79.3 \AA^3$) closely relates to the volume of ADP-ribose ($351.1 \AA^3$; molecular surface volume estimated by the YASARA program), which originally occupied the substrate-binding site in the crystallographic structure used in the MD simulations (Figure \ref{fig:pykvfinder-benchmarking}B).
+In this context, the computational performance of pyKVFinder was evaluated in \acs{MD} simulations of the ADRP domain of SARS-CoV-2 (PDB ID: 6W02, chain B) without its ligand, ADP-ribose, for a period of 600 ns, with frame extraction every 1 ns. This analysis was repeated with other well-known tools: parKVFinder v1.1.3 \cite{guerra2020}, POVME 3.0 \cite{povme}, fpocket \cite{fpocket}, GHECOM \cite{ghecom}, MSPocket \cite{mspocket}, and Biobb\_vs \cite{biobbvs}. All these methods successfully detected the substrate-binding site of the ADRP, where the shape and volume varied slightly during the MD simulation (Figure \ref{fig:pykvfinder-benchmarking}). The shapes of the cavities detected by pyKVFinder and parKVFinder precisely fit the original ligand in the binding site, similar to MSPocket (Figure \ref{fig:pykvfinder-benchmarking}A). Additionally, the volume calculated by pyKVFinder ($346.8 \pm 78.7 \AA^3$) and parKVFinder ($346.5 \pm 79.3 \AA^3$) closely relates to the volume of ADP-ribose ($351.1 \AA^3$; molecular surface volume estimated by the YASARA program), which originally occupied the substrate-binding site in the crystallographic structure used in the MD simulations (Figure \ref{fig:pykvfinder-benchmarking}B).
 
 \begin{figure}[h]
   \centering
@@ -1177,7 +1177,7 @@ In this way, pyKVFinder not only contributes to advancing research in drug disco
 
 % \subsection{KVFinder-web service}
 
-% O \textbf{KVFinder-web service} é um serviço web RESTful que utiliza o parKVFinder (v1.2.0) para detectar e caracterizar cavidades em estruturas biomoleculares, conforme descrito em \cite{guerra2019,guerra2020,guerra2023A}. O serviço possui uma arquitetura Web-Fila-Trabalho (\textit{Web-Queue-Worker}, em inglês), que processa solicitações e respostas HTTP da interface web, gerencia os trabalhos e executa o parKVFinder nos trabalhos aceitos. A versão atual do KVFinder-web service é a \href{https://github.com/LBC-LNBio/KVFinder-web-service/tree/v1.1.0}{v1.1.0}. O código-fonte do KVFinder-web service está disponível no repositório: \url{https://github.com/LBC-LNBio/KVFinder-web-service}.
+% O \textbf{KVFinder-web service} é um serviço web RESTful que utiliza o parKVFinder (v1.2.0) para detectar e caracterizar cavidades em estruturas biomoleculares, conforme descrito em \cite{guerra2019,guerra2020,guerra2023A}. O serviço possui uma arquitetura Web-Fila-Trabalho (\textit{Web-Queue-Worker}, em inglês), que processa solicitações e respostas HTTP da interface web, gerencia os trabalhos e executa o parKVFinder nos trabalhos aceitos. A versão atual do KVFinder-web service é a \href{https://github.com/LBC-LNBio/KVFinder-web-service/tree/v1.1.1}{v1.1.1}. O código-fonte do KVFinder-web service está disponível no repositório: \url{https://github.com/LBC-LNBio/KVFinder-web-service}.
 
 % \begin{figure}[H]
 %   \centering
@@ -1208,6 +1208,22 @@ In this way, pyKVFinder not only contributes to advancing research in drug disco
 % \subsection{Caso de estudo}
 
 % O KVFinder-web foi aplicado em dois casos de estudo publicados em periódico científico para investigar proteínas de interesse terapêutico. Essas análises exploraram a caracterização do sítio catalítico da protease do vírus da imunodeficiência humana tipo 1 (HIV-1) e a comparação morfológica das estruturas desta proteína depositadas no wwPDB. No apêndice \ref{ap:casos-de-estudo-kvfinder-web}, descreveremos cada um desses casos de estudo em detalhes.
+
+% \subsubsection{Caracterização do sítio catalítico da protease do HIV-1}
+
+% Como exemplo ilustrativo do KVFinder-web (Figura \ref{fig:kvweb-case-study}), detectamos e caracterizamos o sítio catalítico da protease do vírus da imunodeficiência humana tipo 1 (HIV-1) ligado ao oxigênio carbonílico de ureia cíclica \cite{lam1994}, utilizando o KVFinder-web portal. Conseguimos detectar com sucesso as cavidades em toda a superfície molecular da protease do HIV-1 (Figura \ref{fig:kvweb-case-study}A). Além da detecção de cavidades e definição de sua forma, o KVFinder-web também fornece o volume, área, profundidade e hidropatia das cavidades detectadas (Figura \ref{fig:kvweb-results}B; cavidade KAG). Normalmente, o sítio ativo é a maior e mais profunda cavidade na proteína enzimática \cite{laskowski1996}, e isso também é observado na protease do HIV-1, como mostrado na Figura \ref{fig:kvweb-results}B. Nesse sentido, a caracterização da profundidade pode ajudar os pesquisadores a identificarem o sítio ativo em toda a superfície molecular. Além disso, realizamos uma análise do perfil de hidrofobicidade do sítio ativo da protease do HIV-1 (Figura \ref{fig:kvweb-case-study}C). Nossos resultados mostraram que o sítio ativo é predominantemente hidrofóbico, especialmente na região próxima aos \textbeta-hairpins, e há poucas regiões hidrofílicas ao redor dos ácidos aspárticos catalíticos (Asp-25 e Asp-25'). Conforme esperado, os subsítios S1 e S1' (região amarela) são hidrofóbicos, e os subsítios S2 e S2' são predominantemente hidrofóbicos (região amarela), exceto por Asp-29 e Asp-30 (região azul). Além disso, observamos que a parte hidrofóbica dos subsítios S2 e S2', que acomodam os substratos P2 e P2', respectivamente, tendem a favorecer cadeias laterais alifáticas \cite{lam1994,brik2002,weber2009}.
+
+% \begin{figure}[hp]
+%   \centering
+%   \includegraphics[scale=1.8]{images/kvweb-case-study.png}
+%   \centerline{\tiny{\textbf{Fonte:} Adaptado de \cite{guerra2023A}.}}
+%   \caption[Exemplo ilustrativo da detecção de cavidades na protease do HIV-1]{\textbf{Exemplo ilustrativo da detecção de cavidades na protease do HIV-1.} Estrutura molecular da protease do HIV-1 (PDB ID: 1HVR) com cavidades detectadas. \textbf{(A)} Detecção de cavidades em toda a estrutura da proteína (modelo em cartoon). Os pontos das cavidades são coloridos de acordo com a profundidade (pontos coloridos em uma escala de cores arco-íris). \textbf{(B)} Hidropatia mapeada nos pontos de cavidade na superfície nas regiões ao redor dos ácidos aspárticos catalíticos (painel esquerdo) e ao redor dos β-hairpins (painel direito). A escala de hidrofobicidade de Eisenberg & Weiss varia de -1,42 (altamente hidrofóbica) a 2,6 (altamente hidrofílica). A proteína é mostrada como uma superfície cinza e os resíduos de interface são mostrados como átomos coloridos em sticks. \textbf{(C)} Gráfico de violino do volume do sítio ativo das estruturas da protease do HIV-1 do RCSB PDB para as estruturas com ligantes ligados no sítio ativo (azul) e as estruturas sem ligantes (laranja). As estruturas com uma mediana de volume e a cavidade correspondente são mostradas como modelo em cartoon e superfície, respectivamente.}
+%   \label{fig:kvweb-case-study}
+% \end{figure}
+
+% \subsubsection{Comparação morfológica do sítio catalítico das estruturas da protease do HIV-1}
+
+% Conforme apresentado na Seção \ref{sec:md-hiv1-protease}, a protease do HIV-1 é um alvo terapêutico eficaz, o sítio catalítico é o alvo de diversos medicamentos antirretrovirais. No entanto, o ciclo catalítico depende dos movimentos dos \textbeta-hairpins, que controlam a acessibilidade dos substratos ao sítio ativo \cite{lam1994,soares2016}. Assim, analisamos as estruturas da protease do HIV-1 disponíveis no PDB e comparamos suas cavidades (consulte \cite{guerra2023A}). Com base nos volumes das cavidades, é possível diferenciar claramente as estruturas nas formas ligada das não-ligadas (Figura \ref{fig:kvweb-case-study}C), indicando uma complementaridade geométrica entre receptor e ligantes, juntamente com uma complementaridade físico-química, mostrada pelo perfil de hidrofobicidade discutido anteriormente.
 
 % \subsection{Discussão}
 
@@ -1312,9 +1328,17 @@ In this way, pyKVFinder not only contributes to advancing research in drug disco
 \section{Benchmarking of Well-established Cavity Detection Tools}
 % \section{\textit{Benchmarking} das ferramentas disponíveis}
 
-% %%% Chapter 5
+\section{Perspectives}
 
-% \chapter{Conclusão}
+% Data science
+% DL/ML applications
+% Druggability/Ligandability
+% Virtual Screening
+% New characterizations such as skeletonize cavities (measure of accessibility)
+
+%%% Chapter 6
+
+\chapter{Conclusion}
 
 % Após estudo cuidadoso das demandas de ferramentas computacionais da comunidade de biologia estrutural, desenvolvemos com sucesso a plataforma computacional KVFinder suite. Essa plataforma foi projetada para estudos de sistemas biomoleculares, fornecendo ferramentas abrangentes de codificação e caracterização de biomoléculas e seus sítios de ligação. O KVFinder suite é composto por 5 ferramentas computacionais, englobando diferentes demandas e objetivos da comunidade de biologia estrutural, que são o KVFinder-web, parKVFinder, pyKVFinder, SERD e KVFinderMD. 
 
@@ -1339,34 +1363,10 @@ In this way, pyKVFinder not only contributes to advancing research in drug disco
 % Os anexos, se houver, vêm depois das referências:
 \appendix
 
-% \chapter{Casos de estudo aplicando as ferramentas do KVFinder suite \label{ap:casos-de-estudo}}
+% \section{KVFinderMD}
 
-% Nesta seção, apresentamos os casos de estudo aplicando as ferramentas do KVFinder suite: KVFinder-web.
+% \subsection{Estudo comparativo dos sítios de ligação do substrato da ALDH1 e ALDH2}
 
-% \section{pyKVFinder \label{ap:casos-de-estudo-pykvfinder}}
-
-% \section{KVFinder-web \label{ap:casos-de-estudo-kvfinder-web}}
-
-% \subsection{Caracterização do sítio catalítico da protease do HIV-1}
-
-% Como exemplo ilustrativo do KVFinder-web (Figura \ref{fig:kvweb-case-study}), detectamos e caracterizamos o sítio catalítico da protease do vírus da imunodeficiência humana tipo 1 (HIV-1) ligado ao oxigênio carbonílico de ureia cíclica \cite{lam1994}, utilizando o KVFinder-web portal. Conseguimos detectar com sucesso as cavidades em toda a superfície molecular da protease do HIV-1 (Figura \ref{fig:kvweb-case-study}A). Além da detecção de cavidades e definição de sua forma, o KVFinder-web também fornece o volume, área, profundidade e hidropatia das cavidades detectadas (Figura \ref{fig:kvweb-results}B; cavidade KAG). Normalmente, o sítio ativo é a maior e mais profunda cavidade na proteína enzimática \cite{laskowski1996}, e isso também é observado na protease do HIV-1, como mostrado na Figura \ref{fig:kvweb-results}B. Nesse sentido, a caracterização da profundidade pode ajudar os pesquisadores a identificarem o sítio ativo em toda a superfície molecular. Além disso, realizamos uma análise do perfil de hidrofobicidade do sítio ativo da protease do HIV-1 (Figura \ref{fig:kvweb-case-study}C). Nossos resultados mostraram que o sítio ativo é predominantemente hidrofóbico, especialmente na região próxima aos \textbeta-hairpins, e há poucas regiões hidrofílicas ao redor dos ácidos aspárticos catalíticos (Asp-25 e Asp-25'). Conforme esperado, os subsítios S1 e S1' (região amarela) são hidrofóbicos, e os subsítios S2 e S2' são predominantemente hidrofóbicos (região amarela), exceto por Asp-29 e Asp-30 (região azul). Além disso, observamos que a parte hidrofóbica dos subsítios S2 e S2', que acomodam os substratos P2 e P2', respectivamente, tendem a favorecer cadeias laterais alifáticas \cite{lam1994,brik2002,weber2009}.
-
-% \begin{figure}[hp]
-%   \centering
-%   \includegraphics[scale=1.8]{images/kvweb-case-study.png}
-%   \centerline{\tiny{\textbf{Fonte:} Adaptado de \cite{guerra2023A}.}}
-%   \caption[Exemplo ilustrativo da detecção de cavidades na protease do HIV-1]{\textbf{Exemplo ilustrativo da detecção de cavidades na protease do HIV-1.} Estrutura molecular da protease do HIV-1 (PDB ID: 1HVR) com cavidades detectadas. \textbf{(A)} Detecção de cavidades em toda a estrutura da proteína (modelo em cartoon). Os pontos das cavidades são coloridos de acordo com a profundidade (pontos coloridos em uma escala de cores arco-íris). \textbf{(B)} Hidropatia mapeada nos pontos de cavidade na superfície nas regiões ao redor dos ácidos aspárticos catalíticos (painel esquerdo) e ao redor dos β-hairpins (painel direito). A escala de hidrofobicidade de Eisenberg & Weiss varia de -1,42 (altamente hidrofóbica) a 2,6 (altamente hidrofílica). A proteína é mostrada como uma superfície cinza e os resíduos de interface são mostrados como átomos coloridos em sticks. \textbf{(C)} Gráfico de violino do volume do sítio ativo das estruturas da protease do HIV-1 do RCSB PDB para as estruturas com ligantes ligados no sítio ativo (azul) e as estruturas sem ligantes (laranja). As estruturas com uma mediana de volume e a cavidade correspondente são mostradas como modelo em cartoon e superfície, respectivamente.}
-%   \label{fig:kvweb-case-study}
-% \end{figure}
-
-% \subsection{Comparação morfológica do sítio catalítico das estruturas da protease do HIV-1}
-
-% Conforme apresentado na Seção \ref{sec:md-hiv1-protease}, a protease do HIV-1 é um alvo terapêutico eficaz, o sítio catalítico é o alvo de diversos medicamentos antirretrovirais. No entanto, o ciclo catalítico depende dos movimentos dos \textbeta-hairpins, que controlam a acessibilidade dos substratos ao sítio ativo \cite{lam1994,soares2016}. Assim, analisamos as estruturas da protease do HIV-1 disponíveis no PDB e comparamos suas cavidades (consulte \cite{guerra2023A}). Com base nos volumes das cavidades, é possível diferenciar claramente as estruturas nas formas ligada das não-ligadas (Figura \ref{fig:kvweb-case-study}C), indicando uma complementaridade geométrica entre receptor e ligantes, juntamente com uma complementaridade físico-química, mostrada pelo perfil de hidrofobicidade discutido anteriormente.
-
-% % \section{KVFinderMD}
-
-% % \subsection{Estudo comparativo dos sítios de ligação do substrato da ALDH1 e ALDH2}
-
-% % o caso das ALDH1/2, exploramos as diferenças topológicas e volumétricas entre os sítios de ligação do substrato de ALDH1 e ALDH2, o que dita a preferência por aldeídos menores e maiores entre eles.
+% o caso das ALDH1/2, exploramos as diferenças topológicas e volumétricas entre os sítios de ligação do substrato de ALDH1 e ALDH2, o que dita a preferência por aldeídos menores e maiores entre eles.
 
 \end{document}
