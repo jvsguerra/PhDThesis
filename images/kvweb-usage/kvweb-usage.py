@@ -61,6 +61,7 @@ for rect in rects:
         "%d" % int(height),
         ha="center",
         va="bottom",
+        size=20
     )
 
 # Cumulative sum

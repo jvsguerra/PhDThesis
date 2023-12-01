@@ -66,7 +66,8 @@ fig.update_layout(
 )
 
 fig.update_coloraxes(
-    colorbar_title_font_size=20,
+    colorbar_title_font_size=30,
+    colorbar_tickfont_size=16
 )
 
 plt.tight_layout()
