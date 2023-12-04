@@ -30,6 +30,8 @@ raw = pd.read_csv(
     "https://raw.githubusercontent.com/plotly/datasets/master/2014_world_gdp_with_codes.csv"
 )
 raw.columns = ["country", "GDP", "code"]
+antarctica = ["Antarctica", 0, "ATA"]
+raw.loc[len(raw)] = antarctica
 data = pd.DataFrame(countries).T.reset_index()
 data.columns = ["country", "count"]
 df = pd.merge(raw, data, how="left", on="country")
@@ -40,7 +42,7 @@ fig = px.choropleth(
     df,
     locations="code",
     color="count",
-    color_continuous_scale=["#FFFFFF", "#999999", "#377eb8"],
+    color_continuous_scale=["#FFFFFF", "#377eb8"],
     labels={"count": "Visitors"},
     range_color=(0, round(df["count"].max())),
     projection="equirectangular",  # miller

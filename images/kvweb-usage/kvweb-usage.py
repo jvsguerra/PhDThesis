@@ -41,7 +41,7 @@ fig, ax = plt.subplots(1, 1, figsize=(12, 9), clear=True, tight_layout=True)
 # Histogram
 x1 = data.groupby(data["Data"].dt.month).count()
 rects = ax.bar(
-    x=["Mar-23", "Apr-23", "May-23", "Jun-23", "Jul-23", "Aug-23", "Sep-23", "Oct-23", "Nov-23"],
+    x=["Mar-23", "Apr-23", "May-23", "Jun-23", "Jul-23", "Aug-23", "Sep-23", "Oct-23", "Nov-23", "Dec-23"],
     height=x1.Data.values,
     align="center",
     ecolor="black",
@@ -68,7 +68,7 @@ for rect in rects:
 x2 = data.groupby(data["Data"].dt.month).count().cumsum()
 print(x2)
 ax.plot(
-    ["Mar-23", "Apr-23", "May-23", "Jun-23", "Jul-23", "Aug-23", "Sep-23", "Oct-23", "Nov-23"],
+    ["Mar-23", "Apr-23", "May-23", "Jun-23", "Jul-23", "Aug-23", "Sep-23", "Oct-23", "Nov-23", "Dec-23"],
     x2.Data.values,
     color="black",
     label="Cumulative sum",
