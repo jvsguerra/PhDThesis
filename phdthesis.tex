@@ -1373,14 +1373,7 @@ In simpler terms, 672 data structures (\ie, cavities) are clustered by hierarchi
 
 \noindent where $\tilde{s}(k)$ represents the mean $s(i)$ over all cavities of the \acs{MD} simulation for a specific number of clusters $k$.
 
-For boolean vectors, we evaluated the following metrics available in the SciPy package \cite{scipy}: Dice dissimilarity ($d_{\sf dice}$; Eq. \ref{eq:dice}), Hamming distance, Jaccard-Needham dissimilarity, Kulczynski dissimilarity, Rogers-Tanimoto dissimilarity, Russell-Rao dissimilarity, Sokal-Michener dissimilarity, Sokal-Sneath dissimilarity, and Yule dissimilarity. For non-negative real-valued vectors, we evaluated the following metrics available in the SciPy package \cite{scipy}: correlation distance ($\rho$; Eq. \ref{eq:correlation}), Bray-Curtis distance, Canberra distance, Chebyshev distance, Manhattan distance (also known as City Block distance), cosine distance ($d_{\sf cosine}$; Eq. \ref{eq:cosine}), Jensen-Shannon distance, and squared Euclidean distance.
-
-\begin{equation}
-  d_{\sf dice} \colon (u,v) \mapsto \frac{C_{VF}(u,v) + C_{FV}(u,v)}{2 C_{VV}(u,v) + C_{VF}(u,v) + C_{FV}(u,v)} \in [0,1]
-  \label{eq:dice}
-\end{equation}
-
-\noindent where $C_{ij}$ is the number of occurrences of $u[k] = i$ and $v[k] = j$ for $k<n$.
+For non-negative real-valued vectors, we evaluated the following metrics available in the SciPy package \cite{scipy}: correlation distance ($\rho$; Eq. \ref{eq:correlation}), Bray-Curtis distance, Canberra distance, Chebyshev distance, Manhattan distance (also known as City Block distance), cosine distance ($d_{\sf cosine}$; Eq. \ref{eq:cosine}), Jensen-Shannon distance, and squared Euclidean distance. For boolean vectors, we evaluated the following metrics available in the SciPy package \cite{scipy}: Dice dissimilarity ($d_{\sf dice}$; Eq. \ref{eq:dice}), Hamming distance, Jaccard-Needham dissimilarity, Kulczynski dissimilarity, Rogers-Tanimoto dissimilarity, Russell-Rao dissimilarity, Sokal-Michener dissimilarity, Sokal-Sneath dissimilarity, and Yule dissimilarity.
 
 \begin{equation}
   \rho \colon (u,v) \mapsto 1 - \frac{(u - \bar{u}) \cdot (v - \bar{v})}{{\|(u - \bar{u})\|}_2 {\|(v - \bar{v})\|}_2} \in [-1, 1]
@@ -1395,6 +1388,13 @@ For boolean vectors, we evaluated the following metrics available in the SciPy p
 \end{equation}
 
 \noindent where $u \cdot v$ is the dot product of $u$ and $v$.
+
+\begin{equation}
+  d_{\sf dice} \colon (u,v) \mapsto \frac{C_{VF}(u,v) + C_{FV}(u,v)}{2 C_{VV}(u,v) + C_{VF}(u,v) + C_{FV}(u,v)} \in [0,1]
+  \label{eq:dice}
+\end{equation}
+
+\noindent where $C_{ij}$ is the number of occurrences of $u[k] = i$ and $v[k] = j$ for $k<n$.
 
 Following this methodology for structural cavity alignment, cavities are grouped by hierarchical clustering, using the complete linkage method, optimizing the mean silhouette score to find the ideal number of clusters for each affinity metric. Then, the clustered cavities and their respective silhouettes scores of the affinity metrics with the highest number of clusters, for each cavity representation, are presented in Figure \ref{fig:hiv-1-clustering-results}. The structural cavity alignment results are summarized in Table \ref{tab:hiv-1-clustering-summary}. 
 
