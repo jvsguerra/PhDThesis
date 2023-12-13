@@ -105,6 +105,22 @@
 \usepackage{amsmath}
 \DeclareMathOperator*{\argmax}{argmax}
 
+% Para escrever formulas químicas
+\usepackage{chemformula}
+
+% Multirow:
+\usepackage{multirow}
+
+% Cores para colunas de tabelas:
+\usepackage{colortbl}
+\newcolumntype{a}{>{\columncolor{blue!50!cyan}}c}
+\newcolumntype{b}{>{\columncolor{orange!60}}c}
+\newcolumntype{d}{>{\columncolor{violet!70}}c}
+\newcolumntype{e}{>{\columncolor{gray!50}}c}
+\newcolumntype{f}{>{\columncolor{green!70!olive}}c}
+\newcolumntype{g}{>{\columncolor{brown!90!black}}c}
+\newcolumntype{h}{>{\columncolor{magenta!50}}c}
+
 % Para criar diagramas:
 \usepackage{tikz}
 \usetikzlibrary{positioning,shapes,shadows,arrows}
@@ -245,11 +261,12 @@ In recent years, data science and artificial intelligence have revolutionized di
   \acro{CB}[C\textbeta]{β carbon}
   \acro{CAPRI}[CAPRI]{Critical Assessment of PRedicted Interactions}
   \acro{CEC}[CEC]{\textit{Congresso de Estudantes do CNPEM}}
-  \acro{CHIKV}[CHIKV]{Chikungunya virus}
+  \acro{CHIKV}[CHIKV]{Chikungunya \LU{V}{v}irus}
   \acro{CLI}{\LU{C}{c}ommand-\LU{L}{l}ine \LU{I}{i}nterface}
   \acro{CNPEM}[CNPEM]{\textit{Centro Nacional de Pesquisa em Energia e Materiais}}
+  \acro{CSD}[CSD]{Cambridge Structural Database}
   \acro{DFS}{Depth-First Search}
-  \acro{EEEV}[EEEV]{Eastern Equine Encephalitis virus}
+  \acro{EEEV}[EEEV]{Eastern Equine Encephalitis \LU{V}{v}irus}
   \acro{FAPESP}[FAPESP]{\textit{Fundação de Amparo à Pesquisa do Estado de São Paulo}}
   \acro{FCF}[FCF]{\textit{Faculdade de Ciências Farmacêuticas}}
   \acro{GHECOM}[GHECOM]{Grid-based HECOMi finder}
@@ -261,11 +278,12 @@ In recent years, data science and artificial intelligence have revolutionized di
   \acro{LBC}[LBC]{\textit{Laboratório de Biologia Computacional}}
   \acro{LES}[LES]{Ligand Excluded Surface}
   \acro{LNBio}[LNBio]{\textit{Laboratório Nacional de Biociências}}
-  \acro{MAYV}[MAYV]{Mayaro virus}
+  \acro{MAYV}[MAYV]{Mayaro \LU{V}{v}irus}
   \acro{MD}[MD]{\LU{M}{m}olecular \LU{D}{d}ynamics}
   \acro{MIMD}[MIMD]{Multiple Instruction, Multiple Data}
   \acro{ML}[ML]{\LU{M}{m}achine \LU{L}{l}earning}
   \acro{mmCIF}[mmCIF]{macromolecular Crystallographic Information File}
+  \acro{MRAE}[MRAE]{\LU{M}{m}ean \LU{R}{r}elative \LU{A}{a}bsolute \LU{E}{e}rror}
   \acro{ndarray}[ndarray]{N-dimensional array}
   \acro{Nsps}{\LU{N}{n}on-structural proteins}
   \acro{parKVFinder}{parallel KVFinder}
@@ -278,18 +296,19 @@ In recent years, data science and artificial intelligence have revolutionized di
   \acro{PPI}[PPI]{\LU{P}{p}rotein-\LU{P}{p}rotein \LU{I}{i}nteraction}
   \acro{PRI}[PRI]{\LU{P}{p}rotein-RNA \LU{I}{i}nteraction}
   \acro{pyKVFinder}[pyKVFinder]{Python-C parallel KVFinder}
+  \acro{RE}[RE]{\LU{R}{r}elative \LU{E}{e}rror}
   \acro{RMSD}[RMSD]{Root-Mean-Square Deviation}
   \acro{SARS-CoV-2}[SARS-CoV-2]{Severe Acute Respiratory Syndrome Coronavirus 2}
   \acro{SAS}[SAS]{Solvent Accessible Surface}
   \acro{SERD}[SERD]{Solvent-Exposed Residues Detection}
   \acro{SES}[SES]{Solvent Excluded Surface}
   \acro{SIMD}[SIMD]{Single Instruction, Multiple Data}
-  \acro{SINV}[SINV]{Sindbis virus}
+  \acro{SINV}[SINV]{Sindbis \LU{V}{v}irus}
   \acro{SMP}[SMP]{Symmetric Multiprocessing}
   \acro{SWIG}[SWIG]{Simplified Wrapper and Interface Generator}
   \acro{UNICAMP}[UNICAMP]{\textit{Universidade Estadual de Campinas}}
   \acro{vdW}[vdW]{van der Waals}
-  \acro{VEEV}[VEEV]{Venezuelan Equine Encephalitis virus}
+  \acro{VEEV}[VEEV]{Venezuelan Equine Encephalitis \LU{V}{v}irus}
   \acro{wwPDB}[wwPDB]{Worldwide Protein Data Bank}
 \end{acronym}
 
@@ -300,7 +319,7 @@ In recent years, data science and artificial intelligence have revolutionized di
 % \printnomenclature[3cm]
 
 % A lista de símbolos é opcional:
-\prefacesection{List of Symbols}
+% \prefacesection{List of Symbols}
 
 % \begin{acronym} \itemsep=-8pt
 %   \acro{E}[\ensuremath{\mathcal{E}}]{Set of unordered pairs of edges}
@@ -967,7 +986,7 @@ Beyond accuracy, the computational time of the programs was also assessed (Figur
   \label{fig:hiv1-protease-dm-times}
 \end{figure}
 
-It is important to highlight that the details of the simulations and analyses are available in the article published in the \textit{SoftwareX} journal \cite{guerra2020}.
+It is important to highlight that the details of the simulations and analyses are available in the article published in the \textit{SoftwareX} \cite{guerra2020}.
 
 \subsubsection{Mayaro and Other Alphaviruses \label{sec:parkvfinder-mayaro}}
 
@@ -993,7 +1012,7 @@ On the other hand, alphavirus nucleocapsid proteins C are composed of two subdom
   \label{fig:mayv-c-e2}
 \end{figure}
 
-It is important to note that the complete results and details of the analyses are available in the article published in the \textit{Nature Communications} journal \cite{ribeiro2021}.
+It is important to note that the complete results and details of the analyses are available in the article published in the \textit{Nature Communications} \cite{ribeiro2021}.
 
 \subsection{Discussion}
 
@@ -1041,7 +1060,7 @@ Therefore, experienced users requiring scripting routines are encouraged to use 
 
 Within the context of pyKVFinder, in collaboration with Dr. György Szalóki (Laboratoire Hétérochimie Fondamentale et Appliquée - Université Toulouse III Paul Sabatier - France), the scope of the KVFinder suite has been expanded to a new class of molecules called supramolecular cages. These cages are interconnected molecules that come together through non-covalent interactions, forming an internal cavity capable of encapsulating molecules or ions. The shape and size of the cavity are important parameters that can be easily determined by geometric algorithms, aiding in the rational design of supramolecular cages. In this context, new characterizations applicable to both cage and biomolecular contexts have been developed.
 
-\subsubsection{Molecular Volume Estimation}
+\subsubsection{Molecular Volume Estimation \label{sec:molecular-volume-estimation}}
 
 The \textit{pyKVFinder.Molecule} class, introduced in pyKVFinder \href{https://github.com/LBC-LNBio/pyKVFinder/releases/tag/v0.5.0}{v0.5.0}, enables users to model detailed molecular surfaces, following mathematical formulations shown in Figure \ref{fig:surface-representation}, within the pyKVFinder framework. In this approach, molecules are inserted into a regular 3D grid, taking into account the \acs{vdW} radii of each of the atoms in the molecule. Users can customize these radii through a configuration file (\textit{\href{https://github.com/LBC-LNBio/pyKVFinder/blob/master/pyKVFinder/data/vdw.dat}{vdw.dat}}), as well as the surface representation, \ie \acs{vdW} surface, \acs{SES} and \acs{SAS}. Conveniently, users can represent the \acs{vdW} surface by invoking \textit{Molecule.vdw}, \acs{SES} by invoking \textit{Molecule.surface('SES')}, and \acs{SAS} by invoking \textit{Molecule.surface('SAS')} (Figure \ref{fig:molecular-modeling}). Within the 3D grid, each voxel is assigned as a molecule ($0$) or solvent ($1$) point, allowing the estimation of the \acs{vdW} volume by summing the voxels labeled as a molecule through the \textit{Molecule.volume} method. The comprehensive implementation of these features for molecular modeling and characterization has been described and applied in an article published in the \textit{Journal of Chemical Information and Modeling} \cite{guerra2023B}.
 
@@ -1106,7 +1125,7 @@ To compare the hydrophobicity of the cavity across species, we plotted a hydroph
 
 With pyKVFinder, we can calculate the frequency of residues composing the cavity. Using the SciPy library \cite{scipy}, we performed hierarchical clustering of these frequencies and presented the dendrogram in Figure \ref{fig:conservation-analysis}C. In this dendrogram, we observe that the cavity of SARS-CoV-2 ADRP clusters with that of SARS-CoV, demonstrating high similarity between these betacoronaviruses. Next to them, we can observe another betacoronavirus, MERS-CoV. In turn, alphacoronaviruses NL63 and HCoV-229E, and feline FCoV cluster together. Further away from the coronavirus macrodomain domains are the two human macrodomain proteins, macroD1 and D2. Despite the ADRP or macroD1/D2 cavities sharing the same substrate, ADP-ribose, these results indicate that the residue profile around these cavities follows evolutionary traces.
 
-To demonstrate the functionalities and advantages of pyKVFinder, we conducted this study in a Jupyter notebook, executing step-by-step pyKVFinder functions. The notebook with the complete case study is available at \url{https://github.com/LBC-LNBio/pyKVFinder/blob/master/examples/conservation-analysis/conservation-analysis.ipynb}. A detailed description of this analysis is provided in the article published in the \textit{BMC Bioinformatics} journal \cite{guerra2021}.
+To demonstrate the functionalities and advantages of pyKVFinder, we conducted this study in a Jupyter notebook, executing step-by-step pyKVFinder functions. The notebook with the complete case study is available at \url{https://github.com/LBC-LNBio/pyKVFinder/blob/master/examples/conservation-analysis/conservation-analysis.ipynb}. A detailed description of this analysis is provided in the article published in the \textit{BMC Bioinformatics} \cite{guerra2021}.
 
 \subsubsection{Molecular Dynamics of the ADRP Domain of SARS-CoV-2}
 
@@ -1122,7 +1141,7 @@ In this context, the computational performance of pyKVFinder was evaluated in \a
 
 In addition to accurately detecting biomolecular cavities, current tools must also perform perform fast cavity detection and characterizations. Therefore, we also assessed the elapsed time to execute these benchmarking methods (Figure \ref{fig:pykvfinder-benchmarking}C). pyKVFinder outperformed all analyzed methods in this aspect, even when applying the new characterization features of depth and hydrophobicity; the elapsed time of pyKVFinder increased only by 36\%, still outperforming other benchmarking methods. Furthermore, compared to parKVFinder, pyKVFinder was 3.3 times faster in detecting the ADRP binding site. The main reason for the performance gain is the additional possibility of parallelizing routines, \ie, atom insertion into the 3D grid in the detection function, based on ndarrays. Additionally, pyKVFinder's scalability, with an increase in the number of threads, follows the same behavior as parKVFinder \cite{guerra2020}. Therefore, pyKVFinder offers a more flexible and efficient option for experienced users requiring large-scale applications, while parKVFinder is more suitable for beginners due to its simplicity of installation and use.
 
-To demonstrate the functionalities and advantages of pyKVFinder, we conducted this study in a Jupyter notebook, executing step-by-step pyKVFinder functions. The notebook with the complete case study is available at \url{https://github.com/LBC-LNBio/pyKVFinder/blob/master/examples/md-analysis/md-analysis.ipynb}. A detailed description of this analysis is provided in the article published in the \textit{BMC Bioinformatics} journal \cite{guerra2021}.
+To demonstrate the functionalities and advantages of pyKVFinder, we conducted this study in a Jupyter notebook, executing step-by-step pyKVFinder functions. The notebook with the complete case study is available at \url{https://github.com/LBC-LNBio/pyKVFinder/blob/master/examples/md-analysis/md-analysis.ipynb}. A detailed description of this analysis is provided in the article published in the \textit{BMC Bioinformatics} \cite{guerra2021}.
 
 \subsection{Discussion}
 
@@ -1437,6 +1456,107 @@ The analysis of cavity similarity in the \acs{HIV-1} protease throughout the \ac
 Despite these limitations, KVFinderMD represents a significant advancement in the study of biomolecular interactions over time. ts ability to automate cavity analysis in \acs{MD} simulations, coupled with other tools in the KVFinder suite, provides a comprehensive approach to investigate binding sites and understand their evolution. This can be valuable in the development of therapeutic strategies and the rational design of new drugs, especially in transient binding sites.
 
 \section{Benchmarking of Well-established Cavity Detection Tools}
+
+Cavity detection methods are usually only benchmarked on their ability to detect binding sites (\ie, qualitative assessment), and not on their ability to accurately characterize their volume (\ie, quantitative assessment). Quantitative descriptors still remains a challenge in the cavity detection field, because the "real" cavity volume in biological systems is not experimentally measurable. In collaboration with Dr. György Szalóki (Laboratoire Hétérochimie Fondamentale et Appliquée - Université Toulouse III Paul Sabatier - France), we developed a benchmarking protocol to evaluate the performance of cavity detection tools in a dataset of well-defined artificial supramolecular cages. The source code for the benchmarking protocol (\href{https://github.com/LBC-LNBio/SMC-Benchmarking/releases/tag/v1.0.0}{v1.0.0}) is available at the following repository: \url{https://github.com/LBC-LNBio/SMC-Benchmarking}.
+
+The "real" cavity volume could be derived from the Rebek's rule of thumb \cite{mecozzi1998}, that states, in any biological or artificial host-guest system, the ratio of the guest and host's cavity is $0.55\pm0.09$, termed as packing  coefficient ($PC$; Eq. \ref{eq:packing-coefficient}), when guest encapsulation is only driven by weak intermolecular interactions (\eg, Keesom forces, Debye forces, and London dispersion forces). However, this rule of thumb is not applicable to systems with strong intermolecular forces (\eg, hydrogen bonds), where the packing coefficient can reach up to $0.70$. 
+
+\begin{equation}
+  PC \colon (V_{guest},V_{cavity}) \mapsto \frac{V_{guest}}{V_{cavity}} \in [0,1]
+  \label{eq:packing-coefficient}
+\end{equation}
+
+\noindent where $PC$ is the packing coefficient, $V_{guest}$ is the guest \acs{vdW} volume, and $V_{cavity}$ is the host's cavity volume.
+
+Within this context, there are no existing benchmark dataset to test the performance of cavity characterization methods. Thus, two benchmark datasets, comprising 22 well-known supramolecular cages from the \ac{CSD} \cite{csd}, have been selected from the supramolecular chemistry literature to evaluate the well-established cavity detection tools (see Section \ref{sec:computational-tools}). Since topology and morphology of supramolecular cages differ from biomolecules, cavity detection parameters of the well-established tools (\ie, KVFinder suite, Fpocket, GHECOM and CAVER tools) had to be optimized for the supramolecular cages in both benchmark datasets. The benchmark datasets, Benchmark dataset 1 and Benchmark dataset 2, used in this study, which include the structural data files of each supramolecular cage and guest, are available at Zenodo: \url{https://doi.org/10.5281/zenodo.7702311}.
+
+\subsection{Benchmarking Dataset 1}
+
+The benchmark dataset 1 (Figure \ref{fig:benchmark-dataset-1}) comprises 13 X-ray structures of well-known supramolecular cages, with guest molecules being encapsulated in their void or void-like cavities, following the Rebek's rule of thumb. The guests molecules were removed from their cages and their \acs{vdW} volumes were estimated using \textit{volume} method from \textit{pyKVFinder.Molecule} class (see Section \ref{sec:molecular-volume-estimation}). With it, the "real" cavity volume were calculated using the Rebek's rule of thumb. Then, the cavities of the supramolecular cages were detected and their volumes estimated for each cavity detection tool. As good prediction metrics, the relative error (\acs{RE}; Eq. \ref{eq:re}) and the mean relative absolute error (\acs{MRAE}; Eq. \ref{eq:mrae}) were calculated between cavity volumes.
+
+\begin{equation}
+  RE \colon (V,\hat{V}) \mapsto \frac{\hat{V} - V}{V} \in [-\infty,\infty]
+  \label{eq:re}
+\end{equation}
+
+\noindent where $RE$ is the relative error, $V$ is the "real" cavity volume, and $\hat{V}$ is the estimated cavity volume.
+
+\begin{equation}
+  MRAE \colon (V,\hat{V},i) \frac{1}{N_c} \sum_{i=1}^{N_c} \left| \frac{\hat{V_i} - V_i}{V_i} \right| \in [0,\infty]
+  \label{eq:mrae}
+\end{equation}
+
+\noindent where $MRAE$ is the mean relative absolute error, $V_i$ is the "real" volume of cavity $i$, $\hat{V_i}$ is the estimated volume of cavity $i$, and $N_c$ is the number of cavities.
+
+\begin{figure}[ht]
+  \centerline{\includegraphics[scale=0.9]{images/benchmark-dataset-1.png}}
+  \centerline{\tiny{\textbf{Source:} Reprinted with permission from \cite{guerra2023B}. Copyright 2023 American Chemical Society.}}
+  \caption[Benchmark dataset 1]{\textbf{Benchmark dataset 1.} Each of these inclusion complexes features guest molecule(s) ($G_i$) within the cavity of a supramolecular cage ($B_i$). B1: \ch{(NEt4)+} $\subset$ \ch{Ti4L6} (CSD ID: 718468) \cite{pluth2008}. B2: \ch{(BnNMe3)+} $\subset$ \ch{Ga4L6} (CSD ID: 718469) \cite{pluth2008}. B3: \ch{(Cp2Co)+} $\subset$ \ch{Ti4L6} (CSD ID: 718470) \cite{pluth2008}. B4: \ch{(Cp2Co\ast)+} $\subset$ \ch{Ga4L6} (CSD ID: 718471) \cite{pluth2008}. B5: \ch{(BF4)-} $\subset$ \ch{Pd2L4} (CSD ID: 1862753) \cite{steel2018}. B6: \ch{(OCl4)-} $\subset$ \ch{Pd2L4} (CSD ID: 1862752) \cite{steel2018}. B7: \ch{C60} $\subset$ \ch{Zn8L4} (CSD ID: 942782) \cite{nakamura2013}. B8: \ch{C60} $\subset$ \ch{Pd2L4} (CSD ID: 1872778) \cite{eichstaedt2019}. B9: Adamantane-2,6-dione $\subset$ \ch{Pd2L4} (CSD ID: 183906) \cite{johnson2002}. B10: \ch{(NEt4)+} $\subset$ \ch{Pd2L4} (CSD ID: 100947) \cite{caulder1998}. B11: [Corannulene+Cyclohexane] $\subset$ \ch{Pd2L4} (CSD ID: 2068665) \cite{yang2021}. B12: \ch{C60} $\subset$ \ch{Pd2L4} (CSD ID: 2068666) \cite{yang2021}. B13: \ch{C70} $\subset$ \ch{Pd2L4} (CSD ID: 2068667) \cite{yang2021}.}
+  \label{fig:benchmark-dataset-1}
+\end{figure}
+
+The performance of each cavity detection tool was assessed by comparing the estimated cavity volumes with the "real" cavity volumes (Table \ref{tab:benchmark-1}). 
+% TODO: Rewrite this paragraph
+% First, to assess this quantitative analysis of the benchmark data set 1, we must analyze the RE values, which consist of the following: (1) error related to the definitions of the cavity boundaries and (2) error related to deviations in the PC from Rebek's rule. To minimize the first error, benchmark data set 1 only contains supramolecular cages with well-defined, closed cavities (void, Figure 10), where the characterization of cavity boundaries is simple and straightforward. On the other hand, deviations from Rebek's rule are more elusive. It has been shown that higher PCs can be reached in inclusion complexes, where in addition to weak dipole-dipole interactions, other forces such as H-bonding, π--π, and CH--π are at work. This results in tighter packing (i.e., PC > 0.55), where the extra stabilization enthalpy counterbalances the loss of entropy (restricted movement of the guest within the cage). Therefore, negative RE is expected in these cases due to the overestimation of cavity volume. For B4--B9, B12, and B13 cages, this trend can be clearly observed in the results of KVFinder project, Fpocket, MoloVol, and CAVER. For B5, B6, and B9, there is experimental evidence for H-bonding interactions. Furthermore, when considering the examples with fullerenes (B7, B8, B12, and B13) and (Cp*)2Co+ (B4) as guests, in addition to weak dipole-dipole interactions, additional π–π and CH-π interactions favor strong host-guest association. For ghecom, pywindow, and POVME, a large negative RE is observed for each supramolecular cage, which suggests that the calculation error of these software becomes more significant. On the other hand, MRAE values clearly show that KVFinder project and Fpocket provide the most reliable cavity volumes.
+
+\begin{table}[H]
+  \centering
+  \caption[Performance of the well-established cavity detection tools in Benchmark dataset 1]{\textbf{Performance of the well-established cavity detection tools in Benchmark dataset 1.} Estimated cavity volumes by the well-established cavity detection tools. The relative error are calculated using the "real" cavity volume as reference and can be found in paratheses. $V$: "real" cavity volume. $V_{guest}$: guest \acs{vdW} volume. $V = V_{guest} / 0.55$.}
+  \scalebox{0.725}{  
+    \begin{tabular}{ccccabef}
+      \hline
+      \textbf{Cage} & \textbf{Guest} & $\boldsymbol{V_{guest}}$ & $\boldsymbol{V}$ & \textbf{KVFinder suite} & \textbf{fpocket} & \textbf{CAVER} & \textbf{GHECOM} \\ \hline
+      B1 & \ch{(NEt4)+} & 150 & 273 & 283 (3.7\%) & 247 (-9.5\%) & 396 (44.8\%) & 175 (-35.9\%) \\
+      B2 & \ch{(BnNMe3)+} & 155 & 281 & 283 (0.8\%) & 279 (-0.6\%) & 339 (20.8\%) & 192 (-31.7\%) \\ 
+      B3 & \ch{(Cp2Co)+} & 137 & 248 & 269 (8.1\%) & 277 (11.6\%) & 335 (34.9\%) & 191 (-23.3\%) \\
+      B4 & \ch{(Cp2Co\ast)+} & 309 & 562 & 438 (-22.1\%) & 434 (-22.7\%) & 474 (-15.7\%) & 343 (-39.0\%) \\ 
+      B5 & \ch{(BF4)-} & 50 & 90 & 78 (-13.6\%) & 84 (-6.5\%) & 65 (-27.5\%) & 29 (-67.6\%) \\ 
+      B6 & \ch{(OCl4)-} & 53 & 96 & 81 (-15.6\%) & 82 (-14.3\%) & 79 (-17.4\%) & 64 (-33.7\%) \\ 
+      B7 & \ch{C60} & 519 & 944 & 757 (-19.8\%) & 771 (-18.3\%) & 778 (-17.6\%) & 734 (-22.3\%) \\ 
+      B8 & \ch{C60} & 512 & 930 & 731 (-21.4\%) & 805 (-13.5\%) & 682 (-26.7\%) & 704 (-24.3\%) \\ 
+      B9 & Adamantane-2,6-dione & 141 & 257 & 155 (-39.5\%) & 181 (-29.5\%) & 173 (-32.5\%) & 159 (-38.0\%) \\ 
+      B10 & \ch{(NEt4)+} & 151 & 274 & 251 (-8.4\%) & 225 (-17.7\%) & 351 (28.1\%) & 161 (-41.1\%) \\ 
+      B11 & [Corannulene+Cyclohexane] & 307 & 558 & 496 (-11.0\%) & 482 (-13.6\%) & 457 (-18.1\%) & 401 (-28.1\%) \\ 
+      B12 & \ch{C60} & 524 & 954 & 737 (-22.7\%) & 627 (-34.2\%) & 742 (-22.2\%) & 606 (-36.5\%) \\ 
+      B13 & \ch{C70} & 618 & 1123 & 872 (-22.3\%) & 811 (-27.7\%) & 1031 (-8.1\%) & 752 (-33.0\%) \\ \hline
+      \textbf{MRAE} &  &  &  & \textbf{16.1\%} & \textbf{16.9\%} & \textbf{24.2\%} & \textbf{35.0\%} \\ \hline
+    \end{tabular}
+  }
+  \label{tab:benchmark-1}
+\end{table}
+
+% TODO: Rewrite this paragraph
+% A visual representation of the software performance (Figure 12A) shows that volumes calculated with KVFinder project and Fpocket are close to the estimated volume with a small spread compared to other software. Despite a few outlying results, the overall trend (vide supra) supports our approach of using Rebek's rule as the best estimate for the “real” cavity volume within these supramolecular cages.
+
+\subsection{Benchmarking Dataset 2}
+
+% TODO: Rewrite this paragraph
+% The benchmark dataset 2 (Figure \ref{fig:benchmark-dataset-2}) comprises 9 X-ray structures of well-known supramolecular cages, without the guest molecules, but with different topological and morphological features (\ie, cavity size, opening size, and shape). This dataset aims to evaluate the capabilities and limitations of the well-established cavity detection tools in detecting different types of cavities (Figure \ref{fig:cavity-classification}). However, these supramolecular cages do not contain guests inside their cavity, so the "real" cavity volume estimation cannot be calculated by the Rebek's rule of thumb. Consequently, the average volume of detected cavities was chosen as the point of comparison to calculated volumes (Table \ref{tab:benchmark-2}), which establishes an agreement between methods by mitigating deviations in volume data.
+
+\begin{figure}
+  \centerline{\includegraphics[scale=0.9]{images/benchmark-dataset-2.png}}
+  \centerline{\tiny{\textbf{Source:} Reprinted with permission from \cite{guerra2023B}. Copyright 2023 American Chemical Society.}}
+  \caption[Benchmark dataset 2]{\textbf{Benchmark dataset 2.}
+  A1: \ch{(H2O)6L6} (CSD ID: 1207879) \cite{macgillivray1997}.
+  C1: \ch{(RSi)6L4} (CSD ID: 1892128) \cite{kawakami2019}.
+  F1: \ch{Pd6L4} (CSD ID: 293777) \cite{yoshizawa2006}.
+  F2: \ch{Pd48L96} (CSD ID: 1831430) \cite{fujita2016}.
+  H1: \ch{Pd2L4} (CSD ID: 768969) \cite{liao2010}.
+  N1: \ch{Ga4L6} (CSD ID: 1541839) \cite{ronson2017}.
+  O1: Cavitand bearing 2-Aminobenzimidazole walls and pyridinium feet (CSD ID: 2074472) \cite{zhang2021}.
+  O2: Resorcin[4]arene (CSD ID: 1207879) \cite{macgillivray1997}.
+  W1: \ch{Co8L12} (CSD ID: 1416694) \cite{cullen2016}.}
+  \label{fig:benchmark-dataset-2}
+\end{figure}
+
+It is important to note that the cavity detection benchmarking procedure, optimized detection parameters, and detailed results are available in the article published in the \textit{Journal of Chemical Information and Modeling} \cite{guerra2023B}. 
+
+\subsection{Discussion}
+
+% TODO: Rewrite this paragraph
+% In summary, each software has its own capabilities and shortcomings that derive from the type of cavity detection method applied, its implementation, and its software interfaces (Table 3). In general, grid-and-sphere-based and tessellation-based methods give the most precise cavity volumes, while grid-based and sphere-based methods performed worse. As previously described, pywindow uses an algorithm that defines the cavity volume as the volume of the largest sphere that can be fitted within the cavity. Therefore, pywindow consistently underestimates the cavity size of nonspherical cavities (F1, H1, N1, W1, and O1) and shallow grooves (O2). Grid-, sphere-, and grid-and-sphere-based methods can detect any type of cavities in supramolecular cages, except for ghecom and CAVER Analyst 2.0, which, together with tessellation-based methods, fail to detect clefts and grooves. Taking into account our assessment, KVFinder project and Fpocket overperformed the other software in benchmarking as they provide volumes closest to the estimated and average volumes, with a small spread compared to other software (Figure 12A and 12B).
+
+% All these methods are accessible to users with a simple and well-documented installation, configuration, and execution. From this perspective, the software interfaces available to users, i.e., graphical user interface (GUI), command line interface (CLI), application programming interface (API), and web application, dictate the pool of viable applications for each software. Commonly, GUIs and Web Applications are simpler and easier for less-experienced users to execute due to visual aids that intuitively guide the user through the analysis pipeline. However, these interfaces lack efficiency when performing analysis with large data sets, e.g., high-throughput analysis (HTA), MD simulations, machine learning (ML), deep learning (DL), virtual screening (VS) applications, and automating pipelines. In this sense, CLIs and APIs are efficient and integrable software interfaces, which allow the development of applications with large data sets and pipeline automation; however, they are highly dependent on their documentation to the user interaction with the software efficiently. Also, the main drawback of CLI is that it provides black-box applications, which do not allow users to fully customize pipeline automation since some variables are not definable by the user. On the other hand, APIs (e.g., pyKVFinder, pywindow, and fpocket) are the most versatile interfaces, where users can use them as building blocks for more complex applications and/or integrate them with third-party scientific packages, e.g., numpy, scipy, scikit-learn, and matplotlib. Additionally, pyKVFinder has its core data structures accessible and easy-to-handle, allowing the development of new characterizations and applications built around them.
 
 \section{Perspectives}
 
