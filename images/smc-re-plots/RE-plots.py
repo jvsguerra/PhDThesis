@@ -6,10 +6,10 @@ import matplotlib.pyplot as plt
 
 # COLORBLIND PALETTE
 COLORBLIND = [
-    "#377eb8",  # blue
-    "#ff7f00",  # orange
-    "#999999",  # gray
     "#4daf4a",  # green
+    "#999999",  # gray
+    "#ff7f00",  # orange
+    "#377eb8",  # blue
 ]
 
 ### Benchmark dataset 1

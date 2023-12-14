@@ -1458,7 +1458,7 @@ Despite these limitations, KVFinderMD represents a significant advancement in th
 
 \section{Benchmarking of Well-established Cavity Detection Tools}
 
-Cavity detection methods are usually only benchmarked on their ability to detect binding sites (\ie, qualitative assessment), and not on their ability to accurately characterize their volume (\ie, quantitative assessment). Quantitative descriptors still remains a challenge in the cavity detection field, because the "real" cavity volume in biological systems is not experimentally measurable. In collaboration with Dr. György Szalóki (Laboratoire Hétérochimie Fondamentale et Appliquée - Université Toulouse III Paul Sabatier - France), we developed a benchmarking protocol to evaluate the performance of cavity detection tools in a dataset of well-defined artificial supramolecular cages. The source code for the benchmarking protocol (\href{https://github.com/LBC-LNBio/SMC-Benchmarking/releases/tag/v1.0.0}{v1.0.0}) is available at the following repository: \url{https://github.com/LBC-LNBio/SMC-Benchmarking}.
+Cavity detection methods are usually only benchmarked on their ability to detect binding sites (\ie, qualitative assessment), and not on their ability to accurately characterize their volume (\ie, quantitative assessment). Quantitative descriptors still remains a challenge in the cavity detection field, because the "real" cavity volume in biological systems is not experimentally measurable. In collaboration with Dr. György Szalóki (Laboratoire Hétérochimie Fondamentale et Appliquée - Université Toulouse III Paul Sabatier - France), we developed a benchmarking protocol to evaluate the performance of cavity detection tools in a dataset of well-defined artificial supramolecular cages. This benchmarking protocol was applied to the well-established cavity detection tools, including KVFinder suite, Fpocket, GHECOM, and CAVER tools. The cavity detection benchmarking procedure, optimized detection parameters, and detailed results are available in the article published in the \textit{Journal of Chemical Information and Modeling} \cite{guerra2023B}. The source code for the benchmarking protocol (\href{https://github.com/LBC-LNBio/SMC-Benchmarking/releases/tag/v1.0.0}{v1.0.0}) is available at the following repository: \url{https://github.com/LBC-LNBio/SMC-Benchmarking}.
 
 The "real" cavity volume could be derived from the Rebek's rule of thumb \cite{mecozzi1998}, that states, in any biological or artificial host-guest system, the ratio of the guest and host's cavity is $0.55\pm0.09$, termed as packing  coefficient (\acs{PC}; Eq. \ref{eq:packing-coefficient}), when guest encapsulation is only driven by weak intermolecular interactions (\eg, Keesom forces, Debye forces, and London dispersion forces). However, this rule of thumb is not applicable to systems with strong intermolecular forces (\eg, hydrogen bonds), where the packing coefficient can reach up to $0.70$. 
 
@@ -1475,7 +1475,7 @@ Within this context, there are no existing benchmark dataset to test the perform
 
 The benchmark dataset 1 (Figure \ref{fig:benchmark-dataset-1}) comprises 13 X-ray structures of well-known supramolecular cages, with guest molecules being encapsulated in their void or void-like cavities, following the Rebek's rule of thumb. The guests molecules were removed from their cages and their \acs{vdW} volumes were estimated using \textit{volume} method from \textit{pyKVFinder.Molecule} class (see Section \ref{sec:molecular-volume-estimation}). With it, the "real" cavity volume were calculated using the Rebek's rule of thumb. Then, the cavities of the supramolecular cages were detected and their volumes estimated for each cavity detection tool. As good prediction metrics, the relative error (\acs{RE}; Eq. \ref{eq:re}) and the mean relative absolute error (\acs{MRAE}; Eq. \ref{eq:mrae}) were calculated between cavity volumes.
 
-\begin{figure}[ht]
+\begin{figure}[H]
   \centerline{\includegraphics[scale=0.9]{images/benchmark-dataset-1.png}}
   \centerline{\tiny{\textbf{Source:} Reprinted with permission from \cite{guerra2023B}. Copyright 2023 American Chemical Society.}}
   \caption[Benchmark dataset 1]{\textbf{Benchmark dataset 1.} Each of these inclusion complexes features guest molecule(s) ($G_i$) within the cavity of a supramolecular cage ($B_i$). B1: \ch{(NEt4)+} $\subset$ \ch{Ti4L6} (CSD ID: 718468) \cite{pluth2008}. B2: \ch{(BnNMe3)+} $\subset$ \ch{Ga4L6} (CSD ID: 718469) \cite{pluth2008}. B3: \ch{(Cp2Co)+} $\subset$ \ch{Ti4L6} (CSD ID: 718470) \cite{pluth2008}. B4: \ch{(Cp2Co\ast)+} $\subset$ \ch{Ga4L6} (CSD ID: 718471) \cite{pluth2008}. B5: \ch{(BF4)-} $\subset$ \ch{Pd2L4} (CSD ID: 1862753) \cite{steel2018}. B6: \ch{(OCl4)-} $\subset$ \ch{Pd2L4} (CSD ID: 1862752) \cite{steel2018}. B7: \ch{C60} $\subset$ \ch{Zn8L4} (CSD ID: 942782) \cite{nakamura2013}. B8: \ch{C60} $\subset$ \ch{Pd2L4} (CSD ID: 1872778) \cite{eichstaedt2019}. B9: Adamantane-2,6-dione $\subset$ \ch{Pd2L4} (CSD ID: 183906) \cite{johnson2002}. B10: \ch{(NEt4)+} $\subset$ \ch{Pd2L4} (CSD ID: 100947) \cite{caulder1998}. B11: [Corannulene+Cyclohexane] $\subset$ \ch{Pd2L4} (CSD ID: 2068665) \cite{yang2021}. B12: \ch{C60} $\subset$ \ch{Pd2L4} (CSD ID: 2068666) \cite{yang2021}. B13: \ch{C70} $\subset$ \ch{Pd2L4} (CSD ID: 2068667) \cite{yang2021}.}
@@ -1496,15 +1496,13 @@ The benchmark dataset 1 (Figure \ref{fig:benchmark-dataset-1}) comprises 13 X-ra
 
 \noindent where $MRAE$ is the mean relative absolute error, $V_i$ is the "real" volume of cavity $i$, $\hat{V_i}$ is the estimated volume of cavity $i$, and $N_c$ is the number of cavities.
 
-The performance of each cavity detection tool was assessed by comparing the estimated cavity volumes with the "real" cavity volumes (Table \ref{tab:benchmark-1}). First, we analyzed the \acsp{RE}, that are associated with: (1) defining cavity boundaries, and (2) deviations in the \acs{PC} relative to the Rebek's rule of thumb. To mitigate the first source of errors, benchmark dataset 1 exclusively contains supramolecular cages with well-defined void or void-like cavities, where delineating cavity boundaries is straighforward. Conversely, deviations from the Rebek's rule of thumb are more difficult to identify. Denser packings (\ie, $PC > 0.55$) in inclusion complexes can be reached by forces beyond weak dipole-dipole interactions (\eg, hydrogen bonds, $\pi$-$\pi$, and CH-$\pi$ interactions), which favor strong host-guest association \cite{pluth2008}. This results in a loss of entropy (\ie, restricted movement of the guest within the cage), which is counterbalanced by the extra stabilization enthalpy. Consequently, negative \acs{RE} is expected in such instances, resulting from to the overestimation of cavity volume. This trend can be clearly observed in the results of the KVFinder suite, Fpocket, and CAVER for B4--B9, B12, and B13 cages, with experimental evidence for H-bonding in B5, B6, and B9 \cite{steel2018,johnson2002}. Moreover, considering cases with \ch{(Cp2Co\ast)+} (B4), \ch{C60} (B7, B8, and B12), and \ch{C70} (B13) as guests, additional $\pi$-$\pi$ and CH-$\pi$ interactions contribute strong host-guest associations. GHECOM, on the other hand, show a large negative \acs{RE} for each supramolecular cage, suggesting that the calculation error becomes more significant. Conversely, \acs{MRAE} values clearly show that KVFinder suite and Fpocket provide the most reliable cavity volumes.
-
-\begin{table}[H]
+\begin{table}[h]
   \centering
-  \caption[Performance of the well-established cavity detection tools in Benchmark dataset 1]{\textbf{Performance of the well-established cavity detection tools in Benchmark dataset 1.} Estimated cavity volumes by the well-established cavity detection tools. The relative error are calculated using the "real" cavity volume as reference and can be found in paratheses. $V$: "real" cavity volume. $V_{guest}$: guest \acs{vdW} volume. $V = V_{guest} / 0.55$.}
+  \caption[Performance of the well-established cavity detection tools in Benchmark dataset 1]{\textbf{Performance of the well-established cavity detection tools in benchmark dataset 1.} Estimated cavity volumes by the well-established cavity detection tools. The relative error are calculated using the "real" cavity volume as reference and can be found in paratheses. $V$: "real" cavity volume. $V_{guest}$: guest \acs{vdW} volume. $V = V_{guest} / 0.55$.}
   \scalebox{0.725}{  
     \begin{tabular}{ccccabef}
       \hline
-      \textbf{Cage} & \textbf{Guest} & $\boldsymbol{V_{guest}}$ & $\boldsymbol{V}$ & \textbf{KVFinder suite} & \textbf{fpocket} & \textbf{CAVER} & \textbf{GHECOM} \\ \hline
+      \textbf{Cage} & \textbf{Guest} & $\boldsymbol{V_{guest}}$ & $\boldsymbol{V}$ & \textbf{KVFinder suite} & \textbf{Fpocket} & \textbf{CAVER} & \textbf{GHECOM} \\ \hline
       B1 & \ch{(NEt4)+} & 150 & 273 & 283 (3.7\%) & 247 (-9.5\%) & 396 (44.8\%) & 175 (-35.9\%) \\
       B2 & \ch{(BnNMe3)+} & 155 & 281 & 283 (0.8\%) & 279 (-0.6\%) & 339 (20.8\%) & 192 (-31.7\%) \\ 
       B3 & \ch{(Cp2Co)+} & 137 & 248 & 269 (8.1\%) & 277 (11.6\%) & 335 (34.9\%) & 191 (-23.3\%) \\
@@ -1524,19 +1522,19 @@ The performance of each cavity detection tool was assessed by comparing the esti
   \label{tab:benchmark-1}
 \end{table}
 
-% TODO: Rewrite this paragraph
-% A visual representation of the software performance (Figure \ref{fig:re-plot-benchmark-1}) shows that volumes calculated with KVFinder project and Fpocket are close to the estimated volume with a small spread compared to other software. Despite a few outlying results, the overall trend (vide supra) supports our approach of using Rebek's rule as the best estimate for the “real” cavity volume within these supramolecular cages.
+The performance of each cavity detection tool was assessed by comparing the estimated cavity volumes with the "real" cavity volumes (Table \ref{tab:benchmark-1}). First, we analyzed the \acsp{RE}, that are associated with: (1) defining cavity boundaries, and (2) deviations in the \acs{PC} relative to the Rebek's rule of thumb. To mitigate the first source of errors, benchmark dataset 1 exclusively contains supramolecular cages with well-defined void or void-like cavities, where delineating cavity boundaries is straighforward. Conversely, deviations from the Rebek's rule of thumb are more difficult to identify. Denser packings (\ie, $PC > 0.55$) in inclusion complexes can be reached by forces beyond weak dipole-dipole interactions (\eg, hydrogen bonds, $\pi$-$\pi$, and CH-$\pi$ interactions), which favor strong host-guest association \cite{pluth2008}. This results in a loss of entropy (\ie, restricted movement of the guest within the cage), which is counterbalanced by the extra stabilization enthalpy. Consequently, negative \acs{RE} is expected in such instances, resulting from to the overestimation of cavity volume. This trend can be clearly observed in the results of the KVFinder suite, Fpocket, and CAVER for B4--B9, B12, and B13 cages, with experimental evidence for H-bonding in B5, B6, and B9 \cite{steel2018,johnson2002}. Moreover, considering cases with \ch{(Cp2Co\ast)+} (B4), \ch{C60} (B7, B8, and B12), and \ch{C70} (B13) as guests, additional $\pi$-$\pi$ and CH-$\pi$ interactions contribute strong host-guest associations. GHECOM, on the other hand, show a large negative \acs{RE} for each supramolecular cage, suggesting that the calculation error becomes more significant. Conversely, \acs{MRAE} values clearly show that KVFinder suite and Fpocket provide the most reliable cavity volumes.
+
+Furthermore, the cavity volumes estimated with KVFinder suite and Fpocket are close to the estimated volume with a small spread compared to other cavity detection tools (Figure \ref{fig:re-plot-benchmarks}A). Despite a few outliers, the overall trend supports our approach of using Rebek's rule of thumb as the optimal estimate for the “real” cavity volume within these supramolecular cages.
 
 \begin{figure}[ht]
-  \centerline{\includegraphics[scale=0.5]{images/smc-re-plots/RE-boxplot-benchmark-1.png}}
-  \caption[Benchmark dataset 1]{\textbf{Benchmark dataset 1.}}
-  \label{fig:re-plot-benchmark-1}
+  \centerline{\includegraphics[scale=0.8]{images/smc-re-plots.png}}
+  \caption[Boxplot of the relative error of the cavity volume in the benchmark datasets]{\textbf{Boxplot of the relative error of the cavity volume in the benchmark datasets.}  \textbf{(A)} Benchmark dataset 1 with "real" cavity volume as reference. \textbf{(B)} Benchmark dataset 2 with the average volume of detected cavities as reference. In benchmark dataset 2, the cavity of O2 is excluded due to high uncertainty in detecting its cavity by some methods. Each cavity detection tool is presented with a violin plot depicting the probability density function of the relative error. The red line denotes the median, and the point indicates the mean relative errors.}
+  \label{fig:re-plot-benchmarks}
 \end{figure}
 
 \subsection{Benchmarking Dataset 2}
 
-% TODO: Rewrite this paragraph
-% The benchmark dataset 2 (Figure \ref{fig:benchmark-dataset-2}) comprises 9 X-ray structures of well-known supramolecular cages, without the guest molecules, but with different topological and morphological features (\ie, cavity size, opening size, and shape). This dataset aims to evaluate the capabilities and limitations of the well-established cavity detection tools in detecting different types of cavities (Figure \ref{fig:cavity-classification}). However, these supramolecular cages do not contain guests inside their cavity, so the "real" cavity volume estimation cannot be calculated by the Rebek's rule of thumb. Consequently, the average volume of detected cavities was chosen as the point of comparison to calculated volumes (Table \ref{tab:benchmark-2}), which establishes an agreement between methods by mitigating deviations in volume data.
+The benchmark dataset 2 (Figure \ref{fig:benchmark-dataset-2}) comprises 9 X-ray structures of well-known supramolecular cages, without the guest molecules, but with different topological and morphological features (\ie, cavity size, opening size, and shape). This dataset aims to evaluate the capabilities and limitations of the well-established cavity detection tools in detecting different types of cavities (Figure \ref{fig:cavity-classification}). However, since these supramolecular cages lack internal guests, the estimation of the "real" cavity volume via Rebek's rule of thumb is not feasible. Consequently, the average volume of detected cavities serves as the point of comparison for calculated volumes (Table \ref{tab:benchmark-2}), establishing an agreement between methods by mitigating discrepancies in volume data.
 
 \begin{figure}
   \centerline{\includegraphics[scale=0.9]{images/benchmark-dataset-2.png}}
@@ -1554,7 +1552,27 @@ The performance of each cavity detection tool was assessed by comparing the esti
   \label{fig:benchmark-dataset-2}
 \end{figure}
 
-It is important to note that the cavity detection benchmarking procedure, optimized detection parameters, and detailed results are available in the article published in the \textit{Journal of Chemical Information and Modeling} \cite{guerra2023B}. 
+% \begin{table}[!ht]
+%   \centering
+%   \caption[Performance of the well-established cavity detection tools in Benchmark dataset 2]{\textbf{Performance of the well-established cavity detection tools in benchmark dataset 2.} Estimated cavity volumes by the well-established cavity detection tools. The relative error are calculated using the "real" cavity volume as reference and can be found in paratheses. $V$: average cavity volume. $V_{guest}$: guest \acs{vdW} volume. $V = V_{guest} / 0.55$.}
+%   \scalebox{0.7}{
+%     \begin{tabular}{cccabef}
+%       \hline
+%       \textbf{Cavity type} & \textbf{Cage} & $\boldsymbol{\bar{V}}$ & \textbf{KVFinder suite} & \textbf{fpocket} & \textbf{CAVER} & \textbf{GHECOM} \\ \hline
+%       A1 & 1315 & 1399 (6.4\%) & 1387 (5.5\%) & 1411 (7.3\%) & 1778 (35.2\%) & 1362 (3.6\%) \\
+%       C1 & 549 & 558 (1.6\%) & 617 (12.3\%) & 648 (17.9\%) & 569 (3.6\%) & 669 (21.7\%) \\ 
+%       F1 & 500 & 463 (-7.5\%) & 483 (-3.5\%) & 653 (30.6\%) & 481 (-3.9\%) & 655 (30.9\%) \\ 
+%       F2 & 42572 & 37728 (-11.4\%) & 39077 (-8.2\%) & 62843 (47.6\%) & 22941 (-46.1\%) & 59147 (38.9\%) \\ 
+%       H1 & 259 & 226 (-12.8\%) & 211 (-18.6\%) & 409 (58.1\%) & 215 (-16.8\%) & 429 (65.5\%) \\ 
+%       N1 & 434 & 488 (12.4\%) & 495 (14\%) & 526 (21.2\%) & 543 (25.1\%) & 461 (6.2\%) & 211 (-51.4\%) \\ 
+%       O1 & 142 & 160 (12.9\%) & 177 (24.5\%) & 172 (21.2\%) & 199 (40\%) & 146 (3.2\%) \\ 
+%       O2 & 20 & 36 (78.8\%) & 0 (-100\%) & 37 (82.2\%) & 0 (-100\%) & 0 (-100\%) \\ 
+%       W1 & 696 & 866 (24.4\%) & 542 (-22.2\%) & 984 (41.3\%) & 1008 (44.8\%) & 936 (34.4\%) \\ \hline
+%       \textbf{MRAE} & ~ & \textbf{18.7\%} & \textbf{23.2\%} & \textbf{36.4\%} & \textbf{35.1\%} & \textbf{33.8\%} \\ \hline
+%     \end{tabular}
+%   }
+%   \label{tab:benchmark-1}
+% \end{table}
 
 \subsection{Discussion}
 
