@@ -54,7 +54,7 @@ MAE = AE.mean(axis=0).to_frame("MAE")
 MRAE = RAE.mean(axis=0).to_frame("MRAE")
 
 # Boxplot + Violin
-fig, ax = plt.subplots(1, 1, figsize=(12, 12), clear=True, tight_layout=True)
+fig, ax = plt.subplots(1, 1, figsize=(12, 6), clear=True, tight_layout=True)
 vp = ax.violinplot(RE, vert=False, showmeans=False, showmedians=False, showextrema=False)
 
 for pc, color in zip(vp['bodies'], COLORBLIND):
@@ -115,7 +115,7 @@ RE = RE.dropna()
 print(RE)
 
 # Boxplot + Violin
-fig, ax = plt.subplots(1, 1, figsize=(12, 12), clear=True, tight_layout=True)
+fig, ax = plt.subplots(1, 1, figsize=(12, 6), clear=True, tight_layout=True)
 vp = ax.violinplot(RE, vert=False, showmeans=False, showmedians=False, showextrema=False)
 
 for pc, color in zip(vp['bodies'], COLORBLIND):
