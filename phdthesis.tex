@@ -828,7 +828,7 @@ The representation of molecular surfaces is a crucial step in the modeling and a
 In our exploration of structural and functional characterization, we now turn to atomistic representation, an alternative to the voxel-based approach. Rather than representing structural data through voxels in a \acs{3D} grid, biomolecules and their binding sites can also be portrayed through their atomistic representation (Figure \ref{fig:atomistic-representation}). This representations are applied in tools of molecular dynamics simulations, such as GROMACS \cite{gromacs}, AMBER \cite{amber}, and CafeMol \cite{kenzaki2011}. Here, atoms, residues, and/or nucleobases are modeled as hard sphere models in \acs{3D} coordinates (x, y, z), along with vectors (\eg, forces, velocities, and accelerations) and properties (\eg, mass, charge, and van der Waals radius).
 
 \begin{figure}[h]
-  \centerline{\includegraphics[scale=2]{images/atomistic-representation.png}}
+  \centerline{\includegraphics[scale=1]{images/atomistic-representation.png}}
   \caption[Atomistic representations]{\textbf{Atomistic representations.} \textbf{(A)} Atoms and amino acids (\textit{sticks} in green) forming the adenosine binding site (transparent surface). \textbf{(B)} Atoms and amino acids (\textit{sticks} in blue) exposed to the solvent, excluding binding sites for small molecules, with an inhibitor bound (\textit{sticks} in green). Images generated with PyMOL for a subunit of cyclic AMP-dependent protein kinase (PDB ID: 1FMO).}
   \label{fig:atomistic-representation}
 \end{figure}
@@ -919,7 +919,7 @@ A graph $\mathcal{G(V,E)}$ (Figure \ref{fig:graph-examples}) is a mathematical s
 In this context, we introduce a graph-based representation for biomolecules using the \acs{3D} coordinates (x, y, z) of a biomolecular structure or complex that generates a residue-level graph, where vertices represent residues and edges represent interactions or some type of relationship between them. The construction of edges is based on customizable distance cutoffs between atoms, such as \ac{CA}, \ac{CB}, or any other atom, which can be defined by the user (Figure \ref{fig:graph-representation}). According to \ac{CAPRI} Round 28 \cite{capri,round28}, a distance cutoff of 8 Å between any two \acs{CB} atoms (or \acs{CA} for Gly) define interface residues, and a distance cutoff of 4 Å between any two atoms define native contacts. Expanding on the \acs{CB} definition, a distance cutoff of 10 Å between any two \acs{CA} atoms to define interface residues. Thus, the default parameters set in the implementation are these distance cutoffs, establishing relationships or interactions between residues \cite{vishveshwara2002,mason2007}. Figure \ref{fig:graph-representation}A shows an example of a residue-level graph generated from an adenosine binding site (Figure \ref{fig:atomistic-representation}A), and Figure \ref{fig:graph-representation}B shows an example of a residue-level graph generated from a solvent-exposed surface (Figure \ref{fig:atomistic-representation}B).
 
 \begin{figure}[H]
-\centerline{\includegraphics[scale=1.5]{images/graph-representation.png}}
+\centerline{\includegraphics[scale=1]{images/graph-representation.png}}
 \caption[Graph representations]{\textbf{Graph representations.} \textbf{(A)} Adenosine binding site as graphs with edges based on the distance cutoff of \acs{CA} (spheres and sticks in red), \acs{CB} (spheres and sticks in yellow), and any atoms of the residues (spheres and sticks in cyan). \textbf{(B)} Solvent-exposed surface, excluding binding sites for small molecules, as graphs with edges based on the distance cutoff of \acs{CA} (spheres and sticks in red), \acs{CB} (spheres and sticks in yellow), and any atoms of the residues (spheres and sticks in cyan). Images generated with PyMOL for a subunit of cyclic AMP-dependent protein kinase (PDB ID: 1FMO).}
 \label{fig:graph-representation}
 \end{figure}
@@ -970,7 +970,7 @@ The active site of the HIV-1 protease represents a relevant therapeutic target f
 In this study, the \acs{MD} of the HIV-1 protease was investigated by identifying and evaluating the active site's volume during \acs{MD} simulations. Our objective was to describe the dynamic movement of the flaps through the volume and shape of the active site cavity as conformational descriptors in \acs{MD} simulations. To achieve this, 200 ns \acs{MD} simulations were conducted using the GROMACS 2019.4 package \cite{gromacs}, the AMBER99SB-ws force field, and the TIP42005s water model. The simulations initiated from the crystallographic structure of HIV-1 protease in the closed conformation \cite{lam1994}, excluding the inhibitor present in the structure, cyclic urea.
 
 \begin{figure}[h]
-  \centerline{\includegraphics[scale=1.2]{images/hiv1-protease-md-analysis.png}}
+  \centerline{\includegraphics[scale=1.05]{images/hiv1-protease-md-analysis.png}}
   \centerline{\tiny{\textbf{Source:} Reprinted from \cite{guerra2020}. Licensed under \href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}.}}
   \caption[Volume of the HIV-1 protease active site over a 200 ns molecular dynamics simulation]{\textbf{Volume of the HIV-1 protease active site over a 200 ns molecular dynamics simulation.} The green and red lines indicate the cavity volume for the closed (PDB ID: 1HVR) and semi-open (PDB ID: 1HHP) states, respectively. Protein structures at the beginning of the simulation (0 ns) and the frame with the highest \acs{RMSD} (175.6 ns) are shown as cartoons. The corresponding cavities detected by each tool are displayed as gray surfaces.}
   \label{fig:hiv1-protease-dm-analysis}
@@ -1089,7 +1089,7 @@ The dual-probe system uses integer identifiers for cavity points ($1$), biomolec
 
 \begin{figure}[h]
   \centering
-  \includegraphics[scale=0.6]{images/3D-binary-structure.png}
+  \includegraphics[scale=1]{images/3D-binary-structure.png}
   \caption[Structuring elements for spatial filters]{\textbf{Structuring elements for spatial filters.}}
   \label{fig:structuring-elements}
 \end{figure}
@@ -1136,7 +1136,7 @@ In this context, the computational performance of pyKVFinder was evaluated in \a
 
 \begin{figure}[h]
   \centering
-  \includegraphics[scale=1]{images/pykvfinder-benchmarking.png}
+  \includegraphics[scale=1.2]{images/pykvfinder-benchmarking.png}
   \centerline{\tiny{\textbf{Source:} Reprinted from \cite{guerra2021}. Licensed under \href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}.}}
   \caption[Performance evaluation of benchmarking methods for the ADRP substrate-binding site detection]{\textbf{Performance evaluation of benchmarking methods for the ADRP substrate-binding site detection.} \textbf{(A)} Protein structures (shown in green cartoons) in frame 30 (with the lowest RMSD compared to the crystallographic structure) of the ADRP domain trajectory with corresponding detected cavities (gray surfaces) by each benchmarking method. \textbf{(B)} Total volume of cavities detected at the substrate-binding site of ADRP over a 600 ns simulation. The total volume is calculated in a window of 20 frames. The red dashed line indicates the molecular surface volume of the ADP-ribose molecule, which originally occupied the substrate-binding site of ADRP in the crystallographic structure (PDB ID: 6W02, chain B). \textbf{(C)} Elapsed time to detect and characterize the substrate-binding site of ADRP. The default protocol of pyKVFinder, as well as parKVFinder, detects cavities and applies morphological (\eg, volume, area, and shape) and constitutional (e.g., interface residues and their frequencies) characterizations. The complete pyKVFinder protocol includes the default protocol with depth and hydrophobicity characterizations.}
   \label{fig:pykvfinder-benchmarking}
@@ -1347,7 +1347,7 @@ Recently, we developed pyKVFinder \cite{guerra2021} as a foundational element fo
 
 \begin{figure}[h]
   \centering
-  \includegraphics[scale=0.75]{images/kvmd-overview.png}
+  \includegraphics[scale=1]{images/kvmd-overview.png}
   \caption[Detection, characterizations, and representations of cavities in molecular dynamics studies using the KVFinderMD tool.]{\textbf{Detection, characterizations, and representations of cavities in molecular dynamics studies using the KVFinderMD tool.} \textbf{(A)} Morphological, topological, and physicochemical characterizations applied in KVFinderMD. \textbf{(B)} Graph-based representation of cavities based on interface residues and their topological relationships. Edges are formed up to the limit distance of  8 Å between \acs{CB} (blue), 10 Å between \acs{CA} (red), and 5 Å between any atoms of different residues (magenta).}
   \label{fig:kvmd-overview}
 \end{figure}
@@ -1537,7 +1537,7 @@ Furthermore, the cavity volumes estimated with KVFinder suite and Fpocket are cl
 The benchmark dataset 2 (Figure \ref{fig:benchmark-dataset-2}) comprises 9 X-ray structures of well-known supramolecular cages, without the guest molecules, but with different topological and morphological features (\ie, cavity size, opening size, and shape).
 
 \begin{figure}[ht]
-  \centerline{\includegraphics[scale=0.9]{images/benchmark-dataset-2.png}}
+  \centerline{\includegraphics[scale=1]{images/benchmark-dataset-2.png}}
   \centerline{\tiny{\textbf{Source:} Reprinted with permission from \cite{guerra2023B}. Copyright 2023 American Chemical Society.}}
   \caption[Benchmark dataset 2]{\textbf{Benchmark dataset 2.}
   A1: \ch{(H2O)6L6} (CSD ID: 1207879) \cite{macgillivray1997}.
