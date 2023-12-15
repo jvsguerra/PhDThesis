@@ -1074,7 +1074,7 @@ The \textit{pyKVFinder.Molecule} class, introduced in pyKVFinder \href{https://g
   \label{fig:molecular-modeling}
 \end{figure}
 
-\subsubsection{Opening Characterization}
+\subsubsection{Opening Characterization \label{sec:opening-characterization}}
 
 Understanding the characteristics of supramolecular cages, such as volume (Figure \ref{fig:cage-characterization}A) and openings (Figure \ref{fig:cage-characterization}B), which drive the encapsulation of reactive intermediates, is crucial for the rational design of new supramolecular cages with enhanced catalytic properties. In this regard, we have developed an opening characterization using pyKVFinder, allowing the identification of openings, determination of the area of these openings, and the largest spherical probe (\ie, atom) that can pass through each opening, as shown in Figure \ref{fig:cage-characterization}.
 
@@ -1130,7 +1130,7 @@ With pyKVFinder, we can calculate the frequency of residues composing the cavity
 
 To demonstrate the functionalities and advantages of pyKVFinder, we conducted this study in a Jupyter notebook, executing step-by-step pyKVFinder functions. The notebook with the complete case study is available at \url{https://github.com/LBC-LNBio/pyKVFinder/blob/master/examples/conservation-analysis/conservation-analysis.ipynb}. A detailed description of this analysis is provided in the article published in the \textit{BMC Bioinformatics} \cite{guerra2021}.
 
-\subsubsection{Molecular Dynamics of the ADRP Domain of SARS-CoV-2}
+\subsubsection{Molecular Dynamics of the ADRP Domain of SARS-CoV-2 \label{sec:pykvfinder-md-analysis}}
 
 In this context, the computational performance of pyKVFinder was evaluated in \acs{MD} simulations of the ADRP domain of SARS-CoV-2 (PDB ID: 6W02, chain B) without its ligand, ADP-ribose, for a period of 600 ns, with frame extraction every 1 ns. This analysis was repeated with other well-known tools: parKVFinder v1.1.3 \cite{guerra2020}, POVME 3.0 \cite{povme}, fpocket \cite{fpocket}, GHECOM \cite{ghecom}, MSPocket \cite{mspocket}, and Biobb\_vs \cite{biobbvs}. All these methods successfully detected the substrate-binding site of the ADRP, where the shape and volume varied slightly during the MD simulation (Figure \ref{fig:pykvfinder-benchmarking}). The shapes of the cavities detected by pyKVFinder and parKVFinder precisely fit the original ligand in the binding site, similar to MSPocket (Figure \ref{fig:pykvfinder-benchmarking}A). Additionally, the volume calculated by pyKVFinder ($346.8 \pm 78.7 \AA^3$) and parKVFinder ($346.5 \pm 79.3 \AA^3$) closely relates to the volume of ADP-ribose ($351.1 \AA^3$; molecular surface volume estimated by the YASARA program), which originally occupied the substrate-binding site in the crystallographic structure used in the MD simulations (Figure \ref{fig:pykvfinder-benchmarking}B).
 
@@ -1276,7 +1276,7 @@ Finally, a crucial consideration in this monitoring process is data privacy. Rec
 
 The KVFinder-web was applied in two case studies published in a scientific journal to investigate proteins of therapeutic interest. These analyses explored the characterization of the catalytic site of the \acs{HIV-1} protease and the morphological comparison of the structures of this protein deposited in the \acs{wwPDB}. Next, we will describe each of these case studies in detail.
 
-\subsubsection{Characterization of the Catalytic Site of the HIV-1 Protease}
+\subsubsection{Characterization of the Catalytic Site of the HIV-1 Protease \label{sec:kvweb-hiv1-protease}}
 
 Illustrating the capabilities of KVFinder-web (Figure \ref{fig:kvweb-case-study}), we conducted a comprehensive analysis of the catalytic site of the \acs{HIV-1} protease, bound to the carbonyl oxygen of cyclic urea \cite{lam1994}, utilizing the KVFinder-web portal. This analysis successfully identified and characterized cavities across the biomolecular surface of the \acs{HIV-1} protease (Figure \ref{fig:kvweb-case-study}A). Beyond mere detection and shape definition, KVFinder-web provides detailed metrics, including volume, area, depth, and hydropathy of the identified cavities (Figure \ref{fig:kvweb-results}; KAG cavity). Usually, the active site is the largest and deepest cavity in the enzymatic protein \cite{laskowski1996}, and this is also observed in the \acs{HIV-1} protease, as shown in Figure \ref{fig:kvweb-results}. In this sense, depth characterization can help researchers identify the active site across the molecular surface (Figure \ref{fig:kvweb-case-study}A).
 
@@ -1290,7 +1290,7 @@ As presented in Sections \ref{sec:parkvfinder-mayaro} and \ref{sec:pykvfinder-sa
   \label{fig:kvweb-case-study}
 \end{figure}
 
-\subsubsection{Morphological Comparison of the Catalytic Site of HIV-1 Protease Structures}
+\subsubsection{Morphological Comparison of the Catalytic Site of HIV-1 Protease Structures \label{sec:kvweb-hiv1-protease-morphological}}
 
 As discussed in Section \ref{sec:md-hiv1-protease}, the \acs{HIV-1} protease is an effective therapeutic target, with its catalytic site being target of various antiretroviral drugs. The catalytic cycle hinges on the movements of the \textbeta-hairpins, controlling the substrate accessibility to the active site \cite{lam1994,soares2016}. Consequently, we conducted a comprehensive analysis of \acs{HIV-1} protease structures available in the \acs{PDB}, comparing their cavities (refer to \cite{guerra2023A}). Thus, cavity volumes proved instrumental in clearly distinguishing ligand-bound and non-ligand-bound structures (Figure \ref{fig:kvweb-case-study}C), indicating geometric complementarity between the receptor and ligands, supported by physicochemical complementarity elucidated by the hydrophobicity profile.
 
@@ -1604,11 +1604,15 @@ All methods offer user-friendly installations, configurations, and executions, w
 
 \section{Perspectives}
 
-% Data science
-% DL/ML applications
-% Druggability/Ligandability
-% Virtual Screening
-% New characterizations such as skeletonize cavities (measure of accessibility)
+The structural biology community is expected to continue using the KVFinder suite for characterizing biomolecules and their binding sites across morphological, topological, and physicochemical parameters. The relevance of KVFinder suite is further emphasized by its application in a range of structural biology community studies, including both characterization and comparative investigations, as evidenced by references such as \cite{mendonca2021, mercaldi2022, santhakumari2023, premetis2023, jefferson2023, chen2023, kim2023}.
+
+Beyond conventional applications, there is a prospect for the KVFinder suite to find novel utility in data science applications within the structural biology community. The KVFinder suite's versatility is exemplified by its role in comparative studies presented in this thesis, such as investigations into Mayaro and other alphaviruses (Section \ref{sec:parkvfinder-mayaro}) \cite{guerra2019}, SARS-CoV-2 and homologous proteins (Section \ref{sec:pykvfinder-sars-cov-2}) \cite{guerra2020}, and morphological comparisons of the catalytic site of HIV-1 protease structures (Section \ref{sec:kvweb-hiv1-protease-morphological}) \cite{guerra2023A}. Furthermore, its application in molecular dynamics simulations analysis, as demonstrated in studies on the dynamics of HIV-1 protease (Section \ref{sec:md-hiv1-protease})\cite{guerra2019} and the ADRP domain of SARS-CoV-2 (Section \ref{sec:pykvfinder-md-analysis}) \cite{guerra2020}, highlights its potential in unraveling dynamic biomolecular processes. 
+
+As part of KVFinder suite, pyKVFinder has been utilized in exploring cavity cross-sectional area \cite{jefferson2023}, molecular volume estimation (Section \ref{sec:molecular-volume-estimation}) \cite{guerra2023A}, and cavity opening characterization (Section \ref{sec:opening-characterization}), serving as a guide for users to develop novel characterizations. Additionally, integrating pyKVFinder into \acs{DL}, using cavity characterizations as input features, aligns with recent applications.  Instances from the literature, such as Sfcnn \cite{wang2022}, which is a scoring function model based on 3D convolutional neural networks for protein-ligand binding affinity prediction, LigVoxel \cite{skalic2018}, a deep convolutional neural network trained on experimental protein-ligand complexes for predicting spatial maps of ligand properties, and DeepDrug3D \cite{pu2019}, a convolutional neural network capable of classifying binding sites in proteins through learning specific molecular interactions like hydrogen bonds, aromatic contacts, and hydrophobic contacts, provide inspiration for potential applications of pyKVFinder in deep learning models.
+
+Looking ahead, future work involves algorithmic enhancements and novel characterizations. Upgrades to the cavity detection algorithm, aiming to mitigate grid-orientation sensitivity, the algorithm of cavity volume estimation, aiming to provide even more reliable cavity volumes, and the voxel-clustering algorithm, aiming to optimize the most time-consuming algorithm in the cavity detection workflow, enabling future GPU parallelization. In the context of novel characterizations, the KVFinder suite aims to integrate ligandability and druggability characterizations to the detected cavities, potentially serving as ranking scores for virtual screening applications. Ligandability, reflecting the feasibility of designing small ligands with high binding affinities, and druggability, assessing the suitability of a cavity for binding drug-like molecules, open avenues for exploring higher-level properties of ligands (ADME/T) \cite{xu2018}. This involves applying datasets, such as NRDLD from \cite{coleman2006}, to train machine learning models for distinguishing druggable and non-druggable sites. Additionally, a protocol for identifying allosteric binding sites within the KVFinder suite would be desirable, involving the application of normal mode analysis, as demonstrated by AllogSigma2 \cite{tan2020} and ESSA \cite{kaynak2020}. Notably, the introduction of cavity skeletonization (morphological characterization) as a metric for defining cavity accessibility  further enhances the KVFinder suite's characterization capabilities.
+
+In essence, the KVFinder suite, having demonstrated its versatility and efficacy, stands poised for a future marked by continued applications across diverse research domains and ongoing advancements to meet evolving computational and analytical demands within the structural biology community.
 
 %%% Chapter 6
 
