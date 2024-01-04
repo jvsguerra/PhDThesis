@@ -79,10 +79,10 @@ ax.plot(
 ax.grid(which="major", axis="y", linestyle="--")
 ax.set_ylabel("Jobs", size=20)
 # ax.set_xlabel("Relative Error (%)", size=20)
-ax.set_ylim(0, 1100)
+ax.set_ylim(0, 1150)
 ax.tick_params(axis="x", labelsize=15)
 ax.tick_params(axis="y", labelsize=15)
-ax.yaxis.set_ticks([0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000, 1050, 1100])
+ax.yaxis.set_ticks([0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000, 1050, 1100, 1150])
 
 # Legend
 ax.legend(loc="upper left", fontsize=20)

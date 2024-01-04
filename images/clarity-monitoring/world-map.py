@@ -61,7 +61,7 @@ fig.update_layout(
         ticks="outside",
         tickwidth=1,
         ticklen=10,
-        dtick=1,
+        dtick=2,
         outlinecolor="black",
         outlinewidth=1,
     )
@@ -114,7 +114,7 @@ wedges, texts = ax.pie(
     os["No. of sessions"],
     colors=COLORBLIND,
     wedgeprops=dict(width=0.5, edgecolor="black"),
-    startangle=-40,
+    startangle=-10,
 )
 
 bbox_props = dict(boxstyle="square, pad=0.3", fc="w", ec="k", lw=0.72)
