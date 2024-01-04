@@ -1370,7 +1370,7 @@ In the \acs{MD} simulation of the \acs{HIV-1} protease, we detected 672 cavities
 
 \begin{figure}[h]
   \centering
-  \includegraphics[scale=1]{images/HIV-1-representation.png}
+  \includegraphics[scale=1.0]{images/HIV-1-representation.png}
   \caption[Cavity representation for the study of HIV-1 protease cavity similarity throughtout molecular dynamics trajectory]{\textbf{Cavity representation for the study of HIV-1 protease cavity similarity throughtout molecular dynamics trajectory.} Representation of the active site cavity in 3D grid (left panel), where cavity points are identified by 1, while other points (biomolecule points, solvent points, and empty space points) are identified by the value 0. Residue-level representation of the active site (central panel), where we abstract cavities as a distance matrix between \acs{CB} atoms of residues, ordered by the protein sequence. Graph-based representation of relationships between active site residues (right panel), where we abstract cavities as a contact matrix, ordered by the protein sequence.}
   \label{fig:hiv-1-representation}
 \end{figure}
@@ -1439,7 +1439,7 @@ The hierarchical clustering of the 3D grid representation resulted in 10 groups 
 
 \begin{figure}[h]
   \centering
-  \includegraphics[scale=1]{images/HIV-1-clustering-results.png}
+  \includegraphics[scale=1.15]{images/HIV-1-clustering-results.png}
   \caption[Hierarchical clustering of HIV-1 protease cavities]{\textbf{Hierarchical clustering of HIV-1 protease cavities.} All cavities detected throughout the molecular dynamics were overlaid on the same structure and colored according to labels assigned by hierarchical clustering of 3D grid (left panel), distance matrix (central panel), and contact matrix (right panel). The silhouette score plot is presented for each sample according to the assigned label. The red line indicates the silhouette coefficient for hierarchical clustering.}
   \label{fig:hiv-1-clustering-results}
 \end{figure}
@@ -1475,13 +1475,6 @@ Within this context, there are no existing benchmark dataset to test the perform
 
 The benchmark dataset 1 (Figure \ref{fig:benchmark-dataset-1}) comprises 13 X-ray structures of well-known supramolecular cages, with guest molecules being encapsulated in their void or void-like cavities, following the Rebek's rule of thumb. The guests molecules were removed from their cages and their \acs{vdW} volumes were estimated using \textit{volume} method from \textit{pyKVFinder.Molecule} class (see Section \ref{sec:molecular-volume-estimation}). With it, the "real" cavity volume were calculated using the Rebek's rule of thumb. Then, the cavities of the supramolecular cages were detected and their volumes estimated for each cavity detection tool. As good prediction metrics, the relative error (\acs{RE}; Eq. \ref{eq:re}) and the mean relative absolute error (\acs{MRAE}; Eq. \ref{eq:mrae}) were calculated between cavity volumes.
 
-\begin{figure}[H]
-  \centerline{\includegraphics[scale=0.9]{images/benchmark-dataset-1.png}}
-  \centerline{\tiny{\textbf{Source:} Reprinted with permission from \cite{guerra2023B}. Copyright 2023 American Chemical Society.}}
-  \caption[Benchmark dataset 1]{\textbf{Benchmark dataset 1.} Each of these inclusion complexes features guest molecule(s) ($G_i$) within the cavity of a supramolecular cage ($B_i$). B1: \ch{(NEt4)+} $\subset$ \ch{Ti4L6} (CSD ID: 718468) \cite{pluth2008}. B2: \ch{(BnNMe3)+} $\subset$ \ch{Ga4L6} (CSD ID: 718469) \cite{pluth2008}. B3: \ch{(Cp2Co)+} $\subset$ \ch{Ti4L6} (CSD ID: 718470) \cite{pluth2008}. B4: \ch{(Cp2Co\ast)+} $\subset$ \ch{Ga4L6} (CSD ID: 718471) \cite{pluth2008}. B5: \ch{(BF4)-} $\subset$ \ch{Pd2L4} (CSD ID: 1862753) \cite{steel2018}. B6: \ch{(OCl4)-} $\subset$ \ch{Pd2L4} (CSD ID: 1862752) \cite{steel2018}. B7: \ch{C60} $\subset$ \ch{Zn8L4} (CSD ID: 942782) \cite{nakamura2013}. B8: \ch{C60} $\subset$ \ch{Pd2L4} (CSD ID: 1872778) \cite{eichstaedt2019}. B9: Adamantane-2,6-dione $\subset$ \ch{Pd2L4} (CSD ID: 183906) \cite{johnson2002}. B10: \ch{(NEt4)+} $\subset$ \ch{Pd2L4} (CSD ID: 100947) \cite{caulder1998}. B11: [Corannulene+Cyclohexane] $\subset$ \ch{Pd2L4} (CSD ID: 2068665) \cite{yang2021}. B12: \ch{C60} $\subset$ \ch{Pd2L4} (CSD ID: 2068666) \cite{yang2021}. B13: \ch{C70} $\subset$ \ch{Pd2L4} (CSD ID: 2068667) \cite{yang2021}.}
-  \label{fig:benchmark-dataset-1}
-\end{figure}
-
 \begin{equation}
   RE \colon (V,\hat{V}) \mapsto \frac{\hat{V} - V}{V} \in [-\infty,\infty]
   \label{eq:re}
@@ -1495,6 +1488,15 @@ The benchmark dataset 1 (Figure \ref{fig:benchmark-dataset-1}) comprises 13 X-ra
 \end{equation}
 
 \noindent where $MRAE$ is the mean relative absolute error, $V_i$ is the "real" volume of cavity $i$, $\hat{V_i}$ is the estimated volume of cavity $i$, and $N_c$ is the number of cavities.
+
+\begin{figure}[H]
+  \centerline{\includegraphics[scale=0.9]{images/benchmark-dataset-1.png}}
+  \centerline{\tiny{\textbf{Source:} Reprinted with permission from \cite{guerra2023B}. Copyright 2023 American Chemical Society.}}
+  \caption[Benchmark dataset 1]{\textbf{Benchmark dataset 1.} Each of these inclusion complexes features guest molecule(s) ($G_i$) within the cavity of a supramolecular cage ($B_i$). B1: \ch{(NEt4)+} $\subset$ \ch{Ti4L6} (CSD ID: 718468) \cite{pluth2008}. B2: \ch{(BnNMe3)+} $\subset$ \ch{Ga4L6} (CSD ID: 718469) \cite{pluth2008}. B3: \ch{(Cp2Co)+} $\subset$ \ch{Ti4L6} (CSD ID: 718470) \cite{pluth2008}. B4: \ch{(Cp2Co\ast)+} $\subset$ \ch{Ga4L6} (CSD ID: 718471) \cite{pluth2008}. B5: \ch{(BF4)-} $\subset$ \ch{Pd2L4} (CSD ID: 1862753) \cite{steel2018}. B6: \ch{(OCl4)-} $\subset$ \ch{Pd2L4} (CSD ID: 1862752) \cite{steel2018}. B7: \ch{C60} $\subset$ \ch{Zn8L4} (CSD ID: 942782) \cite{nakamura2013}. B8: \ch{C60} $\subset$ \ch{Pd2L4} (CSD ID: 1872778) \cite{eichstaedt2019}. B9: Adamantane-2,6-dione $\subset$ \ch{Pd2L4} (CSD ID: 183906) \cite{johnson2002}. B10: \ch{(NEt4)+} $\subset$ \ch{Pd2L4} (CSD ID: 100947) \cite{caulder1998}. B11: [Corannulene+Cyclohexane] $\subset$ \ch{Pd2L4} (CSD ID: 2068665) \cite{yang2021}. B12: \ch{C60} $\subset$ \ch{Pd2L4} (CSD ID: 2068666) \cite{yang2021}. B13: \ch{C70} $\subset$ \ch{Pd2L4} (CSD ID: 2068667) \cite{yang2021}.}
+  \label{fig:benchmark-dataset-1}
+\end{figure}
+
+The performance of each cavity detection tool was assessed by comparing the estimated cavity volumes with the "real" cavity volumes (Table \ref{tab:benchmark-1}). First, we analyzed the \acsp{RE}, that are associated with: (1) defining cavity boundaries, and (2) deviations in the \acs{PC} relative to the Rebek's rule of thumb. To mitigate the first source of errors, benchmark dataset 1 exclusively contains supramolecular cages with well-defined void or void-like cavities, where delineating cavity boundaries is straighforward. Conversely, deviations from the Rebek's rule of thumb are more difficult to identify. Denser packings (\ie, $PC > 0.55$) in inclusion complexes can be reached by forces beyond weak dipole-dipole interactions (\eg, hydrogen bonds, $\pi$-$\pi$, and CH-$\pi$ interactions), which favor strong host-guest association \cite{pluth2008}. This results in a loss of entropy (\ie, restricted movement of the guest within the cage), which is counterbalanced by the extra stabilization enthalpy. Consequently, negative \acs{RE} is expected in such instances, resulting from to the overestimation of cavity volume. This trend can be clearly observed in the results of the KVFinder suite, Fpocket, and CAVER for B4--B9, B12, and B13 cages, with experimental evidence for H-bonding in B5, B6, and B9 \cite{steel2018,johnson2002}. Moreover, considering cases with \ch{(Cp2Co\ast)+} (B4), \ch{C60} (B7, B8, and B12), and \ch{C70} (B13) as guests, additional $\pi$-$\pi$ and CH-$\pi$ interactions contribute strong host-guest associations. GHECOM, on the other hand, show a large negative \acs{RE} for each supramolecular cage, suggesting that the calculation error becomes more significant. Conversely, \acs{MRAE} values clearly show that KVFinder suite and Fpocket provide the most reliable cavity volumes.
 
 \begin{table}[h]
   \centering
@@ -1522,12 +1524,10 @@ The benchmark dataset 1 (Figure \ref{fig:benchmark-dataset-1}) comprises 13 X-ra
   \label{tab:benchmark-1}
 \end{table}
 
-The performance of each cavity detection tool was assessed by comparing the estimated cavity volumes with the "real" cavity volumes (Table \ref{tab:benchmark-1}). First, we analyzed the \acsp{RE}, that are associated with: (1) defining cavity boundaries, and (2) deviations in the \acs{PC} relative to the Rebek's rule of thumb. To mitigate the first source of errors, benchmark dataset 1 exclusively contains supramolecular cages with well-defined void or void-like cavities, where delineating cavity boundaries is straighforward. Conversely, deviations from the Rebek's rule of thumb are more difficult to identify. Denser packings (\ie, $PC > 0.55$) in inclusion complexes can be reached by forces beyond weak dipole-dipole interactions (\eg, hydrogen bonds, $\pi$-$\pi$, and CH-$\pi$ interactions), which favor strong host-guest association \cite{pluth2008}. This results in a loss of entropy (\ie, restricted movement of the guest within the cage), which is counterbalanced by the extra stabilization enthalpy. Consequently, negative \acs{RE} is expected in such instances, resulting from to the overestimation of cavity volume. This trend can be clearly observed in the results of the KVFinder suite, Fpocket, and CAVER for B4--B9, B12, and B13 cages, with experimental evidence for H-bonding in B5, B6, and B9 \cite{steel2018,johnson2002}. Moreover, considering cases with \ch{(Cp2Co\ast)+} (B4), \ch{C60} (B7, B8, and B12), and \ch{C70} (B13) as guests, additional $\pi$-$\pi$ and CH-$\pi$ interactions contribute strong host-guest associations. GHECOM, on the other hand, show a large negative \acs{RE} for each supramolecular cage, suggesting that the calculation error becomes more significant. Conversely, \acs{MRAE} values clearly show that KVFinder suite and Fpocket provide the most reliable cavity volumes.
-
 Furthermore, the cavity volumes estimated with KVFinder suite and Fpocket are close to the estimated volume with a small spread compared to other cavity detection tools (Figure \ref{fig:re-plot-benchmarks}A). Despite a few outliers, the overall trend supports our approach of using Rebek's rule of thumb as the optimal estimate for the “real” cavity volume within these supramolecular cages.
 
-\begin{figure}[ht]
-  \centerline{\includegraphics[scale=0.9]{images/smc-re-plots.png}}
+\begin{figure}[h]
+  \centerline{\includegraphics[scale=0.53]{images/smc-re-plots.png}}
   \caption[Boxplot of the relative error of the cavity volume in the benchmark datasets]{\textbf{Boxplot of the relative error of the cavity volume in the benchmark datasets.}  \textbf{(A)} Benchmark dataset 1 with "real" cavity volume as reference. \textbf{(B)} Benchmark dataset 2 with the average volume of detected cavities as reference. In benchmark dataset 2, the cavity of O2 is excluded due to high uncertainty in detecting its cavity by some methods. Each cavity detection tool is presented with a violin plot depicting the probability density function of the relative error. The red line denotes the median, and the point indicates the mean relative errors.}
   \label{fig:re-plot-benchmarks}
 \end{figure}
@@ -1536,8 +1536,8 @@ Furthermore, the cavity volumes estimated with KVFinder suite and Fpocket are cl
 
 The benchmark dataset 2 (Figure \ref{fig:benchmark-dataset-2}) comprises 9 X-ray structures of well-known supramolecular cages, without the guest molecules, but with different topological and morphological features (\ie, cavity size, opening size, and shape).
 
-\begin{figure}[ht]
-  \centerline{\includegraphics[scale=1]{images/benchmark-dataset-2.png}}
+\begin{figure}[h]
+  \centerline{\includegraphics[scale=1.0]{images/benchmark-dataset-2.png}}
   \centerline{\tiny{\textbf{Source:} Reprinted with permission from \cite{guerra2023B}. Copyright 2023 American Chemical Society.}}
   \caption[Benchmark dataset 2]{\textbf{Benchmark dataset 2.}
   A1: \ch{(H2O)6L6} (CSD ID: 1207879) \cite{macgillivray1997}.
