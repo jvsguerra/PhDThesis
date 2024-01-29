@@ -35,7 +35,6 @@
 \RequirePackage{graphicx}
 \PassOptionsToPackage{table}{xcolor}
 \RequirePackage{pdfpages}
-% \RequirePackage{logo-ic-unicamp}
 \RequirePackage{xspace}
 
 \RequirePackage{setspace}
@@ -326,21 +325,11 @@
   \iffinalversion
     \logos
     \vskip 20mm
-    \begin{center}
-      \large
-      {\bf \if\@autora\relax\@autor\else\@autora\fi}
-      \vskip 15mm
-      \ifcase\@thesislanguage
-        {\bf\@title}
-        \vskip 8mm
-      \or
-        {\bf\@title}
-        \vskip 8mm
-      \fi
-      {\bf \@titulo}
-    \end{center}
+    {\bf Autor:} {\if\@autora\relax\@autor\else\@autora\fi}
+    \vskip 5mm
+    {\bf Orientador:} {\if\@orientadora\relax\@orientador\else\@orientadora\fi}
     \vfill
-    {\bf Banca Examinadora:}
+    {\bf Comissão Examinadora:}
     \ifx\@avalA\relax
     \else
       \begin{itemize}
@@ -356,8 +345,7 @@
     \hfill\begin{minipage}[t]{\textwidth}
       \begin{center}
       \supresshyphen
-      A ata da defesa, assinada pelos membros da Comiss\~ao Examinadora, consta no
-      SIGA/Sistema de Fluxo de Disserta\c{c}\~ao/Tese e na Secretaria do Programa da Unidade.
+      A ata da defesa com as respectivas assinaturas dos membros encontra-se no SIGA/Sistema de Fluxo de Disserta\c{c}\~ao/Tese e na Secretaria do Pós-Graduação da Faculdade de Ciências Farmacêuticas.
       \end{center}
     \end{minipage}
     \vfill
