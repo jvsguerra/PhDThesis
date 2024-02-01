@@ -1,7 +1,9 @@
-import pandas as pd
-import plotly.express as px
+import math
+
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
+import plotly.express as px
 
 # Read data
 countries = pd.read_csv("clarity-countries.csv", index_col=0)
@@ -73,7 +75,7 @@ fig.update_coloraxes(
 )
 
 plt.tight_layout()
-fig.write_image("clarity-countries.png", engine="auto")
+fig.write_image("clarity-countries.png", engine="auto", scale=3)
 
 # [Plot 2] Pie chart for browsers
 
@@ -86,7 +88,7 @@ wedges, texts = ax.pie(
     startangle=-40,
 )
 
-bbox_props = dict(boxstyle="square, pad=0.3", fc="w", ec="k", lw=0.72)
+bbox_props = dict(boxstyle="square, pad=0.19", fc="w", ec="k", lw=0.72)
 kw = dict(arrowprops=dict(arrowstyle="-"), bbox=bbox_props, zorder=0, va="center")
 
 for i, p in enumerate(wedges):
@@ -117,7 +119,7 @@ wedges, texts = ax.pie(
     startangle=-10,
 )
 
-bbox_props = dict(boxstyle="square, pad=0.3", fc="w", ec="k", lw=0.72)
+bbox_props = dict(boxstyle="square, pad=0.19", fc="w", ec="k", lw=0.72)
 kw = dict(arrowprops=dict(arrowstyle="-"), bbox=bbox_props, zorder=0, va="center")
 
 for i, p in enumerate(wedges):
@@ -130,7 +132,7 @@ for i, p in enumerate(wedges):
     ax.annotate(
         os["Operating systems"][i] + " (" + os["% of sessions"][i] + ")",
         xy=(x, y),
-        xytext=(1.35 * np.sign(x), 1.4 * y),
+        xytext=(1.35 * np.sign(x), math.floor(1.4 * y * 10) / 10),
         horizontalalignment=horizontalalignment,
         **kw
     )
