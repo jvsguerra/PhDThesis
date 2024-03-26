@@ -1,7 +1,6 @@
 # Build outputs
 texer.out
 texer.err
-phdthesis.pdf
 
 ## Core latex/pdflatex auxiliary files:
 *.aux

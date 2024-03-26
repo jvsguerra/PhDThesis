@@ -1,7 +1,7 @@
 % Escolha: Portugues ou Ingles ou Espanhol.
 % Para a versão final do texto, após a defesa, acrescente Final:
-\documentclass[Ingles]{phdthesis}
-% \documentclass[Ingles,Final]{phdthesis}
+% \documentclass[Ingles]{phdthesis}
+\documentclass[Ingles,Final]{phdthesis}
 
 \usepackage[latin1,utf8]{inputenc}
 
@@ -172,7 +172,7 @@
 \datadadefesa{22}{03}{2024}
 
 % Para a versão final defina:
-\avaliadorA{Dr. Paulo Sergio Lopes de Oliveira}{Centro Nacional de Pesquisa em Energia e Materiais (CNPEM)}
+\avaliadorA{Prof. Dr. Paulo Sergio Lopes de Oliveira}{Centro Nacional de Pesquisa em Energia e Materiais (CNPEM)}
 \avaliadorB{Dr. Eduardo Xavier Silva Miqueles}{Centro Nacional de Pesquisa em Energia e Materiais (CNPEM)}
 \avaliadorC{Prof. Dr. Andre Luis Berteli Ambrósio}{Universidade de São Paulo (USP)}
 \avaliadorD{Dr. Gustavo Fernando Mercaldi}{Centro Nacional de Pesquisa em Energia e Materiais (CNPEM)}
@@ -372,10 +372,12 @@ In the forthcoming sections, we will delve into computational approaches for ide
 
 \section{Binding Site Identification \label{sec:cavity-detection}}
 
-In biomolecules, particularly proteins and nucleic acids, solvent-exposed clefts or buried cavities are crucial for ligand binding, which can ultimately regulate biological function \cite{liang1998,sotriffer2002,henrich2010}. These binding sites are commonly situated in a diverse array of cavities (Figure \ref{fig:cavity-classification}), \ie, clefts, grooves, tunnels, channels, voids and invaginations \cite{simoes2017,guerra2019}. The identification and characterization of these binding sites are fundamental for comprehending the intricate biomolecular interactions and their diverse functions. Morphological, topological and physicochemical properties at the contact interface, \eg, shape, volume, area, charge, hydrophobicity, solvation, and type of interactions, dictate the functions and interactions of biomolecules \cite{hubbard1994,bohacek1997,sotriffer2002,henrich2010,guerra2019}. Identifying and sizing these cavities are initial steps in designing ligands based on protein structures \cite{liang1998}. Moreover, the structural and physicochemical characteristics of proteins are valuable in drug discovery and design \cite{guerra2019}.
+Binding sites are found within a diverse array of cavities, yet a formal mathematical definition of biomolecular cavities remains elusive \cite{simoes2017,guerra2019}. Using the mathematical theory of convexity \cite{lay2013,simoes2017}, a cavity is defined as a connected component within the complement space of the biomolecule enclosed by its convex hull. As a topological entity, the connected components (\ie, cavities) are related to the first Betti number $\beta_0$ (\ie, the number of connected components) of the complement space. In \acs{3D}, biomolecules are represented as shapes, with connected components corresponding to Betti numbers $\beta_i$ ($i=0,1,2$) in \acs{3D}. Consequently, cavities are categorized based on their morphology as voids (0-ary), pockets (1-ary), and channels (2-ary) (Figure \ref{fig:cavity-classification}). Pockets can be further categorized into clefts, grooves, invaginations and tunnels.
+
+In biomolecules, particularly proteins and nucleic acids, solvent-exposed clefts or buried cavities are crucial for ligand binding, which can ultimately regulate biological function \cite{liang1998,sotriffer2002,henrich2010}. The identification and characterization of these binding sites are fundamental for comprehending the intricate biomolecular interactions and their diverse functions. Morphological, topological and physicochemical properties at the contact interface, \eg, shape, volume, area, charge, hydrophobicity, solvation, and type of interactions, dictate the functions and interactions of biomolecules \cite{hubbard1994,bohacek1997,sotriffer2002,henrich2010,guerra2019}. Identifying and sizing these cavities are initial steps in designing ligands based on protein structures \cite{liang1998}. Moreover, the structural and physicochemical characteristics of proteins are valuable in drug discovery and design \cite{guerra2019}.
 
 \begin{figure}[ht]
-  \centerline{\includegraphics[scale=1]{images/cavity-classification.png}}
+  \centerline{\includegraphics[scale=1.05]{images/cavity-classification.png}}
   \caption[Types of biomolecular cavities]{\textbf{Types of biomolecular cavities.} A biomolecular cavity (gray region) as a contiguous segment within the complement space of the biomolecule (black region), as defined by \cite{lay2013}. The categorization of these cavities follows an n-ary classification, where 'n' denotes the number of mouth openings. Specifically, a 0-ary cavity is identified as a void, representing an enclosed spatial configuration without external openings. In contrast, a 1-ary cavity, illustrated by a pocket, includes a single mouth opening. It is noteworthy that pockets encompass diverse forms like tunnels, invaginations, clefts, and grooves. Meanwhile, a 2-ary cavity, exemplified by a channel, features two mouth openings, facilitating the transit of molecular entities \cite{simoes2017}.}
   \label{fig:cavity-classification}
 \end{figure}
@@ -506,7 +508,7 @@ It is noteworthy that the original KVFinder software \cite{oliveira2014}, introd
 
 Fpocket \cite{fpocket}, a tessellation-based approach, employs the concept of \textalpha\space spheres, originally introduced by \cite{liang1998}, for the detection of molecular pockets. The cavity detection algorithm (Figure \ref{fig:fpocket-schema}) performs a comprehensive analysis to identify the whole set of \textalpha\space spheres within a given molecular structure, using the \textit{qhull} package \cite{qhull}. The process involves categorizing small alpha spheres situated inside the structure, large spheres outside the structure, and the spheres in between as corresponding to cavities. To refine the cavity selection, Fpocket eliminates any alpha sphere falling outside a customized range of minimum and maximum radii. The remaining \textalpha\space spheres are grouped into cavities based on proximity and neighborhood relationships, and cavities of poor interest (\eg, hydrophilic or small putative pockets) excluded from further analysis. Subsequently, the cavities are assessed using a set of dpocket descriptors \cite{fpocket}, allowing the cavities to be ranked according to their putative binding affinity for small molecules. 
 
-\begin{figure}[ht]
+\begin{figure}[H]
   \centerline{\includegraphics[scale=1.0]{images/fpocket-schema.png}}
   \centerline{\scriptsize{\textbf{Source:} Reprinted with permission from \cite{guerra2023B}. Copyright 2023 American Chemical Society.}}
   \caption[Cavity detection algorithm in Fpocket]{\textbf{Cavity detection algorithm in Fpocket.} \textbf{(A)} Voronoi diagram of the atomic centers. \textbf{(B)} Voronoi balls (dotted orange circles) centered at Voronoi vertices (orange points). \textbf{(C)} Example of an \textalpha\space sphere (green sphere) centered at a Voronoi vertex (orange point) and grows until it becomes tangent to an atom. \textbf{(D)} Cluster of \textalpha\space spheres (green region) filling the binding site.}
