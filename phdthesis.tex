@@ -64,7 +64,7 @@
 \hypersetup{
   pdftitle     = {Development of a computational platform for structural and functional characterization of biomolecules and binding sites},
   pdfauthor    = {João Victor da Silva Guerra},
-  pdfkeywords  = {structural biology, data science, computational platform, data coding, cavity detection, solvent accessibility, molecular dynamics},
+  pdfkeywords  = {structural biology, data science, computational platform, binding sites, molecular dynamics, data coding, cavity detection, solvent accessibility},
   pdfproducer  = {Latex with hyperref},
   pdfcreator   = {pdflatex}
 }
@@ -155,7 +155,7 @@
 \title{Development of a computational platform for structural and functional characterization of biomolecules and binding sites}
 
 % Escolha entre orientador ou orientadora. Inclua os títulos acadêmicos:
-\orientador{Dr. Paulo Sergio Lopes de Oliveira}
+\orientador{Prof. Dr. Paulo Sergio Lopes de Oliveira}
 %\orientadora{Profa. Dra. Nome da Orientadora}
 
 % Escolha entre coorientador ou coorientadora, se houver.  Inclua os títulos acadêmicos:
@@ -179,7 +179,7 @@
 \avaliadorE{Dr. Felippe Mariano Colombari}{Centro Nacional de Pesquisa em Energia e Materiais (CNPEM)}
 
 % Para incluir a ficha catalográfica em PDF na versão final, descomente e ajuste:
-%\fichacatalografica{arquivo.pdf}
+\fichacatalografica{images/ficha-catalografica.pdf}
 
 % Este comando deve ficar aqui:
 \paginasiniciais
@@ -491,16 +491,16 @@ In this context, the exploration of geometric approaches for cavity detection re
 
 The vast majority of cavity detection tools were originally developed for proteins (see Section \ref{sec:geometric-approaches}). Although these algorithms exhibit robustness in describing and analyzing any molecular system (\eg, protein, DNA, RNA, inorganic material, supramolecular cage, etc.), so far, only a few tools have been applied to other biomolecular systems, excluding proteins, to assess structural characteristics such as the shape, volume, area and mouth openings. Our literature review led us to identify tools meeting specific criteria: applicability to any molecular system, availability as free software, comprehensive documentation, robust developer support, a well-conceived set of characterizations, and recognition within the scientific community. Guided by these stringent criteria, we spotlight four well-established cavity detection tools: parKVFinder, Fpocket, \acs{GHECOM}, and CAVER tools.
 
-\subsubsection{parKVFinder}
-
-parKVFinder \cite{guerra2019,guerra2020}, a grid-and-probe-based approach, detects and characterizes any type of biomolecular cavity, integrated with a graphical plugin for PyMOL \cite{pymol}. The cavity detection algorithm (Figure \ref{fig:parkvfinder-schema}) employs a dual-probe methodology based on mathematical morphology theory \cite{matheron1974,serra1982}. Originally implemented in the KVFinder software \cite{oliveira2014}, this algorithm involves two probes, a smaller probe (\textit{Probe In}) and a larger probe (\textit{Probe Out}), inspecting grid points to define cavities as the non-overlapping regions traversed by these probes.
-
-\begin{figure}[h]
-  \centerline{\includegraphics[scale=1]{images/kvfinder-suite-schema.png}}
+\begin{figure}[H]
+  \centerline{\includegraphics[scale=0.9]{images/kvfinder-suite-schema.png}}
   \centerline{\scriptsize{\textbf{Source:} Reprinted with permission from \cite{guerra2023B}. Copyright 2023 American Chemical Society.}}
   \caption[Cavity detection algorithm in parKVFinder]{\textbf{Cavity detection algorithm in parKVFinder.} \textbf{(A)} A biomolecular structure X, composed of atoms modeled as rigid spheres with van der Waals radii, is inserted into a \acs{3D} grid. \textbf{(B)} The \ac{Pi} probe traverses the surface of the structure, moving through grid points (orange). \textbf{(C)} Next, the \ac{Po} probe traverses accessible points in blue. \textbf{(D)} Cavity points (light gray) are defined as the difference between the accessible points of the probes. Points not reached by \acs{Pi} (dark gray) define the \acs{SES} (standard) or \acs{SAS}, depending on the surface representation chosen by the user. \textbf{(E)} Finally, a distance-based removal procedure is applied to eliminate cavity points near the cavity-bulk boundary (yellow line).}
   \label{fig:parkvfinder-schema}
 \end{figure}
+
+\subsubsection{parKVFinder}
+
+parKVFinder \cite{guerra2019,guerra2020}, a grid-and-probe-based approach, detects and characterizes any type of biomolecular cavity, integrated with a graphical plugin for PyMOL \cite{pymol}. The cavity detection algorithm (Figure \ref{fig:parkvfinder-schema}) employs a dual-probe methodology based on mathematical morphology theory \cite{matheron1974,serra1982}. Originally implemented in the KVFinder software \cite{oliveira2014}, this algorithm involves two probes, a smaller probe (\textit{Probe In}) and a larger probe (\textit{Probe Out}), inspecting grid points to define cavities as the non-overlapping regions traversed by these probes.
 
 It is noteworthy that the original KVFinder software \cite{oliveira2014}, introduced in 2014, has been deprecated. However, subsequent implementations, namely parKVFinder \cite{guerra2020}, pyKVFinder \cite{guerra2021}, and KVFinder-web \cite{guerra2023A}, have been developed to enhance computational performance and usability. Each of these tools addresses different scientific community demands in a flexible manner. Cavity characterization in these tools includes morphological descriptors (\eg, volume, area, shape, and depth), topological descriptors (\eg, interface residues surrounding the cavities and their classification---aliphatic, aromatic, polar uncharged, negatively charged, and positively charged---), and physicochemical descriptors (\eg, hydrophobicity). Further details on the parKVFinder can be found in Section \ref{sec:parkvfinder}.
 
