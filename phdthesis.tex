@@ -1014,7 +1014,7 @@ The computational performance of pyKVFinder was also assessed on kv1000 \cite{gu
 
 \begin{figure}[h]
   \centering
-  \includegraphics[scale=1]{images/pykvfinder-speedup.png}
+  \includegraphics[scale=1.05]{images/pykvfinder-speedup.png}
   \caption[Speedup of pyKVFinder compared to parKVFinder]{\textbf{Speedup of pyKVFinder compared to parKVFinder.} The speedup is the ratio of pyKVFinder's execution time to parKVFinder's execution time, applying the same number of OpenMP threads, for different numbers of atoms.}
   \label{fig:pykvfinder-speedup}
 \end{figure}
@@ -1023,7 +1023,7 @@ Even with the addition of new characterizations such as depth and hydrophobicity
 
 \begin{figure}[h]
   \centering
-  \includegraphics[scale=1]{images/pykvfinder-parkvfinder-kv1000-comparison.png}
+  \includegraphics[scale=0.9]{images/pykvfinder-parkvfinder-kv1000-comparison.png}
   \caption[Computational time as a function of the number of atoms with different numbers of threads for parKVFinder and pyKVFinder]{\textbf{Computational time as a function of the number of atoms with different numbers of threads for parKVFinder and pyKVFinder.} Top left panel: parKVFinder. Top right panel: pyKVFinder with default characterization (volume, area, and interface residues). Bottom left panel: pyKVFinder with default and depth characterizations. Bottom right panel: pyKVFinder with default and hydrophobicity characterizations.}
   \label{fig:pykvfinder-parkvfinder-kv1000-comparison}
 \end{figure}
@@ -1179,7 +1179,7 @@ The KVFinder-web service is a RESTful web service that employs parKVFinder (\hre
 
 \begin{figure}[h]
   \centering
-  \includegraphics[scale=1.5]{images/web-queue-worker-architecture.png}
+  \includegraphics[scale=1.55]{images/web-queue-worker-architecture.png}
   \caption[KVFinder-web service architecture and communication]{\textbf{KVFinder-web architecture and communication.}}
   \label{fig:kvweb-service-architecture}
 \end{figure}
@@ -1309,7 +1309,7 @@ Recently, we developed pyKVFinder \cite{guerra2021} as a foundational element fo
 
 \begin{figure}[H]
   \centering
-  \includegraphics[scale=0.81]{images/kvmd-overview.png}
+  \includegraphics[scale=0.815]{images/kvmd-overview.png}
   \caption[Detection, characterizations, and representations of cavities in molecular dynamics studies using the KVFinderMD tool]{\textbf{Detection, characterizations, and representations of cavities in molecular dynamics studies using the KVFinderMD tool.} \textbf{(A)} Morphological, topological, and physicochemical characterizations applied in KVFinderMD. \textbf{(B)} Graph-based representation of cavities based on interface residues and their topological relationships. Edges are formed up to the limit distance of  8 Å between \acs{CB} (blue), 10 Å between \acs{CA} (red), and 5 Å between any atoms of different residues (magenta).}
   \label{fig:kvmd-overview}
 \end{figure}
