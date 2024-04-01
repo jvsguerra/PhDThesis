@@ -14,6 +14,9 @@
 % Para identar primeiro parágrafo:
 \usepackage{indentfirst}
 
+% Para definir a identação do parágrafo:
+\setlength{\parindent}{2cm}
+
 % Retira espaço extra obsoleto entre as frases.
 \frenchspacing
 
@@ -204,13 +207,13 @@ My heartfelt gratitude goes to all those who supported me throughout the develop
 
 A sincere thank you to my advisor, Dr. Paulo Sergio Lopes de Oliveira, for providing me with scientific and creative autonomy to shape this thesis. Above all, I am grateful for the opportunity to contribute to a research center of excellence under his guidance. My appreciation also extends to my colleagues and former colleagues at the Computational Biology Laboratory (\acs{LBC}; \acl{LBC})---Dr. José Geraldo de Carvalho Pereira, Dr. Helder Veras Ribeiro Filho, MSc. Luiz Fernando Giolo Alves, Dr. Mariana Bortoletto Grizante, Dr. Gabriel Ernesto Jara, Dr. Leandro Oliveira Bortot, MSc. Amauri Donadon Leal Junior, and Pablo Wesley de Aguiar e Silva. Their support during crucial moments, collaborative idea-sharing, and insightful suggestions have significantly contributed to the development of this project. In particular, I would like to acknowledge the contributions of Dr. Helder Veras Ribeiro Filho and Dr. José Geraldo de Carvalho Pereira in the development and planning of tools, as well as Dr. Gabriel Ernesto Jara and Dr. Leandro Oliveira Bortot for their guidance in molecular dynamics-related topics. My gratitude knows no bounds for all those who assisted me during this crucial phase of my academic journey.
 
-Finally, I express my thanks to the Postgraduate Program in Pharmaceutical Sciences (\acs{PPGCF}; \acl{PPGCF}) at the Faculty of Pharmaceutical Sciences (\acs{FCF}; \acl{FCF}) of the University of Campinas (\acs{UNICAMP}; \acl{UNICAMP}), the National Laboratory of Biosciences (\acs{LNBio}; \acl{LNBio}), and the National Center for Research in Energy and Materials (\acs{CNPEM}; \acl{CNPEM}) for providing the necessary infrastructure and support for this work. Additionally, this work was supported by the São Paulo Research Foundation (\acs{FAPESP}; \acl{FAPESP}) [Grant Number 2018/00629-0] and the \ac{CAPES} [Grant Number 88887.928702/2023-00].
+Finally, I express my thanks to the Postgraduate Program in Pharmaceutical Sciences (\acs{PPGCF}; \acl{PPGCF}) at the Faculty of Pharmaceutical Sciences (\acs{FCF}; \acl{FCF}) of the University of Campinas (\acs{UNICAMP}; \acl{UNICAMP}), the National Laboratory of Biosciences (\acs{LNBio}; \acl{LNBio}), and the National Center for Research in Energy and Materials (\acs{CNPEM}; \acl{CNPEM}) for providing the necessary infrastructure and support for this work. Additionally, this study was financed in part by the \ac{CAPES} -- Finance Code 001 [Grant Number 88887.928702/2023-00], and grant \#2018/00629-0, São Paulo Research Foundation (\acs{FAPESP}). The opinions, hypotheses, and conclusions or recommendations expressed in this material are the responsibility of the author and do not necessarily reflect the views of \acs{FAPESP}.
 
 % Sempre deve haver um resumo em português.
 % O resumo deve ter no máximo 500 palavras e deve ocupar uma única página.
 \begin{resumo}
 
-Na atual era da ciência de dados, os campos da biologia estrutural e computacional têm se beneficiado significativamente do aumento da qualidade e acessibilidade da informação bioestrutural. Compreender a estrutura e a função das biomoléculas, juntamente com seus sítios de ligação, é crucial para desvendar processos biológicos e obter percepções valiosas na descoberta e desenho de fármacos. Apesar dessa importância, aprofundar-se nos mecanismos intrínsecos dessas interações e identificar potenciais sítios de ligação ainda é desafiador devido à natureza complexa das biomoléculas e à diversidade das interações. Diante dessa situação, há uma crescente demanda por ferramentas computacionais robustas que estudem de forma abrangente os sistemas biomoleculares. Neste contexto, apresentamos a KVFinder suite, uma plataforma computacional composta por ferramentas como parKVFinder, pyKVFinder, KVFinder-web, SERD e KVFinderMD. Cada ferramenta desempenha um papel específico, possibilitando não apenas a codificação, mas também a análise detalhada de biomoléculas e de seus sítios de ligação. De maneira importante, essas ferramentas oferecem a flexibilidade de utilizar suas unidades básicas em aplicações de ciência de dados e inteligência artificial. Ao longo deste trabalho, aplicações das ferramentas da KVFinder suite em estudos de caso terapêuticos demonstram sua eficácia. Essas aplicações, juntamente com novas caracterizações, proporcionam uma referência valiosa para a comunidade científica. Com suas diversas funcionalidades e capacidade de integração em aplicações de ciência de dados e inteligência artificial, a KVFinder suite tem o potencial de avançar na compreensão dos mecanismos de interação biomolecular e em estratégias terapêuticas inovadoras. Sua disponibilidade representa um recurso significativo, acelerando a pesquisa e ampliando o conhecimento na área, mantendo eficiência computacional.
+\noindent Na atual era da ciência de dados, os campos da biologia estrutural e computacional têm se beneficiado significativamente do aumento da qualidade e acessibilidade da informação bioestrutural. Compreender a estrutura e a função das biomoléculas, juntamente com seus sítios de ligação, é crucial para desvendar processos biológicos e obter percepções valiosas na descoberta e desenho de fármacos. Apesar dessa importância, aprofundar-se nos mecanismos intrínsecos dessas interações e identificar potenciais sítios de ligação ainda é desafiador devido à natureza complexa das biomoléculas e à diversidade das interações. Diante dessa situação, há uma crescente demanda por ferramentas computacionais robustas que estudem de forma abrangente os sistemas biomoleculares. Neste contexto, apresentamos a KVFinder suite, uma plataforma computacional composta por ferramentas como parKVFinder, pyKVFinder, KVFinder-web, SERD e KVFinderMD. Cada ferramenta desempenha um papel específico, possibilitando não apenas a codificação, mas também a análise detalhada de biomoléculas e de seus sítios de ligação. De maneira importante, essas ferramentas oferecem a flexibilidade de utilizar suas unidades básicas em aplicações de ciência de dados e inteligência artificial. Ao longo deste trabalho, aplicações das ferramentas da KVFinder suite em estudos de caso terapêuticos demonstram sua eficácia. Essas aplicações, juntamente com novas caracterizações, proporcionam uma referência valiosa para a comunidade científica. Com suas diversas funcionalidades e capacidade de integração em aplicações de ciência de dados e inteligência artificial, a KVFinder suite tem o potencial de avançar na compreensão dos mecanismos de interação biomolecular e em estratégias terapêuticas inovadoras. Sua disponibilidade representa um recurso significativo, acelerando a pesquisa e ampliando o conhecimento na área, mantendo eficiência computacional.
 
 \end{resumo}
 
@@ -218,7 +221,7 @@ Na atual era da ciência de dados, os campos da biologia estrutural e computacio
 % The abstract must have at most 500 words and must fit in a single page.
 \begin{abstract}
 
-In the current era of data science, the fields of structural and computational biology have significantly benefited from the increasing quality and accessibility of biostructural information. Understanding the structure and function of biomolecules, along with their binding sites, is crucial for unraveling biological processes and gaining valuable insights into drug discovery and design. Despite this importance, delving into the intrinsic mechanisms of these interactions and pinpointing potential binding sites remains challenging due to the complex nature of biomolecules and the diversity of interactions. Given this situation, there is a growing demand for robust computational tools that comprehensively study biomolecular systems. Herein, we introduce the KVFinder suite, a computational platform comprising tools such as parKVFinder, pyKVFinder, KVFinder-web, SERD, and KVFinderMD. Each tool plays a specific role, enabling not only the coding but also the in-depth analysis of biomolecules and their binding sites. Importantly, these tools offer the flexibility of using their basic units in data science and artificial intelligence applications. Throughout this work, applications of KVFinder suite tools in therapeutic case studies showcase their effectiveness. These applications, along with new characterizations, offer a valuable reference for the scientific community. With its diverse functionalities and integration capabilities into data science and artificial intelligence applications, the KVFinder suite holds the potential to advance our understanding of biomolecular interaction mechanisms and innovative therapeutic strategies. Its availability represents a significant resource, accelerating research and advancing knowledge in the field while maintaining computational efficiency.
+\noindent In the current era of data science, the fields of structural and computational biology have significantly benefited from the increasing quality and accessibility of biostructural information. Understanding the structure and function of biomolecules, along with their binding sites, is crucial for unraveling biological processes and gaining valuable insights into drug discovery and design. Despite this importance, delving into the intrinsic mechanisms of these interactions and pinpointing potential binding sites remains challenging due to the complex nature of biomolecules and the diversity of interactions. Given this situation, there is a growing demand for robust computational tools that comprehensively study biomolecular systems. Herein, we introduce the KVFinder suite, a computational platform comprising tools such as parKVFinder, pyKVFinder, KVFinder-web, SERD, and KVFinderMD. Each tool plays a specific role, enabling not only the coding but also the in-depth analysis of biomolecules and their binding sites. Importantly, these tools offer the flexibility of using their basic units in data science and artificial intelligence applications. Throughout this work, applications of KVFinder suite tools in therapeutic case studies showcase their effectiveness. These applications, along with new characterizations, offer a valuable reference for the scientific community. With its diverse functionalities and integration capabilities into data science and artificial intelligence applications, the KVFinder suite holds the potential to advance our understanding of biomolecular interaction mechanisms and innovative therapeutic strategies. Its availability represents a significant resource, accelerating research and advancing knowledge in the field while maintaining computational efficiency.
 
 \end{abstract}
 
@@ -228,7 +231,7 @@ In the current era of data science, the fields of structural and computational b
 %\end{resumen}
 
 % A lista de figuras é opcional:
-\addcontentsline{toc}{chapter}{\listfigurename}
+% \addcontentsline{toc}{chapter}{\listfigurename}
 % {%
 % \let\oldnumberline\numberline%
 % \renewcommand{\numberline}{\figurename~\oldnumberline}%
@@ -238,7 +241,7 @@ In the current era of data science, the fields of structural and computational b
 \clearpage
 
 % A lista de tabelas é opcional:
-\addcontentsline{toc}{chapter}{\listtablename}
+% \addcontentsline{toc}{chapter}{\listtablename}
 % {%
 % \let\oldnumberline\numberline%
 % \renewcommand{\numberline}{\tablename~\oldnumberline}%
@@ -257,7 +260,7 @@ In the current era of data science, the fields of structural and computational b
   \acro{API}[API]{\LU{A}{a}pplication \LU{P}{p}rogramming \LU{I}{i}nterface}
   \acro{CA}[C\textalpha]{α carbon}
   \acro{CB}[C\textbeta]{β carbon}
-  \acro{CAPES}[CAPES]{\textit{Coordenação de Aperfeiçoamento de Pessoal de Nível Superior}}
+  \acro{CAPES}[CAPES]{\textit{Coordenação de Aperfeiçoamento de Pessoal de Nível Superior - Brasil}}
   \acro{CAPRI}[CAPRI]{Critical Assessment of PRedicted Interactions}
   \acro{CEC}[CEC]{\textit{Congresso de Estudantes do CNPEM}}
   \acro{CHIKV}[CHIKV]{Chikungunya \LU{V}{v}irus}
@@ -377,7 +380,7 @@ Binding sites are found within a diverse array of cavities, yet a formal mathema
 In biomolecules, particularly proteins and nucleic acids, solvent-exposed clefts or buried cavities are crucial for ligand binding, which can ultimately regulate biological function \cite{liang1998,sotriffer2002,henrich2010}. The identification and characterization of these binding sites are fundamental for comprehending the intricate biomolecular interactions and their diverse functions. Morphological, topological and physicochemical properties at the contact interface, \eg, shape, volume, area, charge, hydrophobicity, solvation, and type of interactions, dictate the functions and interactions of biomolecules \cite{hubbard1994,bohacek1997,sotriffer2002,henrich2010,guerra2019}. Identifying and sizing these cavities are initial steps in designing ligands based on protein structures \cite{liang1998}. Moreover, the structural and physicochemical characteristics of proteins are valuable in drug discovery and design \cite{guerra2019}.
 
 \begin{figure}[ht]
-  \centerline{\includegraphics[scale=1.05]{images/cavity-classification.png}}
+  \centerline{\includegraphics[scale=0.95]{images/cavity-classification.png}}
   \caption[Types of biomolecular cavities]{\textbf{Types of biomolecular cavities.} A biomolecular cavity (gray region) as a contiguous segment within the complement space of the biomolecule (black region), as defined by \cite{lay2013}. The categorization of these cavities follows an n-ary classification, where 'n' denotes the number of mouth openings. Specifically, a 0-ary cavity is identified as a void, representing an enclosed spatial configuration without external openings. In contrast, a 1-ary cavity, illustrated by a pocket, includes a single mouth opening. It is noteworthy that pockets encompass diverse forms like tunnels, invaginations, clefts, and grooves. Meanwhile, a 2-ary cavity, exemplified by a channel, features two mouth openings, facilitating the transit of molecular entities \cite{simoes2017}.}
   \label{fig:cavity-classification}
 \end{figure}
@@ -814,7 +817,7 @@ Within parKVFinder, the atomistic representation encodes each atom by its residu
 
 Expanding upon the atomistic representation, the utilization of graph-based models emerges as a robust representation for examining interactions and relationships within biomolecules. Graph theory techniques are widely applied across diverse scientific domains such as biology, chemistry, physics, computer science, and mathematics \cite{foulds1995, majeed2020}. A cornerstone in discrete mathematics, it models the relationships and interactions between objects in a network, assisting in the analysis of biological interaction networks at various scales. In structural biology, graph theory has been utilized to investigate the structure, folding, stability, function, allostery and dynamics of proteins \cite{vishveshwara2002,dipaola2015,heal2018,kantelis2022}.
 
-A graph $\mathcal{G(V,E)}$ (Figure \ref{fig:graph-examples}) is a mathematical structure, where $\mathcal{V} = \{v_1, v_2, \dots, v_n\}$ is a nonempty, finite set of vertices (also known nodes, point and junction), and $\mathcal{E} = \{e_1, e_2, \dots, e_n\}$ is a set of unordered pairs of distinct vertices of $\mathcal{V}$, whose elements $\{v_i,v_j\} \in \mathcal{E}$, where $v_i,v_j \in \mathcal{V}$, connects vertices $v_i$ and $v_j$ and termed edges (also known as line, arc, branch and link). Graphs can be directed (also known as digraph), where edges link two vertices symmetrically, or undirected, where edges link two vertices asymmetrically. Additionally, graphs can also be weighted, where each edge is assigned a weight or cost, which can represent a physical distance, a similarity measure, or any other property \cite{foulds1995,bondy1976,majeed2020,black2020}. Evolving from this, graph theory finds applications in modeling biological and chemical systems. In chemistry, molecular graphs capture the structural relationships between atoms and bonds, facilitating the study of chemical compounds and reactions. Biomolecules, which are assemblies of atoms (vertices) connected by intramolecular and intermolecular interactions (edges), have also been extensively explored through graph theory \cite{vishveshwara2002,mason2007}.
+A graph $\mathcal{G(V,E)}$ (Figure \ref{fig:graph-examples}) is a mathematical structure, where $\mathcal{V} = \{v_1, v_2, \\ \dots, v_n\}$ is a nonempty, finite set of vertices (also known nodes, point and junction), and $\mathcal{E} = \{e_1, e_2, \dots, e_n\}$ is a set of unordered pairs of distinct vertices of $\mathcal{V}$, whose elements $\{v_i,v_j\} \in \mathcal{E}$, where $v_i,v_j \in \mathcal{V}$, connects vertices $v_i$ and $v_j$ and termed edges (also known as line, arc, branch and link). Graphs can be directed (also known as digraph), where edges link two vertices symmetrically, or undirected, where edges link two vertices asymmetrically. Additionally, graphs can also be weighted, where each edge is assigned a weight or cost, which can represent a physical distance, a similarity measure, or any other property \cite{foulds1995,bondy1976,majeed2020,black2020}. Evolving from this, graph theory finds applications in modeling biological and chemical systems. In chemistry, molecular graphs capture the structural relationships between atoms and bonds, facilitating the study of chemical compounds and reactions. Biomolecules, which are assemblies of atoms (vertices) connected by intramolecular and intermolecular interactions (edges), have also been extensively explored through graph theory \cite{vishveshwara2002,mason2007}.
 
 \begin{figure}[h]
   \centering
@@ -1164,7 +1167,7 @@ Additionally, the graphical interface allows users to download and visualize res
 
 \begin{figure}[h]
   \centering
-  \includegraphics[scale=1.8]{images/kvweb-results.png}
+  \includegraphics[scale=1.7]{images/kvweb-results.png}
   \centerline{\scriptsize{\textbf{Source:} Reprinted from \cite{guerra2023A}. Licensed under \href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}.}}
   \caption[Results visualization in KVFinder-web portal]{\textbf{Results visualization in KVFinder-web portal.} \textbf{(A)} Results section of the KVFinder-web portal. The job status box (green: 'completed'; yellow: 'running' or 'queued'; red: 'cancelled') (1). Upon completion, the interface presents the results in a table, including volume, area, average depth, maximum depth, and average hydrophobicity of the cavities (2). Users can download a ZIP file containing the target biomolecule and PDB files of the cavities (3) or a TOML file with cavity characterizations (4). \textbf{(B)} The target biomolecule with cavities can be viewed by clicking the 'View' button, and users can customize the visualization of the biomolecule and cavities.}
   \label{fig:kvweb-results}
@@ -1191,7 +1194,7 @@ The computational performance of the KVFinder-web service was also evaluated on 
 
 \begin{figure}[h]
   \centering
-  \includegraphics[scale=1.6]{images/kvweb-performance.png}
+  \includegraphics[scale=1.4]{images/kvweb-performance.png}
   \centerline{\scriptsize{\textbf{Source:} Reprinted from \cite{guerra2023A}. Licensed under \href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}.}}
   \caption[Effects of detection parameters on KVFinder-web service performance]{\textbf{Effects of detection parameters on KVFinder-web service performance.} Cavity detection was performed on kv1000 \cite{guerra2020}, varying \textbf{(A)} \textit{Probe Out} sizes and \textbf{(B)} \textit{Removal Distance}. Elapsed time relative the number of atoms in the target structure was recorded. Calculations were performed on a computer with an AMD Ryzen 7 1700 8-core, 3.0 GHz processor, 32GB of RAM, running Ubuntu 22.04 LTS.}
   \label{fig:kvweb-performance}
@@ -1273,7 +1276,7 @@ In this scenario, we developed \ac{SERD} \cite{SERD}, an open-source tool licens
 
 \begin{figure}[h]
   \centering
-  \includegraphics[scale=0.45]{images/serd-spyke.png}
+  \includegraphics[scale=0.4]{images/serd-spyke.png}
   \caption[Solvent accessibility and graph-based representation in SERD.]{\textbf{Solvent accessibility and graph-based representation in SERD.} \textbf{(A)} SARS-CoV-2 Spike Glycoprotein (PBD ID: 7A98; green cartoon). \textbf{(B)} Solvent accessibility, from low accessibility (blue) to high accessibility (red). \textbf{(C)} Solvent-exposed residues (red sticks). \textbf{(D)} Graph-based representation of solvent-exposed residues. Edges are formed up to the limit distance of 10 Å between \acs{CA} (red).}
   \label{fig:serd-spyke}
 \end{figure}
@@ -1286,7 +1289,7 @@ In summary, SERD can represent biomolecular structures as graphs, from ligand-bi
 
 \begin{figure}[h]
   \centering
-  \includegraphics[scale=0.75]{images/graph-representation-of-binding-sites.png}
+  \includegraphics[scale=0.6]{images/graph-representation-of-binding-sites.png}
   \caption[Graph-based representation of the adenosine binding site of protein kinase A.]{\textbf{Graph-based representation of the adenosine binding site of protein kinase A (PDB ID: 1FMO).} Upper panel: Binding site represented in pyKVFinder as a cavity (gray surface) and by the residues surrounding the cavity (red). Lower panel: Binding site represented as graphs. Edges are formed up to the limit distance of 10 Å between \acs{CA} (red), 8 Å between \acs{CB} (yellow), and 5 Å between any atoms of different residues (cyan).}
   \label{fig:serd-cavity}
 \end{figure}
@@ -1297,7 +1300,7 @@ In specific scenarios, receptors utilize binding sites for the formation of the 
 
 \begin{figure}[h]
   \centering
-  \includegraphics[scale=0.3]{images/molecular-recognition.png}
+  \includegraphics[scale=0.27]{images/molecular-recognition.png}
   \caption[Schematic representation of binding models]{\textbf{Schematic representation of binding models.}}
   \label{fig:molecular-recognition}
 \end{figure}
@@ -1398,7 +1401,7 @@ The hierarchical clustering of the 3D grid representation resulted in 10 groups 
 
 \begin{figure}[h]
   \centering
-  \includegraphics[scale=1.15]{images/HIV-1-clustering-results.png}
+  \includegraphics[scale=1.05]{images/HIV-1-clustering-results.png}
   \caption[Hierarchical clustering of HIV-1 protease cavities]{\textbf{Hierarchical clustering of HIV-1 protease cavities.} All cavities detected throughout the molecular dynamics were overlaid on the same structure and colored according to labels assigned by hierarchical clustering of 3D grid (left panel), distance matrix (central panel), and contact matrix (right panel). The silhouette score plot is presented for each sample according to the assigned label. The red line indicates the silhouette coefficient for hierarchical clustering.}
   \label{fig:hiv-1-clustering-results}
 \end{figure}

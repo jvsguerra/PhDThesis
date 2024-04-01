@@ -169,7 +169,7 @@
   \noindent
   \begin{center}
   \begin{tabular}{cc}
-    \raisebox{-.5\height}{\includegraphics[width=2.5cm]{images/logo-unicamp.png}}
+    \raisebox{-.5\height}{\includegraphics[width=2.5cm]{images/logo-unicamp.jpg}}
     &
     \begin{minipage}{.7\textwidth}
       \raggedright
@@ -257,11 +257,11 @@
     \end{minipage}
   \fi
   \vfill
-  \ifcase\@thesislanguage
-    {\bf Supervisor/}\hspace{-0.9ex}
-  \or
-    \if\@orientadora\relax {\bf Director/}\else {\bf Directora/}\fi\hspace{-0.9ex}
-  \fi
+  % \ifcase\@thesislanguage
+  %   {\bf Supervisor/}\hspace{-0.9ex}
+  % \or
+  %   \if\@orientadora\relax {\bf Director/}\else {\bf Directora/}\fi\hspace{-0.9ex}
+  % \fi
   \if\@orientadora\relax {\bf Orientador: \@orientador}
   \else {\bf Orientadora: \@orientadora}
   \fi
@@ -328,7 +328,13 @@
     {\bf Autor:} {\if\@autora\relax\@autor\else\@autora\fi}
     \vskip 5mm
     {\bf Orientador:} {\if\@orientadora\relax\@orientador\else\@orientadora\fi}
-    \vfill
+    \vskip 10mm
+    {
+      \begin{center}
+        Tese aprovada em \@dia\xspace de \ifcase \@mes \or janeiro\or fevereiro\or mar\c{c}o\or abril\or maio\or junho\or julho\or agosto\or setembro\or outubro\or novembro\or dezembro\fi\xspace de \@ano
+      \end{center}
+    }
+    \vskip 5mm
     {\bf Comissão Examinadora:}
     \ifx\@avalA\relax
     \else
@@ -369,7 +375,7 @@
 
 \def\prefacesection#1{
   \chapter*{#1}
-  \addcontentsline{toc}{chapter}{#1}
+  % \addcontentsline{toc}{chapter}{#1}
   \pagestyle{empty}
   \thispagestyle{empty}
 }
